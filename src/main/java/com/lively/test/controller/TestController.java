@@ -1,4 +1,4 @@
-package com.lively.app.test.controller;
+package com.lively.test.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

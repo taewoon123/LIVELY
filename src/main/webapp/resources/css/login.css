@@ -11,11 +11,6 @@
 	  background-color: #1eb154;
 	}
 
-	.social-icons img {
-		width: 10px;
-		height: 10px;
-	}
-	
 	/* ========== 원본 ========== */
 	
 	.form-container {
@@ -129,11 +124,11 @@
 	  margin-left: 8px;
 	}
 	
-	/* .social-icons .icon svg {
+	.social-icons .icon svg {
 	  height: 1.25rem;
 	  width: 1.25rem;
 	  fill: #fff;
-	} */
+	}
 	
 	.signup {
 	  text-align: center;

@@ -19,13 +19,13 @@
 
 	<!-- 팩토리 -->
 	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSourceBean" />
 		<property name="configLocation" value="classpath:/mybatis/mybatis-configuration.xml"/>
 <!--		<property name="mapperLocations" value="classpath:/mybatis/**/*-mapper.xml"/>   아직 mapper파일들을 만들지 않아서 주석처리함. -->
 	</bean>
 
 	<!-- 데이터소스 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<bean id="dataSourceBean" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
 		<property name="username" value="LIVELY"/>
@@ -34,7 +34,7 @@
 
 	<!-- 트랜잭션 관리 bean 등록 (id는 고정) -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSourceBean"></property>
 	</bean>
 
 	<!-- @Aspect 및 하위 어노테이션 활성화(아직안씀) -->

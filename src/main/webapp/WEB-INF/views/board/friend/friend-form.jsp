@@ -49,4 +49,4 @@
 
 </body>
 </html>
-  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend-form.css">
+  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-form.css">

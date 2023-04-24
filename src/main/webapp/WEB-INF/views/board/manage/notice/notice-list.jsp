@@ -10,26 +10,44 @@
 /* table css */
 h2 {
 	color: white;
+	font-size: 36px;
+	margin-bottom: 40px;
+}
+
+thead {
+	background-color: #078735;
 }
 
 th, td {
 	color: white;
+	padding: 10px;
+	border-left: none;
+	border-right: none;
 }
 
 main table {
-	width: 600px;
+	width: 60%;
 	margin: auto;
 	text-align: center;
+	border-collapse: collapse;
 }
 
 main table td {
-	border: 2px solid white;
+	border-top: 1px solid #078735;
+	border-bottom: 1px solid gray;
 }
 
 #wrap {
 	margin-top: 200px;
 	margin-bottom: 100px;
+	text-align: center;
 }
+
+main table > tbody > tr:hover {
+	background-color: gray;
+	cursor: pointer;
+}
+
 
 /* 버튼 css */
 #write_submit {
@@ -50,7 +68,7 @@ main table td {
 	background: #66ff66;
 	color: ghostwhite;
 	float: right;
-	margin-right: 26%;
+	margin-right: 20%;
 	margin-top: 2%;
 }
 
@@ -86,7 +104,7 @@ main table td {
 	transform: translate3d(100%, 0, 0);
 }
 
-/* search css */
+/* search btn css */
 .container-input {
   position: relative;
 }
@@ -100,7 +118,7 @@ main table td {
   outline: none;
   opacity: 0.8;
   float : right;
-  margin-right: 26%
+  margin-right: 20%
 }
 
 .container-input svg {
@@ -116,6 +134,31 @@ main table td {
 }
 
 /* pagenation */
+.pagination-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.pagination-custom .page-numbers {
+  border: none;
+  color: #555555;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
+  padding: 6px 10px;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-custom .current {
+  color: #ffffff;
+  cursor: default;
+}
+
+.pagination-custom .page-numbers:hover {
+  color: #4CBB17;
+}
 
 </style>
 
@@ -144,36 +187,51 @@ main table td {
 			<h2 align="center">공지사항 목록</h2>
 
 			<table>
+			
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Title</th>
+						<th>작성일시</th>
+						<th>작성자</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
 				<tbody>
-
+				
 					<tr>
 						<td>1</td>
-						<td>제목</td>
+						<td>도와주세요</td>
 						<td>2023.04.20</td>
+						<td>강작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
-						<td>1</td>
-						<td>제목</td>
+						<td>2</td>
+						<td>살려주세요</td>
 						<td>2023.04.20</td>
+						<td>오작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
-						<td>1</td>
-						<td>제목</td>
+						<td>3</td>
+						<td>SOS PLZ</td>
 						<td>2023.04.20</td>
+						<td>최작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
-						<td>1</td>
-						<td>제목</td>
+						<td>4</td>
+						<td>OH MY GOD</td>
 						<td>2023.04.20</td>
+						<td>정작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
-						<td>1</td>
-						<td>제목</td>
+						<td>5</td>
+						<td>WTF</td>
 						<td>2023.04.20</td>
+						<td>심작성</td>
 						<td>1</td>
 					</tr>
 
@@ -189,23 +247,24 @@ main table td {
 		</main>
 	</div>
 	
-	<!-- search -->
+	<!-- pagenation -->
 	<div class="page-area">
-  		<div class="pagination_test">
-    		<a class="prev page-numbers_test" href="javascript:;">이전</a>
-    		<span aria-current="page" class="page-numbers current">1</span>
-    		<a class="page-numbers_test" href="javascript:;">2</a>
-    		<a class="page-numbers_test" href="javascript:;">3</a>
-    		<a class="page-numbers_test" href="javascript:;">4</a>
-    		<a class="page-numbers_test" href="javascript:;">5</a>
-    		<a class="page-numbers_test" href="javascript:;">6</a>
-    		<a class="page-numbers_test" href="javascript:;">7</a>
-    		<a class="page-numbers_test" href="javascript:;">8</a>
-    		<a class="page-numbers_test" href="javascript:;">9</a>
-    		<a class="page-numbers_test" href="javascript:;">10</a>
-    		<a class="next page-numbers_test" href="javascript:;">다음</a>
-  		</div>
+		<div class="pagination-custom">
+			<a class="prev page-numbers" href="notice-list"> << </a>
+				<span aria-current="page" class="page-numbers current">1</span>
+				<a class="page-numbers" href="notice-list">2</a>
+				<a class="page-numbers" href="notice-list">3</a>
+				<a class="page-numbers" href="notice-list">4</a>
+				<a class="page-numbers" href="notice-list">5</a>
+				<a class="page-numbers" href="notice-list">6</a>
+				<a class="page-numbers" href="notice-list">7</a>
+				<a class="page-numbers" href="notice-list">8</a>
+				<a class="page-numbers" href="notice-list">9</a>
+				<a class="page-numbers" href="notice-list">10</a>
+				<a class="next page-numbers" href="notice-list"> >> </a>
+		</div>
 	</div>
+
 	
 	<footer>
 		<%@ include file="/WEB-INF/views/common/footer.jsp"%>

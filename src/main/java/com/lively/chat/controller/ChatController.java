@@ -1,4 +1,4 @@
-package com.lively.app.chat.controller;
+package com.lively.chat.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

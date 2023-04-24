@@ -14,7 +14,7 @@ h5 {
 	width: 600px;
 	margin: auto;
 	display: grid;
-	grid-template-columns: repeat(2, 100px 200px);
+	grid-template-columns: repeat(2, 150px 200px);
 	grid-template-rows: 30px 30px 250px;
 }
 
@@ -27,7 +27,7 @@ h5 {
 }
 
 #notice-area > div {
-	border: 1px solid lightblue;
+	border: 2px solid #078735;
 }
 
 #notice-area input, #notice-area textarea {
@@ -52,12 +52,12 @@ h5 {
 }
 
 /* 버튼 css */
-#write_submit {
+#write_submit_delete {
 	outline: none;
 	cursor: pointer;
 	border: none;
 	padding: 0.9rem 2rem;
-	margin: 0;
+	/* margin: 0; */
 	font-family: inherit;
 	font-size: inherit;
 	position: relative;
@@ -70,21 +70,21 @@ h5 {
 	background: #66ff66;
 	color: ghostwhite;
 	float: right;
-	margin-right: 20%;
+	margin-right: 15%;
 	margin-top: 2%;
 }
 
-#write_submit span {
+#write_submit_delete span {
 	position: relative;
 	z-index: 10;
 	transition: color 0.4s;
 }
 
-#write_submit:hover span {
+#write_submit_delete:hover span {
 	color: black;
 }
 
-#write_submit::before, #write_submit::after {
+#write_submit_delete::before, #write_submit_delete::after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -93,7 +93,7 @@ h5 {
 	z-index: 0;
 }
 
-#write_submit::before {
+#write_submit_delete::before {
 	content: "";
 	background: #000;
 	width: 120%;
@@ -102,7 +102,61 @@ h5 {
 	transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
 }
 
-#write_submit:hover::before {
+#write_submit_delete:hover::before {
+	transform: translate3d(100%, 0, 0);
+}
+
+#write_submit_edit {
+	outline: none;
+	cursor: pointer;
+	border: none;
+	padding: 0.9rem 2rem;
+	/* margin: 0; */
+	font-family: inherit;
+	font-size: inherit;
+	position: relative;
+	display: inline-block;
+	letter-spacing: 0.05rem;
+	font-weight: 700;
+	font-size: 17px;
+	border-radius: 500px;
+	overflow: hidden;
+	background: #66ff66;
+	color: ghostwhite;
+	float: right;
+	margin-right: 3%;
+	margin-top: 2%;
+}
+
+#write_submit_edit span {
+	position: relative;
+	z-index: 10;
+	transition: color 0.4s;
+}
+
+#write_submit_edit:hover span {
+	color: black;
+}
+
+#write_submit_edit::before, #write_submit_edit::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+#write_submit_edit::before {
+	content: "";
+	background: #000;
+	width: 120%;
+	left: -10%;
+	transform: skew(30deg);
+	transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+#write_submit_edit:hover::before {
 	transform: translate3d(100%, 0, 0);
 }
 
@@ -135,6 +189,70 @@ h5 {
   width: 250px;
 }
 
+/* comment css */
+#wrapper{
+  height: 100vh;
+}
+
+#form-commentInfo{
+  width: 100%;
+}
+
+#comment-count{
+  margin-bottom: 10px; 
+}
+
+#comment-input{
+  width: 50%;
+  height: 3.3em;
+  border-radius: 5px;
+}
+
+#submit{
+  background-color:#FCECD3;
+  border-radius: 10px;
+  width: 5.5em;
+  height: 3.3em;;
+  color: black;
+}
+
+#comments{
+  margin-top: 10px;
+}
+
+#reviewContent{
+  height: 20%;
+}
+.eachComment{   
+  width :50%; 
+  margin: 10px;  
+  padding: 0.5em; 
+  border-bottom: 1px solid #c1bcba;
+}
+
+.eachComment .name{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.eachComment .time{
+  font-size: 0.7em;
+  color: #c1bcba;
+  font-style: oblique;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  
+}
+
+.eachComment .voteDiv{
+  display: flex;
+  justify-content: flex-end;
+}
+
 </style>
 </head>
 <header>
@@ -150,7 +268,7 @@ h5 {
 			<div class="view-area active">
 				<div id="notice-area">
 					<div>제목</div>
-					<div>공지사항1</div>
+					<div>도와주세요</div>
 					<div>작성일자</div>
 					<div>2023-04-24</div>
 					<div>조회수</div>
@@ -160,35 +278,14 @@ h5 {
 				</div>
 				
 				<!-- 작성 버튼 -->
-				<button id = "write_submit">
+				<button id = "write_submit_delete">
 					<span>삭제하기</span>
 				</button>
 				
-				<button id = "write_submit">
+				<button id = "write_submit_edit">
 					<span>수정하기</span>
 				</button>
 				
-			</div>
-
-			<div class="form-area">
-				<form action="${root}/notice/edit" method="POST">
-					<input type="hidden" name="no" value="${vo.no}">
-					<div id="notice-area">
-						<div>제목</div>
-						<div>
-							<input type="text" name="title" value="${vo.title}">
-						</div>
-						<div>작성일자</div>
-						<div>${vo.enrollDate}</div>
-						<div>조회수</div>
-						<div>${vo.hit}</div>
-						<div>내용</div>
-						<div>
-							<textarea name="content">${vo.content}</textarea>
-						</div>
-					</div>
-					<br> <input type="submit" value="수정하기">
-				</form>
 			</div>
 
 		</main>
@@ -200,7 +297,7 @@ h5 {
 			</div>
 			<input id="comment-input" name= comment placeholder="댓글을 입력해 주세요.">
 			<button id="submit" name = comment>등록</button>
-		</div>
+	</div>
 	<div id=comments></div>
 	
 	<footer>
@@ -208,8 +305,8 @@ h5 {
 	</footer>
 </body>
 </html>
-<script>
 
+<script>
 const inputBar = document.querySelector("#comment-input");
 const rootDiv = document.querySelector("#comments");
 const btn = document.querySelector("#submit");
@@ -257,16 +354,8 @@ function numberCount(event){
     
 }
 //신고버튼(delete) 누르면 신고창
-function deleteComments(event){    
-    const btn = event.target;    
-    const list = btn.parentNode.parentNode;//commentList
+function deleteComments(event) {    
 
-const reportBtns = document.querySelectorAll('.deleteComment');
-reportBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    window.location.href = 'report.html';
-  });
-});
     //메인댓글 카운트 줄이기.
     if(mainCommentCount.innerHTML <='0'){
         mainCommentCount.innerHTML = 0;
@@ -287,16 +376,13 @@ function showComment(comment){
     const commentList = document.createElement('div');  //이놈이 스코프 밖으로 나가는 순간 하나지우면 다 지워지고 입력하면 리스트 다불러옴.
     //삭제버튼 만들기
     const delBtn = document.createElement('button');
-    delBtn.className ="deleteComment";
-    delBtn.innerHTML="report";
     commentList.className = "eachComment";
     userName.className="name";
     inputValue.className="inputValue";
     showTime.className="time";
     voteDiv.className="voteDiv";
     //유저네임가져오기 
-    userName.innerHTML = generateUserName();    
-    userName.appendChild(delBtn);  
+    userName.innerHTML = generateUserName();
     //입력값 넘기기
     inputValue.innerText = comment;
     //타임스템프찍기
@@ -319,7 +405,6 @@ function showComment(comment){
 
     voteUp.addEventListener("click",numberCount);
     voteDown.addEventListener("click",numberCount);
-    delBtn.addEventListener("click",deleteComments);
    console.dir(rootDiv);
 
 }

@@ -201,36 +201,36 @@ main table > tbody > tr:hover {
 				
 					<tr>
 						<td>1</td>
-						<td>도와주세요</td>
-						<td>2023.04.20</td>
+						<td>공지사항</td>
+						<td>2023.04.24</td>
 						<td>강작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
 						<td>2</td>
-						<td>살려주세요</td>
-						<td>2023.04.20</td>
+						<td>긴급공지</td>
+						<td>2023.04.24</td>
 						<td>오작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
 						<td>3</td>
-						<td>SOS PLZ</td>
-						<td>2023.04.20</td>
+						<td>공지공지</td>
+						<td>2023.04.24</td>
 						<td>최작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
 						<td>4</td>
-						<td>OH MY GOD</td>
-						<td>2023.04.20</td>
+						<td>긴급긴급</td>
+						<td>2023.04.24</td>
 						<td>정작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
 						<td>5</td>
-						<td>WTF</td>
-						<td>2023.04.20</td>
+						<td>긴급 공지사항 긴급</td>
+						<td>2023.04.24</td>
 						<td>심작성</td>
 						<td>1</td>
 					</tr>

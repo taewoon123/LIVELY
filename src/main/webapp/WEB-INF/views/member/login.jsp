@@ -16,8 +16,8 @@
 			<div id="whole">
 				<div class="form-container">
 					<p class="title">Login</p>
-					
-					<form class="form">
+
+					<form class="form" action="${rootContext}/home" method="post">
 						<label for="username">ID</label>
 						<div class="input-group">
 							<input type="text" name="username" id="username" placeholder="">
@@ -27,10 +27,10 @@
 							<input type="password" name="password" id="password" placeholder="">
 						</div>
 						<br>
-						<button class="sign">Sign in</button>
+						<button class="sign-button">Sign in</button>
 					</form>
-					
-				</div>
+
+				</div> 
 			</div>
 
 	</body>

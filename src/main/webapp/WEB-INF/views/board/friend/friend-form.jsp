@@ -15,11 +15,10 @@
             <form>
                 <div class="write-group">
 
-                    <h3>Friend</h3>
+                    <h3 id="friend-title">Friend</h3>
 
                     <div class="form__group">
-                        <input type="text" class="form__field w-100" placeholder="Input text">
-                        <label  class="form__label"> 제목 </label>
+                        <input type="text" class="form__field" placeholder="제목">
                     </div>
                 </div>
                 <div class="write-group">

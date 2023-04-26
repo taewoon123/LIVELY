@@ -35,7 +35,7 @@ main table > tbody > tr:hover {
 
 
 /* 버튼 css */
-#write_submit {
+.write_submit {
 	outline: none;
 	cursor: pointer;
 	border: none;
@@ -57,17 +57,17 @@ main table > tbody > tr:hover {
 	margin-top: 2%;
 }
 
-#write_submit span {
+.write_submit span {
 	position: relative;
 	z-index: 10;
 	transition: color 0.4s;
 }
 
-#write_submit:hover span {
+.write_submit span {
 	color: black;
 }
 
-#write_submit::before, #write_submit::after {
+.write_submit::before, .write_submit::after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -76,7 +76,7 @@ main table > tbody > tr:hover {
 	z-index: 0;
 }
 
-#write_submit::before {
+.write_submit::before {
 	content: "";
 	background: #000;
 	width: 120%;
@@ -85,11 +85,16 @@ main table > tbody > tr:hover {
 	transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
 }
 
-#write_submit:hover::before {
+.write_submit:hover::before {
 	transform: translate3d(100%, 0, 0);
 }
 
 /* search btn css */
+.write_submit a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .container-input {
   position: relative;
 }

@@ -14,5 +14,10 @@ public class NoticeController {
 	public String notice_detail() {
 		return "board/manage/notice/notice-detail";
 	}
+	
+	@RequestMapping("notice-write")
+	public String notice_write() {
+		return "board/manage/notice/notice-write";
+	}
 
 }

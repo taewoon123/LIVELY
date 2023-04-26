@@ -13,6 +13,7 @@ public class MemberController {
 	public void login() {}
 	
 	@GetMapping("join")
-	public void join() {}
+	public void join() {
+	}
 	
 }

@@ -133,7 +133,7 @@
 	
 								<tr>
 									<th colspan="2">
-										<button id="joinButton">Join</button>
+										<button id="join-button">Join</button>
 									</th>
 								</tr>
 							</tbody>

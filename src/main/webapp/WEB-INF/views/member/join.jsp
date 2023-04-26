@@ -13,7 +13,7 @@
 
 		<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-			<div id="whole">
+			<div id="wrap">
 				<div class="form-container">
 					<p class="title">Join</p>
 
@@ -31,7 +31,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Password
@@ -42,7 +42,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Password Check
@@ -53,7 +53,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Name
@@ -64,18 +64,19 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										E-mail
 									</td>
 									<th>
 										<div class="input-group">
-											<input type="email" name="E-mail" id="E-mail" placeholder=" ex) kim@naver.com">
+											<input type="email" name="E-mail" id="E-mail"
+												placeholder=" ex) kim@naver.com">
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Birth
@@ -86,7 +87,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										HP
@@ -97,7 +98,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Gender
@@ -105,22 +106,25 @@
 									<th>
 										<div class="selections">
 											<span id="Female">
-												<input type="radio" name="Gender" id="F" value="0"> <label for="F">Female</label>
+												<input type="radio" name="Gender" id="F" value="0"> <label
+													for="F">Female</label>
 											</span>
 											<span id="Male">
-												<input type="radio" name="Gender" id="M" value="1"> <label for="M">Male</label>
+												<input type="radio" name="Gender" id="M" value="1"> <label
+													for="M">Male</label>
 											</span>
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Location
 									</td>
 									<th>
 										<div class="selections">
-											<select class="location_option" name="location" id="location" placeholder="Location">
+											<select class="location_option" name="location" id="location"
+												placeholder="Location">
 												<option value="0" selected>지역선택</option>
 												<option value="1">강동구</option>
 												<option value="2">강서구</option>
@@ -130,7 +134,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<th colspan="2">
 										<button id="join-button">Join</button>

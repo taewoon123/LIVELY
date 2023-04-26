@@ -13,7 +13,7 @@
 
 		<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-			<div id="whole">
+			<div id="wrap">
 				<div class="form-container">
 					<p class="title">Login</p>
 

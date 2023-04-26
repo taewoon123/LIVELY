@@ -22,7 +22,7 @@ table tr td {
 /* select 태그 배경색상,글자색상 검정으로 */
 .location_option {
 	background-color: #232121;
-	color: #ffffff;
+	color: #ffffff; 
 }
 
 /* gender, location 버튼 위아래 간격 떨어뜨림 */

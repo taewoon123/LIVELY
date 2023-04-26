@@ -1,12 +1,14 @@
-package com.lively.app.friend.controller;
+package com.lively.friend.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("friend")
 public class FriendController {
 
-	@RequestMapping("friend")
+	@GetMapping("form")
 	public String friend() {
 		return "board/friend/friend-form";
 	}

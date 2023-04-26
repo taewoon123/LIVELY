@@ -12,7 +12,7 @@
 }
 
 /* 로그인창 가운데로 오도록 */
-#whole {
+#wrap {
 	height: 100vh;
 	display: flex;
 	justify-content: center;

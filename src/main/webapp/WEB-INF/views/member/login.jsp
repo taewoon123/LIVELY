@@ -11,7 +11,7 @@
 
 	<body>
 
-		<%@ include file="/WEB-INF/views/common/header.jsp" %>
+		<%@ include file="${rootContext}/WEB-INF/views/common/header.jsp" %>
 
 			<div id="wrap">
 				<div class="form-container">
@@ -30,8 +30,10 @@
 						<button class="sign-button">Sign in</button>
 					</form>
 
-				</div> 
+				</div>
 			</div>
+
+			<%@ include file="${rootContext}/WEB-INF/views/common/footer.jsp" %>
 
 	</body>
 	<link rel="stylesheet" href="${rootContext}/resources/css/member/login.css">

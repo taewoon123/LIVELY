@@ -11,7 +11,7 @@
 
 	<body>
 
-		<%@ include file="/WEB-INF/views/common/header.jsp" %>
+		<%@ include file="${rootContext}/WEB-INF/views/common/header.jsp" %>
 
 			<div id="wrap">
 				<div class="form-container">
@@ -71,8 +71,7 @@
 									</td>
 									<th>
 										<div class="input-group">
-											<input type="email" name="E-mail" id="E-mail"
-												placeholder=" ex) kim@naver.com">
+											<input type="email" name="E-mail" id="E-mail" placeholder=" ex) kim@naver.com">
 										</div>
 									</th>
 								</tr>
@@ -106,12 +105,10 @@
 									<th>
 										<div class="selections">
 											<span id="Female">
-												<input type="radio" name="Gender" id="F" value="0"> <label
-													for="F">Female</label>
+												<input type="radio" name="Gender" id="F" value="0"> <label for="F">Female</label>
 											</span>
 											<span id="Male">
-												<input type="radio" name="Gender" id="M" value="1"> <label
-													for="M">Male</label>
+												<input type="radio" name="Gender" id="M" value="1"> <label for="M">Male</label>
 											</span>
 										</div>
 									</th>
@@ -123,8 +120,7 @@
 									</td>
 									<th>
 										<div class="selections">
-											<select class="location_option" name="location" id="location"
-												placeholder="Location">
+											<select class="location_option" name="location" id="location" placeholder="Location">
 												<option value="0" selected>지역선택</option>
 												<option value="1">강동구</option>
 												<option value="2">강서구</option>
@@ -148,6 +144,8 @@
 
 				</div>
 			</div>
+
+			<%@ include file="${rootContext}/WEB-INF/views/common/footer.jsp" %>
 
 	</body>
 	<link rel="stylesheet" href="${rootContext}/resources/css/member/join.css">

@@ -1,3 +1,13 @@
+/*---------------------------------------
+  NAVIGATION              
+-----------------------------------------*/
+/* 헤더 margin-top 줄임 2023-4-24 */
+.sticky-wrapper {
+  margin-top: 10px;
+}
+
+/* ==================== 원본 ==================== */
+
 /*
 
 TemplateMo 583 Festava Live
@@ -363,7 +373,6 @@ strong {
   top: 0;
   right: 0;
   left: 0;
-  margin-top: 51px;
 }
 
 .sticky-wrapper.is-sticky .navbar {

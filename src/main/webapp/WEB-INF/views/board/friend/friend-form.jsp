@@ -43,7 +43,7 @@
                     <div id="registerName"><input value="등록" type="submit"></div>
                 </div>
             </form>
-        </div>
+        </div> 
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
 

@@ -29,8 +29,8 @@
                 <form class="form">
                     <label for="file-input" class="drop-container">
                         <span class="drop-title">Drop files here</span>
-                        or
-                        <input type="file" accept="image/*" required="" id="file-input">
+                        <a>or</a>
+                        <input type="file" accept="image/*" required="" id="file-input" style="font-size: 15px">
                     </label>
                     <p class="form-paragraph">
                         File should be an image or video

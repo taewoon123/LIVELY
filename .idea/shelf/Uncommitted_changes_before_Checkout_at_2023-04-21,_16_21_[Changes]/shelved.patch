@@ -1,0 +1,26 @@
+Index: src/main/java/com/lively/app/test/controller/TestController.java
+===================================================================
+diff --git a/src/main/java/com/lively/app/test/controller/TestController.java b/src/main/java/com/lively/controller/TestController.java
+rename from src/main/java/com/lively/app/test/controller/TestController.java
+rename to src/main/java/com/lively/controller/TestController.java
+--- a/src/main/java/com/lively/app/test/controller/TestController.java	
++++ b/src/main/java/com/lively/controller/TestController.java	
+@@ -1,4 +1,4 @@
+-package com.lively.app.test.controller;
++package com.lively.controller;
+ 
+ import org.springframework.stereotype.Controller;
+ import org.springframework.web.bind.annotation.RequestMapping;
+Index: src/main/java/com/lively/app/home/controller/HomeController.java
+===================================================================
+diff --git a/src/main/java/com/lively/app/home/controller/HomeController.java b/src/main/java/com/lively/controller/HomeController.java
+rename from src/main/java/com/lively/app/home/controller/HomeController.java
+rename to src/main/java/com/lively/controller/HomeController.java
+--- a/src/main/java/com/lively/app/home/controller/HomeController.java	
++++ b/src/main/java/com/lively/controller/HomeController.java	
+@@ -1,4 +1,4 @@
+-package com.lively.app.home.controller;
++package com.lively.controller;
+ 
+ import org.springframework.stereotype.Controller;
+ import org.springframework.web.bind.annotation.RequestMapping;

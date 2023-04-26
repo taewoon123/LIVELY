@@ -1,0 +1,38 @@
+Index: src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<beans:beans xmlns=\"http://www.springframework.org/schema/mvc\"\n\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\txmlns:beans=\"http://www.springframework.org/schema/beans\"\n\txmlns:context=\"http://www.springframework.org/schema/context\"\n\txsi:schemaLocation=\"http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd\n\t\thttp://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd\n\t\thttp://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd\">\n\n\t<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->\n\t\n\t<!-- Enables the Spring MVC @Controller programming model -->\n\t<annotation-driven />\n\n\t<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->\n\t<resources mapping=\"/resources/**\" location=\"/resources/\" />\n\n\t<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->\n\t<beans:bean class=\"org.springframework.web.servlet.view.InternalResourceViewResolver\">\n\t\t<beans:property name=\"prefix\" value=\"/WEB-INF/views/\" />\n\t\t<beans:property name=\"suffix\" value=\".jsp\" />\n\t</beans:bean>\n\t\n\t<context:component-scan base-package=\"com.lively.app\" />\n\t\n\t\n\t\n</beans:beans>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml b/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml
+--- a/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml	
++++ b/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml	
+@@ -21,7 +21,7 @@
+ 		<beans:property name="suffix" value=".jsp" />
+ 	</beans:bean>
+ 	
+-	<context:component-scan base-package="com.lively.app" />
++	<context:component-scan base-package="com.lively" />
+ 	
+ 	
+ 	
+Index: src/main/webapp/WEB-INF/spring/root-context.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<beans\n\t\txmlns=\"http://www.springframework.org/schema/beans\"\n\t\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n\t\txmlns:aop=\"http://www.springframework.org/schema/aop\"\n\t\txmlns:context=\"http://www.springframework.org/schema/context\"\n\t\txsi:schemaLocation=\"http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd\n\t\thttp://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd\n\t\thttp://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd\">\n\n\n\t<!-- Root Context: defines shared resources visible to all other web components -->\n\n\n\t<!-- SqlSessionFactory -->\n\t<bean id=\"sqlSessionTemplate\" class=\"org.mybatis.spring.SqlSessionTemplate\">\n\t\t<constructor-arg index=\"0\" ref=\"sqlSessionFactoryBean\" />\n\t</bean>\n\n\t<!-- 팩토리 -->\n\t<bean id=\"sqlSessionFactoryBean\" class=\"org.mybatis.spring.SqlSessionFactoryBean\">\n\t\t<property name=\"dataSource\" ref=\"dataSource\" />\n\t\t<property name=\"configLocation\" value=\"classpath:/mybatis/mybatis-configuration.xml\"/>\n<!--\t\t<property name=\"mapperLocations\" value=\"classpath:/mybatis/**/*-mapper.xml\"/>   아직 mapper파일들을 만들지 않아서 주석처리함. -->\n\t</bean>\n\n\t<!-- 데이터소스 -->\n\t<bean id=\"dataSource\" class=\"org.apache.commons.dbcp2.BasicDataSource\">\n\t\t<property name=\"driverClassName\" value=\"oracle.jdbc.OracleDriver\"/>\n\t\t<property name=\"url\" value=\"jdbc:oracle:thin:@127.0.0.1:1521:xe\"/>\n\t\t<property name=\"username\" value=\"LIVELY\"/>\n\t\t<property name=\"password\" value=\"1234\"/>\n\t</bean>\n\n\t<!-- 트랜잭션 관리 bean 등록 (id는 고정) -->\n\t<bean id=\"transactionManager\" class=\"org.springframework.jdbc.datasource.DataSourceTransactionManager\">\n\t\t<property name=\"dataSource\" ref=\"dataSource\"></property>\n\t</bean>\n\n\t<!-- @Aspect 및 하위 어노테이션 활성화(아직안씀) -->\n\t<aop:aspectj-autoproxy/>\n\n\t<!-- @Aspect 어노테이션도 scan 하기 위함 (아직안씀)-->\n\t<context:component-scan base-package=\"com.lively.app\">\n\t\t<context:include-filter type=\"annotation\" expression=\"org.aspectj.lang.annotation.Aspect\"/>\n\t</context:component-scan>\n\n</beans>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/WEB-INF/spring/root-context.xml b/src/main/webapp/WEB-INF/spring/root-context.xml
+--- a/src/main/webapp/WEB-INF/spring/root-context.xml	
++++ b/src/main/webapp/WEB-INF/spring/root-context.xml	
+@@ -41,7 +41,7 @@
+ 	<aop:aspectj-autoproxy/>
+ 
+ 	<!-- @Aspect 어노테이션도 scan 하기 위함 (아직안씀)-->
+-	<context:component-scan base-package="com.lively.app">
++	<context:component-scan base-package="com.lively">
+ 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+ 	</context:component-scan>
+ 

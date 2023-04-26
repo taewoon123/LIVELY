@@ -15,7 +15,7 @@
             <form>
                 <div class="write-group">
 
-                    <h3 id="notice-title">Notice-write</h3>
+                    <h3 id="help-title">Help-write</h3>
 
                     <div class="form__group">
                         <input type="text" class="form__field w-100" placeholder="Input text">
@@ -49,4 +49,4 @@
 
 </body>
 </html>
-  <link rel="stylesheet" href="${rootContext}/resources/css/board/notice/notice-write.css">
+  <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-write.css">

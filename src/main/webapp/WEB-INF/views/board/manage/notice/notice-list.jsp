@@ -85,8 +85,10 @@
 			</table>
 			
 			<!-- 작성 버튼 -->
-			<button id = "write_submit">
-				<span>write</span>
+			<button class = "write_submit">
+				<span>
+					<a href="${rootContext}/notice-write">write</a>
+				</span>
 			</button>
 			
 		</main>

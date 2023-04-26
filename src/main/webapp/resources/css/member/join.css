@@ -32,7 +32,7 @@ table tr td {
 }
 
 /* 로그인창 가운데로 오도록 */
-#whole {
+#wrap {
 	height: 100vh;
 	margin-top: 2%;
 	display: flex;

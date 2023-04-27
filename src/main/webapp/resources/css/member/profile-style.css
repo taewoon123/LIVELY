@@ -1,0 +1,130 @@
+/* new */
+.tot {
+    width: 700px;
+    margin: 0 auto;
+}
+.mypageedit {
+    text-align: center;
+    margin: 10px auto 50px;
+    background-color: #FCECD3;
+    padding: 1px;
+}
+#edit input, #edit select, #edit button {
+    margin-top: 21px;
+}
+#idbox, #nickbox, #namebox, #pwdbox, #pwd2box, #questionbox, #answerbox, #nationbox, #emailbox, #phonenumbox, #birthdaybox, #heightbox, #weightbox {
+    display: grid;
+    grid-template-columns: 1.3fr 1.3fr 0.2fr 2.5fr;
+    border-top: 1px solid rgb(222, 220, 220);
+    padding: 0px 0px 0px 20px;
+}
+#birthdayMD {
+    display: flex;
+}
+#Month, #Day {
+    width: 91px;
+}
+#countryCode, #year, #month, #day {
+    width: 100%;
+}
+#idbox {
+    border-top: 2px solid rgb(222, 220, 220);
+}
+#nationbox {
+    border-bottom: 2px solid rgb(222, 220, 220);
+}
+#edit h4, #edit select, #edit button {
+    color: #565656;
+    border-radius: 4px;
+}
+#edit button {
+    border: 1px solid #565656;
+}
+#edit button:hover, #edit select:hover {
+    cursor: pointer;
+}
+#editButton {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px 50px;
+    gap: 0px 5px;
+}
+#editButton button {
+    width: 100px;
+    height: 35px;
+    border: 1px solid #565656;
+    color: #565656;
+    border-radius: 8px;
+}
+#editButton button:hover {
+    color: white;
+    background-color: #565656;
+    cursor: pointer;
+}
+#pwdValid h5 {
+    font-size: 9px;
+    color: gray;
+    margin-top: 23px;
+}
+
+
+/*하단고정*/
+#fixedButton {
+    position: fixed; 
+    right: 45px;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-content: center center;
+    background-color: white;
+    color: #565656;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #9E9E9E;
+    cursor: pointer;
+}
+#fixedButton:hover {
+    background-color: #565656;
+    color: white;
+}
+.footer1 {
+	display: flex;
+	gap: 0px 20px;
+	background-color: rgb(238, 236, 236);
+	font-size: 10px;
+	height: 40px;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+.w {
+    padding-top: 12px;
+}
+.w a{
+    color: black;
+    text-decoration: none;
+}
+.companyInfo {
+	margin-left: 270px;
+}
+.footer1 .line {
+    border-left: 2px solid lightgray;
+    margin: 12px;
+}
+.foot2box1 {
+    padding-top: 20px;
+}
+.footer2 {
+    display: flex;
+    place-content: center;
+    padding-top: 20px;
+}
+.line2 {
+    border-left: 2px solid lightgray;
+    margin: 25px;
+    margin-right: -50px;
+}
+.footer3 {
+    padding-top: 5px;
+    padding-left: 270px;
+    border-top: 1px solid gray;
+}

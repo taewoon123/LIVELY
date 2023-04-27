@@ -12,12 +12,6 @@
 
 <head>
     <title>Title</title>
-    <style>
-        main {
-            margin-top: 0px;
-            padding-bottom: 200px;
-        }
-    </style>
 </head>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">

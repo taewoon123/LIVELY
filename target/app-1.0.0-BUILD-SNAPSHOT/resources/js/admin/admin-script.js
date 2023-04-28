@@ -1,12 +1,28 @@
-const checkboxAll = document.querySelector("#check-all");
+const memberCheckboxAll = document.querySelector("#member-check-all");
 
-checkboxAll.addEventListener("click",checkAll);
+memberCheckboxAll.addEventListener("click",memberCheckAll);
 
-function checkAll() {
-  let checkboxes = document.querySelectorAll("input[type='checkbox']");
+function memberCheckAll(event) {
+  memberCheckboxAll.checked = true;
+  let memberCheckboxes = document.querySelectorAll(".member-checkbox");
 
-  for (let i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].checked = checkboxes[i].checked === false;
+  for (let i = 0; i < memberCheckboxes.length; i++) {
+    memberCheckboxes[i].checked = memberCheckboxes[i].checked === false;
+    event.currentTarget.checked = memberCheckboxes[i].checked;
+  }
+
+}
+
+const someCheckboxAll = document.querySelector("#some-check-all");
+
+someCheckboxAll.addEventListener("click",someCheckAll);
+
+function someCheckAll(event) {
+  let someCheckboxes = document.querySelectorAll(".some-checkbox");
+
+  for (let i = 0; i < someCheckboxes.length; i++) {
+    someCheckboxes[i].checked = someCheckboxes[i].checked === false;
+    event.currentTarget.checked = someCheckboxes[i].checked;
   }
 
 }

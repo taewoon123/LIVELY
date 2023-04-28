@@ -1,30 +1,51 @@
-<%-- Created by IntelliJ IDEA.
-  User: b9
-  Date: 2023-04-21
-  Time: 13:53
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java"
+         pageEncoding="UTF-8"%>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 
 <body>
 
-    <%@include file="/WEB-INF/views/common/header.jsp"%>
-
 <div id="wrap">
-       <h1>this is fundraising detail view</h1>
-        <div class="detail-outer">
-           <div class="detail-inner" style="color: white">
-           디브
-           </div>
-        </div>
+    <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+    <div class="write-board">
+        <form>
+            <div class="write-group">
+
+                <h3 id="friend-title">Friend</h3>
+
+                <div class="form__group">
+                    <input type="text" class="form__field" placeholder="제목">
+                </div>
+            </div>
+            <div class="write-group">
+                <textarea name="content" id="content" cols="30" rows="10" style="resize: none"></textarea>
+            </div>
+
+            <!-- UI첨부파일(drop files) -->
+            <form class="form">
+                <label for="file-input" class="drop-container">
+                    <span class="drop-title">Drop files here</span>
+                    <a>or</a>
+                    <input type="file" accept="image/*" required="" id="file-input" style="font-size: 15px">
+                </label>
+                <p class="form-paragraph">
+                    File should be an image or video
+                </p>
+            </form>
+
+            <div class="register">
+                <div id="registerName"><input value="취소" type="submit"></div>
+                <div id="registerName"><input value="등록" type="submit"></div>
+            </div>
+        </form>
+    </div>
+    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </div>
 
 </body>
-<link rel="stylesheet" href="${rootContext}/resources/css/board/fundraise/fundraise-detail.css">
-
-<%--<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css">--%>
 </html>
+<link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-form.css">

@@ -46,36 +46,36 @@
 				
 					<tr>
 						<td>1</td>
-						<td>공지사항</td>
-						<td>2023.04.24</td>
+						<td>Help Me</td>
+						<td>2023.04.26</td>
 						<td>강작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
 						<td>2</td>
-						<td>긴급공지</td>
-						<td>2023.04.24</td>
+						<td>SOS</td>
+						<td>2023.04.26</td>
 						<td>오작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
 						<td>3</td>
-						<td>공지공지</td>
-						<td>2023.04.24</td>
+						<td>WTF</td>
+						<td>2023.04.26</td>
 						<td>최작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
 						<td>4</td>
-						<td>긴급긴급</td>
-						<td>2023.04.24</td>
+						<td>Somebody Help</td>
+						<td>2023.04.26</td>
 						<td>정작성</td>
 						<td>1</td>
 					</tr>
 					<tr>
 						<td>5</td>
-						<td>긴급 공지사항 긴급</td>
-						<td>2023.04.24</td>
+						<td>HelpHelp</td>
+						<td>2023.04.26</td>
 						<td>심작성</td>
 						<td>1</td>
 					</tr>
@@ -87,7 +87,7 @@
 			<!-- 작성 버튼 -->
 			<button id = "write_submit">
 				<span>
-					<a class = "write-btn" href="${rootContext}/notice-write">write</a>
+					<a class = "write-btn" href="${rootContext}/help-write">write</a>
 				</span>
 			</button>
 			
@@ -97,18 +97,18 @@
 	<!-- pagenation -->
 	<div class="page-area">
 		<div class="pagination-custom">
-			<a class="prev page-numbers" href="notice-list"> << </a>
+			<a class="prev page-numbers" href="help-list"> << </a>
 				<span aria-current="page" class="page-numbers current">1</span>
-				<a class="page-numbers" href="notice-list">2</a>
-				<a class="page-numbers" href="notice-list">3</a>
-				<a class="page-numbers" href="notice-list">4</a>
-				<a class="page-numbers" href="notice-list">5</a>
-				<a class="page-numbers" href="notice-list">6</a>
-				<a class="page-numbers" href="notice-list">7</a>
-				<a class="page-numbers" href="notice-list">8</a>
-				<a class="page-numbers" href="notice-list">9</a>
-				<a class="page-numbers" href="notice-list">10</a>
-				<a class="next page-numbers" href="notice-list"> >> </a>
+				<a class="page-numbers" href="help-list">2</a>
+				<a class="page-numbers" href="help-list">3</a>
+				<a class="page-numbers" href="help-list">4</a>
+				<a class="page-numbers" href="help-list">5</a>
+				<a class="page-numbers" href="help-list">6</a>
+				<a class="page-numbers" href="help-list">7</a>
+				<a class="page-numbers" href="help-list">8</a>
+				<a class="page-numbers" href="help-list">9</a>
+				<a class="page-numbers" href="help-list">10</a>
+				<a class="next page-numbers" href="help-list"> >> </a>
 		</div>
 	</div>
 
@@ -118,4 +118,4 @@
 	</footer>
 </body>
 </html> 
-	 <link rel="stylesheet" href="${rootContext}/resources/css/board/notice/notice-list.css">
+	 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-list.css">

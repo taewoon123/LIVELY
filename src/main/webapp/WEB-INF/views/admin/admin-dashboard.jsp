@@ -25,39 +25,39 @@
             <span class="dashboard-text" >회원관리</span>
         </div>
           <hr>
-          <table id="member-table">
-              <tr class="member-table-tr">
-                  <th class="member-table-th"><input type="checkbox" id="check-all"></th>
-                  <th class="member-table-th">아이디</th>
-                  <th class="member-table-th">닉네임</th>
-                  <th class="member-table-th">가입일</th>
+          <table class="table-tag">
+              <tr class="table-trs">
+                  <th class="table-ths"><input type="checkbox" id="member-check-all"></th>
+                  <th class="table-ths">아이디</th>
+                  <th class="table-ths">닉네임</th>
+                  <th class="table-ths">가입일</th>
               </tr>
-              <tr class="member-table-tr">
-                  <td class="member-table-td"><input type="checkbox"> </td>
-                  <td class="member-table-td">sadf</td>
-                  <td class="member-table-td">asdf</td>
-                  <td class="member-table-td">asdf</td>
+              <tr class="table-trs">
+                  <td class="table-tds"><input type="checkbox" class="member-checkbox"> </td>
+                  <td class="table-tds">sadf</td>
+                  <td class="table-tds">asdf</td>
+                  <td class="table-tds">asdf</td>
               </tr>
-              <tr class="member-table-tr">
-                  <td class="member-table-td"><input type="checkbox"> </td>
-                  <td class="member-table-td">asdf</td>
-                  <td class="member-table-td">asdf</td>
-                  <td class="member-table-td">asdf</td>
+              <tr class="table-trs">
+                  <td class="table-tds"><input type="checkbox" class="member-checkbox"> </td>
+                  <td class="table-tds">asdf</td>
+                  <td class="table-tds">asdf</td>
+                  <td class="table-tds">asdf</td>
               </tr>
-              <tr class="member-table-tr">
-                  <td class="member-table-td"><input type="checkbox"> </td>
-                  <td class="member-table-td">asdf</td>
-                  <td class="member-table-td">sadf</td>
-                  <td class="member-table-td">asdf</td>
+              <tr class="table-trs">
+                  <td class="table-tds"><input type="checkbox" class="member-checkbox"> </td>
+                  <td class="table-tds">asdf</td>
+                  <td class="table-tds">sadf</td>
+                  <td class="table-tds">asdf</td>
               </tr>
-              <tr class="member-table-tr">
-                  <td class="member-table-td"><input type="checkbox"> </td>
-                  <td class="member-table-td">asdf</td>
-                  <td class="member-table-td">asdf</td>
-                  <td class="member-table-td">asfd</td>
+              <tr class="table-trs">
+                  <td class="table-tds"><input type="checkbox" class="member-checkbox"> </td>
+                  <td class="table-tds">asdf</td>
+                  <td class="table-tds">asdf</td>
+                  <td class="table-tds">asfd</td>
               </tr>
           </table>
-          <div id="pagination-area">
+          <div class="pagination-area">
           <a href="">이전</a>
           <a href="">1</a>
           <a href="">2</a>
@@ -67,6 +67,53 @@
           <a href="">다음</a>
           </div>
       </div>
+            <div class="dashboard" style="background-color: whitesmoke">
+                <div class="inside-card">
+                    <span class="dashboard-text" >SOME</span>
+                </div>
+                <hr>
+                <table class="table-tag">
+                    <tr class="table-trs">
+                        <th class="table-ths"><input type="checkbox" id="some-check-all"></th>
+                        <th class="table-ths">아이디</th>
+                        <th class="table-ths">닉네임</th>
+                        <th class="table-ths">가입일</th>
+                    </tr>
+                    <tr class="table-trs">
+                        <td class="table-tds"><input type="checkbox" class="some-checkbox"> </td>
+                        <td class="table-tds">some</td>
+                        <td class="table-tds">some</td>
+                        <td class="table-tds">some</td>
+                    </tr>
+                    <tr class="table-trs">
+                        <td class="table-tds"><input type="checkbox" class="some-checkbox"> </td>
+                        <td class="table-tds">some</td>
+                        <td class="table-tds">some</td>
+                        <td class="table-tds">some</td>
+                    </tr>
+                    <tr class="table-trs">
+                        <td class="table-tds"><input type="checkbox" class="some-checkbox"> </td>
+                        <td class="table-tds">some</td>
+                        <td class="table-tds">some</td>
+                        <td class="table-tds">some</td>
+                    </tr>
+                    <tr class="table-trs">
+                        <td class="table-tds"><input type="checkbox" class="some-checkbox"> </td>
+                        <td class="table-tds">some</td>
+                        <td class="table-tds">some</td>
+                        <td class="table-tds">some</td>
+                    </tr>
+                </table>
+                <div class="pagination-area">
+                    <a href="">이전</a>
+                    <a href="">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a href="">4</a>
+                    <a href="">5</a>
+                    <a href="">다음</a>
+                </div>
+            </div>
 
     </div>
 </div>
@@ -76,5 +123,7 @@
 
 </html>
 <script src="${rootContext}/resources/js/admin/admin-script.js"></script>
+
+<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/admin/admin-dashboard-style.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/footer-stick-to-bottom.css">

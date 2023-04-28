@@ -1,0 +1,36 @@
+/* 새로 추가한거 */
+/* .member_edit {
+  margin-left: 20%;
+} */
+
+.col-md-5 col-lg-4 order-md-last {
+  margin-left: 50%;
+}
+
+.wrap {
+  margin: auto;
+  width: 50%;
+  height: 30%;
+}
+
+/* 원래 있던거 */
+.accordion-item {
+  background: white;
+}
+
+#no-accodian {
+  --bs-accordion-btn-active-icon: none;
+}
+
+.accordion-button:not(.collapsed) {
+  color: black;
+  /* background-color: var(--bs-accordion-active-bg); 없앨까 */
+}
+
+body {
+  margin-top: 0;
+}
+#accordionPanelsStayOpenExample a{
+  text-decoration: none;
+  color: black;
+}

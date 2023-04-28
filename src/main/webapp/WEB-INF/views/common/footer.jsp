@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Title</title>
+
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +19,10 @@
 <link href="${rootContext}/resources/css/common/bootstrap.min.css" rel="stylesheet">
 <link href="${rootContext}/resources/css/common/bootstrap-icons.css" rel="stylesheet">
 <link href="${rootContext}/resources/css/common/templatemo-festava-live.css" rel="stylesheet">
-<body>
+<style>
 
+</style>
+<body>
 <footer class="site-footer">
   <div class="site-footer-top">
     <div class="container">

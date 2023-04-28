@@ -1,4 +1,4 @@
-/* 로그인 버튼 디자인 */
+/* 로그인 버튼 디자인 */ 
 .sign-button {
 	display: block;
 	width: 100%;
@@ -12,7 +12,7 @@
 }
 
 /* 로그인창 가운데로 오도록 */
-#whole {
+#wrap {
 	height: 100vh;
 	display: flex;
 	justify-content: center;

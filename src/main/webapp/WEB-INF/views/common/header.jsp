@@ -72,7 +72,7 @@
 </body>
 <script src="${rootContext}/resources/js/common/jquery.min.js"></script>
 <script src="${rootContext}/resources/js/common/bootstrap.min.js"></script>
-<script src="${rootContext}/resources/js/common/jquery.sticky.js"></script>
+<%--<script src="${rootContext}/resources/js/common/jquery.sticky.js"></script>--%>
 <script src="${rootContext}/resources/js/common/click-scroll.js"></script>
 <script src="${rootContext}/resources/js/common/custom.js"></script>
 </html>

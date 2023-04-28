@@ -13,7 +13,7 @@
 
 		<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-			<div id="whole">
+			<div id="wrap">
 				<div class="form-container">
 					<p class="title">Join</p>
 
@@ -31,7 +31,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Password
@@ -42,7 +42,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Password Check
@@ -53,51 +53,51 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Name
 									</td>
 									<th>
 										<div class="input-group">
-											<input type="text" name="Name" id="Name" placeholder="">
+											<input type="text" name="Name" id="name" placeholder="">
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										E-mail
 									</td>
 									<th>
 										<div class="input-group">
-											<input type="email" name="E-mail" id="E-mail" placeholder=" ex) kim@naver.com">
+											<input type="email" name="email" id="email" placeholder=" ex) kim@naver.com">
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Birth
 									</td>
 									<th>
 										<div class="input-group">
-											<input type="text" name="Birth" id="Birth" placeholder=" ex) 19951231">
+											<input type="text" name="birth" id="birth" placeholder=" ex) 19951231">
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										HP
 									</td>
 									<th>
 										<div class="input-group">
-											<input type="text" name="HP" id="HP" placeholder=" ex) 01055550000">
+											<input type="text" name="phone" id="phone" placeholder=" ex) 01055550000">
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Gender
@@ -105,22 +105,22 @@
 									<th>
 										<div class="selections">
 											<span id="Female">
-												<input type="radio" name="Gender" id="F" value="0"> <label for="F">Female</label>
+												<input type="radio" name="gender" id="female" value="0"> <label for="f">Female</label>
 											</span>
 											<span id="Male">
-												<input type="radio" name="Gender" id="M" value="1"> <label for="M">Male</label>
+												<input type="radio" name="gender" id="male" value="1"> <label for="m">Male</label>
 											</span>
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<td>
 										Location
 									</td>
 									<th>
 										<div class="selections">
-											<select class="location_option" name="location" id="location" placeholder="Location">
+											<select class="location-option" name="location" id="location">
 												<option value="0" selected>지역선택</option>
 												<option value="1">강동구</option>
 												<option value="2">강서구</option>
@@ -130,7 +130,7 @@
 										</div>
 									</th>
 								</tr>
-	
+
 								<tr>
 									<th colspan="2">
 										<button id="join-button">Join</button>
@@ -145,7 +145,10 @@
 				</div>
 			</div>
 
+			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
 	</body>
 	<link rel="stylesheet" href="${rootContext}/resources/css/member/join.css">
+	<script src="${rootContext}\resources\js\member\join.js"></script>
 
 	</html>

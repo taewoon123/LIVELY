@@ -59,7 +59,7 @@
 </body>
 </html>
 
-<script> /* 일단 js는 주석처리 해도될듯합니다.(backend작업 시 주석처리 없앨듯...) */
+<!-- <script> /* 일단 js는 주석처리 해도될듯합니다.(backend작업 시 주석처리 없앨듯...) */
 const inputBar = document.querySelector("#comment-input");
 const rootDiv = document.querySelector("#comments");
 const btn = document.querySelector("#submit");
@@ -267,5 +267,5 @@ function pressBtn(){
 }
 
 btn.onclick = pressBtn;
-</script>
+</script> -->
 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">

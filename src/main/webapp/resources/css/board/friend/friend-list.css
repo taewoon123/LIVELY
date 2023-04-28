@@ -12,7 +12,6 @@
     border: 1px solid grey;
     background-color: rgb(26, 26, 26);
     border-radius: 1%;
-    margin-bottom: 40px;
 }
 
 /* #profile_area, #content_area {
@@ -127,94 +126,4 @@
    #chat_area button:hover::before {
     transform: translate3d(100%, 0, 0);
    }
-
-
-
- /* upload button */
-
- #upload_button {
-    text-align: end;
-    margin-bottom: 20px;
-   }
-
-   .actual-text, .hover-text {
-    font-size: 20px;
-   }
-
-   /* === removing default button style ===*/
-.button {
-    margin: 0;
-    height: auto;
-    background: transparent;
-    padding: 0;
-    border: none;
-  }
-  
-  /* button styling */
-  .button {
-    --border-right: 6px;
-    --text-stroke-color: rgba(255,255,255,0.6);
-    --animation-color: #078735;
-    /* --fs-size: 2em; */
-    letter-spacing: 3px;
-    text-decoration: none;
-    font-size: var(--fs-size);
-    font-family: "Arial";
-    position: relative;
-    text-transform: uppercase;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--text-stroke-color);
-  }
-  /* this is the text, when you hover on button */
-  .hover-text {
-    position: absolute;
-    box-sizing: border-box;
-    content: attr(data-text);
-    color: var(--animation-color);
-    width: 0%;
-    inset: 0;
-    border-right: var(--border-right) solid var(--animation-color);
-    overflow: hidden;
-    transition: 0.5s;
-    -webkit-text-stroke: 1px var(--animation-color);
-  }
-  /* hover */
-  .button:hover .hover-text {
-    width: 100%;
-    filter: drop-shadow(0 0 23px var(--animation-color))
-  }
    
-
-/* search */
-
-.feed_search_input {
-    max-width: 190px;
-    height: 30px;
-    border: 2px solid transparent;
-    outline: none;
-    border-bottom: 2px solid #3f3f3f;
-    caret-color: #3f3f3f;
-    background-color: black;
-    padding: 5px;
-    transition: .5s linear;
-    font-family: monospace;
-    letter-spacing: 1px;
-  }
-  
-  .feed_search_input:focus {
-    border-bottom: 2px solid #078735;
-    caret-color: #078735;
-    color: white;
-    box-shadow: 4px 4px 10px #895959;
-  }
-  
-  /* .feed_search_input:focus::placeholder {
-    color: #078735;
-  } */
-
-  .feed_search_input {
-    margin-right: 285px;
-  }
-  .hidden_button{
-    display: none;
-  }

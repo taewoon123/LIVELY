@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FriendController {
 
 	@GetMapping("form")
-	public String friend() {
+	public String form() {
 		return "board/friend/friend-form";
+	}
+	
+	@GetMapping("list")
+	public String list() {
+		return "board/friend/friend-list";
 	}
 	
 }

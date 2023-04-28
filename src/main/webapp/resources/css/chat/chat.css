@@ -1,5 +1,11 @@
 /* 새로 추가한 것 */
 
+/* 메인크기조절 */
+#wrap{
+    /* position: relative; */
+}
+
+
 /* CHAT헤더 */
 .header {
    font-size: 14px; 

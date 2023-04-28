@@ -15,7 +15,7 @@
             <form>
                 <div class="write-group">
 
-                    <h3 id="friend-title">Friend</h3>
+                    <h3 id="friend-title">market</h3>
 
                     <div class="form__group">
                         <input type="text" class="form__field" placeholder="제목">
@@ -38,11 +38,11 @@
                   </form>
 
                 <div class="register">
-                    <div id="registerName"><a href="${rootContext}/friend/list">취소</a></div>
+                    <div id="registerName"><a href="${rootContext}/market/list">취소</a></div>
                     <div id="registerName"><input value="등록" type="submit"></div>
                 </div>
             </form>
-        </div> 
+        </div>
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
 

@@ -118,4 +118,4 @@
    </footer>
 </body>
 </html> 
-    <link rel="stylesheet" href="${rootContext}/resources/css/job/job-list.css">
+    <link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-list.css">

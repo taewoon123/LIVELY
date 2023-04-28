@@ -286,4 +286,4 @@ btn.onclick = pressBtn;
 
 
 </script>
-<link rel="stylesheet" href="${rootContext}/resources/css/job/job-detail.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-detail.css">

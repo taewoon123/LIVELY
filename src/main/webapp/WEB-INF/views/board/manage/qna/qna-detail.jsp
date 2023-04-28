@@ -286,4 +286,4 @@ btn.onclick = pressBtn;
 
 
 </script>
-<link rel="stylesheet" href="${rootContext}/resources/css/qna/qna-detail.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/board/qna/qna-detail.css">

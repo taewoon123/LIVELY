@@ -118,4 +118,4 @@
    </footer>
 </body>
 </html> 
-    <link rel="stylesheet" href="${rootContext}/resources/css/qna/qna-list.css">
+    <link rel="stylesheet" href="${rootContext}/resources/css/board/qna/qna-list.css">

@@ -1,97 +1,51 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" 
+<%@ page language="java"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-h2 {
-   color: white;
-}
-
-th, td {
-   color: white;
-}
-
-main table {
-   width: 600px;
-   margin: auto;
-   text-align: center;
-}
-
-main table td {
-   border: 2px solid white;
-}
-
-#wrap {
-   margin-top: 200px;
-   margin-bottom: 100px;
-}
-</style>
-
 </head>
-<header>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-</header>
-<body>
-	<div id="wrap">
 
-		<main>
-		   <h2 align="center">QNA 작성</h2>
-  
-		   <table>
-			  <thead>
-				 <tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>작성일시</th>
-					<th>조회수</th>
-				 </tr>
-			  </thead>
-			  <tbody>
-  
-				 <tr>
-					<td>1</td>
-					<td>제목</td>
-					<td>2023.04.20</td>
-					<td>1</td>
-				 </tr>
-				 <tr>
-					<td>1</td>
-					<td>제목</td>
-					<td>2023.04.20</td>
-					<td>1</td>
-				 </tr>
-				 <tr>
-					<td>1</td>
-					<td>제목</td>
-					<td>2023.04.20</td>
-					<td>1</td>
-				 </tr>
-				 <tr>
-					<td>1</td>
-					<td>제목</td>
-					<td>2023.04.20</td>
-					<td>1</td>
-				 </tr>
-				 <tr>
-					<td>1</td>
-					<td>제목</td>
-					<td>2023.04.20</td>
-					<td>1</td>
-				 </tr>
-  
-			  </tbody>
-		   </table>
-		</main>
-	 </div>
-  
-	
-	
+<body>
+
+   <div id="wrap">
+        <%@ include file="/WEB-INF/views/common/header.jsp" %>
+    
+        <div class="write-board">
+            <form>
+                <div class="write-group">
+
+                    <h3 id="friend-title">QNA</h3>
+
+                    <div class="form__group">
+                        <input type="text" class="form__field" placeholder="제목">
+                    </div>
+                </div>
+                <div class="write-group">
+                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none"></textarea>
+                </div>
+
+                <!-- UI첨부파일(drop files) -->
+                <form class="form">
+                    <label for="file-input" class="drop-container">
+                        <span class="drop-title">Drop files here</span>
+                        <a>or</a>
+                        <input type="file" accept="image/*" required="" id="file-input" style="font-size: 15px">
+                    </label>
+                    <p class="form-paragraph">
+                        File should be an image or video
+                      </p>
+                  </form>
+
+                <div class="register">
+                    <div id="registerName"><input value="취소" type="submit"></div>
+                    <div id="registerName"><input value="등록" type="submit"></div>
+                </div>
+            </form>
+        </div> 
+        <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+    </div>
+
 </body>
-<footer>
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-</footer>
 </html>
+  <link rel="stylesheet" href="${rootContext}/resources/css/board/qna/qna-write.css">

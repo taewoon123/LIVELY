@@ -36,6 +36,4 @@
 			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 	</body>
-	<link rel="stylesheet" href="${rootContext}/resources/css/member/login.css">
-
 	</html>

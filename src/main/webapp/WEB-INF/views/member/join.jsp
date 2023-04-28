@@ -10,8 +10,9 @@
 	</head>
 
 	<body>
-
-		<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<div>
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+</div>
 
 			<div id="wrap">
 				<div class="form-container">
@@ -30,6 +31,9 @@
 											<input type="text" name="id" id="id" placeholder="">
 										</div>
 									</th>
+									<td id="id-validity">
+										
+									</td>
 								</tr>
 
 								<tr>
@@ -41,6 +45,9 @@
 											<input type="password" name="password" id="password" placeholder="">
 										</div>
 									</th>
+									<td id="id-validity">
+										
+									</td>
 								</tr>
 
 								<tr>
@@ -52,6 +59,9 @@
 											<input type="password" name="password2" id="password2" placeholder="">
 										</div>
 									</th>
+									<td id="id-validity">
+										
+									</td>
 								</tr>
 
 								<tr>
@@ -63,6 +73,9 @@
 											<input type="text" name="Name" id="name" placeholder="">
 										</div>
 									</th>
+									<td id="id-validity">
+										
+									</td>
 								</tr>
 
 								<tr>
@@ -74,6 +87,9 @@
 											<input type="email" name="email" id="email" placeholder=" ex) kim@naver.com">
 										</div>
 									</th>
+									<td id="id-validity">
+										
+									</td>
 								</tr>
 
 								<tr>
@@ -85,6 +101,9 @@
 											<input type="text" name="birth" id="birth" placeholder=" ex) 19951231">
 										</div>
 									</th>
+									<td id="id-validity">
+										
+									</td>
 								</tr>
 
 								<tr>
@@ -96,6 +115,9 @@
 											<input type="text" name="phone" id="phone" placeholder=" ex) 01055550000">
 										</div>
 									</th>
+									<td id="id-validity">
+										
+									</td>
 								</tr>
 
 								<tr>
@@ -105,13 +127,16 @@
 									<th>
 										<div class="selections">
 											<span id="Female">
-												<input type="radio" name="gender" id="female" value="0"> <label for="f">Female</label>
+												<input type="radio" name="gender" id="female" value="0"> <label for="female">Female</label>
 											</span>
 											<span id="Male">
-												<input type="radio" name="gender" id="male" value="1"> <label for="m">Male</label>
+												<input type="radio" name="gender" id="male" value="1"> <label for="male">Male</label>
 											</span>
 										</div>
 									</th>
+									<td id="id-validity">
+										
+									</td>
 								</tr>
 
 								<tr>
@@ -129,10 +154,12 @@
 											</select>
 										</div>
 									</th>
+									<td id="id-validity">
+									</td>
 								</tr>
 
 								<tr>
-									<th colspan="2">
+									<th colspan="3">
 										<button id="join-button">Join</button>
 									</th>
 								</tr>

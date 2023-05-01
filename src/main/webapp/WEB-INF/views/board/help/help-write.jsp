@@ -15,11 +15,10 @@
             <form>
                 <div class="write-group">
 
-                    <h3 id="help-title">Help-write</h3>
+                    <h3 id="help-title">Help</h3>
 
                     <div class="form__group">
-                        <input type="text" class="form__field w-100" placeholder="Input text">
-                        <label  class="form__label"> 제목 </label>
+                        <input type="text" class="form__field" placeholder="제목">
                     </div>
                 </div>
                 <div class="write-group">
@@ -30,8 +29,8 @@
                 <form class="form">
                     <label for="file-input" class="drop-container">
                         <span class="drop-title">Drop files here</span>
-                        or
-                        <input type="file" accept="image/*" required="" id="file-input">
+                        <a>or</a>
+                        <input type="file" accept="image/*" required="" id="file-input" style="font-size: 15px">
                     </label>
                     <p class="form-paragraph">
                         File should be an image or video

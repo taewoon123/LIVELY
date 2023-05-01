@@ -1,5 +1,5 @@
-package com.lively.member.dao;
-
-public class MemberDao {
-
-}
+//package com.lively.member.dao;
+//
+//public class MemberDao {
+//
+//}

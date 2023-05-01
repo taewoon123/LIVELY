@@ -1,5 +1,5 @@
-package com.lively.member.service;
-
-public class MemberService {
-
-}
+//package com.lively.member.service;
+//
+//public class MemberService {
+//
+//}

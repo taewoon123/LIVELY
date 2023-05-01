@@ -20,9 +20,9 @@
     <div class="dashboard-outer">
 
         <%--   회원관리 디브     --%>
-      <div class="dashboard" style="background-color: whitesmoke">
+      <div class="dashboard" id="member-dashboard" style="background-color: whitesmoke;">
         <div class="inside-card">
-            <span class="dashboard-text" >회원관리</span>
+            <span class="dashboard-text">회원관리</span>
         </div>
           <hr>
           <table class="table-tag">
@@ -67,7 +67,10 @@
           <a href="">다음</a>
           </div>
       </div>
-            <div class="dashboard" style="background-color: whitesmoke">
+                <%--     각 디브끼리 떼어놓기     --%>
+            <div id="empty-div-for-padding"></div>
+
+            <div class="dashboard" id="some-dashboard" style="background-color: whitesmoke">
                 <div class="inside-card">
                     <span class="dashboard-text" >SOME</span>
                 </div>

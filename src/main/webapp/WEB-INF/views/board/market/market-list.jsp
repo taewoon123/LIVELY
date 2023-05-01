@@ -189,6 +189,60 @@
                     <button onclick="chat();"> <a>CHAT</a></button>
                 </div>
             </div>
+            <div id="feed_box">
+                <div id="profile_area">
+                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
+                    <div id="profile_box">
+                        <div id="profile_name">김본전</div>
+                        <div id="profile_nick">라이블리</div>
+                    </div>
+                </div>
+                <div id="feed-image">
+                    <div id="img_area">
+                    <!-- Image Slider -->
+                    <div id="myCarousel" class="carousel slide">
+                        <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
+                            <image class="first" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%"/>
+                            </svg>
+                        </div>
+                        <div class="carousel-item">
+                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
+                            <image class="second" href="${rootContext}/resources/img/bear.png" width="100%" height="100%"/>
+                            </svg>
+                        </div>
+                        <div class="carousel-item">
+                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
+                            <image class="third" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%">
+                            </svg>
+
+                        </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                
+                </div>
+                <div id="content_area">
+                    <a>같이 밥 먹을 친구 구함.</a>
+                </div>
+                <div id="chat_area">
+                    <button onclick="chat();"> <a>CHAT</a></button>
+                </div>
+            </div>
         </main>
         
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>

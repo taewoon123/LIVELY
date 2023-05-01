@@ -267,5 +267,5 @@ function pressBtn(){
 }
 
 btn.onclick = pressBtn;
-</script> -->
+</script>  -->
 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">

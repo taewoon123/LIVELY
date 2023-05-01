@@ -1,4 +1,4 @@
-/* 상세페이지 css */
+/* 공지사항 상세페이지 css */
 #notice-area {
    width: 600px;
    margin: auto;
@@ -11,12 +11,9 @@
    text-align: center;
 }
 
+/* 공지사항 div 테두리 표 css */
 #notice-area > div:nth-child(2), #notice-area > div:last-child {
    grid-column: span 3;
-}
-
-#notice-area > div {
-   /* border: 1px solid gray; */
 }
 
 #notice-area input, #notice-area textarea {
@@ -25,6 +22,7 @@
    resize: none;
 }
 
+/* 공지사항 전체 테두리 css */
 .view-area {
    display: none;
    color: white;
@@ -32,6 +30,7 @@
    margin-bottom: 15%;
 }
 
+/* 공지사항 오른쪽 위에 목록 버튼 css */
 #list-btn{
    margin-left: 76%; 
    margin-bottom: 1%;
@@ -51,11 +50,12 @@
    display: block;
 }
 
+/* 공지사항 배경색 & 테두리 변경 css */
 #notice-hit{
    background-color: #078735;
-  
    text-align: center;
 }
+
  #notice-inDate{
    text-align: center;
    border-bottom: 2px solid #078735;
@@ -121,7 +121,6 @@
    cursor: pointer;
    border: none;
    padding: 0.9rem 2rem;
-   /* margin: 0; */
    font-family: inherit;
    font-size: inherit;
    position: relative;
@@ -253,72 +252,4 @@
 .input:focus {
   opacity: 1;
   width: 250px;
-}
-
-/* comment css */
-#wrapper{
-  height: 100vh;
-}
-
-#form-commentInfo{
-  width: 100%;
-}
-
-#comment-count{
-  margin-bottom: 10px; 
-}
-
-#comment-input{
-  width: 38%;
-  height: 2.3em;
-  border-radius: 5px;
-  margin-left: 32%;
-  margin-top: 10px;
-}
-
-#submit{
-  background-color:#078735;
-  border:1px solid whitesmoke;
-  border-radius: 10px;
-  width: 5.5em;
-  color: white;
-}
-
-#comments{
-  margin-top: 10px;
-  margin-left: 27%;
-  color: white;
-}
-
-#reviewContent{
-  height: 20%;
-}
-.eachComment{   
-  width :50%; 
-  margin: 10px;  
-  padding: 0.5em; 
-  border-bottom: 1px solid #c1bcba;
-}
-
-.eachComment .name{
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 0.3em;
-  display: flex;
-  justify-content: space-between;
-}
-
-
-.eachComment .time{
-  font-size: 0.7em;
-  color: #c1bcba;
-  font-style: oblique;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  
-}
-
-.eachComment .voteDiv{
-  display: flex;
-  justify-content: flex-end;
 }

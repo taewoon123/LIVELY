@@ -1,7 +1,7 @@
 h5 {
  color: lightskyblue;
 }
-
+/* 구인구직 몸통 */
 #detail-area {
    width: 600px;
    margin: auto;
@@ -16,10 +16,6 @@ h5 {
 
 #detail-area > div:nth-child(2), #detail-area > div:last-child {
    grid-column: span 3;
-}
-
-#detail-area > div {
-   /* border: 1px solid gray; */
 }
 
 #detail-area input, #detail-area textarea {

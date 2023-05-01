@@ -1,5 +1,5 @@
 
-/* table css */
+/* 테이블 css */
 thead {
    background-color: #078735;
 }
@@ -128,7 +128,7 @@ main table > tbody > tr:hover {
   width: 250px;
 }
 
-/* pagenation */
+/* 페이지넘기는거 번호로 */
 .pagination-custom {
   display: flex;
   justify-content: center;

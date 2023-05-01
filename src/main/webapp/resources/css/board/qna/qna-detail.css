@@ -1,7 +1,7 @@
 h5 {
  color: lightskyblue;
 }
-
+ /* QNA 상세페이지 몸통 */
 #detail-area {
    width: 600px;
    margin: auto;
@@ -216,7 +216,7 @@ h5 {
    transform: translate3d(100%, 0, 0);
 }
 
-/* search btn css */
+/* 검색 버튼 css */
 .container-input {
   position: relative;
 }
@@ -247,7 +247,7 @@ h5 {
   width: 250px;
 }
 
-/* comment css */
+/* 댓글 css */
 #wrapper{
   height: 100vh;
 }
@@ -275,7 +275,7 @@ h5 {
   width: 5.5em;
   color: white;
 }
-
+/* 댓글 css */
 #comments{
   margin-top: 10px;
   margin-left: 27%;
@@ -314,7 +314,7 @@ h5 {
   display: flex;
   justify-content: flex-end;
 }
-
+/* 위에 목록버튼 */
 #list-btn{
 	margin-left: 72%; 
 	margin-bottom: 1%;

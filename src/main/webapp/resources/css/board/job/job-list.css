@@ -128,7 +128,7 @@ main table > tbody > tr:hover {
   width: 250px;
 }
 
-/* pagenation */
+/* 페이지넘기는거 번호로 그거 알지? ㅎㅎ 아래에 ㅎㅎ*/
 .pagination-custom {
   display: flex;
   justify-content: center;

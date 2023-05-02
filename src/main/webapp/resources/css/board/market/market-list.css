@@ -195,6 +195,7 @@
     border-bottom: 2px solid #3f3f3f;
     caret-color: #3f3f3f;
     background-color: black;
+    color: white;
     padding: 5px;
     transition: .5s linear;
     font-family: monospace;
@@ -205,7 +206,7 @@
     border-bottom: 2px solid #078735;
     caret-color: #078735;
     color: white;
-    box-shadow: 4px 4px 10px #895959;
+    /* box-shadow: 4px 4px 10px #895959; */
   }
   
   /* .feed_search_input:focus::placeholder {

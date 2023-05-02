@@ -8,8 +8,8 @@
 
 <body>
 
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 <div id="wrap">
-    <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
     <div class="write-board">
         <form>
@@ -40,6 +40,10 @@
             <div class="register">
                 <div id="registerName"><input value="취소" type="submit"></div>
                 <div id="registerName"><input value="등록" type="submit"></div>
+            </div>
+
+            <div id="tag-input">
+                <input type="text" name="tags" placeholder="태그를 #과함께 입력하세요">
             </div>
         </form>
     </div>

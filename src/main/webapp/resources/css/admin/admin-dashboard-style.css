@@ -1,7 +1,13 @@
+#empty-div-for-padding {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .dashboard-outer {
+    padding-top: 200px;
     display: grid;
-    /*grid-template-columns: 1fr 1fr 1fr;*/
-    place-items: center;
+    grid-template-columns: 2fr 1fr 2fr;
+    /*justify-content: space-around;*/
 }
 
 
@@ -69,3 +75,11 @@
 input[type=checkbox] {
     transform: scale(1.5);
 }
+
+/*대쉬보드끼리 패딩*/
+/*#member-dashboard {*/
+/*    padding-right: 50px;*/
+/*}*/
+/*#some-dashboard {*/
+/*    padding-left: 10px;*/
+/*}*/

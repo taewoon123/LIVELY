@@ -20,7 +20,7 @@
       crossorigin="anonymous"></script>
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-
+    
   </head>
 
 
@@ -43,86 +43,86 @@
 
               <!-- 아래부터 회원정보수정란 -->
 
-              <div class="col-md-7 col-lg-8">
-                <form action="${root}/member/edit" method="post" class="needs-validation">
-                  <div class="row g-3">
+                <div class="col-md-7 col-lg-8">
+                  <form action="${root}/member/edit" method="post" class="needs-validation">
+                    <div class="row g-3">
 
-                    <input type="hidden" name="no" value="${loginMember.no}">
+                      <input type="hidden" name="no" value="${loginMember.no}">
 
-                    <div class="col-12 input">
-                      <label for="id" class="form-label">아이디</label>
-                      <div class="input-group has-validation">
-                        <input name="memberId" type="text" class="form-control" id="id" placeholder="회원아이디">
+                      <div class="col-12 input">
+                        <label for="id" class="form-label">아이디</label>
+                        <div class="input-group has-validation">
+                          <input name="memberId" type="text" class="form-control" id="id" placeholder="회원아이디">
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="col-12 input">
-                      <label for="password" class="form-label">비밀번호<span class="text-muted"></span></label>
-                      <input name="memberPwd" type="password" class="form-control" id="password" placeholder="password"
-                        required>
-                      <!-- <div class="invalid-feedback">
+                      <div class="col-12 input">
+                        <label for="password" class="form-label">비밀번호<span class="text-muted"></span></label>
+                        <input name="memberPwd" type="password" class="form-control" id="password"
+                          placeholder="password" required>
+                        <!-- <div class="invalid-feedback">
                                         변경할 비밀번호를 입력해주세요.
                                       </div> -->
-                    </div>
+                      </div>
 
-                    <div class="col-12 input">
-                      <label for="password" class="form-label">비밀번호 확인<span class="text-muted"></span></label>
-                      <input name="memberPwdConfirm" type="password" class="form-control" id="password-check"
-                        placeholder="password check" required>
-                      <!-- <div class="invalid-feedback">
+                      <div class="col-12 input">
+                        <label for="password" class="form-label">비밀번호 확인<span class="text-muted"></span></label>
+                        <input name="memberPwdConfirm" type="password" class="form-control" id="password-check"
+                          placeholder="password check" required>
+                        <!-- <div class="invalid-feedback">
                                         변경할 비밀번호를 한번 더 입력해주세요.
                                       </div> -->
-                    </div>
+                      </div>
 
-                    <div class="col-12 input">
-                      <label for="name" class="form-label">이름<span class="text-muted"></span></label>
-                      <input name="memberName" type="text" class="form-control" id="name" placeholder="회원이름">
-                    </div>
+                      <div class="col-12 input">
+                        <label for="name" class="form-label">이름<span class="text-muted"></span></label>
+                        <input name="memberName" type="text" class="form-control" id="name" placeholder="회원이름">
+                      </div>
 
-                    <div class="col-12 input">
-                      <label for="phone" class="form-label">휴대전화 번호<span class="text-muted"></span></label>
-                      <input name="memberHp" type="text" class="form-control" id="phone" placeholder="회원 휴대폰번호"
-                        required>
-                      <!-- <div class="invalid-feedback">
+                      <div class="col-12 input">
+                        <label for="phone" class="form-label">휴대전화 번호<span class="text-muted"></span></label>
+                        <input name="memberHp" type="text" class="form-control" id="phone" placeholder="회원 휴대폰번호"
+                          required>
+                        <!-- <div class="invalid-feedback">
                                         변경할 휴대폰번호를 00000000000 형식으로 입력해주세요.
                                         ( 하이픈(-) 제외 )
                                       </div> -->
-                    </div>
+                      </div>
 
-                    <div class="col-12 input">
-                      <label for="email" class="form-label">이메일 <span class="text-muted"></span></label>
-                      <input name="memberEmail" type="email" class="form-control" id="email" placeholder="회원 이메일"
-                        required>
-                      <!-- <div class="invalid-feedback">
+                      <div class="col-12 input">
+                        <label for="email" class="form-label">이메일 <span class="text-muted"></span></label>
+                        <input name="memberEmail" type="email" class="form-control" id="email" placeholder="회원 이메일"
+                          required>
+                        <!-- <div class="invalid-feedback">
                                         변경할 이메일이 유효하지 않습니다.
                                       </div> -->
-                    </div>
+                      </div>
 
-                    <div class="col-12 input">
-                      <label for="birth" class="form-label">생년월일<span class="text-muted"></span></label>
-                      <input name="memberBirth" type="text" class="form-control" id="birth" placeholder="회원 생년월일 (8자리)"
-                        required>
-                      <!-- <div class="invalid-feedback">
+                      <div class="col-12 input">
+                        <label for="birth" class="form-label">생년월일<span class="text-muted"></span></label>
+                        <input name="memberBirth" type="text" class="form-control" id="birth"
+                          placeholder="회원 생년월일 (8자리)" required>
+                        <!-- <div class="invalid-feedback">
                                         변경할 생년월일 숫자만 8개 입력해주세요
                                       </div> -->
-                    </div>
+                      </div>
 
-                    <div class="col-12 input">
-                      <label for="address" class="form-label">주소</label>
-                      <input name="memberAddress" type="text" class="form-control" id="address" placeholder="회원 주소"
-                        required>
-                      <!-- <div class="invalid-feedback">
+                      <div class="col-12 input">
+                        <label for="address" class="form-label">주소</label>
+                        <input name="memberAddress" type="text" class="form-control" id="address" placeholder="회원 주소"
+                          required>
+                        <!-- <div class="invalid-feedback">
                                         변경할 주소를 입력해주세요.
                                       </div> -->
+                      </div>
+
+                      <hr class="my-4">
+
+                      <button class="w-100 btn btn-primary btn-lg" type="submit">회원정보 변경하기</button>
+
                     </div>
-
-                    <hr class="my-4">
-
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">회원정보 변경하기</button>
-
-                  </div>
-                </form>
-              </div>
+                  </form>
+                </div>
 
               <!-- 아래부터 사이드바 -->
               <div class="col-md-5 col-lg-4">
@@ -186,8 +186,6 @@
 
         <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
-
-  <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css">
 
   <link rel="stylesheet" href="${rootContext}/resources/css/member/mypage.css">
   <script src="${rootContext}\resources\js\member\mypage.js"></script>

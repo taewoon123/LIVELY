@@ -1,0 +1,153 @@
+/*
+=====나의글 텍스트=====
+*/
+
+#preface {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px 0 50px;
+    background-color: #FCECD3;
+}
+
+#customer-center-text {
+    display: flex;
+    justify-content: left;
+    align-items: start;
+}
+
+/*
+==============게시글 테이블=============
+
+*/
+#customer-service {
+    display: flex;
+    justify-content: left;
+    align-items: start;
+}
+.text-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* place-items: center center; */
+    height: 50px;
+    /* padding: 10px; */
+}
+.text-header a {
+    text-decoration: none;
+    color: black;
+}
+.faq-qna-notice {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#post, #report {
+    background-color: rgb(222, 220, 220);
+}
+#comment {
+     background-color: #686868;
+}
+#comment, #report {
+    border-left: 1px solid #9E9E9E;
+}
+#front-board {
+    width: 700px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* ==게시판== */
+
+.reviewTot {
+    margin: auto;
+    width: 700px;
+}
+.review {
+    text-align: center;
+    margin: 50px auto;
+}
+#manageButton {
+    display: flex;
+    justify-content: right;
+    margin: 10px 0px;
+    gap: 0px 5px;
+}
+#manageButton button {
+    border: 1px solid rgb(222, 220, 220);
+    background-color: rgb(222, 220, 220);
+    width: 65px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.list {
+    display: grid;
+    /* grid-template-rows: repeat(11,0.1fr); */
+    grid-template-columns: 1fr 10fr 1.5fr 1.5fr 3fr;
+    text-align: center;
+    padding: 8px 0px;
+}
+.reviewList h5 {
+    margin: 1px 0px;
+}
+.reviewList .li h5 {
+    font-weight: 500;
+}
+.list a {
+    align-content: start;
+    text-decoration: none;
+    color: black;
+}
+.reviewList .Top {
+    background-color: #FCECD3;
+    border-top: 2px solid rgb(222, 220, 220);
+    border-bottom: 2px solid rgb(222, 220, 220);
+}
+.reviewList .li {
+    border-bottom: 1px solid lightgray;
+}
+.listButton {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 300px;
+    height: 35px;
+    margin: 25px auto 50px;
+    text-align: center;
+    /* border: 1px solid rgb(222, 220, 220); */
+    /* place-content: center; */
+}
+.listBox h5 {
+    margin: 7px 0px 2px;
+}
+.listnum {
+    border: 1px solid rgb(222, 220, 220);
+}
+.listnum a {
+    text-decoration: none;
+    color: black;
+}
+.listnum:hover {
+    background-color: rgb(222, 220, 220);
+}
+.listButton img {
+    padding-top: 11px;
+    width: 13px;
+    height: 12px;
+}
+.searchBottom {
+    display: flex;
+    gap: 0px 10px;
+    margin-bottom: 200px;
+}
+.searchList select, .searchbot input {
+    border-radius: 4px;
+    border: 1px solid #9E9E9E;
+    color: #686868;
+}
+.searchBottom img {
+    width: 15px;
+    height: 15px;
+    margin: 6.3px -33px;
+}

@@ -36,6 +36,10 @@
 			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 	</body>
+
+	<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css">
+
 	<link rel="stylesheet" href="${rootContext}/resources/css/member/login.css">
 	<script src="${rootContext}\resources\js\member\login.js"></script>
+
 	</html>

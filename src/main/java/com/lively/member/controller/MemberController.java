@@ -22,3 +22,4 @@ public class MemberController {
 	public void mypage() {}
 	
 }//class
+

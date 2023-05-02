@@ -10,26 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7a8b876-902d-404f-9f3d-922512c646fe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MyPostDetailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MyPostDetailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MyPostListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MyPostListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MyPostMyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MyPostMyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/dao/MemberDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/dao/MyPostDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/dao/MyPostDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/dao/MyPostMyDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/dao/MyPostMyDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/service/MyPostMyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/service/MyPostMyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/service/MyPostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/service/MyPostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/admin-dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/admin-dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board/fundraise/fundraise-write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board/fundraise/fundraise-write.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/admin/admin-dashboard-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/admin/admin-dashboard-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/common/templatemo-festava-live.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/common/templatemo-festava-live.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/admin/admin-dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/admin/admin-dashboard.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/admin/admin-dashboard-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/admin/admin-dashboard-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lively/fundraise/controller/FundraiseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lively/fundraise/controller/FundraiseController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,18 +277,6 @@
         <option name="BuildArtifacts" enabled="true">
           <artifact name="app:war exploded" />
         </option>
-      </method>
-    </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <method v="2">
-        <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>

@@ -1,0 +1,156 @@
+
+/* 테이블 css */
+thead {
+   background-color: #078735;
+}
+
+th, td {
+   color: white;
+   padding: 10px;
+   border-left: none;
+   border-right: none;
+}
+
+main table {
+   width: 60%;
+   margin: auto;
+   text-align: center;
+   /* border-collapse: collapse; */
+}
+
+main table td {
+   border-top: 1px solid #078735;
+   border-bottom: 1px solid gray;
+}
+
+#wrap {
+   margin-top: 200px;
+   margin-bottom: 100px;
+   text-align: center;
+}
+
+main table > tbody > tr:hover {
+   background-color: gray;
+   cursor: pointer;
+}
+
+
+/* 버튼 css */
+
+.write-btn {
+   color: ghostwhite;
+}
+
+.write-btn:hover {
+   color: black;
+}
+
+#write_submit {
+   outline: none;
+   cursor: pointer;
+   border: none;
+   padding: 0.9rem 2rem;
+   margin: 0;
+   font-family: inherit;
+   font-size: inherit;
+   position: relative;
+   display: inline-block;
+   letter-spacing: 0.05rem;
+   font-weight: 700;
+   font-size: 17px;
+   border-radius: 500px;
+   overflow: hidden;
+   background: #66ff66;
+   color: ghostwhite;
+   float: right;
+   margin-right: 20%;
+   margin-top: 2%;
+}
+
+#write_submit span {
+   position: relative;
+   z-index: 10;
+   transition: color 0.4s;
+}
+
+#write_submit:hover span {
+   color: black;
+}
+
+#write_submit::before, #write_submit::after {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 0;
+}
+
+#write_submit::before {
+   content: "";
+   background: #000;
+   width: 120%;
+   left: -10%;
+   transform: skew(30deg);
+   transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+#write_submit:hover::before {
+   transform: translate3d(100%, 0, 0);
+}
+
+/* search btn css */
+.container-input {
+  position: relative;
+}
+
+.input {
+  width: 150px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 9999px;
+  border: solid 1px #333;
+  transition: all .2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+  float : right;
+  margin-right: 20%
+}
+
+.container-input svg {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%);
+}
+
+.input:focus {
+  opacity: 1;
+  width: 250px;
+}
+
+/* 페이지넘기는거 번호로 */
+.pagination-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.pagination-custom .page-numbers {
+  border: none;
+  color: #555555;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
+  padding: 6px 10px;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-custom .current {
+  color: #ffffff;
+  cursor: default;
+}
+
+.pagination-custom .page-numbers:hover {
+  color: #4CBB17;
+}

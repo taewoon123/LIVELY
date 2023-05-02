@@ -1,8 +1,11 @@
-/* table css */
+/* 목록 table css */
+
+/* thead No, Title, 작성일시, 작성자, 조회수 뒷배경 css */
 thead {
 	background-color: #078735;
 }
 
+/* 글자 색 css */
 th, td {
 	color: white;
 	padding: 10px;
@@ -14,9 +17,9 @@ main table {
 	width: 60%;
 	margin: auto;
 	text-align: center;
-	/* border-collapse: collapse; */
 }
 
+/* 목록 분리 border 색깔 css */
 main table td {
 	border-top: 1px solid #078735;
 	border-bottom: 1px solid gray;
@@ -28,6 +31,7 @@ main table td {
 	text-align: center;
 }
 
+/* 목록 cursor css */
 main table > tbody > tr:hover {
 	background-color: gray;
 	cursor: pointer;
@@ -135,6 +139,7 @@ main table > tbody > tr:hover {
   margin-top: 30px;
 }
 
+/* 밑에 페이지 숫자 색 css */
 .pagination-custom .page-numbers {
   border: none;
   color: #555555;

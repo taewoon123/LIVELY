@@ -205,7 +205,11 @@
     border-bottom: 2px solid #078735;
     caret-color: #078735;
     color: white;
-    box-shadow: 4px 4px 10px #895959;
+    /* box-shadow: 4px 4px 10px #895959; */
+  }
+
+  .feed_search_input:blur {
+    color: white
   }
   
   /* .feed_search_input:focus::placeholder {

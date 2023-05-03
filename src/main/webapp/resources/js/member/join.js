@@ -47,7 +47,7 @@ password.addEventListener("blur", () => {
   const passwordValidity = document.querySelector("#password-validity");
   
   if (!result) {
-    passwordValidity.innerText = "사용불가능";
+    passwordValidity.innerText = "사용불가";
     password.style.border = "2px solid red";
     
   } else {

@@ -160,7 +160,7 @@
 								</tr>
 
 								<tr>
-									<th colspan="2">
+									<th colspan="3">
 										<button id="join-button">Join</button>
 									</th>
 								</tr>

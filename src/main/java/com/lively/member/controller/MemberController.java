@@ -14,9 +14,6 @@ public class MemberController {
 	
 	@GetMapping("join")
 	public void join() {}
-	
-	@GetMapping("edit")
-	public void edit() {}
 
 	@GetMapping("mypage")
 	public void mypage() {}

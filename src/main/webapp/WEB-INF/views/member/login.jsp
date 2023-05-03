@@ -22,7 +22,7 @@
 						<div class="input-group">
 							<input type="text" name="username" id="username" placeholder="">
 						</div>
-						<label for="password">Password</label>
+						<label for="password" id="passwordLabel">Password</label>
 						<div class="input-group">
 							<input type="password" name="password" id="password" placeholder="">
 						</div>
@@ -37,5 +37,6 @@
 
 	</body>
 	<link rel="stylesheet" href="${rootContext}/resources/css/member/login.css">
-	<script src="${rootContext}\resources\js\member\login.js"></script>
+	<script src="${rootContext}/resources/js/member/login.js"></script>
+	<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css">
 	</html>

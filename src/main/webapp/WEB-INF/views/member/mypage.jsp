@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>마이페이지</title>
+    <title>MY PAGE</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
     <!-- CSS only -->
@@ -20,153 +20,204 @@
       crossorigin="anonymous"></script>
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    
+
   </head>
 
 
-  <body class="bg-light">
+  <body>
 
     <!-- header 올자리 -->
 
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-
       <!-- ================ HTML은 이 아래에다가 ================== -->
+
       <div class="wrap">
         <div class="container">
           <main>
-            <div class="py-5 text-center">
-              <h4>내 정보 수정</h4>
-            </div>
 
-            <div class="row g-5">
+            <div id="" class="row g-5">
 
-              <!-- 아래부터 회원정보수정란 -->
+              <!-- //////////////아래부터 회원정보수정란////////////////// -->
 
-                <div class="col-md-7 col-lg-8">
-                  <form action="${root}/member/edit" method="post" class="needs-validation">
-                    <div class="row g-3">
+              <div class="py-5 text-center" id="title">
+                <h4>내 정보 수정</h4>
+              </div>
 
-                      <input type="hidden" name="no" value="${loginMember.no}">
+              <div class="col-md-7 col-lg-8">
+                <form action="${root}/member/edit" method="post" class="needs-validation">
+                  <div class="row g-3" id="edit-form">
 
-                      <div class="col-12 input">
-                        <label for="id" class="form-label">아이디</label>
-                        <div class="input-group has-validation">
-                          <input name="memberId" type="text" class="form-control" id="id" placeholder="회원아이디">
-                        </div>
-                      </div>
+                    <input type="hidden" name="no" value="${loginMember.no}">
 
-                      <div class="col-12 input">
-                        <label for="password" class="form-label">비밀번호<span class="text-muted"></span></label>
-                        <input name="memberPwd" type="password" class="form-control" id="password"
-                          placeholder="password" required>
-                        <!-- <div class="invalid-feedback">
-                                        변경할 비밀번호를 입력해주세요.
-                                      </div> -->
-                      </div>
+                    <table id="join-form">
+                      <tbody>
+                        <tr>
+                          <td>
+                            ID
+                          </td>
+                          <th>
+                            <div class="input-group">
+                              <input type="text" name="id" id="id" placeholder="" value="sopia" readonly>
+                            </div>
+                          </th>
+                          <td id="id-validity">
+        
+                          </td>
+                        </tr>
+        
+                        <tr>
+                          <td>
+                            Password
+                          </td>
+                          <th>
+                            <div class="input-group">
+                              <input type="password" name="password" id="password" placeholder="문자,특수문자 포함 6~12글자">
+                            </div>
+                          </th>
+                          <td id="password-validity">
+        
+                          </td>
+                        </tr>
+        
+                        <tr>
+                          <td>
+                            Password Check
+                          </td>
+                          <th>
+                            <div class="input-group">
+                              <input type="password" name="password2" id="password2" placeholder="">
+                            </div>
+                          </th>
+                          <td id="passwordCheck-validity">
+                            
+                          </td>
+                        </tr>
+        
+                        <tr>
+                          <td> 
+                            Name
+                          </td>
+                          <th>
+                            <div class="input-group">
+                              <input type="text" name="Name" id="name" placeholder="" value="정연우" readonly>
+                            </div>
+                          </th>
+                          <td>
+        
+                          </td>
+                        </tr>
+        
+                        <tr>
+                          <td>
+                            E-mail
+                          </td>
+                          <th>
+                            <div class="input-group">
+                              <input type="email" name="email" id="email" placeholder=" ex) kim@naver.com">
+                            </div>
+                          </th>
+                          <td id="email-validity">
+        
+                          </td>
+                        </tr>
+        
+                        <tr>
+                          <td>
+                            Birth
+                          </td>
+                          <th>
+                            <div class="input-group">
+                              <input type="text" name="birth" id="birth" placeholder=" ex) 19951231">
+                            </div>
+                          </th>
+                          <td id="birth-validity">
+        
+                          </td>
+                        </tr>
+        
+                        <tr>
+                          <td>
+                            HP
+                          </td>
+                          <th>
+                            <div class="input-group">
+                              <input type="text" name="phone" id="phone" placeholder=" ex) 01055550000">
+                            </div>
+                          </th>
+                          <td id="hp-validity">
+        
+                          </td>
+                        </tr>
+        
+                        <tr>
+                          <td>
+                            Gender
+                          </td>
+                          <th>
+                            <div class="selections">
+                              <span id="Female">
+                                <input type="radio" name="gender" id="female" value="0"> <label for="female">Female</label>
+                              </span>
+                              <span id="Male">
+                                <input type="radio" name="gender" id="male" value="1"> <label for="male">Male</label>
+                              </span>
+                            </div>
+                          </th>
+                          <td id="gender-validity">
+        
+                          </td>
+                          
+                        </tr>
+        
+                        <tr>
+                          <td>
+                            Location
+                          </td>
+                          <th>
+                            <div>
+                              <select class="location-option" name="location" id="location">
+                                <option value="0" selected>Select</option>
+                                <option value="1">강동구</option>
+                                <option value="2">강서구</option>
+                                <option value="3">강남구</option>
+                                <option value="4">강북구</option>
+                              </select>
+                            </div>
+                          </th>
+                          <td id="location-validity">
+        
+                          </td>
+                        </tr>
+        
+                        <tr>
+                          <th colspan="3">
+                            <button id="edit-submit-button" class="w-100 btn btn-lg" type="submit">회원정보 변경하기</button>
+                          </th>
+                        </tr>
+                      </tbody>
+        
+                    </table>
 
-                      <div class="col-12 input">
-                        <label for="password" class="form-label">비밀번호 확인<span class="text-muted"></span></label>
-                        <input name="memberPwdConfirm" type="password" class="form-control" id="password-check"
-                          placeholder="password check" required>
-                        <!-- <div class="invalid-feedback">
-                                        변경할 비밀번호를 한번 더 입력해주세요.
-                                      </div> -->
-                      </div>
+                  </div>
+                </form>
+              </div>
 
-                      <div class="col-12 input">
-                        <label for="name" class="form-label">이름<span class="text-muted"></span></label>
-                        <input name="memberName" type="text" class="form-control" id="name" placeholder="회원이름">
-                      </div>
+              <!-- //////////////////아래부터 사이드바////////////////// -->
 
-                      <div class="col-12 input">
-                        <label for="phone" class="form-label">휴대전화 번호<span class="text-muted"></span></label>
-                        <input name="memberHp" type="text" class="form-control" id="phone" placeholder="회원 휴대폰번호"
-                          required>
-                        <!-- <div class="invalid-feedback">
-                                        변경할 휴대폰번호를 00000000000 형식으로 입력해주세요.
-                                        ( 하이픈(-) 제외 )
-                                      </div> -->
-                      </div>
-
-                      <div class="col-12 input">
-                        <label for="email" class="form-label">이메일 <span class="text-muted"></span></label>
-                        <input name="memberEmail" type="email" class="form-control" id="email" placeholder="회원 이메일"
-                          required>
-                        <!-- <div class="invalid-feedback">
-                                        변경할 이메일이 유효하지 않습니다.
-                                      </div> -->
-                      </div>
-
-                      <div class="col-12 input">
-                        <label for="birth" class="form-label">생년월일<span class="text-muted"></span></label>
-                        <input name="memberBirth" type="text" class="form-control" id="birth"
-                          placeholder="회원 생년월일 (8자리)" required>
-                        <!-- <div class="invalid-feedback">
-                                        변경할 생년월일 숫자만 8개 입력해주세요
-                                      </div> -->
-                      </div>
-
-                      <div class="col-12 input">
-                        <label for="address" class="form-label">주소</label>
-                        <input name="memberAddress" type="text" class="form-control" id="address" placeholder="회원 주소"
-                          required>
-                        <!-- <div class="invalid-feedback">
-                                        변경할 주소를 입력해주세요.
-                                      </div> -->
-                      </div>
-
-                      <hr class="my-4">
-
-                      <button class="w-100 btn btn-primary btn-lg" type="submit">회원정보 변경하기</button>
-
-                    </div>
-                  </form>
-                </div>
-
-              <!-- 아래부터 사이드바 -->
               <div class="col-md-5 col-lg-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="text-primary">&nbsp나의 정보</span>
+                  <span id="side-bar-title">나의 정보</span>
                 </h4>
                 <ul class="list-group mb-3">
 
                   <!-- 아코디언 -->
-                  <div class="accordion" id="accordionPanelsStayOpenExample">
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                        <button onclick="location.href='${root}/member/edit'" class="accordion-button" type="button"
-                          data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                          aria-controls="panelsStayOpen-collapseOne">
-                          <a href="#">내 정보 수정</a>
-                        </button>
-                      </h2>
-                    </div>
-
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                        <button onclick="location.href='${root}/member/myBoard'" class="accordion-button" type="button"
-                          data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
-                          aria-controls="panelsStayOpen-collapseTwo">
-                          <a href="#">내가 작성한 글</a>
-                        </button>
-                      </h2>
-                    </div>
-
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                        <button onclick="location.href='${root}/chat/list'" class="accordion-button" type="button"
-                          data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true"
-                          aria-controls="panelsStayOpen-collapseThree">
-                          <a href="#">나의 채팅</a>
-                        </button>
-                      </h2>
-                    </div>
-                    <!-- 아코디언 -->
-
+                  <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                    <button type="button" class="btn">나의 정보수정</button>
+                    <button type="button" class="btn">내가 작성한 글</button>
+                    <button type="button" class="btn">나의 채팅</button>
                   </div>
+
                 </ul>
               </div>
               <!-- 요기까지 사이드바 -->
@@ -181,13 +232,18 @@
       <br>
 
       <!-- ================ HTML은 이 위에다가 ==================== -->
+
       <!-- FOOTER  올 자리 -->
+
       <%@include file="/WEB-INF/views/common/footer.jsp" %>
 
         <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 
+  <link rel="stylesheet" href="${rootContext}/resources/css/member/join.css">
+  <script src="${rootContext}\resources\js\member\join.js"></script>
   <link rel="stylesheet" href="${rootContext}/resources/css/member/mypage.css">
-  <script src="${rootContext}\resources\js\member\mypage.js"></script>
+  <script src="${rootContext}/resources/js/member/mypage.js"></script>
+  <!-- <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"> -->
 
   </html>

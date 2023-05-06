@@ -1,0 +1,146 @@
+/* About Lively 배경 */
+#section_2 {
+    background-color: black;
+}
+
+/* About Lively 사진 */
+.about-image img-fluid {
+    width: 100%;
+}
+
+/* chat 영역 */
+#section_3 {
+    background-color: antiquewhite;
+}
+
+/* 기능 영역 */
+
+#section_4 {
+    background-color: black;
+}
+
+#section_4 > .container {
+    background-color: white;
+    border: 2px solid white;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.strength h6 {
+    font-weight: 1000;
+}
+
+
+.strength h7 {
+    padding-top: -30px;
+    font-weight: 500;
+}
+
+.strength {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.strength_text {
+    text-align: start;
+}
+
+.text-center {
+    margin-top: 80px;
+    margin-bottom: 70px;
+}
+
+.text-white {
+    text-align: center;
+    color: white;
+}
+
+/* 고객센터 영역 */
+
+.customer_area {
+    margin: -70px 0 60px 0;
+}
+
+.pricing-thumb {
+    padding: 20px;
+}
+
+.pricing-thumb h5 {
+    text-align: center;
+}
+
+.d-flex table {
+    margin-top: 20px;
+    width: 400px;
+    text-align: center;
+}
+
+.d-flex table thead tr {
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.d-flex table thead tr th {
+    padding: 6px 0;
+}
+
+.d-flex table tbody tr {
+    border-bottom: 1px solid rgb(162, 162, 162);
+}
+
+.d-flex table tbody tr th {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 0;
+}
+
+
+/* 고객센터 - 더보기 버튼 */
+
+.notice_more_button {
+    margin-top: 28px;
+}
+
+.notice_more_button button {
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 350px;
+}
+
+.notice_more_button button::before {
+    margin-left: auto;
+}
+
+.notice_more_button button::after, .notice_more_button button::before {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #078735;
+    display: block;
+    transition: 0.5s;
+}
+
+.notice_more_button button:hover::after, .notice_more_button button:hover::before {
+    width: 100%;
+}
+
+
+
+
+/*  */
+.link-fx-1 {
+    /* margin-left: 330px; */
+    /* margin-top: 50px; */
+    margin: -20px 0 0 330px;
+}
+
+.pricing-thumb .link-fx-1 {
+    color: black;
+}

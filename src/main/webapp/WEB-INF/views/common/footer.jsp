@@ -19,6 +19,7 @@
 <link href="${rootContext}/resources/css/common/bootstrap.min.css" rel="stylesheet">
 <link href="${rootContext}/resources/css/common/bootstrap-icons.css" rel="stylesheet">
 <link href="${rootContext}/resources/css/common/templatemo-festava-live.css" rel="stylesheet">
+<link href="${rootContext}/resources/css/common/footer-style.css" rel="stylesheet">
 <style>
 
 </style>
@@ -29,40 +30,43 @@
       <div class="row">
 
         <div class="col-lg-6 col-12">
-          <h2 class="text-white mb-lg-0">Festava Live</h2>
+          <div class="site-footer-logo-img-div">
+            <img src="${rootContext}/resources/img/Lively.png" alt="Lively Logo" width="70px" height="70px" class="site-footer-logo-img">
+          <h2 class="text-white mb-lg-0 logo-img-text">Lively</h2>
+          </div>
         </div>
 
         <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
           <ul class="social-icon d-flex justify-content-lg-end">
             <li class="social-icon-item">
+              <a href="https://twitter.com/Live__Lively" class="social-icon-link">
+                <img src="${rootContext}/resources/img/twitter.png" alt="" width="15px" height="15px" class="social-icon-logo">
+              </a>
+            </li>
+
+<%--            <li class="social-icon-item">--%>
+<%--              <a href="#" class="social-icon-link">--%>
+<%--                <span class="bi-apple"></span>--%>
+<%--              </a>--%>
+<%--            </li>--%>
+
+            <li class="social-icon-item">
               <a href="#" class="social-icon-link">
-                <span class="bi-twitter"></span>
+                <img src="${rootContext}/resources/img/instagram.png" alt="" width="15px" height="15px" class="social-icon-logo">
               </a>
             </li>
 
             <li class="social-icon-item">
               <a href="#" class="social-icon-link">
-                <span class="bi-apple"></span>
+                <img src="${rootContext}/resources/img/youtube.png" alt="" width="15px" height="15px" class="social-icon-logo">
               </a>
             </li>
 
-            <li class="social-icon-item">
-              <a href="#" class="social-icon-link">
-                <span class="bi-instagram"></span>
-              </a>
-            </li>
-
-            <li class="social-icon-item">
-              <a href="#" class="social-icon-link">
-                <span class="bi-youtube"></span>
-              </a>
-            </li>
-
-            <li class="social-icon-item">
-              <a href="#" class="social-icon-link">
-                <span class="bi-pinterest"></span>
-              </a>
-            </li>
+<%--            <li class="social-icon-item">--%>
+<%--              <a href="#" class="social-icon-link">--%>
+<%--                <span class="bi-pinterest"></span>--%>
+<%--              </a>--%>
+<%--            </li>--%>
           </ul>
         </div>
       </div>
@@ -85,35 +89,36 @@
           </li>
 
           <li class="site-footer-link-item">
-            <a href="#" class="site-footer-link">Artists</a>
+            <a href="#" class="site-footer-link">Boards</a>
           </li>
 
           <li class="site-footer-link-item">
-            <a href="#" class="site-footer-link">Schedule</a>
-          </li>
-
-          <li class="site-footer-link-item">
-            <a href="#" class="site-footer-link">Pricing</a>
+            <a href="#" class="site-footer-link">Customer Center</a>
           </li>
 
           <li class="site-footer-link-item">
             <a href="#" class="site-footer-link">Contact</a>
           </li>
+
+<%--          <li class="site-footer-link-item">--%>
+<%--            <a href="#" class="site-footer-link">Contact</a>--%>
+<%--          </li>--%>
         </ul>
       </div>
 
       <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
-        <h5 class="site-footer-title mb-3">Have a question?</h5>
+        <h5 class="site-footer-title mb-3">Any further question?</h5>
+        <h5 class="site-footer-title mb-3">Feel free to ask us.</h5>
 
         <p class="text-white d-flex mb-1">
-          <a href="tel: 090-080-0760" class="site-footer-link">
-            090-080-0760
+          <a href="tel:010-2719-8332 " class="site-footer-link">
+            010-2719-8332
           </a>
         </p>
 
         <p class="text-white d-flex">
-          <a href="mailto:hello@company.com" class="site-footer-link">
-            hello@company.com
+          <a href="mailto:lively@info.com" class="site-footer-link" target="_blank">
+            lively@info.com
           </a>
         </p>
       </div>
@@ -122,9 +127,11 @@
         <h5 class="site-footer-title mb-3">Location</h5>
 
         <p class="text-white d-flex mt-3 mb-2">
-          Silang Junction South, Tagaytay, Cavite, Philippines</p>
+          1800 West Adams Boulevard
+          Los Angeles, CA
+          United States</p>
 
-        <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+        <a class="link-fx-1 color-contrast-higher mt-3" target="_blank" href="https://www.google.com/maps/place/Adams+%2F+Halldale/@34.0326821,-118.3028637,3a,75y,206.55h,90.7t/data=!3m6!1e1!3m4!1s3xGCEhqMmAzdl0YUThwvtA!2e0!7i16384!8i8192!4m6!3m5!1s0x80c2b80b2d3adeb1:0xf33f3b7b1017fb6a!8m2!3d34.032631!4d-118.30294!16s%2Fg%2F1wyc4lpf">
           <span>Our Maps</span>
           <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">

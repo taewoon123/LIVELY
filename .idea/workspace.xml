@@ -10,8 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7a8b876-902d-404f-9f3d-922512c646fe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lively/member/service/MyPostMyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lively/member/service/MyPostMyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board/fundraise/fundraise-write.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board/fundraise/fundraise-write.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/common/header.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/common/templatemo-festava-live.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/common/templatemo-festava-live.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/common/click-scroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/common/click-scroll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/common/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/common/custom.js" afterDir="false" />
     </list>
+    <list id="8e1d8419-8054-4364-a70d-940abb0ad852" name="Changes by USER" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
+    </list>
+    <list id="9b2669a0-c8e0-494a-bb0c-03239a0b2ae3" name="Changes by user" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,8 +34,9 @@
       <list>
         <option value="Class" />
         <option value="Jsp File" />
-        <option value="CSS File" />
         <option value="spring-beans.schema" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -34,6 +47,52 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp">
+      <ranges>
+        <range start1="1" end1="2" start2="1" end2="3" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="8" end1="8" start2="9" end2="10" changelist="8e1d8419-8054-4364-a70d-940abb0ad852" />
+        <range start1="13" end1="17" start2="15" end2="15" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="38" end1="39" start2="36" end2="36" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="40" end1="43" start2="37" end2="37" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="44" end1="84" start2="38" end2="38" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="86" end1="94" start2="40" end2="40" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="96" end1="97" start2="42" end2="43" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="102" end1="102" start2="48" end2="49" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="103" end1="108" start2="50" end2="52" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="109" end1="110" start2="53" end2="55" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="111" end1="113" start2="56" end2="60" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="114" end1="117" start2="61" end2="64" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="119" end1="119" start2="66" end2="68" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="122" end1="123" start2="71" end2="72" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="125" end1="129" start2="74" end2="74" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="131" end1="132" start2="76" end2="77" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="133" end1="134" start2="78" end2="79" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="142" end1="142" start2="87" end2="88" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="143" end1="144" start2="89" end2="90" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="149" end1="150" start2="95" end2="96" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="155" end1="156" start2="101" end2="102" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="161" end1="163" start2="107" end2="108" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="164" end1="181" start2="109" end2="109" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="188" end1="189" start2="116" end2="117" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="194" end1="196" start2="122" end2="123" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="197" end1="214" start2="124" end2="124" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="216" end1="245" start2="126" end2="126" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="246" end1="247" start2="127" end2="127" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="250" end1="251" start2="130" end2="131" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="252" end1="343" start2="132" end2="167" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="347" end1="349" start2="171" end2="172" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="350" end1="375" start2="173" end2="185" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="376" end1="378" start2="186" end2="211" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="379" end1="427" start2="212" end2="248" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="430" end1="430" start2="251" end2="253" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="432" end1="432" start2="255" end2="257" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="490" end1="495" start2="315" end2="324" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="498" end1="499" start2="327" end2="327" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+        <range start1="511" end1="511" start2="339" end2="340" changelist="e7a8b876-902d-404f-9f3d-922512c646fe" />
+      </ranges>
+    </file>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -57,46 +116,77 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;kbg&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/b9/Desktop/LIVELY/src/main/webapp/resources/js&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;d2a57dc1d883fd21fb9951699df71cc7&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "kbg",
+    "jdk.selected.JAVA_MODULE": "18",
+    "last_opened_file_path": "/Users/b9/bonzonkim/github.com/LIVELY/src/main/webapp/resources/img",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.excludes",
+    "spring.configuration.checksum": "d2a57dc1d883fd21fb9951699df71cc7",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/resources/img" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/js" />
       <recent name="$PROJECT_DIR$/boot" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/css/admin" />
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board/fundraise" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/resources/js/common" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/resources/img" />
       <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views" />
       <recent name="$PROJECT_DIR$/boot/views" />
       <recent name="$PROJECT_DIR$/boot" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/css/board" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/board" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="aws.lambda" factoryName="Local">
+      <option name="credentialProviderId" />
+      <option name="regionId" />
+      <option name="debugHost" value="localhost" />
+      <option name="architecture" />
+      <option name="environmentVariables">
+        <map />
+      </option>
+      <option name="handler" />
+      <option name="image" value="false" />
+      <option name="logicalFunctionName" />
+      <option name="memorySize" value="128" />
+      <option name="pathMappings">
+        <list />
+      </option>
+      <option name="platform" />
+      <option name="runtime" />
+      <option name="templateFile" />
+      <option name="timeout" value="300" />
+      <option name="useTemplate" value="false" />
+      <option name="input" />
+      <option name="inputIsFile" value="false" />
+      <sam>
+        <option name="additionalBuildArgs" />
+        <option name="additionalLocalArgs" />
+        <option name="buildInContainer" value="false" />
+        <option name="dockerNetwork" />
+        <option name="skipImagePull" value="false" />
+      </sam>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -321,10 +411,41 @@
       <workItem from="1682640747110" duration="140000" />
       <workItem from="1682736043919" duration="5739000" />
       <workItem from="1682847768471" duration="885000" />
+      <workItem from="1683018785179" duration="58000" />
+      <workItem from="1683018868626" duration="396000" />
+      <workItem from="1683184947711" duration="17953000" />
+      <workItem from="1683267289769" duration="8985000" />
+      <workItem from="1683432387519" duration="6265000" />
+      <workItem from="1683459954971" duration="675000" />
+      <workItem from="1683505848008" duration="2000" />
+      <workItem from="1683522671847" duration="6283000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="kbg" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

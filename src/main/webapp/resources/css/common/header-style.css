@@ -1,0 +1,16 @@
+.dropdown-content {
+    display: none;
+}
+
+
+.dropdown-btn:hover .dropdown-content {
+    display: block;
+}
+
+
+.dropdown-content {
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    font-family:var(--body-font-family);
+}

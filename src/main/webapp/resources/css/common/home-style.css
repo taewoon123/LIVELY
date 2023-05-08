@@ -1,0 +1,87 @@
+.brag-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.brag-card {
+    width: 70vw;
+    height: 1200px;
+    background: white;
+    border-radius: 50px 50px 0 0;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+.brag-img-div {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#map-img {
+    width: 50vw;
+    height: 500px;
+    border-radius: 30px 30px;
+}
+
+.brag-explain {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+.brag-explain-img {
+    width: 80px;
+    height: 80px;
+    margin-right: 100px;
+}
+
+.brag-explain-img-outer {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+.notice-qna-div {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    place-items: center;
+}
+
+/*공지사항, qna 칸*/
+/* 테이블 중앙에 */
+.home-board-table, .qna-div {
+    margin: 0 auto;
+}
+
+/* 테이블 헤더 스타일 */
+.home-board-th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* 테이블 row 스타일 */
+.home-board-td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+/* 홀수 열 색 다르게 */
+.home-board-tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* 호버  */
+.home-board-tr:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+
+
+

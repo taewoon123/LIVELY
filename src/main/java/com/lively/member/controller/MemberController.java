@@ -15,8 +15,13 @@ public class MemberController {
 	@GetMapping("join")
 	public void join() {}
 
-	@GetMapping("mypage")
-	public void mypage() {}
+	@GetMapping("my-info")
+	public void myInfo() {}
+	
+	@GetMapping("my-board")
+	public void myBoard() {}
+	
+	@GetMapping("my-feed")
+	public void myFeed() {}
 	
 }//class
-

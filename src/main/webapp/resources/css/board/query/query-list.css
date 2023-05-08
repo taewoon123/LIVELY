@@ -1,0 +1,6 @@
+/* 게시판 제목 */
+h2 {
+  color: white;
+  font-size: 36px;
+  margin-bottom: 40px;
+}

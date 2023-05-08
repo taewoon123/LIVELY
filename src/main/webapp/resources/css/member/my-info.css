@@ -6,6 +6,7 @@
 /* 제목 글씨색상 변경 */
 #title h4 {
   color: white;
+  text-align: center;
 }
 
 /* 회원정보 수정 양식 크기 조절 */

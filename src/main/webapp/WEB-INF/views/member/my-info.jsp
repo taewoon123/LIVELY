@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>MY PAGE</title>
+    <title>MY INFOMATION</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/checkout/">
     <!-- CSS only -->
@@ -41,11 +41,11 @@
               <!-- //////////////아래부터 회원정보수정란////////////////// -->
 
               <div class="py-5 text-center" id="title">
-                <h4>내 정보 수정</h4>
+                <h4>나의 정보 수정</h4>
               </div>
 
               <div class="col-md-7 col-lg-8">
-                <form action="${root}/member/edit" method="post" class="needs-validation">
+                <form action="${rootContext}/member/mypage" method="post" class="needs-validation">
                   <div class="row g-3" id="edit-form">
 
                     <input type="hidden" name="no" value="${loginMember.no}">
@@ -114,7 +114,7 @@
                           </td>
                           <th>
                             <div class="input-group">
-                              <input type="email" name="email" id="email" placeholder=" ex) kim@naver.com">
+                              <input type="email" name="email" id="email" placeholder=" ex) kim@naver.com" value="sopia@happy.com" >
                             </div>
                           </th>
                           <td id="email-validity">
@@ -128,7 +128,7 @@
                           </td>
                           <th>
                             <div class="input-group">
-                              <input type="text" name="birth" id="birth" placeholder=" ex) 19951231">
+                              <input type="text" name="birth" id="birth" placeholder=" ex) 19951231" value="20001212">
                             </div>
                           </th>
                           <td id="birth-validity">
@@ -142,7 +142,7 @@
                           </td>
                           <th>
                             <div class="input-group">
-                              <input type="text" name="phone" id="phone" placeholder=" ex) 01055550000">
+                              <input type="text" name="phone" id="phone" placeholder=" ex) 01055550000" value="01077775555">
                             </div>
                           </th>
                           <td id="hp-validity">
@@ -157,7 +157,7 @@
                           <th>
                             <div class="selections">
                               <span id="Female">
-                                <input type="radio" name="gender" id="female" value="0"> <label for="female">Female</label>
+                                <input type="radio" name="gender" id="female" value="0"checked> <label for="female">Female</label>
                               </span>
                               <span id="Male">
                                 <input type="radio" name="gender" id="male" value="1"> <label for="male">Male</label>
@@ -180,7 +180,7 @@
                                 <option value="0" selected>Select</option>
                                 <option value="1">강동구</option>
                                 <option value="2">강서구</option>
-                                <option value="3">강남구</option>
+                                <option value="3" selected>강남구</option>
                                 <option value="4">강북구</option>
                               </select>
                             </div>
@@ -213,16 +213,14 @@
 
                   <!-- 아코디언 -->
                   <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-                    <button type="button" class="btn">나의 정보수정</button>
-                    <button type="button" class="btn">내가 작성한 글</button>
-                    <button type="button" class="btn">나의 채팅</button>
+                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-info'">나의 정보 수정</button>
+                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-board'">내가 올린 글</button>
+                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-feed'">내가 올린 피드</button>
                   </div>
 
                 </ul>
               </div>
-              <!-- 요기까지 사이드바 -->
-              <!-- 아래부터 회원정보수정란 -->
-
+              <!-- //////////////////위까지 사이드바////////////////// -->
             </div>
           </main>
         </div>
@@ -241,9 +239,8 @@
   </body>
 
   <link rel="stylesheet" href="${rootContext}/resources/css/member/join.css">
-  <script src="${rootContext}\resources\js\member\join.js"></script>
-  <link rel="stylesheet" href="${rootContext}/resources/css/member/mypage.css">
-  <script src="${rootContext}/resources/js/member/mypage.js"></script>
+  <script src="${rootContext}/resources/js/member/join.js"></script>
+  <link rel="stylesheet" href="${rootContext}/resources/css/member/my-info.css">
   <!-- <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"> -->
 
   </html>

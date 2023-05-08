@@ -88,29 +88,28 @@
                   <a class="write-btn" href="${rootContext}/query/write">write</a>
                </span>
             </button>
+            
+            <!-- pagenation -->
+            <div class="page-area">
+               <div class="pagination-custom">
+                  <a class="prev page-numbers" href="#">
+                     << </a>
+                        <span aria-current="page" class="page-numbers current">1</span>
+                        <a class="page-numbers" href="#">2</a>
+                        <a class="page-numbers" href="#">3</a>
+                        <a class="page-numbers" href="#">4</a>
+                        <a class="page-numbers" href="#">5</a>
+                        <a class="page-numbers" href="#">6</a>
+                        <a class="page-numbers" href="#">7</a>
+                        <a class="page-numbers" href="#">8</a>
+                        <a class="page-numbers" href="#">9</a>
+                        <a class="page-numbers" href="#">10</a>
+                        <a class="next page-numbers" href="#"> >> </a>
+               </div>
+            </div>
 
          </main>
       </div>
-
-      <!-- pagenation -->
-      <div class="page-area">
-         <div class="pagination-custom">
-            <a class="prev page-numbers" href="#">
-               << </a>
-                  <span aria-current="page" class="page-numbers current">1</span>
-                  <a class="page-numbers" href="#">2</a>
-                  <a class="page-numbers" href="#">3</a>
-                  <a class="page-numbers" href="#">4</a>
-                  <a class="page-numbers" href="#">5</a>
-                  <a class="page-numbers" href="#">6</a>
-                  <a class="page-numbers" href="#">7</a>
-                  <a class="page-numbers" href="#">8</a>
-                  <a class="page-numbers" href="#">9</a>
-                  <a class="page-numbers" href="#">10</a>
-                  <a class="next page-numbers" href="#"> >> </a>
-         </div>
-      </div>
-
 
       <footer>
          <%@ include file="/WEB-INF/views/common/footer.jsp" %>

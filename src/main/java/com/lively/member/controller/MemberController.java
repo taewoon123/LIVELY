@@ -23,9 +23,5 @@ public class MemberController {
 	
 	@GetMapping("my-feed")
 	public void myFeed() {}
-
-	@GetMapping("home-yw")
-	public void HomeYw() {}
 	
 }//class
-

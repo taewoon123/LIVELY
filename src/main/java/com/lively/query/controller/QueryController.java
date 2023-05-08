@@ -23,5 +23,4 @@ public class QueryController {
 		return "/board/query/query-write";
 	}
 	
-	
 }

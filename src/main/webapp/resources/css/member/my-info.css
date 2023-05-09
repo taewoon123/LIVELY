@@ -1,0 +1,80 @@
+/* 헤더와 제목 사이공간 확보 */
+#title {
+  margin-top: 10%;
+}
+
+/* 제목 글씨색상 변경 */
+#title h4 {
+  color: white;
+  text-align: center;
+}
+
+/* 회원정보 수정 양식 크기 조절 */
+#edit-form {
+  width: 450px;
+}
+
+/* 사이드바 제목 색상 변경 */
+#side-bar-title{
+  color: white;
+  text-align: center;
+}
+
+/* 회원정보 수정 제출 버튼 */
+#edit-submit-button {
+  width: 100%;
+  background-color: #078735;
+  color: white;
+  margin-top: 20px;
+}
+
+#edit-submit-button:hover {
+  background-color: #1eb154;
+}
+
+.g-5{
+  --bs-gutter-y : none;
+}
+
+/* 사이드메뉴 버튼 색상변경 */
+.btn {
+  background-color: #232121;
+  color: white;
+  border: 1.5px solid rgb(83, 83, 84);
+}
+
+/* 사이드메뉴 버튼 호버 시  색상변경 */
+.btn:hover{
+  background-color: #078735;
+}
+
+.col-md-5 col-lg-4 order-md-last {
+  margin-left: 50%;
+}
+
+.wrap {
+  margin: auto;
+  width: 50%;
+  height: 30%;
+}
+
+/* ==================== 원본 ==================== */
+
+.accordion-item {
+  background: white; 
+}
+
+#no-accodian {
+  --bs-accordion-btn-active-icon: none;
+}
+
+body {
+  margin-top: 0;
+  background-color: black;
+  color: white;
+}
+
+#accordionPanelsStayOpenExample a{
+  text-decoration: none;
+  color: white;
+}

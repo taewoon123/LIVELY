@@ -1,6 +1,7 @@
 
   /* 새로 추가한것 */
 
+
   /* 태그 인풋 */
   .tag {
     border: 1px solid silver !important;
@@ -25,7 +26,7 @@
   }
   
   /* 제목 */
-  #job-title{
+  #friend-title{
     
     color: #2e2e2e;
     margin-bottom: 25px;
@@ -124,7 +125,8 @@ input[name="title"] {
     border-radius: 5px;
 }
 
-input[type="submit"] {
+input[type="submit"],
+input[type="button"] {
     /*width: 100%;*/
     background-color: #333;
     color: white;
@@ -135,7 +137,8 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+input[type="button"]:hover {
     background-color: rgb(140, 139, 139);
     color: white;
 }
@@ -191,16 +194,7 @@ input[type="submit"]:hover {
 
 /* UI첨부파일(drop files) */
 
-.form {
-    background-color: #fff;
-    box-shadow: 0 10px 60px rgb(218, 229, 255);
-    border: 1px solid rgb(159, 159, 160);
-    border-radius: 20px;
-    padding: 2rem .7rem .7rem .7rem;
-    text-align: center;
-    font-size: 1.125rem;
-    max-width: 320px;
-  }
+
   
   .form-title {
     color: #000000;

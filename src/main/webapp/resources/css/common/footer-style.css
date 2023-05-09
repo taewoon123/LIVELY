@@ -1,0 +1,15 @@
+.site-footer-logo-img-div {
+    width: 13%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.site-footer-logo-img-div {
+    place-items: center;
+}
+
+
+
+.site-footer-logo-img {
+    border-radius: 7px;
+}
+

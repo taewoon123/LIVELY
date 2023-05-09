@@ -20,7 +20,7 @@
 
 					<form class="form" action="${rootContext}/member/login" method="post">
 
-						<table>
+						<table id="join-form">
 							<tbody>
 								<tr>
 									<td>
@@ -32,7 +32,7 @@
 										</div>
 									</th>
 									<td id="id-validity">
-										
+
 									</td>
 								</tr>
 
@@ -42,11 +42,11 @@
 									</td>
 									<th>
 										<div class="input-group">
-											<input type="password" name="password" id="password" placeholder="">
+											<input type="password" name="password" id="password" placeholder="문자,특수문자 포함 6~12글자">
 										</div>
 									</th>
-									<td id="id-validity">
-										
+									<td id="password-validity">
+
 									</td>
 								</tr>
 
@@ -59,13 +59,13 @@
 											<input type="password" name="password2" id="password2" placeholder="">
 										</div>
 									</th>
-									<td id="id-validity">
+									<td id="passwordCheck-validity">
 										
 									</td>
 								</tr>
 
 								<tr>
-									<td>
+									<td> 
 										Name
 									</td>
 									<th>
@@ -73,8 +73,8 @@
 											<input type="text" name="Name" id="name" placeholder="">
 										</div>
 									</th>
-									<td id="id-validity">
-										
+									<td>
+
 									</td>
 								</tr>
 
@@ -87,8 +87,8 @@
 											<input type="email" name="email" id="email" placeholder=" ex) kim@naver.com">
 										</div>
 									</th>
-									<td id="id-validity">
-										
+									<td id="email-validity">
+
 									</td>
 								</tr>
 
@@ -101,8 +101,8 @@
 											<input type="text" name="birth" id="birth" placeholder=" ex) 19951231">
 										</div>
 									</th>
-									<td id="id-validity">
-										
+									<td id="birth-validity">
+
 									</td>
 								</tr>
 
@@ -115,8 +115,8 @@
 											<input type="text" name="phone" id="phone" placeholder=" ex) 01055550000">
 										</div>
 									</th>
-									<td id="id-validity">
-										
+									<td id="hp-validity">
+
 									</td>
 								</tr>
 
@@ -134,9 +134,10 @@
 											</span>
 										</div>
 									</th>
-									<td id="id-validity">
-										
+									<td id="gender-validity">
+
 									</td>
+									
 								</tr>
 
 								<tr>
@@ -146,7 +147,7 @@
 									<th>
 										<div class="selections">
 											<select class="location-option" name="location" id="location">
-												<option value="0" selected>지역선택</option>
+												<option value="0" selected>Select</option>
 												<option value="1">강동구</option>
 												<option value="2">강서구</option>
 												<option value="3">강남구</option>
@@ -154,7 +155,8 @@
 											</select>
 										</div>
 									</th>
-									<td id="id-validity">
+									<td id="location-validity">
+
 									</td>
 								</tr>
 
@@ -177,5 +179,5 @@
 	</body>
 	<link rel="stylesheet" href="${rootContext}/resources/css/member/join.css">
 	<script src="${rootContext}\resources\js\member\join.js"></script>
-
+	<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css">
 	</html>

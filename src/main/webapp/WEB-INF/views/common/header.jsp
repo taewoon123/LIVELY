@@ -29,7 +29,7 @@
                             Festava Live
                         </a>
 
-                        <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a>
+<%--                        <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a>--%>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,23 +47,34 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_3">Artists</a>
+                                    <a class="nav-link click-scroll dropdown-btn" href="#section_3">Boards
+                                        <select name="board-select" id="" class="dropdown-content">
+                                            <option value=""><a href="">질문 게시판</a></option>
+                                            <option value=""><a href="">도움 게시판</a></option>
+                                            <option value=""><a href="">구인구직 게시판</a></option>
+                                            <option value=""><a href="">기부 게시판</a></option>
+                                            <option value=""><a href="">중고 장터</a></option>
+                                            <option value=""><a href="">친구 구하기</a></option>
+                                        </select>
+                                    </a>
+
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_4">Schedule</a>
+                                    <a class="nav-link click-scroll" href="#section_4">Customer Center</a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_5">Pricing</a>
-                                </li>
+<%--                                <li class="nav-item">--%>
+<%--                                    <a class="nav-link click-scroll" href="#section_5">Contact</a>--%>
+<%--                                </li>--%>
 
                                 <li class="nav-item">
                                     <a class="nav-link click-scroll" href="#section_6">Contact</a>
                                 </li>
                             </ul>
 
-                            <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Buy Ticket</a>
+                            <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Sign Up</a>
+                            <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Sign In</a>
                         </div>
                     </div>
                 </nav>
@@ -75,4 +86,6 @@
 <%--<script src="${rootContext}/resources/js/common/jquery.sticky.js"></script>--%>
 <script src="${rootContext}/resources/js/common/click-scroll.js"></script>
 <script src="${rootContext}/resources/js/common/custom.js"></script>
+
+<link rel="stylesheet" href="${rootContext}/resources/css/common/header-style.css">
 </html>

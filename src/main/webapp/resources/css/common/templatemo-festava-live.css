@@ -903,7 +903,8 @@ strong {
   transition: background 0.2s, color 0.2s;
 }
 
-.social-icon-link:hover {
+/*.social-icon-link:hover ,*/
+.social-icon-logo:hover{
   background: var(--primary-color);
   color: var(--white-color);
 }
@@ -912,7 +913,8 @@ strong {
   display: block;
 }
 
-.social-icon-link span:hover::before{
+/*.social-icon-link span:hover::before,*/
+.social-icon-logo:hover::before{
   animation: spinAround 2s linear infinite;
 }
 

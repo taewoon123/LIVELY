@@ -416,5 +416,5 @@
 </body>
 </html>
 
-<link href="${rootContext}/resources/css/common/home.css" rel="stylesheet">
-<script src="${rootContext}/resources/js/common/home.js"></script>
+<link href="${rootContext}/resources/css/common/main.css" rel="stylesheet">
+<script src="${rootContext}/resources/js/common/main.js"></script>

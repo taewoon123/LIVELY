@@ -15,7 +15,7 @@
         <form>
             <div class="write-group">
 
-                <h3 id="friend-title">Friend</h3>
+                <h3 id="friend-title">Fundraise</h3>
 
                 <div class="form__group">
                     <input type="text" class="form__field" placeholder="제목">

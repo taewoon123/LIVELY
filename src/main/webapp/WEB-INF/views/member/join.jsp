@@ -10,8 +10,9 @@
 	</head>
 
 	<body>
-
-		<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<div>
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
+</div>
 
 			<div id="wrap">
 				<div class="form-container">

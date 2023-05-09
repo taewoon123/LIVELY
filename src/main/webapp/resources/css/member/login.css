@@ -1,3 +1,8 @@
+#passwordLabel {
+	margin-top: 15px;
+}
+
+
 /* 로그인 버튼 디자인 */ 
 .sign-button {
 	display: block;

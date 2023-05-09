@@ -68,4 +68,5 @@
     </html>
     <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-form.css">
     <link rel="stylesheet" href="${rootContext}/resources/css/board/query/query-write.css">
+    <!-- <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"> -->
     <!-- 취소버튼에도 등록버튼과 같은 css를 주기위해 freiend form.css의 127번째줄 복사하여 input[type=button]에도 동일하게 적용 -->

@@ -1,5 +1,15 @@
+#friend_title h2 {
+  color: white;
+  padding-left: 10px;
+}
+
+#friend_title {
+   /* text-align: center; */
+   margin-bottom: 50px;
+}
+
 #wrap > main {
-    margin: 250px auto;
+    margin: 200px auto;
     width: 600px;
     /* height: 100vh; */
 }
@@ -219,3 +229,21 @@
   .hidden_button{
     display: none;
   }
+
+  /* 피드영역 사이즈조절 */
+#search-upload-area {
+  margin-left: 8px;
+  margin-bottom: 20px;
+}
+
+#feed_box{
+  height: 560px;
+}
+
+#content_area{
+  margin : 15px;
+}
+
+#profile_area{
+  margin: 15px;
+}

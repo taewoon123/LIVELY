@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <html>
 <head>
-	<title>Home</title>
+	<title>Main</title>
 </head>
 <body>
 

@@ -1,5 +1,5 @@
 #wrap > main {
-    margin: 250px auto;
+    margin: 200px auto;
     width: 600px;
     /* height: 100vh; */
 }
@@ -223,3 +223,33 @@
   .hidden_button{
     display: none;
   }
+  
+  /* 피드 추가사항 */
+  
+  #search-upload-area {
+  margin-left: 8px;
+  margin-bottom: 20px;
+}
+
+#feed_box{
+  height: 560px;
+}
+
+#content_area{
+  margin : 15px;
+}
+
+#profile_area{
+  margin: 15px;
+}
+
+
+#market_title h2 {
+  color: white;
+  padding-left: 10px;
+}
+
+#market_title {
+	/* text-align: center; */
+	margin-bottom: 50px;
+}

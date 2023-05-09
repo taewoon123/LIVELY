@@ -8,93 +8,34 @@
 </head>
 <body>
 
-
-
 <div id="wrap">
 <main>
+
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
-
-
-
-
-
 
 	<section class="hero-section" id="section_1">
 		<div class="section-overlay"></div>
-
-							<%--êµ¬ê¸ë§µ ìë² ë©--%>
+  
+					   <%--구글맵 임베딩--%>
 		<div class="container d-flex justify-content-center align-items-center">
-			<div class="video-wrap">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202405.65363635842!2d126.80933302536177!3d37.56476155626408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2012d5c39cf%3A0x7e11eca1405bf29b!2z7ISc7Jq47Yq567OE7Iuc!5e0!3m2!1sko!2skr!4v1682741737668!5m2!1sko!2skr"
-									width="1700vw"
-									height="750px"
-						style="border:0;"
-						allowfullscreen=""
-						loading="lazy"
-						referrerpolicy="no-referrer-when-downgrade">
-				</iframe>
-			</div>
-							<%--êµ¬ê¸ë§µ ìë² ë© ë--%>
-			<div class="row">
-
-				<div class="col-12 mt-auto mb-5 text-center">
-<%--					<small>Festava Live Presents</small>--%>
-
-<%--					<h1 class="text-white mb-5">Night Live 2023</h1>--%>
-
-<%--					<a class="btn custom-btn smoothscroll" href="#section_2">Let's begin</a>--%>
-				</div>
-							<%--		ë ì§,ìì¹,ê³µì  ëë¸    	--%>
-<%--				<div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">--%>
-<%--					<div class="date-wrap">--%>
-<%--						<h5 class="text-white">--%>
-<%--							<i class="custom-icon bi-clock me-2"></i>--%>
-<%--							10 - 12<sup>th</sup>, Dec 2023--%>
-<%--						</h5>--%>
-<%--					</div>--%>
-
-<%--					<div class="location-wrap mx-auto py-3 py-lg-0">--%>
-<%--						<h5 class="text-white">--%>
-<%--							<i class="custom-icon bi-geo-alt me-2"></i>--%>
-<%--							National Center, United States--%>
-<%--						</h5>--%>
-<%--					</div>--%>
-
-<%--					<div class="social-share">--%>
-<%--						<ul class="social-icon d-flex align-items-center justify-content-center">--%>
-<%--							<span class="text-white me-3">Share:</span>--%>
-
-<%--							<li class="social-icon-item">--%>
-<%--								<a href="#" class="social-icon-link">--%>
-<%--									<span class="bi-facebook"></span>--%>
-<%--								</a>--%>
-<%--							</li>--%>
-
-<%--							<li class="social-icon-item">--%>
-<%--								<a href="#" class="social-icon-link">--%>
-<%--									<span class="bi-twitter"></span>--%>
-<%--								</a>--%>
-<%--							</li>--%>
-
-<%--							<li class="social-icon-item">--%>
-<%--								<a href="#" class="social-icon-link">--%>
-<%--									<span class="bi-instagram"></span>--%>
-<%--								</a>--%>
-<%--							</li>--%>
-<%--						</ul>--%>
-<%--					</div>--%>
-<%--				</div>--%>
-			</div>
+		   <div class="video-wrap">
+			  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202405.65363635842!2d126.80933302536177!3d37.56476155626408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2012d5c39cf%3A0x7e11eca1405bf29b!2z7ISc7Jq47Yq567OE7Iuc!5e0!3m2!1sko!2skr!4v1682741737668!5m2!1sko!2skr"
+							 width="1700vw"
+							 height="750px"
+					style="border:0;"
+					allowfullscreen=""
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade">
+			  </iframe>
+		   </div>
+					   <%--구글맵 임베딩 끝--%>
+		   <div class="row">
+  
+			  <div class="col-12 mt-auto mb-5 text-center">
+			  </div>
+		   </div>
 		</div>
-
-<%--		<div class="video-wrap">--%>
-<%--			<video autoplay="" loop="" muted="" class="custom-video" poster="">--%>
-<%--				<source src="video/pexels-2022395.mp4" type="video/mp4">--%>
-
-<%--				Your browser does not support the video tag.--%>
-<%--			</video>--%>
-<%--		</div>--%>
-	</section>
+	 </section>
 
 
 	<section class="about-section section-padding" id="section_2">
@@ -103,39 +44,26 @@
 
 				<div class="col-lg-6 col-12 mb-4 mb-lg-0 d-flex align-items-center">
 					<div class="services-info">
-						<h2 class="text-white mb-4">About Lively</h2>
+						<h2 class="text-white mb-4">All you have to do is</h2>
+						<h2 class="text-white mb-4">Live Lively.</h2>
 
-						<p class="text-white">Festava Live is free CSS template provided by TemplateMo website. This
-							layout is built on Bootstrap v5.2.2 CSS library. You are free to use this template for
-							your commercial website.</p>
+						<p class="text-white">Lively has started from the scratch with the passionate people that brings up the bright idea.</p>
+						<p class="text-white">Dive into our idea and Explore the news of your neighbourhood.</p>
 
-						<h6 class="text-white mt-4">Once in Lifetime Experience</h6>
+						<h6 class="text-white mt-4">What is the special things of Lively?</h6>
+						<p class="text-white">We've been waiting for you ask that.</p>
+						<p class="text-white">We provide Live-Traffic-News with our own API. No longer needed a Google Maps to check whether the traffic is good or not.</p>
+						<p class="text-white">All you need to do to check the traffic status is you just have to open this amazingly fresh-fast Website :)</p>
 
-						<p class="text-white">You are not allowed to redistribute the template ZIP file on any other
-							website without a permission.</p>
-
-						<h6 class="text-white mt-4">Whole Night Party</h6>
-
-						<p class="text-white">Please tell your friends about our website. Thank you.</p>
+						<h6 class="text-white mt-4">How do I get my neighbours news?</h6>
+						<p class="text-white">You can just jump onto the boards. You can get all the things you needed.</p>
+						<p class="text-white">You can buy, sell, job recruiting, getting job, asking for help and even can fundraise!</p>
 					</div>
 				</div>
 
 				<div class="col-lg-6 col-12">
 					<div class="about-text-wrap">
-						<img src="${rootContext}/resources/img/logo0427.png" class="about-image img-fluid">
-
-						<!-- <div class="about-text-info d-flex">
-							<div class="d-flex">
-								<i class="about-text-icon bi-person"></i>
-							</div>
-
-
-							<div class="ms-4">
-								<h3>가나다</h3>
-
-								<p class="mb-0">your amazing festival experience with us</p>
-							</div>
-						</div> -->
+						<img src="${rootContext}/resources/img/LivelyLogo.png" class="about-image img-fluid">
 					</div>
 				</div>
 
@@ -149,102 +77,38 @@
 			<div class="row justify-content-center">
 
 				<div class="col-12 text-center">
-					<h2 class="mb-4">Chat</h1>
+					<h2 class="mb-4">Chat</h2>
 				</div>
 
-				<div class="col-lg-5 col-12">
-					<div class="artists-thumb">
-						<div class="artists-image-wrap">
-							<img src="${rootContext}/resources/img/logo0427.png"
-								 class="artists-image img-fluid">
-						</div>
+				<div class="chat_img_area">
 
-						<div class="artists-hover">
-							<p>
-								<strong>Name:</strong>
-								Madona
-							</p>
-
-							<p>
-								<strong>Birthdate:</strong>
-								August 16, 1958
-							</p>
-
-							<p>
-								<strong>Music:</strong>
-								Pop, R&amp;B
-							</p>
-
-							<hr>
-
-							<p class="mb-0">
-								<strong>Youtube Channel:</strong>
-								<a href="#">Madona Official</a>
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-5 col-12">
-					<div class="artists-thumb">
-						<div class="artists-image-wrap">
-							<img src="${rootContext}/resources/img/logo0427.png"
-								 class="artists-image img-fluid">
-						</div>
-
-						<div class="artists-hover">
-							<p>
-								<strong>Name:</strong>
-								Rihana
-							</p>
-
-							<p>
-								<strong>Birthdate:</strong>
-								Feb 20, 1988
-							</p>
-
-							<p>
-								<strong>Music:</strong>
-								Country
-							</p>
-
-							<hr>
-
-							<p class="mb-0">
-								<strong>Youtube Channel:</strong>
-								<a href="#">Rihana Official</a>
-							</p>
+				
+					<div class="col-lg-5 col-12">
+						<div class="artists-thumb">
+							<div class="artists-image-wrap">
+								<img src="${rootContext}/resources/img/chat1.png"
+									class="artists-image img-fluid">
+							</div>
 						</div>
 					</div>
 
-					<!-- <div class="artists-thumb">
-						<img src="${rootContext}/resources/img/logo0427.png"
-							 class="artists-image img-fluid">
-
-						<div class="artists-hover">
-							<p>
-								<strong>Name:</strong>
-								Bruno Bros
-							</p>
-
-							<p>
-								<strong>Birthdate:</strong>
-								October 8, 1985
-							</p>
-
-							<p>
-								<strong>Music:</strong>
-								Pop
-							</p>
-
-							<hr>
-
-							<p class="mb-0">
-								<strong>Youtube Channel:</strong>
-								<a href="#">Bruno Official</a>
-							</p>
+					<div class="col-lg-5 col-12">
+						<div class="artists-thumb">
+							<div class="artists-image-wrap">
+								<img src="${rootContext}/resources/img/chat2.png"
+									class="artists-image img-fluid">
+							</div>
 						</div>
-					</div> -->
+					</div>
+
+					<div class="chat_text_area">
+						<p>
+							<strong>Course you can reply them !</strong>
+						</p>
+						<p>
+							<strong>You can easily keep in touch with your friends, neighbours</strong>
+						</p>
+					</div>
 				</div>
 
 			</div>
@@ -253,15 +117,16 @@
 
 
 	<section class="schedule-section section-padding" id="section_4">
-		<h2 class="text-white mb-4">기능</h2>
+		<div class="strength_text_area">
+			<h2 class="text-white mb-4">Know the real story faster.</h2>
+		</div>
 		<div class="container">
 			<div class="row">
 
 				<div class="col-12 text-center">
-
+						
 						<div class="strength">
 							<div class="strength_img strength1_img">
-							<!-- <img src="https://images.prismic.io/citizen-site/b4f059d2-19…ab91-4c859189e480_icon_8.svg?auto=compress,format"> -->
 								<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M21.9737 11.8281C17.7719 10.4275 13.2293 10.4275 9.0275 11.8281C8.56746 11.9814 8.07022 11.7328 7.91688 11.2728C7.76353 10.8127 8.01215 10.3155 8.47219 10.1622C13.0344 8.64142 17.9668 8.64142 22.529 10.1622C22.989 10.3155 23.2377 10.8127 23.0843 11.2728C22.931 11.7328 22.4337 11.9814 21.9737 11.8281Z" fill="#E73F3A"/>
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M23.041 7.30164C18.2325 5.24085 12.7895 5.24085 7.98096 7.30164C7.53524 7.49266 7.01907 7.28619 6.82805 6.84048C6.63703 6.39477 6.8435 5.8786 7.28921 5.68758C12.5395 3.43747 18.4825 3.43747 23.7327 5.68758C24.1784 5.8786 24.3849 6.39477 24.1939 6.84048C24.0028 7.28619 23.4867 7.49266 23.041 7.30164Z" fill="#E73F3A"/>
@@ -276,8 +141,8 @@
 								</svg>
 							</div>
 							<div class="strength_text strength1_text">
-								<h6>See incidents unfold and get the real story from people on the scene.</h6>
-								<h7>Live videos show you what’s really happening. Watch incidents unfold from different angles and follow along until they get resolved.</h7>
+								<h6>You can watch real-time live traffic jam of your neighbourhood.</h6>
+								<h7>You don't need to check any other weather or traffic map application.</h7>
 							</div>
 							<div class="strength_img strength2_img">
 								<br>
@@ -291,8 +156,8 @@
 							</div>
 							<div class="strength_text strength2_text">
 								<br>
-								<h6>Fast, accurate information makes a meaningful difference in emergencies.</h6>
-								<h7>Citizen alerts go out instantly — this can be hours before Amber Alerts are even issued for children in danger. This speed has been critical in acting on important events like abductions and missing elderly people.</h7>
+								<h6>Just send a message to your friends.</h6>
+								<h7>Communicate with just by hit the enter!</h7>
 							</div>
 							<div class="strength_img strength3_img">
 								<br>
@@ -314,8 +179,8 @@
 							</div>	
 							<div class="strength_text strength3_text">
 								<br>
-								<h6>When you can, contribute to help resolve a situation.</h6>
-								<h7>You used to have to call a police tip line to help. Now you can use Citizen to broadcast live video, sharing relevant updates with others. You can also leave comments, which have helped locate missing people and share information about evacuation centers during natural disasters.</h7>
+								<h6>Keep in connection with your neighbours.</h6>
+								<h7>Jump onto the boards. Explore and Discover a Good-homeboy and girl of your neighbourhood.</h7>
 							</div>
 						</div>
 				</div>
@@ -381,26 +246,22 @@
 									</tbody>
 								</table>
 
-								<div class="notice_more_button">
-									<button>
-										more
-									</button>
-								</div>
+								<a class="link-fx-1 color-contrast-higher mt-4" href="${rootContext}/qnal">
+									<div class="bootstrap_more_button">
+										<span>more</span>
+										<svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+											<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+												<circle cx="16" cy="16" r="15.5"></circle>
+												<line x1="10" y1="18" x2="16" y2="12"></line>
+												<line x1="16" y1="12" x2="22" y2="18"></line>
+											</g>
+										</svg>
+									</div>
+								</a>
 							</div>
 
 							
 						</div>
-
-						<!-- <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-							<span>Buy Ticket</span>
-							<svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
-								<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-									<circle cx="16" cy="16" r="15.5"></circle>
-									<line x1="10" y1="18" x2="16" y2="12"></line>
-									<line x1="16" y1="12" x2="22" y2="18"></line>
-								</g>
-							</svg>
-						</a> -->
 					</div>
 				</div>
 
@@ -453,15 +314,17 @@
 									</tbody>
 								</table>
 
-								<a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-									<span>more</span>
-									<svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
-										<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-											<circle cx="16" cy="16" r="15.5"></circle>
-											<line x1="10" y1="18" x2="16" y2="12"></line>
-											<line x1="16" y1="12" x2="22" y2="18"></line>
-										</g>
-									</svg>
+								<a class="link-fx-1 color-contrast-higher mt-4" href="${rootContext}/qnal">
+									<div class="bootstrap_more_button">
+										<span>more</span>
+										<svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+											<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+												<circle cx="16" cy="16" r="15.5"></circle>
+												<line x1="10" y1="18" x2="16" y2="12"></line>
+												<line x1="16" y1="12" x2="22" y2="18"></line>
+											</g>
+										</svg>
+									</div>
 								</a>
 							</div>
 						</div>
@@ -478,7 +341,7 @@
 			<div class="row">
 
 				<div class="col-lg-8 col-12 mx-auto">
-					<h2 class="text-center mb-4">Interested? Let's talk</h2>
+					<!-- <h2 class="text-center mb-4">Interested? Let's talk</h2> -->
 
 					<nav class="d-flex justify-content-center">
 						<div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab"
@@ -517,7 +380,7 @@
 									</div>
 
 									<input type="text" name="contact-company" id="contact-company"
-										   class="form-control" placeholder="Company" required>
+										   class="form-control" placeholder="Title" required>
 
 									<textarea name="contact-message" rows="3" class="form-control"
 											  id="contact-message" placeholder="Message"></textarea>
@@ -531,11 +394,7 @@
 
 						<div class="tab-pane fade" id="nav-ContactMap" role="tabpanel"
 							 aria-labelledby="nav-ContactMap-tab">
-							<iframe class="google-map"
-									src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29974.469402870927!2d120.94861466021855!3d14.106066818082482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd777b1ab54c8f%3A0x6ecc514451ce2be8!2sTagaytay%2C%20Cavite%2C%20Philippines!5e1!3m2!1sen!2smy!4v1670344209509!5m2!1sen!2smy"
-									width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-									referrerpolicy="no-referrer-when-downgrade"></iframe>
-							<!-- You can easily copy the embed code from Google Maps -> Share -> Embed a map // -->
+							<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12661.513516944651!2d127.032909!3d37.498993!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9ec255555555%3A0x3565475c3365c5bb!2zS0jsoJXrs7TqtZDsnKHsm5A!5e0!3m2!1sko!2skr!4v1678893686771!5m2!1sko!2skr' width='100%' height='450' style='border:0;' allowfullscreen='' loading='eager'></iframe>
 						</div>
 					</div>
 				</div>
@@ -543,10 +402,13 @@
 			</div>
 		</div>
 	</section>
+
+	
 </main>
 
-
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<div id="fixedButton" onclick="TOP();">TOP</div>
 
 </div>
 
@@ -555,3 +417,4 @@
 </html>
 
 <link href="${rootContext}/resources/css/common/home.css" rel="stylesheet">
+<script src="${rootContext}/resources/js/common/home.js"></script>

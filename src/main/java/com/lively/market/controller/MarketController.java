@@ -13,8 +13,8 @@ public class MarketController {
 		return "board/market/market-list";
 	}
 	
-	@GetMapping("form")
+	@GetMapping("write")
 	public String form() {
-		return "board/market/market-form";
+		return "board/market/market-write";
 	}
 }

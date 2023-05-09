@@ -1,0 +1,210 @@
+/* About Lively 배경 */
+#section_2 {
+    background-color: black;
+}
+
+/* About Lively 사진 */
+.about-image img-fluid {
+    width: 100%;
+}
+
+.about-text-wrap img {
+    margin-left: 50px;
+}
+
+/* chat 영역 */
+#section_3 {
+    background-color: #f0f8ff;
+}
+
+#section_3 .chat_img_area {
+    display: flex;
+    justify-content: start;
+    margin-left: -80px;
+}
+
+#section_3 .chat_text_area {
+    margin-top: 200px; 
+    margin-left: 20px;
+}
+
+#section_3 .chat_text_area div {
+    padding-top: 10px;
+}
+
+#section_3 .col-lg-5 {
+    width: 450px;
+    /* padding: 0 30px; */
+    padding-right: 50px;
+}
+
+#section_3 .artists-thumb {
+    height: 450px;
+}
+
+#section_3 .col-lg-5 {
+    margin-top: 50px;
+}
+
+.artists-image {
+    height: 100%;
+}
+
+/* 기능 영역 */
+
+#section_4 {
+    background-color: black;
+}
+
+.strength_text_area {
+    margin-bottom: 74px;
+}
+
+#section_4 > .container {
+    height: 480px;
+    background-color: white;
+    border: 2px solid white;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.strength h6 {
+    font-weight: 1000;
+}
+
+
+.strength h7 {
+    padding-top: -30px;
+    font-weight: 500;
+}
+
+.strength {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    height: 350px;
+}
+
+.strength_text {
+    text-align: start;
+}
+
+.strength_text h6 {
+    margin-bottom: 15px;
+}
+
+#section_4 .text-center {
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+
+.text-white {
+    text-align: center;
+    color: white;
+}
+
+/* 고객센터 영역 */
+
+.customer_area {
+    margin: 0 0 50px 0;
+}
+
+#section_5 .row {
+    display: flex;
+    justify-content: center;
+}
+
+#section_5 .col-lg-6 {
+    width: 580px;
+}
+
+#section_5 .pricing-thumb {
+    padding: 20px;
+}
+
+#section_5 .pricing-thumb .d-flex {
+    display: flex;
+    justify-content: center;
+}
+
+#section_5 .pricing-thumb h5 {
+    text-align: center;
+}
+
+.d-flex table {
+    margin-top: 20px;
+    margin-bottom: -20px;
+    width: 450px;
+    text-align: center;
+}
+
+.d-flex table thead tr {
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.d-flex table thead tr th {
+    padding: 6px 0;
+}
+
+.d-flex table tbody tr {
+    border-bottom: 1px solid rgb(162, 162, 162);
+}
+
+.d-flex table tbody tr th {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 0;
+}
+
+
+/* 고객센터 영역 - 더보기 버튼(bootstrap) */
+
+.bootstrap_more_button:hover {
+    color: #078735;
+}
+
+#section_5 .link-fx-1 {
+    /* margin-left: 330px; */
+    /* margin-top: 50px; */
+    margin: -20px 0 0 380px;
+}
+
+#section_5 .pricing-thumb .link-fx-1 {
+    color: black;
+}
+
+
+/* contact form 영역 */
+
+#section_6 .col-lg-8 .d-flex {
+    margin-bottom: 74px;
+}
+
+/* TOP 고정 버튼 */
+
+#fixedButton {
+    position: fixed;
+    right: 45px;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-content: center center;
+    background-color: rgb(32, 32, 32);
+    color: #e8e8e8;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #9E9E9E;
+    cursor: pointer;
+}
+#fixedButton:hover {
+    background-color: #078735;
+    color: white;
+}
+
+/*  */
+
+#section_1{
+    margin-top: 6%;
+  }

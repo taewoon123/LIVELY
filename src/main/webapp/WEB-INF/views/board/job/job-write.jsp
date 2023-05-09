@@ -16,8 +16,10 @@
                 <div class="write-group">
 
                     <h3 id="job-title">Job/Recruit</h3>
-                    job<input type="radio" value="incruit" name="job" id="0">
-                    recruit<input type="radio" value="recruit" name="job" id="1">
+                    <div id="job-option">
+                    job<input type="radio" value="0" name="job" id="job">
+                    recruit<input type="radio" value="1" name="job" id="recruit">
+                    </div>
                      <div class="selections-location">
                         <select class="location-option" name="location" id="location">
                             <option value="0" selected>지역선택</option>
@@ -65,4 +67,4 @@
 </body>
 </html>
   <link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-write.css">
-  <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+ <%--  <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" /> --%>

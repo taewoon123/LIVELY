@@ -4,5 +4,3 @@
 //     const no = event.target.parentNode.children[0].innerText;
 //     location.href = '${rootContext}/query/detail?no=' + no;
 // });
-
-

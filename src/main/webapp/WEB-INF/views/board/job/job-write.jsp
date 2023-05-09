@@ -15,7 +15,6 @@
             <form>
                 <div class="write-group">
 
-
                     <h3 id="job-title">구인구직</h3>
 
                     <div class="selections">
@@ -36,7 +35,6 @@
 
                 <!-- UI첨부파일(drop files) -->
                 <form class="form">
-
                     <p class="form-paragraph">
                         File should be an image or video
                       </p>
@@ -45,7 +43,6 @@
                         <a>or</a>
                         <input type="file" accept="image/*" required="" id="file-input" style="font-size: 15px">
                     </label>
-
                     <div class="tag-group">
                         <input type="text" class="tag" placeholder="#태그" >
                     </div>
@@ -63,5 +60,4 @@
 
 </body>
 </html>
-
   <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-form.css">

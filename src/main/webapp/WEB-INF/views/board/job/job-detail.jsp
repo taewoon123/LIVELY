@@ -13,7 +13,6 @@
    <div id="wrap">
       <main>
 
-
          <div class="view-area active">
 		<a href = "${rootContext}/jobl" id = "list-btn">목록</a>
             <div id="detail-area">
@@ -53,7 +52,6 @@
       <button  type="submit">삭제</button>
    </div>
  -->
-
  
          <br>
          <br>

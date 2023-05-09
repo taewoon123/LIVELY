@@ -33,7 +33,6 @@
 									</th>
 									<td id="id-validity">
 
-
 									</td>
 								</tr>
 
@@ -74,7 +73,6 @@
 											<input type="text" name="Name" id="name" placeholder="">
 										</div>
 									</th>
-
 									<td>
 
 									</td>
@@ -89,7 +87,6 @@
 											<input type="email" name="email" id="email" placeholder=" ex) kim@naver.com">
 										</div>
 									</th>
-
 									<td id="email-validity">
 
 									</td>
@@ -104,7 +101,6 @@
 											<input type="text" name="birth" id="birth" placeholder=" ex) 19951231">
 										</div>
 									</th>
-
 									<td id="birth-validity">
 
 									</td>

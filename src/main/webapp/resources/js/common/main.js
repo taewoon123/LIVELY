@@ -1,4 +1,4 @@
-	// 하단 고정
+// 하단 고정
 function TOP(){
     window.scrollTo({
         top: 0,

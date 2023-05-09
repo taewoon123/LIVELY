@@ -14,7 +14,7 @@
       <main>
 
          <div class="view-area active">
-		<a href = "${rootContext}/jobl" id = "list-btn">목록</a>
+		<a href = "${rootContext}/job/list" id = "list-btn">목록</a>
             <div id="detail-area">
                <div id = "detail-title">제목</div>
                <div id = "detail-inTitle">일할실분 구합니다</div>
@@ -37,33 +37,27 @@
             
          </div>
 
-      </main>
-   </div>
    
    <div id="comment">
-         <div id="comment-count">
-            댓글 <span id="count">0</span>
+
+            <input id="comment-input" name="comment" placeholder="댓글을 입력해 주세요.">
+            <button id="submit" name="comment">등록</button>
          </div>
-         <input id="comment-input" name= comment placeholder="댓글을 입력해 주세요.">
-         <button id="submit" name = comment>등록</button>
-   </div>
-  <!--  <div id=comments >
-      <button id="comments-edit" type="submit">수정</button>
-      <button  type="submit">삭제</button>
-   </div>
- -->
- 
-         <br>
-         <br>
-         
-   
+
+         <!-- js때문에 있어야함. -->
+         <div id=comments></div>
+
+      </main>
+
+   </div> <!-- div wrap end -->
+
    <footer>
       <%@ include file="/WEB-INF/views/common/footer.jsp"%>
-   </footer> 
+   </footer>
 </body>
 </html>
 
-<script>
+<script> /* 일단 js는 주석처리 해도될듯합니다.(backend작업 시 주석처리 없앨듯...) */
 const inputBar = document.querySelector("#comment-input");
 const rootDiv = document.querySelector("#comments");
 const btn = document.querySelector("#submit");
@@ -151,21 +145,11 @@ function showComment(comment){
     showTime.innerHTML = generateTime();
     countSpan.innerHTML=0;
     
-   /*  //투표창 만들기
-    voteUp.id = "voteUp";
-    voteUp.innerHTML = '↑';    
-    voteDown.id = "voteDown";
-    voteDown.innerHTML = '↓';       
-    voteDiv.appendChild(voteUp);
-    voteDiv.appendChild(voteDown); */
-    
     //수정, 삭제 버튼 추가
     editBtn.innerText = '수정'; // 수정 버튼 텍스트 설정
     deleteBtn.innerText = '삭제'; // 삭제 버튼 텍스트 설정
     commentList.appendChild(editBtn); // 수정 버튼을 댓글 리스트에 추가
     commentList.appendChild(deleteBtn); // 삭제 버튼을 댓글 리스트에 추가
-    
-    
 
     //댓글뿌려주기       
     commentList.appendChild(userName);
@@ -201,24 +185,11 @@ function editComment(commentList, inputValue) {
 
      submitBtn.innerHTML = "수정 완료"; // 버튼 텍스트 추가
      cancelBtn.innerHTML = "취소"; // 버튼 텍스트 추가
-     
-     <script>
-     const registerButton = document.getElementById("register-button");
-     const editButton = document.getElementById(".editBtn");
-
-     registerButton.addEventListener("click", function() {
-       editButton.style.display = "block";
-     });
-
-     // 클릭 이벤트 리스너 등록
-     document.getElementById("my-button").addEventListener("click", handleClick);
 
      // 수정 버튼 클릭 이벤트 리스너
      editBtn.addEventListener('click', () => {
        commentList.removeChild(editBtn); // 수정 버튼 제거
        commentList.removeChild(deleteBtn); // 삭제 버튼 제거
-       
-       
 
        // 수정 완료 버튼 이벤트 리스너
        submitBtn.addEventListener('click', () => {
@@ -286,7 +257,7 @@ function pressBtn(){
 }
 
 btn.onclick = pressBtn;
-
-
 </script>
+
 <link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-detail.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

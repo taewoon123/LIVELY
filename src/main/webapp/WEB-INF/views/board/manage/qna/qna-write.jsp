@@ -27,11 +27,11 @@
                         </select>
                     </div>
                     <div class="form__group">
-                        <input type="text" class="form__QNA" placeholder="제목">
+                        <input type="text" class="form__QNA" placeholder="제목"  required="">
                     </div>
                 </div>
                 <div class="write-group">
-                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none"></textarea>
+                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none"  placeholder="내용" required=""></textarea>
                 </div>
 
                 <!-- UI첨부파일(drop files) -->
@@ -42,7 +42,7 @@
                     <label for="file-input" class="drop-container">
                         <span class="drop-title">Drop files here</span>
                         <a>or</a>
-                        <input type="file" accept="image/*" required="" id="file-input" style="font-size: 15px">
+                        <input type="file" accept="image/*" id="file-input" style="font-size: 15px">
                     </label>
                     <div class="tag-group">
                         <input type="text" class="tag" placeholder="#태그" >
@@ -50,8 +50,10 @@
 
                   </form>
 
-                <div class="register">
-                    <div id="registerName"><input value="취소" type="submit"></div>
+                 <div class="register">
+                            <div id="registerName"><input value="취소" type="button"
+                                    onclick="location.href='${rootContext}/qna/list'"></div>
+
                     <div id="registerName"><input value="등록" type="submit"></div>
                 </div>
             </form>
@@ -61,4 +63,6 @@
 
 </body>
 </html>
-  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-form.css">
+  <link rel="stylesheet" href="${rootContext}/resources/css/board/qna/qna-write.css">
+  <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"/>
+  

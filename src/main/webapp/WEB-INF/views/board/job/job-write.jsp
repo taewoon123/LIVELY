@@ -15,22 +15,24 @@
             <form>
                 <div class="write-group">
 
-                    <h3 id="job-title">구인구직</h3>
-
-                    <div class="selections">
+                    <h3 id="job-title">Job/Recruit</h3>
+                    job<input type="radio" value="incruit" name="job" id="0">
+                    recruit<input type="radio" value="recruit" name="job" id="1">
+                     <div class="selections-location">
                         <select class="location-option" name="location" id="location">
-                            <option value="0" selected>구인/구직 선택</option>
-                            <option value="1">구인</option>
-                            <option value="2">구직</option>
-                          
+                            <option value="0" selected>지역선택</option>
+                            <option value="1">강동구</option>
+                            <option value="2">강서구</option>
+                            <option value="3">강남구</option>
+                            <option value="4">강북구</option>
                         </select>
                     </div>
                     <div class="form__group">
-                        <input type="text" class="form__field" placeholder="제목">
+                        <input type="text" class="form__field" placeholder="제목" required="">
                     </div>
                 </div>
                 <div class="write-group">
-                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none"></textarea>
+                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none"  placeholder="내용"  required=""></textarea>
                 </div>
 
                 <!-- UI첨부파일(drop files) -->
@@ -41,7 +43,7 @@
                     <label for="file-input" class="drop-container">
                         <span class="drop-title">Drop files here</span>
                         <a>or</a>
-                        <input type="file" accept="image/*" required="" id="file-input" style="font-size: 15px">
+                        <input type="file" accept="image/*"  id="file-input" style="font-size: 15px">
                     </label>
                     <div class="tag-group">
                         <input type="text" class="tag" placeholder="#태그" >
@@ -50,7 +52,9 @@
                   </form>
 
                 <div class="register">
-                    <div id="registerName"><input value="취소" type="submit"></div>
+                            <div id="registerName"><input value="취소" type="button"
+                                    onclick="location.href='${rootContext}/job/list'"></div>
+
                     <div id="registerName"><input value="등록" type="submit"></div>
                 </div>
             </form>
@@ -60,4 +64,5 @@
 
 </body>
 </html>
-  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-form.css">
+  <link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-write.css">
+  <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

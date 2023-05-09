@@ -10,6 +10,12 @@
 </header>
 <body>
 
+<h2>Q&A</h2>
+
+
+   <!-- list table -->
+   <div id="wrap">
+
    <!-- search button -->
    <div class="container-input">
       <input type="text" placeholder="Search" name="text" class="input">
@@ -21,10 +27,7 @@
          </path>
       </svg>
    </div>
-
-   <!-- list table -->
-   <div id="wrap">
-
+   
       <main>
          
          <br>
@@ -87,31 +90,31 @@
          <!-- 작성 버튼 -->
          <button id = "write_submit">
             <span>
-               <a class = "write-btn" href="${rootContext}/qnaw">write</a>
+               <a class = "write-btn" href="${rootContext}/qna/write">write</a>
             </span>
          </button>
-         
-      </main>
-   </div>
    
    <!-- pagenation -->
    <div class="page-area">
       <div class="pagination-custom">
-         <a class="prev page-numbers" href="notice-list"> << </a>
+         <a class="prev page-numbers" href="list"> << </a>
             <span aria-current="page" class="page-numbers current">1</span>
-            <a class="page-numbers" href="notice-list">2</a>
-            <a class="page-numbers" href="notice-list">3</a>
-            <a class="page-numbers" href="notice-list">4</a>
-            <a class="page-numbers" href="notice-list">5</a>
-            <a class="page-numbers" href="notice-list">6</a>
-            <a class="page-numbers" href="notice-list">7</a>
-            <a class="page-numbers" href="notice-list">8</a>
-            <a class="page-numbers" href="notice-list">9</a>
-            <a class="page-numbers" href="notice-list">10</a>
-            <a class="next page-numbers" href="notice-list"> >> </a>
+            <a class="page-numbers" href="list">2</a>
+            <a class="page-numbers" href="list">3</a>
+            <a class="page-numbers" href="list">4</a>
+            <a class="page-numbers" href="list">5</a>
+            <a class="page-numbers" href="list">6</a>
+            <a class="page-numbers" href="list">7</a>
+            <a class="page-numbers" href="list">8</a>
+            <a class="page-numbers" href="list">9</a>
+            <a class="page-numbers" href="list">10</a>
+            <a class="next page-numbers" href="list"> >> </a>
       </div>
    </div>
 
+         
+      </main>
+   </div>
    
    <footer>
       <%@ include file="/WEB-INF/views/common/footer.jsp"%>
@@ -119,3 +122,4 @@
 </body>
 </html> 
     <link rel="stylesheet" href="${rootContext}/resources/css/board/qna/qna-list.css">
+    <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"/>

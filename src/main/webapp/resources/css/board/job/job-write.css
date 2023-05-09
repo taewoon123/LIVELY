@@ -23,6 +23,13 @@
     border: 1px solid #939292;
     margin: -50px 0 10px 420px;
   }
+  /* 구인구직태그 */
+  .job-option {
+    background-color: #cccbcb;
+    color: black;
+    border: 1px solid #939292;
+    margin-left: 5000px;
+  }
   
   /* 제목 */
   #job-title{
@@ -276,3 +283,19 @@ input[type="submit"]:hover {
   #file-input::file-selector-button:hover {
     background: black;
   }
+  
+  input[type="button"] {
+  /* width: 100%; */
+  background-color: #333;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="button"]:hover {
+  background-color: rgb(140, 139, 139);
+  color: white;
+}

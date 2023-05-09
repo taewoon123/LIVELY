@@ -13,18 +13,17 @@
    <div id="wrap">
       <main>
 
-         <br>
          <div class="view-area active">
-		<a href = "${rootContext}/qna/list" id = "list-btn">목록</a>
+		<a href = "${rootContext}/job/list" id = "list-btn">목록</a>
             <div id="detail-area">
                <div id = "detail-title">제목</div>
-               <div id = "detail-inTitle">질문있습니다</div>
+               <div id = "detail-inTitle">일할실분 구합니다</div>
                <div id = "detail-date">작성일자</div>
                <div id = "detail-inDate">2023-04-24</div>
                <div id = "detail-hit">조회수</div>
                <div id = "detail-inHit">1</div>
                <div id = "detail-content">내용</div>
-               <div id = "detail-inContent">알려주세요!!</div>
+               <div id = "detail-inContent">강남역에서 일하실분 구합니다.</div>
             </div>
             
             <!-- 작성 버튼 -->
@@ -260,5 +259,5 @@ function pressBtn(){
 btn.onclick = pressBtn;
 </script>
 
-<link rel="stylesheet" href="${rootContext}/resources/css/board/qna/qna-detail.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

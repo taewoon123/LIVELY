@@ -290,6 +290,7 @@ h5 {
   margin: 10px;  
   padding: 0.5em; 
   border-bottom: 1px solid #c1bcba;
+  margin-left:12%;
 }
 
 .eachComment .name{
@@ -324,4 +325,27 @@ h5 {
 	   border-radius:30px;
 	   width:5%;
 	   text-align: center;
+}
+/* 댓글 수정 css */
+.editBtn {
+   /* border:1px solid whitesmoke; */
+   /* border-radius:30px; */ 
+   color: whitesmoke; 
+   background-color: black;
+   text-align: center;
+   text-decoration: underline;
+   border: none;
+   float: right;
+   font-size: 13px;
+}
+
+/* 댓글 삭제 css */
+.deleteBtn {
+   color: whitesmoke;
+   background-color: black;
+   text-align: center;
+   text-decoration: underline;
+   border: none;
+   float: right;
+   font-size: 13px;
 }

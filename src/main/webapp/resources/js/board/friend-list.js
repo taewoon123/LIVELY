@@ -1,7 +1,7 @@
 function chat(){
 
 	let options = "width=500, height=600, top=100,left=500";
-    window.open("${rootContext}/chat", "chat", options);
+    window.open("/lively/chat", "chat", options);
 
 }
 

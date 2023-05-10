@@ -1,0 +1,349 @@
+/* 상세페이지 css */
+#help-area {
+   width: 600px;
+   margin: auto;
+   display: grid;
+   grid-template-columns: repeat(2, 150px 200px);
+   grid-template-rows: 30px 30px 250px;
+}
+
+#help-area > div:not (:nth-child(2), :last-child) {
+   text-align: center;
+}
+
+/* 도움 목록 div 테두리 표 css */
+#help-area > div:nth-child(2), #help-area > div:last-child {
+   grid-column: span 3;
+}
+
+#help-area input, #help-area textarea {
+   width: 100%;
+   height: 100%;
+   resize: none;
+}
+
+/* 도움 전체 테두리 css */
+.view-area {
+   display: none;
+   color: white;
+   margin-top: 15%;
+   margin-bottom: 5%;
+}
+
+/* 도움 오른쪽 위에 목록 버튼 css */
+#list-btn{
+   margin-left: 76%; 
+   margin-bottom: 1%;
+   border:1px solid whitesmoke;
+   color:whitesmoke; 
+   background-color:#078735;
+   border-radius:30px;
+   width:5%;
+   text-align: center;
+}
+
+.form-area {
+   display: none;
+}
+
+.active {
+   display: block;
+}
+
+/* 도움 배경색 & 테두리 변경 css */
+#help-hit{
+   background-color: #078735;
+  
+   text-align: center;
+}
+ #help-inDate{
+   text-align: center;
+   border-bottom: 2px solid #078735;
+   border-top: 2px solid #078735;
+   background-color: whitesmoke;
+   color: black;
+}
+#help-inHit{
+   text-align: center;
+   border-top: 2px solid #078735;
+   border-bottom: 2px solid #078735;
+   background-color: whitesmoke;
+   color: black;
+}
+
+#help-title {
+   border-radius: 20px 0 0 0;
+   background-color: #078735;
+   border-top: 2px solid whitesmoke;
+   border-left: 2px solid whitesmoke;
+   border-bottom: 2px solid whitesmoke;
+   
+   text-align: center;
+}
+#help-date{
+   background-color: #078735;
+   border-left: 2px solid whitesmoke;
+
+   text-align: center;
+}
+
+#help-inTitle {
+   border-radius: 0 20px 0 0;
+   text-align: center;
+   border-top: 2px solid whitesmoke;
+   background-color: whitesmoke;
+   color: black;
+}
+
+#help-content {
+   border-radius: 0 0 0 20px;
+   background-color: #078735;
+   border-top: 2px solid whitesmoke;
+   border-left: 2px solid whitesmoke;
+   border-bottom: 2px solid whitesmoke;
+   
+   text-align: center;
+}
+
+#help-inContent {
+   border-radius: 0 0 20px 0;
+   text-align: center;
+   border-bottom: 2px solid whitesmoke;
+   border-right: 2px solid whitesmoke;
+
+   background-color: whitesmoke;
+   color: black;
+}
+
+/* 버튼 css */
+#write_submit_delete {
+   outline: none;
+   cursor: pointer;
+   border: none;
+   padding: 0.9rem 2rem;
+   /* margin: 0; */
+   font-family: inherit;
+   font-size: inherit;
+   position: relative;
+   display: inline-block;
+   letter-spacing: 0.05rem;
+   font-weight: 700;
+   font-size: 17px;
+   border-radius: 500px;
+   overflow: hidden;
+   background: #66ff66;
+   color: ghostwhite;
+   float: right;
+   margin-right: 19%;
+   margin-top: 2%;
+}
+
+#write_submit_delete span {
+   position: relative;
+   z-index: 10;
+   transition: color 0.4s;
+}
+
+#write_submit_delete:hover span {
+   color: black;
+}
+
+#write_submit_delete::before, #write_submit_delete::after {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 0;
+}
+
+#write_submit_delete::before {
+   content: "";
+   background: #000;
+   width: 120%;
+   left: -10%;
+   transform: skew(30deg);
+   transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+#write_submit_delete:hover::before {
+   transform: translate3d(100%, 0, 0);
+}
+
+#write_submit_edit {
+   outline: none;
+   cursor: pointer;
+   border: none;
+   padding: 0.9rem 2rem;
+   /* margin: 0; */
+   font-family: inherit;
+   font-size: inherit;
+   position: relative;
+   display: inline-block;
+   letter-spacing: 0.05rem;
+   font-weight: 700;
+   font-size: 17px;
+   border-radius: 500px;
+   overflow: hidden;
+   background: #66ff66;
+   color: ghostwhite;
+   float: right;
+   margin-right: 3%;
+   margin-top: 2%;
+}
+
+#write_submit_edit span {
+   position: relative;
+   z-index: 10;
+   transition: color 0.4s;
+}
+
+#write_submit_edit:hover span {
+   color: black;
+}
+
+#write_submit_edit::before, #write_submit_edit::after {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 0;
+}
+
+#write_submit_edit::before {
+   content: "";
+   background: #000;
+   width: 120%;
+   left: -10%;
+   transform: skew(30deg);
+   transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+#write_submit_edit:hover::before {
+   transform: translate3d(100%, 0, 0);
+}
+
+/* search btn css */
+.container-input {
+  position: relative;
+}
+
+.input {
+  width: 150px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 9999px;
+  border: solid 1px #ffffff;
+  transition: all .2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+  float : right;
+  margin-right: 20%;
+
+
+}
+
+.container-input svg {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%);
+}
+
+.input:focus {
+  opacity: 1;
+  width: 250px;
+}
+
+/* comment css */
+#wrapper{
+  height: 100vh;
+}
+
+#form-commentInfo{
+  width: 100%;
+}
+
+#comment-count{
+  margin-bottom: 10px; 
+}
+
+#comment-input{
+  width: 38%;
+  height: 2.3em;
+  border-radius: 5px;
+  margin-left: 32%;
+  margin-top: 10px;
+}
+
+#submit{
+  background-color:#078735;
+  border:1px solid whitesmoke;
+  border-radius: 10px;
+  width: 5.5em;
+  color: white;
+}
+
+#comments{
+  margin-top: 10px;
+  margin-left: 27%;
+  color: white;
+}
+
+#reviewContent{
+  height: 20%;
+}
+.eachComment{   
+  width :50%; 
+  margin: 10px;  
+  padding: 0.5em; 
+  border-bottom: 1px solid #c1bcba;
+  margin-left: 12%;
+}
+
+.eachComment .name{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.eachComment .time{
+  font-size: 0.7em;
+  color: #c1bcba;
+  font-style: oblique;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  
+}
+
+.eachComment .voteDiv{
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 댓글 수정 css */
+.editBtn {
+   /* border:1px solid whitesmoke; */
+   /* border-radius:30px; */ 
+   color: whitesmoke; 
+   background-color: black;
+   text-align: center;
+   text-decoration: underline;
+   border: none;
+   float: right;
+   font-size: 13px;
+}
+
+/* 댓글 삭제 css */
+.deleteBtn {
+   color: whitesmoke;
+   background-color: black;
+   text-align: center;
+   text-decoration: underline;
+   border: none;
+   float: right;
+   font-size: 13px;
+}

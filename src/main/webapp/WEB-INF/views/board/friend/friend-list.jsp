@@ -21,7 +21,7 @@
                 <div id="upload_button">
                     <input placeholder="Search" class="feed_search_input" name="text" type="text">
                     <a class="hidden_button" type="submit" href="">검색</a>
-                    <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/market/write';">
+                    <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/friend/write';">
                         <span class="actual-text">&nbsp;UPLOAD&nbsp;</span>
                         <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
                     </button>
@@ -80,7 +80,7 @@
                     <a>같이 밥 먹을 친구 구함.</a>
                 </div>
                 <div id="chat_area">
-                    <button onclick="chat();"> <a>CHAT</a></button>
+                    <button onclick="chat();"><a>CHAT</a></button>
                 </div>
             </div>
             <!-- 첫번째 피드 끝 -->
@@ -136,7 +136,7 @@
                     <a>같이 밥 먹을 친구 구함.</a>
                 </div>
                 <div id="chat_area">
-                    <button onclick="chat();"> <a>CHAT</a></button>
+                    <button onclick="chat();"><a>CHAT</a></button>
                 </div>
             </div>
             <div id="feed_box">
@@ -190,7 +190,7 @@
                     <a>같이 밥 먹을 친구 구함.</a>
                 </div>
                 <div id="chat_area">
-                    <button onclick="chat();"> <a>CHAT</a></button>
+                    <button onclick="chat()"><a>CHAT</a></button>
                 </div>
             </div>
         </main>
@@ -205,3 +205,4 @@
 
  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-list.css">
  <script src="${rootContext}/resources/js/board/friend-list.js"></script>
+

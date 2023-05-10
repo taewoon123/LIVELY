@@ -16,7 +16,7 @@
 			<br>
 
 			<div class="view-area active">
-				<a href="${rootContext}/help-list" id="list-btn">목록</a>
+				<a href="${rootContext}/help/list" id="list-btn">목록</a>
 				<div id="help-area">
 					<div id="help-title">제목</div>
 					<div id="help-inTitle">Help Me</div>
@@ -47,12 +47,12 @@
 			<!-- js때문에 있어야함. -->
 			<div id="comments"></div>
 
-		</main>
-		
 		<footer>
 			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 		</footer>
 
+		</main>
+		
 	</div> <!-- div wrap end -->
 
 </body>

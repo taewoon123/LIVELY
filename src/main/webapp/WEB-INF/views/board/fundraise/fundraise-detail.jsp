@@ -1,51 +1,63 @@
-<%@ page language="java"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
 </head>
-
+<header>
+    <%@ include file="/WEB-INF/views/common/header.jsp"%>
+</header>
 <body>
 
 <div id="wrap">
-    <%@ include file="/WEB-INF/views/common/header.jsp" %>
+    <main>
 
-    <div class="write-board">
-        <form>
-            <div class="write-group">
+        <br>
 
-                <h3 id="friend-title">Friend</h3>
-
-                <div class="form__group">
-                    <input type="text" class="form__field" placeholder="제목">
-                </div>
+        <div class="view-area active">
+            <a href="${rootContext}/help/list" id="list-btn">목록</a>
+            <div id="help-area">
+                <div id="help-title">제목</div>
+                <div id="help-inTitle">Help Me</div>
+                <div id="help-date">작성일자</div>
+                <div id="help-inDate">2023-04-24</div>
+                <div id="help-hit">조회수</div>
+                <div id="help-inHit">1</div>
+                <div id="help-content">내용</div>
+                <div id="help-inContent">여기 큰일났어요. 도와주세요ㅠㅠ</div>
             </div>
-            <div class="write-group">
-                <textarea name="content" id="content" cols="30" rows="10" style="resize: none"></textarea>
-            </div>
 
-            <!-- UI첨부파일(drop files) -->
-            <form class="form">
-                <label for="file-input" class="drop-container">
-                    <span class="drop-title">Drop files here</span>
-                    <a>or</a>
-                    <input type="file" accept="image/*" required="" id="file-input" style="font-size: 15px">
-                </label>
-                <p class="form-paragraph">
-                    File should be an image or video
-                </p>
-            </form>
+            <!-- 작성 버튼 -->
+            <button id="write_submit_delete">
+                <span>삭제하기</span>
+            </button>
 
-            <div class="register">
-                <div id="registerName"><input value="취소" type="submit"></div>
-                <div id="registerName"><input value="등록" type="submit"></div>
-            </div>
-        </form>
-    </div>
-    <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-</div>
+            <button id="write_submit_edit">
+                <span>수정하기</span>
+            </button>
+
+        </div>
+
+        <div id="comment" style="visibility: hidden">
+            <input id="comment-input" name="comment" placeholder="댓글을 입력해 주세요.">
+            <button id="submit" name="comment">등록</button>
+        </div>
+
+        <!-- js때문에 있어야함. -->
+        <div id="comments"></div>
+
+        <footer>
+            <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+        </footer>
+
+    </main>
+
+</div> <!-- div wrap end -->
 
 </body>
 </html>
-<link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-form.css">
+
+<script src="${rootContext}/resources/js/board/comment-detail.js"></script>
+<link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

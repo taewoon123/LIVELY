@@ -246,7 +246,7 @@
 									</tbody>
 								</table>
 
-								<a class="link-fx-1 color-contrast-higher mt-4" href="${rootContext}/qnal">
+								<a class="link-fx-1 color-contrast-higher mt-4" href="${rootContext}/notice/list">
 									<div class="bootstrap_more_button">
 										<span>more</span>
 										<svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
@@ -314,7 +314,7 @@
 									</tbody>
 								</table>
 
-								<a class="link-fx-1 color-contrast-higher mt-4" href="${rootContext}/qnal">
+								<a class="link-fx-1 color-contrast-higher mt-4" href="${rootContext}/qna/list">
 									<div class="bootstrap_more_button">
 										<span>more</span>
 										<svg class="icon" viewBox="0 0 32 32" aria-hidden="true">

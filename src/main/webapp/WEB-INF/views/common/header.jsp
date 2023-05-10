@@ -25,8 +25,8 @@
     <main>
         <nav class="navbar navbar-expand-lg">
                     <div class="container">
-                        <a class="navbar-brand" href="index.html">
-                            Festava Live
+                        <a class="navbar-brand" href="${rootContext}/main">
+                            Lively
                         </a>
 
 <%--                        <a href="ticket.html" class="btn custom-btn d-lg-none ms-auto me-4">Buy Ticket</a>--%>
@@ -47,21 +47,22 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link click-scroll dropdown-btn" href="#section_3">Boards
-                                        <select name="board-select" id="" class="dropdown-content">
-                                            <option value=""><a href="">질문 게시판</a></option>
-                                            <option value=""><a href="">도움 게시판</a></option>
-                                            <option value=""><a href="">구인구직 게시판</a></option>
-                                            <option value=""><a href="">기부 게시판</a></option>
-                                            <option value=""><a href="">중고 장터</a></option>
-                                            <option value=""><a href="">친구 구하기</a></option>
+                                    <a class="nav-link dropdown-btn">Boards
+                                        <select name="board-select" id="" class="dropdown-content" onchange="if(this.value) location.href=(this.value);">
+                                            <option value="">게시판 선택</option>
+                                            <option value="${rootContext}/query/list">질문 게시판</option>
+                                            <option value="${rootContext}/help/list">도움 게시판</option>
+                                            <option value="${rootContext}/job/list">구인구직 게시판</option>
+                                            <option value="${rootContext}/fund/list">기부 게시판</option>
+                                            <option value="${rootContext}/market/list">중고 장터</option>
+                                            <option value="${rootContext}/friend/list">친구 구하기</option>
                                         </select>
                                     </a>
 
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link click-scroll" href="#section_4">Customer Center</a>
+                                    <a class="nav-link click-scroll" href="#section_5">Customer Center</a>
                                 </li>
 
 <%--                                <li class="nav-item">--%>
@@ -73,8 +74,8 @@
                                 </li>
                             </ul>
 
-                            <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Sign Up</a>
-                            <a href="ticket.html" class="btn custom-btn d-lg-block d-none">Sign In</a>
+                            <a href="${rootContext}/member/join" class="btn custom-btn d-lg-block d-none">Sign Up</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="${rootContext}/member/login" class="btn custom-btn d-lg-block d-none">Sign In</a>
                         </div>
                     </div>
                 </nav>

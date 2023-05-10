@@ -1,7 +1,7 @@
 //jquery-click-scroll
 //by syamsul'isul' Arifin
 
-var sectionArray = [1, 2, 3, 4, 5, 6];
+var sectionArray = [1, 2, 5, 6];
 
 $.each(sectionArray, function(index, value){
 
@@ -21,7 +21,7 @@ $.each(sectionArray, function(index, value){
      });
 
     $('.click-scroll').eq(index).click(function(e){
-        var offsetClick = $('#' + 'section_' + value).offset().top - 83;
+        var offsetClick = $('#' + 'section_' + value).offset().top;
         e.preventDefault();
         $('html, body').animate({
             'scrollTop':offsetClick

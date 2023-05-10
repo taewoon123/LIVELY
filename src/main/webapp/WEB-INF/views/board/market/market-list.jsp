@@ -81,7 +81,7 @@
                     <a>같이 밥 먹을 친구 구함.</a>
                 </div>
                 <div id="chat_area">
-                    <button onclick="chat();"> <a>CHAT</a></button>
+                    <button onclick="return chat();"><a>CHAT</a></button>
                 </div>
             </div>
             <!-- 첫번째 피드 끝 -->
@@ -255,7 +255,6 @@
     
 
 </body>
-</html>
-
- <link rel="stylesheet" href="${rootContext}/resources/css/board/market/market-list.css">
  <script src="${rootContext}/resources/js/board/market-list.js"></script>
+ <link rel="stylesheet" href="${rootContext}/resources/css/board/market/market-list.css">
+</html>

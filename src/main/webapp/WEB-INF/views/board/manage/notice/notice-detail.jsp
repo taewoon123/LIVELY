@@ -18,7 +18,7 @@
 
 			<div class="view-area active">
 			
-				<a href="${rootContext}/notice-list" id="list-btn">목록</a>
+				<a href="${rootContext}/notice/list" id="list-btn">목록</a>
 				<div id="notice-area">
 					<div id="notice-title">제목</div>
 					<div id="notice-inTitle">공지사항</div>
@@ -41,12 +41,13 @@
 
 			</div> <!-- div view-area active end -->
 
-		</main>
 		
 		<footer>
 		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 		</footer>
 	
+		</main>
+		
 	</div> <!-- div wrap end -->
 
 </body>

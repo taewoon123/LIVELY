@@ -84,7 +84,7 @@
 			<!-- 작성 버튼 -->
 			<button id="write_submit">
 				<span> 
-					<a class="write-btn" href="${rootContext}/notice-write">write</a>
+					<a class="write-btn" href="${rootContext}/notice/write">write</a>
 				</span>
 			</button>
 
@@ -106,12 +106,12 @@
 				</div>
 			</div> <!-- div page-area end -->
 		
-		</main>
-		
 		<footer>
 			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 		</footer>
 
+		</main>
+		
 	</div> <!-- div wrap end -->
 
 	

@@ -1,23 +1,26 @@
 package com.lively.notice.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("notice")
 public class NoticeController {
-	@RequestMapping("notice-list")
-    public String notice() {
+	
+	@GetMapping("list")
+    public String list() {
       return "board/manage/notice/notice-list";
    }
-
-	@RequestMapping("notice-detail")
-	public String notice_detail() {
-		return "board/manage/notice/notice-detail";
-	}
 	
-	@RequestMapping("notice-write")
-	public String notice_write() {
+	@GetMapping("write")
+	public String write() {
 		return "board/manage/notice/notice-write";
 	}
 
+	@GetMapping("detail")
+	public String detail() {
+		return "board/manage/notice/notice-detail";
+	}
+	
 }

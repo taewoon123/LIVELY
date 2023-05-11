@@ -43,41 +43,14 @@
 				</thead>
 				
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>공지사항</td>
-						<td>2023.04.24</td>
-						<td>강작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>긴급공지</td>
-						<td>2023.04.24</td>
-						<td>오작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>공지공지</td>
-						<td>2023.04.24</td>
-						<td>최작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>긴급긴급</td>
-						<td>2023.04.24</td>
-						<td>정작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>긴급 공지사항 긴급</td>
-						<td>2023.04.24</td>
-						<td>심작성</td>
-						<td>1</td>
-					</tr>
+					<c:forEach items = "${nvoList}" var = "nvo">
+						<tr>
+							<td>${nvo.noticeNo}</td>
+							<td>${nvo.noticeTitle}</td>
+							<td>${nvo.enrollDate}</td>
+							<td>${nvo.views}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 

@@ -39,7 +39,7 @@
         <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
           <ul class="social-icon d-flex justify-content-lg-end">
             <li class="social-icon-item">
-              <a href="https://twitter.com/Live__Lively" class="social-icon-link">
+              <a href="https://twitter.com/Live__Lively" class="social-icon-link" target="_blank">
                 <img src="${rootContext}/resources/img/twitter.png" alt="" width="15px" height="15px" class="social-icon-logo">
               </a>
             </li>
@@ -51,13 +51,13 @@
 <%--            </li>--%>
 
             <li class="social-icon-item">
-              <a href="#" class="social-icon-link">
+              <a href="https://www.instagram.com/wooni_234/" class="social-icon-link" target="_blank">
                 <img src="${rootContext}/resources/img/instagram.png" alt="" width="15px" height="15px" class="social-icon-logo">
               </a>
             </li>
 
             <li class="social-icon-item">
-              <a href="#" class="social-icon-link">
+              <a href="https://www.youtube.com/watch?v=W7oQMSLQAU4" class="social-icon-link" target="_blank">
                 <img src="${rootContext}/resources/img/youtube.png" alt="" width="15px" height="15px" class="social-icon-logo">
               </a>
             </li>

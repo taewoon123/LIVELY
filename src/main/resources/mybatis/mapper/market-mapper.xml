@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="market">
+  
+  <select id="MarketFeed" resultType="MarketVo">
+ 	SELECT 
+	    K.MARKET_NO
+		, K.WRITER
+		, K.TITLE
+		, K.CONTENT
+		, K.PRICE
+		, K.ENROLL_DATE
+		, K.EDIT_DATE
+		, K.DELETE_YN
+		, K.LOCATION_NO
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+	FROM MARKET K
+	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
+	WHERE K.DELETE_YN = 'N'
+  </select>
+  
+</mapper>

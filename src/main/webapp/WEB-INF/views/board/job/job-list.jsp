@@ -46,26 +46,18 @@
                </tr>
             </thead>
             <tbody>
-             <tr>
-                  <td>23</td>
-                  <td>23</td>
-                  <td>23</td>
-                  <td>23</td>
-                  <td>23</td>
-                  <td>23</td>
-               </tr> 
-               </tr>
+            
             <c:forEach items="${jobList}" var="job">
                <tr>
-                  <td>${job.job_no}</td>
-                  <td>${job.job_choice_code}</td>
+                  <td>${job.jobNo}</td>
+                  <td>${job.jobChoiceCode}</td>
                   <td>${job.title}</td>
-                  <td>${job.enroll_date}</td>
+                  <td>${job.enrollDate}</td>
                   <td>${job.writer}</td>
                   <td>${job.views}</td>
                </tr>
               
-              </c:forEach>
+             </c:forEach>
                
 
             </tbody>

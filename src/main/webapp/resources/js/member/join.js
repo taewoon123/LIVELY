@@ -33,39 +33,38 @@ function checkDup() {
 */
 
 
-
 //비번 일치 여부 확인 & 유효성 검사
-const password = document.querySelector("input[name=password]");
-const password2 = document.querySelector("input[name=password2]");
+const pwd = document.querySelector("input[name=pwd]");
+const pwd2 = document.querySelector("input[name=pwd2]");
 
 //비번 유효성
-password.addEventListener("blur", () => {
-  const passwordCheck = password.value;
+pwd.addEventListener("blur", () => {
+  const pwdCheck = pwd.value;
   const reg = /^(?=.*[A-Za-z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,12}$/;
   //문자와 특수문자 포함한 6~12자리
-  const result = reg.test(passwordCheck);
-  const passwordValidity = document.querySelector("#password-validity");
+  const result = reg.test(pwdCheck);
+  const pwdValidity = document.querySelector("#pwd-validity");
   
   if (!result) {
-    passwordValidity.innerText = "사용불가";
-    password.style.border = "2px solid red";
+    pwdValidity.innerText = "사용불가";
+    pwd.style.border = "2px solid red";
     
   } else {
-    passwordValidity.innerText = "사용가능";
-    password.style.border = "none";
+    pwdValidity.innerText = "사용가능";
+    pwd.style.border = "none";
   }
 });
 
 //비번 일치 여부
-password2.addEventListener("blur", () => {
-  const passwordCheckValidity = document.querySelector("#passwordCheck-validity");
+pwd2.addEventListener("blur", () => {
+  const pwd2Validity = document.querySelector("#pwd2-validity");
   
-  if (password.value != password2.value) {
-    passwordCheckValidity.innerText = "불일치";
-    password2.style.border = "2px solid red";
+  if (pwd.value != pwd2.value) {
+    pwd2Validity.innerText = "불일치";
+    pwd2.style.border = "2px solid red";
   } else {
-    passwordCheckValidity.innerText = "일치";
-    password2.style.border = "none";
+    pwd2Validity.innerText = "일치";
+    pwd2.style.border = "none";
   }
 });
 
@@ -92,38 +91,53 @@ email.addEventListener("blur", () => {
 
 // birthValue.length가 계속 0이 나와서 적용이 안됨. UI 다 만들고 해결해보겠습니다!
 //생년월일 8자리 검사
-const birth = document.querySelector("#birth");
-const birthValidity = document.querySelector("#birth-validity");
-const birthValue = birth.value;
+var birth = document.querySelector("#birth");
+var birthValidity = document.querySelector("#birth-validity");
 
-birth.addEventListener("blur",()=>{
-  if(birthValue.length != 8){
-    console.log(birthValue.length);
-    console.log("외않되");
+birth.addEventListener("blur", function() {
+  var birthValue = birth.value;
+  var regex = /^\d{8}$/; // 정규식: 8자리 숫자만 허용
+  
+  if (!regex.test(birthValue)) {
     birthValidity.innerText = "8글자형식";
     birth.style.border = "2px solid red";
-  }else{
+  } else {
     birthValidity.innerText = "";
     birth.style.border = "none";
   }
 });
 
+// const birth = document.querySelector("#birth");
+// const birthValidity = document.querySelector("#birth-validity");
+// const birthValue = birth.value;
+
+// birth.addEventListener("blur",()=>{
+//   if(birthValue.length != 8){
+//     console.log(birthValue.length);
+//     console.log("외않되");
+//     birthValidity.c = "8글자형식";
+//     birth.style.border = "2px solid red";
+//   }else{
+//     birthValidity.innerText = "";
+//     birth.style.border = "none";
+//   }
+// });
 
 
 // 전화번호 형식 유효성 검사
-const phone = document.querySelector("#phone");
+const hp = document.querySelector("#hp");
 const hpValidity = document.querySelector("#hp-validity");
 
-phone.addEventListener("blur",()=>{
-  const phoneValue = phone.value;
-  console.log(phoneValue); 
+hp.addEventListener("blur",()=>{
+  const hpValue = hp.value;
+  console.log(hpValue); 
 
-  if(phoneValue.length < 10 || phoneValue.length > 11 || phoneValue < 0100000000){
+  if(hpValue.length < 10 || hpValue.length > 11 || hpValue < 0100000000){
     hpValidity.innerText = "10~11글자형식";
-    phone.style.border = "2px solid red";
+    hp.style.border = "2px solid red";
   }else{
     hpValidity.innerText = "";
-    phone.style.border = "none";
+    hp.style.border = "none";
   }
 });
 

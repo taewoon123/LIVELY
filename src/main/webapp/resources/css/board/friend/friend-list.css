@@ -76,6 +76,13 @@
     color: aliceblue;
 }
 
+#content_area h7{
+	padding-left: 10px;
+    padding-top: 10px;
+    color: aliceblue;
+	
+}
+
 #content_area {
     margin-top: -4px;
 }

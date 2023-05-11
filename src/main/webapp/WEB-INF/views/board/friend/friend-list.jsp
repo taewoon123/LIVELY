@@ -27,7 +27,7 @@
                     </button>
                 </div>
             </div>
-
+		<c:forEach items="${friendList}" var="fList">
             <!-- 첫번째 피드 시작 -->
             <div id="feed_box">
                 <div id="profile_area">
@@ -40,35 +40,35 @@
                 <div id="feed-image">
                     <div id="img_area">
                     <!-- Image Slider -->
-                    <div id="myCarousel1" class="carousel slide">
+                    <div id="myCarousel${fList.friendNo}" class="carousel slide">
                         <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#myCarousel1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#myCarousel1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#myCarousel1" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
                         <div class="carousel-item active">
                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-                            <image class="first" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%"/>
+                            <image class="first" href="${rootContext}/resources/img/first${fList.friendNo}.jpg" width="100%" height="100%"/>
                             </svg>
                         </div>
                         <div class="carousel-item">
                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="second" href="${rootContext}/resources/img/bear.png" width="100%" height="100%"/>
+                            <image class="second" href="${rootContext}/resources/img/second${fList.friendNo}.jpg" width="100%" height="100%"/>
                             </svg>
                         </div>
                         <div class="carousel-item">
                             <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="third" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%">
+                            <image class="third" href="${rootContext}/resources/img/third${fList.friendNo}.jpg" width="100%" height="100%">
                             </svg>
 
                         </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel1" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel1" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                         </button>
@@ -77,15 +77,16 @@
                 
                 </div>
                 <div id="content_area">
-                    <a>같이 밥 먹을 친구 구함.</a>
+                	<h7>${fList.title}</h7><br>
+                    <a>${fList.content}</a>
                 </div>
                 <div id="chat_area">
                     <button onclick="chat();"><a>CHAT</a></button>
                 </div>
             </div>
+		</c:forEach>
             <!-- 첫번째 피드 끝 -->
-
-            <div id="feed_box">
+            <%-- <div id="feed_box">
                 <div id="profile_area">
                     <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
                     <div id="profile_box">
@@ -133,6 +134,7 @@
                 
                 </div>
                 <div id="content_area">
+                	<h7>[저랑 같이 밥먹을사람구해요!!]</h7><br>
                     <a>같이 밥 먹을 친구 구함.</a>
                 </div>
                 <div id="chat_area">
@@ -187,12 +189,13 @@
                 
                 </div>
                 <div id="content_area">
+                	<h7>[저랑 같이 밥먹을사람구해요!!]</h7><br>
                     <a>같이 밥 먹을 친구 구함.</a>
                 </div>
                 <div id="chat_area">
                     <button onclick="chat()"><a>CHAT</a></button>
                 </div>
-            </div>
+            </div> --%>
         </main>
         
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>

@@ -24,4 +24,5 @@
 	WHERE K.DELETE_YN = 'N'
   </select>
   
+  
 </mapper>

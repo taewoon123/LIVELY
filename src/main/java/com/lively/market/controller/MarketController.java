@@ -38,3 +38,4 @@ public class MarketController {
 		return "board/market/market-write";
 	}
 }
+

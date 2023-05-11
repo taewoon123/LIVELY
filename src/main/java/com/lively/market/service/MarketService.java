@@ -27,3 +27,4 @@ public class MarketService {
 		return dao.getMarketFeed(sst);
 	}
 }
+

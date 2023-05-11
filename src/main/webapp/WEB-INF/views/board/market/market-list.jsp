@@ -261,3 +261,4 @@
  <script src="${rootContext}/resources/js/board/market-list.js"></script>
  <link rel="stylesheet" href="${rootContext}/resources/css/board/market/market-list.css">
 </html>
+

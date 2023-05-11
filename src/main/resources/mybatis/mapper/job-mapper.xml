@@ -5,16 +5,7 @@
   
 <mapper namespace="job">
 	<select id="getJobList" resultType="JobVo">
-		SELECT 
-		    JOB_NO
-			,TITLE
-			,CONTENT
-			,ENROLL_DATE
-			,WRITER
-			,EDIT_DATE
-			,DELETE_YN
-			,VIEWS
-			,JOB_CHOICE_CODE
+		SELECT *
 		FROM JOB
 		WHERE DELETE_YN = 'N'
 	</select>

@@ -20,8 +20,8 @@
     <!-- 팩토리 -->
     <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSourceBean" />
-<!--        <property name="configLocation" value="classpath:/mybatis/mybatis-configuration.xml"/>-->
-        <!--		<property name="mapperLocations" value="classpath:/mybatis/**/*-mapper.xml"/>   아직 mapper파일들을 만들지 않아서 주석처리함. -->
+        <property name="configLocation" value="classpath:/mybatis/mybatis-configuration.xml"/>
+        		<property name="mapperLocations" value="classpath:/mybatis/**/*-mapper.xml"/>
     </bean>
 
     <!-- 데이터소스 -->

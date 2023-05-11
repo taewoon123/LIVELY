@@ -12,9 +12,9 @@ public class MemberDao {
 		return sst.insert("member.join", vo);
 	}
 
-//	public int checkId(SqlSessionTemplate sst, String id) {
-//		// return conn.mybatis메소드("쿼리문위치", 전달할 객체);
-//		return sst.selectOne("member.checkId", id);
-//	}
+	public int checkId(SqlSessionTemplate sst, String id) {
+		// return conn.mybatis메소드("쿼리문위치", 전달할 객체);
+		return sst.selectOne("member.checkId", id);
+	}
 
 }// class

@@ -18,7 +18,7 @@
 			<div class="form-container">
 				<p class="title">Join</p>
 
-				<form class="form" action="${rootContext}/member/login" method="post">
+				<form class="form" action="${rootContext}/member/join" method="post">
 
 					<table id="join-form">
 						<tbody>
@@ -180,15 +180,15 @@
 									</div>
 							</tr>
 
+
 							<tr>
 								<th colspan="3">
-									<button id="join-button">Join</button>
+									<input type="submit" id="join-button" value="Join">
 								</th>
 							</tr>
 						</tbody>
 
 					</table>
-
 				</form>
 
 			</div>

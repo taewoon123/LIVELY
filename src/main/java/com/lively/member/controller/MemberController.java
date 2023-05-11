@@ -43,26 +43,26 @@ public class MemberController {
 		if (result != 1) {
 			// 에러메세지 담아서 forwording 하기
 			model.addAttribute("errorMsg", "회원가입 실패");
-			return "join";
+			return "member/join";
 		}
 		session.setAttribute("alertMsg", "회원가입 성공!");
-		return "redirect:/login";
+		return "redirect:/member/login";
 
 	}// join
 
-//	// 아이디 중복확인
-//	@RequestMapping("id-check") // url은 케밥케이스로
-//	@ResponseBody // 문자 그대로 반환되도록
-//	public String idCheck(String id) {
-//
-//		int result = ms.checkId(id);
-//
-//		if (result > 0) {
-//			return "isDup";
-//		} else {
-//			return "notDup";
-//		}
-//	}//idCheck
+	// 아이디 중복확인
+	@RequestMapping("id-check") // url은 케밥케이스로
+	@ResponseBody // 문자 그대로 반환되도록
+	public String idCheck(String id) {
+
+		int result = ms.checkId(id);
+
+		if (result > 0) {
+			return "isDup";
+		} else {
+			return "notDup";
+		}
+	}//idCheck
 
 	@GetMapping("login")
 	public void login() {

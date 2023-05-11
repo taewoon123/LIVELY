@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="friend">
+  
+  <select id="FriendFeed" resultType="FriendVo">
+	SELECT
+	    F.FRIEND_NO
+	    , F.WRITER
+	    , F.TITLE
+	    , F.CONTENT
+	    , F.ENROLL_DATE
+	    , F.DELETE_YN
+	    , F.EDIT_DATE
+	    , F.LOCATION_NO 
+	    , L.LOCATION_NAME as locationName
+	    , M.NAME as writerName
+	FROM FRIEND F
+	LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+	WHERE F.DELETE_YN = 'N'
+	
+  </select>
+  
+</mapper>

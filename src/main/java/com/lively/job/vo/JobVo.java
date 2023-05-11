@@ -1,14 +1,17 @@
 package com.lively.job.vo;
 
+import lombok.Data;
+
+@Data
 public class JobVo {
 
-	private String job_no;
+	private String jobNo;
 	private String title;
 	private String content;
-	private String enroll_date;
+	private String enrollDate;
 	private String writer;
-	private String edit_date;
-	private String delete_yn;
+	private String editDate;
+	private String deleteYn;
 	private String views;
-	private String job_choice_code;
+	private String jobChoiceCode;
 }

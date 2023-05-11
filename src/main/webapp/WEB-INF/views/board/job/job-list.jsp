@@ -38,6 +38,7 @@
             <thead>
                <tr>
                   <th>No</th>
+                  <th>구인/구직</th>
                   <th>Title</th>
                   <th>작성일시</th>
                   <th>작성자</th>
@@ -45,42 +46,27 @@
                </tr>
             </thead>
             <tbody>
-            
-               <tr>
-                  <td>1</td>
-                  <td>일하실 분 있으신가요</td>
-                  <td>2023.04.24</td>
-                  <td>강작성</td>
-                  <td>1</td>
+             <tr>
+                  <td>23</td>
+                  <td>23</td>
+                  <td>23</td>
+                  <td>23</td>
+                  <td>23</td>
+                  <td>23</td>
+               </tr> 
                </tr>
+            <c:forEach items="${jobList}" var="job">
                <tr>
-                  <td>2</td>
-                  <td>일할곳 구합니다</td>
-                  <td>2023.04.24</td>
-                  <td>오작성</td>
-                  <td>1</td>
+                  <td>${job.job_no}</td>
+                  <td>${job.job_choice_code}</td>
+                  <td>${job.title}</td>
+                  <td>${job.enroll_date}</td>
+                  <td>${job.writer}</td>
+                  <td>${job.views}</td>
                </tr>
-               <tr>
-                  <td>3</td>
-                  <td>구인</td>
-                  <td>2023.04.24</td>
-                  <td>최작성</td>
-                  <td>1</td>
-               </tr>
-               <tr>
-                  <td>4</td>
-                  <td>구직</td>
-                  <td>2023.04.24</td>
-                  <td>정작성</td>
-                  <td>1</td>
-               </tr>
-               <tr>
-                  <td>5</td>
-                  <td>구인구직</td>
-                  <td>2023.04.24</td>
-                  <td>심작성</td>
-                  <td>1</td>
-               </tr>
+              
+              </c:forEach>
+               
 
             </tbody>
 

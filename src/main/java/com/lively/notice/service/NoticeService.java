@@ -28,5 +28,9 @@ public class NoticeService {
 		return dao.getNoticeList(sst);
 	}
 
+	public int write(NoticeVo vo) {
+		return dao.write(sst, vo);
+	}
+
 
 }

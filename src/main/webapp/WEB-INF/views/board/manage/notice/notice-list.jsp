@@ -64,18 +64,18 @@
 			<!-- pagenation -->
 			<div class="page-area">
 				<div class="pagination-custom">
-					<a class="prev page-numbers" href="notice-list"> << </a> 
+					<a class="prev page-numbers" href="list"> << </a> 
 						<span aria-current="page" class="page-numbers current">1</span> 
-						<a class="page-numbers" href="notice-list">2</a>
-						<a class="page-numbers" href="notice-list">3</a> 
-						<a class="page-numbers" href="notice-list">4</a> 
-						<a class="page-numbers" href="notice-list">5</a> 
-						<a class="page-numbers" href="notice-list">6</a> 
-						<a class="page-numbers" href="notice-list">7</a> 
-						<a class="page-numbers" href="notice-list">8</a> 
-						<a class="page-numbers" href="notice-list">9</a> 
-						<a class="page-numbers" href="notice-list">10</a> 
-						<a class="next page-numbers" href="notice-list"> >> </a>
+						<a class="page-numbers" href="list">2</a>
+						<a class="page-numbers" href="list">3</a> 
+						<a class="page-numbers" href="list">4</a> 
+						<a class="page-numbers" href="list">5</a> 
+						<a class="page-numbers" href="list">6</a> 
+						<a class="page-numbers" href="list">7</a> 
+						<a class="page-numbers" href="list">8</a> 
+						<a class="page-numbers" href="list">9</a> 
+						<a class="page-numbers" href="list">10</a> 
+						<a class="next page-numbers" href="list"> >> </a>
 				</div>
 			</div> <!-- div page-area end -->
 		

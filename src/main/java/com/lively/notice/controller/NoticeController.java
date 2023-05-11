@@ -45,26 +45,26 @@ public class NoticeController {
 		return "board/manage/notice/notice-list";
    }
 	
-//	//공지사항 작성하기 (화면)
-//	@GetMapping("write")
-//	public String write() {
-//		return "board/manage/notice/notice-write";
-//	}
-//	
-//	//공지사항 작성하기
-//	@PostMapping("write")
-//	public String write(NoticeVo vo, HttpSession session) {
-//		
-//		int result = ns.write(vo);
-//		
-//		if(result == 1) {
-//			session.setAttribute("alertMsg", "공지사항 작성 완료");
-//		} else {
-//			session.setAttribute("alertMsg", "공지사항 작성 실패");
-//		}
-//		
-//		return "redirect:/notice/list"; 
-//	}
+	//공지사항 작성하기 (화면)
+	@GetMapping("write")
+	public String write() {
+		return "board/manage/notice/notice-write";
+	}
+	
+	//공지사항 작성하기
+	@PostMapping("write")
+	public String write(NoticeVo vo, HttpSession session) {
+		
+		int result = ns.write(vo);
+		
+		if(result == 1) {
+			session.setAttribute("alertMsg", "공지사항 작성 완료");
+		} else {
+			session.setAttribute("alertMsg", "공지사항 작성 실패");
+		}
+		
+		return "redirect:/notice/list"; 
+	}
 
 	@GetMapping("detail")
 	public String detail() {

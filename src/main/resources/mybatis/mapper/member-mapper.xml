@@ -9,14 +9,14 @@
 		INSERT INTO MEMBER
 		(
 			NO
-			NAME
-			ID
-			PWD
-			BIRTH
-			HP
-			EMAIL
-			LOCATION_NO
-			GENDER_CODE
+			,NAME
+			,ID
+			,PWD
+			,BIRTH
+			,HP
+			,EMAIL
+			,LOCATION_NO
+			,GENDER_CODE
 		)
 		VALUES
 		(

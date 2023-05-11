@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lively.member.service.MemberService;
 import com.lively.member.vo.MemberVo;
@@ -43,10 +42,10 @@ public class MemberController {
 		if (result != 1) {
 			// 에러메세지 담아서 forwording 하기
 			model.addAttribute("errorMsg", "회원가입 실패");
-			return "join";
+			return "member/join";
 		}
 		session.setAttribute("alertMsg", "회원가입 성공!");
-		return "redirect:/login";
+		return "redirect:/member/login";
 
 	}// join
 

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lively.member.service.MemberService;
 import com.lively.member.vo.MemberVo;
@@ -49,19 +50,19 @@ public class MemberController {
 
 	}// join
 
-//	// 아이디 중복확인
-//	@RequestMapping("id-check") // url은 케밥케이스로
-//	@ResponseBody // 문자 그대로 반환되도록
-//	public String idCheck(String id) {
-//
-//		int result = ms.checkId(id);
-//
-//		if (result > 0) {
-//			return "isDup";
-//		} else {
-//			return "notDup";
-//		}
-//	}//idCheck
+	// 아이디 중복확인
+	@RequestMapping("id-check") // url은 케밥케이스로
+	@ResponseBody // 문자 그대로 반환되도록
+	public String idCheck(String id) {
+
+		int result = ms.checkId(id);
+
+		if (result > 0) {
+			return "isDup";
+		} else {
+			return "notDup";
+		}
+	}//idCheck
 
 	@GetMapping("login")
 	public void login() {

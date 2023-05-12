@@ -51,17 +51,17 @@
 	                        <div class="carousel-inner">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-	                            <image class="first" href="${rootContext}/resources/img/first${mList.marketNo}.jpg" width="100%" height="100%"/>
+	                            <image class="first" href="${rootContext}/resources/img/one${mList.marketNo}.jpg" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
 	                        <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="second" href="${rootContext}/resources/img/second${mList.marketNo}.jpg" width="100%" height="100%"/>
+	                            <image class="second" href="${rootContext}/resources/img/two${mList.marketNo}.jpg" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
 	                        <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="third" href="${rootContext}/resources/img/third${mList.marketNo}.jpg" width="100%" height="100%">
+	                            <image class="third" href="${rootContext}/resources/img/three${mList.marketNo}.jpg" width="100%" height="100%">
 	                            </svg>
 	
 	                        </div>

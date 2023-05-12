@@ -14,7 +14,7 @@ public class MemberService {
 
 	private final SqlSessionTemplate sst;
 	private final MemberDao dao;
-	
+
 	@Autowired
 	public MemberService(SqlSessionTemplate sst, MemberDao dao) {
 		this.sst = sst;
@@ -31,6 +31,13 @@ public class MemberService {
 		return dao.checkId(sst, id);
 		// tx || rs : tx는 자동처리 / rs는 mybaris가 처리해줌.
 		// close : spring이 처리해줌
+	}
+
+	public MemberVo login(MemberVo memberVo) {
+
+		MemberVo memberLog = dao.login(sst, memberVo);
+		System.out.println(memberLog);
+		return memberLog;
 	}
 
 }// class

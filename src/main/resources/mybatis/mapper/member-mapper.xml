@@ -38,4 +38,11 @@
 		WHERE ID = #{id}
 	</select>
 
+	<select id="login" resultType="MemberVo">
+		SELECT NO, NAME, ID, PWD, BIRTH, HP, EMAIL, LOCATION_NO, GENDER_CODE
+		FROM MEMBER
+		WHERE ID = #{id}
+		AND PWD = #{pwd}
+	</select>
+
 </mapper>

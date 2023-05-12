@@ -36,6 +36,7 @@ public class AdminController {
     public String login(AdminVo adminVo, HttpSession session) {
         AdminVo adminLog = service.login(adminVo);
         if (adminLog != null) {
+            session.setAttribute("adminLog", adminLog);
             return "redirect:dashboard";
         }
         session.setAttribute("adminLoginAlert", "아이디 또는 비밀번호를 확인해주세요.");

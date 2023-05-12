@@ -17,8 +17,8 @@ import com.lively.member.vo.MemberVo;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("member")
 @Slf4j
+@RequestMapping("member")
 public class MemberController {
 
 	private final MemberService ms;
@@ -65,11 +65,27 @@ public class MemberController {
 	}//idCheck
 
 	@GetMapping("login")
-	public void login() {
+	public String login() {
+		return "member/login";
+	}
+
+	@PostMapping("login")
+	public String login(MemberVo memberVo,HttpSession session) {
+		MemberVo memberLog = ms.login(memberVo);
+
+		if (memberLog == null) {
+			session.setAttribute("memberLoginAlert","아이디 또는 비밀번호를 확인해주세요.");
+			System.out.println(memberLog);
+			return "member/login";
+		}
+		System.out.println(memberLog);
+		session.setAttribute("memberLog",memberLog);
+		return "redirect:/main";
 	}
 
 	@GetMapping("my-info")
-	public void myInfo() {
+	public String myInfo() {
+		return "member/my-info";
 	}
 
 	@GetMapping("my-board")

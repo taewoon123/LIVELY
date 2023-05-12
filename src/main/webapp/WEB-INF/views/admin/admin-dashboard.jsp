@@ -121,10 +121,12 @@
 </div>
 </body>
 <script>
-    if (${empty adminLog}) {
-        alert("관리자 로그인이 필요합니다.");
-        location.href = "${rootContext}/main";
-    }
+
+<%--  추후 수정 필요  --%>
+    <%--if (${adminLog == null}) {--%>
+    <%--    alert("관리자 로그인이 필요합니다.");--%>
+    <%--    location.href = "${rootContext}/main";--%>
+    <%--}--%>
 
 </script>
 

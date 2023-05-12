@@ -17,14 +17,14 @@
 				<div class="form-container">
 					<p class="title">Login</p>
 
-					<form class="form" action="${rootContext}/home" method="post">
+					<form class="form" action="${rootContext}/member/login" method="post">
 						<label for="username">ID</label>
 						<div class="input-group">
-							<input type="text" name="username" id="username" placeholder="">
+							<input type="text" name="id" id="username" placeholder="">
 						</div>
 						<label for="password" id="passwordLabel">Password</label>
 						<div class="input-group">
-							<input type="password" name="password" id="password" placeholder="">
+							<input type="password" name="pwd" id="password" placeholder="">
 						</div>
 						<div class="forgot">
 							<a rel="noopener noreferrer">Forgot</a>
@@ -65,6 +65,12 @@
 			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 	</body>
+	<script>
+		if (${not empty memberLoginAlert}){
+			alert("${memberLoginAlert}")
+		}
+
+	</script>
 	<link rel="stylesheet" href="${rootContext}/resources/css/member/login.css">
 	<script src="${rootContext}/resources/js/member/login.js"></script>
 	<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css">

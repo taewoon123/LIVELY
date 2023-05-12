@@ -7,7 +7,9 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 @Component(value = "encFilter")

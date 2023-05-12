@@ -73,8 +73,16 @@
                                     <a class="nav-link click-scroll" href="#section_6">Contact</a>
                                 </li>
                             </ul>
-                            <a href="${rootContext}/member/join" class="btn custom-btn d-lg-block d-none">Sign Up</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="${rootContext}/member/login" class="btn custom-btn d-lg-block d-none">Sign In</a>
+                            <c:choose>
+                                <c:when test="${sessionScope.memberLog == null}">
+                                    <a href="${rootContext}/member/join" class="btn custom-btn d-lg-block d-none">Sign Up</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="${rootContext}/member/login" class="btn custom-btn d-lg-block d-none">Sign In</a>
+                                </c:when>
+                                <c:when test="${sessionScope.memberLog != null}">
+                                    <a href="${rootContext}/member/my-info" class="btn custom-btn d-lg-block d-none">My Page</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="${rootContext}/member/logout" class="btn custom-btn d-lg-block d-none">Logout</a>
+                                </c:when>
+                            </c:choose>
 
 
                         </div>

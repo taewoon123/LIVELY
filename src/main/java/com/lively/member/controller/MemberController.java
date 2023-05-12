@@ -84,12 +84,17 @@ public class MemberController {
 	}
 
 	@GetMapping("my-info")
-	public String myInfo() {
-		return "member/my-info";
+	public String myInfo(HttpSession session) {
+		if (session.getAttribute("memberLog") == null) {
+			session.setAttribute("myInfoAlert", "로그인이 필요합니다.");
+			return "member/login";
+		}
+			return "member/my-info";
 	}
 
 	@GetMapping("my-board")
 	public void myBoard() {
+
 	}
 
 	@GetMapping("my-feed")

@@ -17,4 +17,11 @@ public class MemberDao {
 		return sst.selectOne("member.checkId", id);
 	}
 
+	public MemberVo login(SqlSessionTemplate sst, MemberVo memberVo) {
+
+		MemberVo memberLog = sst.selectOne("member.login", memberVo);
+		System.out.println(memberLog);
+		return memberLog;
+	}
+
 }// class

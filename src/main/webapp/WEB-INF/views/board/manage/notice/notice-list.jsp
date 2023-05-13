@@ -37,7 +37,6 @@
 						<th>No</th>
 						<th>Title</th>
 						<th>작성일시</th>
-						<th>작성자</th>
 						<th>조회수</th>
 					</tr>
 				</thead>
@@ -64,7 +63,7 @@
 			<!-- pagenation -->
 			<div class="page-area">
 				<div class="pagination-custom">
-					<a class="prev page-numbers" href="list"> << </a> 
+					<!-- <a class="prev page-numbers" href="list"> << </a> 
 						<span aria-current="page" class="page-numbers current">1</span> 
 						<a class="page-numbers" href="list">2</a>
 						<a class="page-numbers" href="list">3</a> 
@@ -75,8 +74,22 @@
 						<a class="page-numbers" href="list">8</a> 
 						<a class="page-numbers" href="list">9</a> 
 						<a class="page-numbers" href="list">10</a> 
-						<a class="next page-numbers" href="list"> >> </a>
-				</div>
+						<a class="next page-numbers" href="list"> >> </a> -->
+				<c:if test="${pv.currentPage > 1}">
+					<a class = "prev page-numbers" href = "${rootContext}/notice/list?page=${pv.currentPage-1}"> << </a>
+				</c:if>
+				<c:forEach begin = "${pv.startPage}" end = "${pv.endPage}" step = "1" var = "i">
+					<c:if test = "${pv.currentPage != i}">
+						<a class = "page-numbers" href = "${rootContext}/notice/list?page=${i}">${i}</a>
+					</c:if>
+					<c:if test = "${pv.currentPage == i}">
+						<a class = "page-numbers">${i}</a>
+					</c:if>
+				</c:forEach>
+				<c:if test = "${pv.currentPage < pv.maxPage}">
+					<a class = "next page-numbers" href = "${rootContext}/notice/list?page=${pv.currentPage+1}"> >> </a>
+				</c:if>
+				</div> <!-- div pagination-custom -->
 			</div> <!-- div page-area end -->
 		
 		<footer>
@@ -92,3 +105,11 @@
 </html>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/notice/notice-list.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+
+<script>
+const table = document.querySelector("main table tbody");
+table.addEventListener("click", function(event){
+	const num = event.target.parentNode.children[0].innerText; //해당 글 번호를 불러올수있음
+	location.href = '${rootContext}/notice/detail?num=' + num;
+});
+</script>

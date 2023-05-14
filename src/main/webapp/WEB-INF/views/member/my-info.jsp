@@ -236,6 +236,11 @@
       <%@include file="/WEB-INF/views/common/footer.jsp" %>
 
         <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    if (${myInfoAlert != null}){
+      alert(${myInfoAlert});
+    }
+  </script>
   </body>
 
   <link rel="stylesheet" href="${rootContext}/resources/css/member/join.css">

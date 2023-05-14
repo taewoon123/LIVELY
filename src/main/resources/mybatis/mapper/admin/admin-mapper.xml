@@ -10,6 +10,29 @@
         WHERE ADMIN_ID = #{adminId}
         AND ADMIN_PWD = #{adminPwd}
     </select>
+
+    <!-- 관리자 가입 -->
+    <insert id="signup">
+        INSERT INTO ADMIN
+        (ADMIN_NO, ADMIN_ID, ADMIN_PWD)
+        VALUES
+        (SEQ_ADMIN_NO.nextval, #{adminId}, #{adminPwd})
+    </insert>
+
+    <!-- Dashboard present members   -->
+   	<select id="presentMembers" resultType="MemberVo">
+		SELECT NO, NAME, ID, PWD, BIRTH, HP, EMAIL,QUIT_YN,JOIN_DATE, LOCATION_NO, GENDER_CODE
+		FROM MEMBER
+		WHERE QUIT_YN = 'N'
+        ORDER BY NO DESC
+    </select>
+
+    <update id="deleteMembers">
+        UPDATE MEMBER
+        SET QUIT_YN = 'Y'
+        WHERE ID = #{id}
+    </update>
+ 
 </mapper>
 
 

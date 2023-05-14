@@ -35,9 +35,7 @@ public class MemberService {
 
 	public MemberVo login(MemberVo memberVo) {
 
-		MemberVo memberLog = dao.login(sst, memberVo);
-		System.out.println(memberLog);
-		return memberLog;
+		return dao.login(sst, memberVo);
 	}
 
 }// class

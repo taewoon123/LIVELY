@@ -10,7 +10,7 @@
   <title>Title</title>
 </head>
 
-
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
 <body>
 <div id="wrap">
@@ -31,30 +31,15 @@
                   <th class="table-ths">닉네임</th>
                   <th class="table-ths">가입일</th>
               </tr>
-              <tr class="table-trs">
-                  <td class="table-tds"><input type="checkbox" class="member-checkbox"> </td>
-                  <td class="table-tds">sadf</td>
-                  <td class="table-tds">asdf</td>
-                  <td class="table-tds">asdf</td>
-              </tr>
-              <tr class="table-trs">
-                  <td class="table-tds"><input type="checkbox" class="member-checkbox"> </td>
-                  <td class="table-tds">asdf</td>
-                  <td class="table-tds">asdf</td>
-                  <td class="table-tds">asdf</td>
-              </tr>
-              <tr class="table-trs">
-                  <td class="table-tds"><input type="checkbox" class="member-checkbox"> </td>
-                  <td class="table-tds">asdf</td>
-                  <td class="table-tds">sadf</td>
-                  <td class="table-tds">asdf</td>
-              </tr>
-              <tr class="table-trs">
-                  <td class="table-tds"><input type="checkbox" class="member-checkbox"> </td>
-                  <td class="table-tds">asdf</td>
-                  <td class="table-tds">asdf</td>
-                  <td class="table-tds">asfd</td>
-              </tr>
+              <c:forEach items="${memberList}" var="member">
+                  <tr class="table-trs">
+                      <td class="table-tds"><input type="checkbox" class="member-checkbox"></td>
+                      <td class="table-tds">${member.id}</td>
+                      <td class="table-tds">${member.name}</td>
+                      <td class="table-tds">${member.joinDate}</td>
+                  </tr>
+              </c:forEach>
+
           </table>
           <div class="pagination-area">
           <a href="">이전</a>
@@ -66,6 +51,9 @@
           <a href="">다음</a>
           </div>
       </div>
+
+<%--      삭제 버튼      --%>
+            <button id="deleteMemberButton">삭제</button>
                 <%--     각 디브끼리 떼어놓기     --%>
             <div id="empty-div-for-padding"></div>
 
@@ -121,10 +109,12 @@
 </div>
 </body>
 <script>
-    if (${empty adminLog}) {
+
+    if (${adminLog == null}) {
         alert("관리자 로그인이 필요합니다.");
         location.href = "${rootContext}/main";
     }
+
 
 </script>
 

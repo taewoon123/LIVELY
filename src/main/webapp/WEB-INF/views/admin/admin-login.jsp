@@ -37,6 +37,9 @@
 
 </body>
 <script>
+  if (${not empty superuserNeeded}) {
+    alert("${superuserNeeded}")
+  }
   if (${not empty adminLoginAlert}) {
     alert("${adminLoginAlert}")
   }

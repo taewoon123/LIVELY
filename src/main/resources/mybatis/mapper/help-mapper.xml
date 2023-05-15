@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace = "help">
+	<select id="getHelpList" resultType = "helpVo">
+		SELECT *
+		FROM HELP
+		WHERE DELETE_YN = 'N'
+		ORDER BY HELP_NO DESC
+	</select>
+	
+	<select id="getHelpListCnt" resultType = "int">
+		SELECT COUNT(*)
+		FROM HELP
+		WHERE DELETE_YN = 'N'
+	</select>
+	
+	<insert id="write">
+		INSERT INTO HELP
+		(
+			HELP_NO
+			, TITLE
+			, CONTENT
+			, WRITER
+		)
+		VALUES
+		(
+			SEQ_HELP_NO.NEXTVAL
+			, #{title}
+			, #{content}
+			, 1
+		)
+	</insert>
+	
+	<update id = "increaseViews">
+		UPDATE HELP
+			SET VIEWS = VIEWS + 1
+		WHERE HELP_NO = #{num}
+		AND DELETE_YN = 'N'
+	</update>
+	
+	<select id="getHelp" resultType = "helpVo">
+		SELECT *
+		FROM HELP
+		WHERE HELP_NO = #{num}
+		AND DELETE_YN = 'N'
+	</select>
+	
+	<update id="delete">
+		UPDATE HELP
+			SET
+				DELETE_YN = 'Y'
+			,EDIT_DATE = SYSDATE
+		WHERE HELP_NO = #{num}
+	</update>
+	
+</mapper>

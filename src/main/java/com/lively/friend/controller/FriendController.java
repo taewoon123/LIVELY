@@ -58,7 +58,7 @@ public class FriendController {
 	      }
 	      
 	   //데이터 준비 (파일)
-	      String path = requestion.getServletContext().getRealPath("/resources/upload/board/friend");
+	      String path = requestion.getServletContext().getRealPath("/resources/upload/friend");
 	      List<String> changeNameList = FileUploader.upload(f, path);
 	      List<String> originNameList = FileUploader.getOriginNameList(f);
 

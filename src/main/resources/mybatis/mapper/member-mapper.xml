@@ -39,10 +39,11 @@
 	</select>
 
 	<select id="login" resultType="MemberVo">
-		SELECT NO, NAME, ID, PWD, BIRTH, HP, EMAIL, LOCATION_NO, GENDER_CODE
+		SELECT NO, NAME, ID, PWD, BIRTH, HP, EMAIL,QUIT_YN, LOCATION_NO, GENDER_CODE
 		FROM MEMBER
 		WHERE ID = #{id}
 		AND PWD = #{pwd}
+		AND QUIT_YN = 'N'
 	</select>
 
 </mapper>

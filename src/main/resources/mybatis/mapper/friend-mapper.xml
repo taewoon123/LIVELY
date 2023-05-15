@@ -24,4 +24,38 @@
 	
   </select>
   
+  <insert id="write">
+ 	INSERT INTO FRIEND
+ 	(
+ 		FRIEND_NO
+ 		, TITLE
+ 		, WRITER
+ 		, CONTENT
+ 		, LOCATION_NO
+ 	)
+ 	VALUES
+ 	(
+ 		SEQ_FRIEND_NO.NEXTVAL
+ 		,#{title}
+ 		,#{writer)
+ 		,#{content}
+ 		,#{locationNo}
+ 	)
+  </insert>
+  
+  <select id="FriendWrite" resultType="FriendVo">
+  	SELECT
+  		F.FRIEND_NO
+		, F.WRITER
+		, F.TITLE
+		, F.CONTENT
+		, F.LOCATION_NO
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+	FROM FRIEND F
+	LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+	WHERE F.DELETE_YN = 'N'
+  </select>
+  
 </mapper>

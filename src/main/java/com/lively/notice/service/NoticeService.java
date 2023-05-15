@@ -24,12 +24,33 @@ public class NoticeService {
 		this.sst = sst;
 	}
 
-	public List<NoticeVo> getNoticeList() {
-		return dao.getNoticeList(sst);
+	public List<NoticeVo> getNoticeList(PageVo pv) {
+		return dao.getNoticeList(sst, pv);
 	}
 
 	public int write(NoticeVo vo) {
 		return dao.write(sst, vo);
+	}
+
+	public int getNoticeListCnt() {
+		return dao.getNoticeListCnt(sst);
+	}
+
+	public NoticeVo getNotice(String num) throws Exception {
+		int result = dao.increaseViews(sst, num);
+		if(result != 1) {
+			throw new Exception();
+		}
+		
+		return dao.getNotice(sst, num);
+	}
+
+	public int edit(NoticeVo vo) {
+		return dao.edit(sst, vo);
+	}
+
+	public int delete(String num) {
+		return dao.delete(sst, num);
 	}
 
 

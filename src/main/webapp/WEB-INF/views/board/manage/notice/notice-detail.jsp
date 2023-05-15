@@ -52,7 +52,7 @@
 					<span>수정하기</span>
 				</button>
 				
-				<!-- edit 코드인데 실패... -->
+				<!-- edit 코드인데 실패인듯아닌듯 일단 고쳐야할듯... -->
 				<div id = "form-area">
 					<form action = "${rootContext}/notice/edit" method = "post">
 						<input type = hidden" name = "noticeNo" value = "${vo.noticeNo}">

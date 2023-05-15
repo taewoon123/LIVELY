@@ -72,6 +72,14 @@ public class FriendController {
 	         fvoList.add(fvo);
 	      }
 	      
+	      vo.setWriter(memberLog.getNo());
+	      
+	      int result = fs.write(vo, fvoList);
+	      if (changeNameList != null && result < 1) {
+	         throw new Exception("게시글 작성 실패");
+	      }
+
+	      
 	      return "redirect:/board/friend/friend-list";
 		
 		

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lively.common.FileVo;
 import com.lively.friend.dao.FriendDao;
 import com.lively.friend.vo.FriendVo;
 
@@ -23,8 +24,18 @@ public class FriendService {
 		this.sst = sst;
 	}
 	
+	//피드
 	public List<FriendVo> getFriendFeed(){
 		return dao.getFriendFeed(sst);
+	}
+	
+	//작성하기
+	public int write(FriendVo vo, List<FileVo> fvoList) throws Exception {
+		int friendResult = dao.write(sst, vo);
+		if(friendResult != 1) {
+			throw new Exception();
+		}
+		return dao.insertAttachment(sst , fvoList);
 	}
 	
 }

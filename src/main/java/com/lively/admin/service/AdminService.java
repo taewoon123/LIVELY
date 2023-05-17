@@ -37,5 +37,10 @@ public class AdminService {
         return dao.presentMembers(memberVo, sqlSessionTemplate);
     }
 
+    //delete members in Admin dashboard set QUIT_YN='Y'
+    public int memberDelete(List<Integer> deleteList) {
+        return dao.memberDelete(deleteList, sqlSessionTemplate);
+    }
+
 
 }

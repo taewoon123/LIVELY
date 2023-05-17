@@ -1,16 +1,19 @@
 package com.lively.admin.controller;
 
+import com.google.gson.Gson;
 import com.lively.admin.vo.AdminVo;
 import com.lively.admin.service.AdminService;
 import com.lively.member.vo.MemberVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.net.http.HttpRequest;
 import java.util.List;
-
+@Slf4j
 @Controller
 @RequestMapping("admin")
 public class AdminController {
@@ -38,18 +41,32 @@ public class AdminController {
         return "admin/admin-dashboard";
     }
 
-    @RequestMapping("member-delete")
+
+
+    //getting checkbox's checked value from the dashboard
+    //and deleting the selected member
+
+
+    @PostMapping("member-delete")
     @ResponseBody
-    public void memberDelete(List<String> deleteMemberList,Model model) {
-//        int result = service.memberDelete(deleteMemberList);
-//        if (result > 0) {
-//           model.addAttribute("memberDeleteAlert", "회원 삭제 성공");
-//        }
+    public String memberDelete(HttpSession session, @RequestBody List<Integer> deleteList) {
+        log.info("deleteList : {}", deleteList);
+       int result = service.memberDelete(deleteList);
+        if (result > 0) {
+           session.setAttribute("memberDeleteAlert", "회원 삭제 성공");
+        }
+        if (deleteList.size() == 0) {
+            session.setAttribute("memberDeleteAlert", "선택된 회원이 없습니다.");
+        }
+        return "redirect:/admin-dashboard";
     }
 
     @GetMapping("login")
-    public String login() {
-
+    public String login(HttpSession session) {
+        //if they already signed in as admin, redirect to dashboard immediately
+        if (session.getAttribute("adminLog") != null) {
+            return "redirect:dashboard";
+        }
         return "admin/admin-login";
     }
 

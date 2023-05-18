@@ -11,6 +11,9 @@
 </head>
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<%
+    session.removeAttribute("memberDeleteAlert");
+%>
 
 <body>
 <div id="wrap">
@@ -27,6 +30,7 @@
           <table class="table-tag">
               <tr class="table-trs">
                   <th class="table-ths"><input type="checkbox" id="member-check-all"></th>
+                  <th class="table-ths hidden-no" style="display: none">NO</th>
                   <th class="table-ths">아이디</th>
                   <th class="table-ths">닉네임</th>
                   <th class="table-ths">가입일</th>
@@ -34,12 +38,14 @@
               <c:forEach items="${memberList}" var="member">
                   <tr class="table-trs">
                       <td class="table-tds"><input type="checkbox" class="member-checkbox"></td>
+                      <th class="table-ths hidden-no" style="display: none">${member.no}</th>
                       <td class="table-tds">${member.id}</td>
                       <td class="table-tds">${member.name}</td>
                       <td class="table-tds">${member.joinDate}</td>
                   </tr>
               </c:forEach>
-
+<%--      삭제 버튼      --%>
+            <button id="deleteMemberButton">삭제</button>
           </table>
           <div class="pagination-area">
           <a href="">이전</a>
@@ -52,8 +58,7 @@
           </div>
       </div>
 
-<%--      삭제 버튼      --%>
-            <button id="deleteMemberButton">삭제</button>
+
                 <%--     각 디브끼리 떼어놓기     --%>
             <div id="empty-div-for-padding"></div>
 
@@ -114,6 +119,9 @@
         alert("관리자 로그인이 필요합니다.");
         location.href = "${rootContext}/main";
     }
+   if(${memberDeleteAlert != null}){
+   alert("${memberDeleteAlert}");
+   }
 
 
 </script>

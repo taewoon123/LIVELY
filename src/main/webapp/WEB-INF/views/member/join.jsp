@@ -29,7 +29,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="text" name="id" id="id" placeholder="">
+										<input type="text" name="id" id="id" placeholder="" onblur="checkDup();" required>
 									</div>
 								</th>
 								<td id="id-validity">
@@ -43,7 +43,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="password" name="pwd" id="pwd" placeholder="문자,특수문자 포함 6~12글자">
+										<input type="password" name="pwd" id="pwd" placeholder="문자,특수문자 포함 6~12글자" required>
 									</div>
 								</th>
 								<td id="pwd-validity">
@@ -57,7 +57,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="password" name="pwd2" id="pwd2" placeholder="">
+										<input type="password" name="pwd2" id="pwd2" placeholder="" required>
 									</div>
 								</th>
 								<td id="pwd2-validity">
@@ -71,7 +71,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="text" name="name" id="name" placeholder="">
+										<input type="text" name="name" id="name" placeholder="" required>
 									</div>
 								</th>
 								<td>
@@ -85,7 +85,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="email" name="email" id="email" placeholder=" ex) kim@naver.com">
+										<input type="email" name="email" id="email" placeholder=" ex) kim@naver.com" required>
 									</div>
 								</th>
 								<td id="email-validity">
@@ -99,7 +99,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="text" name="birth" id="birth" placeholder=" ex) 19951231">
+										<input type="text" name="birth" id="birth" placeholder=" ex) 19951231" required>
 									</div>
 								</th>
 								<td id="birth-validity">
@@ -113,7 +113,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="text" name="hp" id="hp" placeholder=" ex) 01055550000">
+										<input type="text" name="hp" id="hp" placeholder=" ex) 01055550000" required>
 									</div>
 								</th>
 								<td id="hp-validity">
@@ -147,7 +147,7 @@
 								</td>
 								<th>
 									<div class="selections">
-										<select class="location-option" name="locationNo" id="location">
+										<select class="location-option" name="locationNo" id="location" required>
 											<option value="0" selected>Select</option>
 											<option value="1">강동구</option>
 											<option value="2">강서구</option>

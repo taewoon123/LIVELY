@@ -1,10 +1,25 @@
+/* 새로 추가한 것 */
+
+/* 모집 */
+#friend_end_box{
+  margin-left: 370px;
+  margin-top: 10px;
+}
+#friend_end {
+  text-align: center;
+  width: 100px;
+  background-color: #078735;
+  color: white;
+  display: none;
+}
+
+/* 제목 */
 #friend_title h2 {
   color: white;
   padding-left: 10px;
 }
 
 #friend_title {
-   /* text-align: center; */
    margin-bottom: 50px;
 }
 

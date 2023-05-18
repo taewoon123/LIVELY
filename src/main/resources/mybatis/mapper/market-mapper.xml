@@ -5,6 +5,7 @@
   
 <mapper namespace="market">
   
+  <!-- 피드 목록 (전체) -->
   <select id="MarketFeed" resultType="MarketVo">
  	SELECT 
 	    K.MARKET_NO
@@ -16,12 +17,95 @@
 		, K.EDIT_DATE
 		, K.DELETE_YN
 		, K.LOCATION_NO
+		, K.STATUS_YN
 		, L.LOCATION_NAME as locationName
 		, M.NAME as writerName
 	FROM MARKET K
 	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
 	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
 	WHERE K.DELETE_YN = 'N'
+	ORDER BY MARKET_NO DESC
+  </select>
+  
+  <!-- 피드 목록 (거래중만) -->
+  <select id="MarketFeedING" resultType="MarketVo">
+ 	SELECT 
+	    K.MARKET_NO
+		, K.WRITER
+		, K.TITLE
+		, K.CONTENT
+		, K.PRICE
+		, K.ENROLL_DATE
+		, K.EDIT_DATE
+		, K.DELETE_YN
+		, K.LOCATION_NO
+		, K.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+	FROM MARKET K
+	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
+	WHERE K.DELETE_YN = 'N'
+	AND K.STATUS_YN = 'Y'
+	ORDER BY MARKET_NO DESC
+  </select>
+  
+  
+  <insert id="write">
+  	INSERT INTO MARKET
+  	(
+  		MARKET_NO
+  		, WRITER
+  		, TITLE
+  		, CONTENT
+  		, PRICE
+  		, LOCATION_NO
+  	) 
+  	VALUES 
+  	(
+  		SEQ_MARKET_NO.NEXTVAL
+  		, #{writer}
+  		, #{title}
+  		, #{content}
+  		, #{price}
+  		, #{locationNo}
+  	)
+  </insert>
+  
+  
+  <insert id="insertAttachment">
+  	INSERT ALL
+		<foreach collection="list" item="fileVo" separator=" ">
+		    INTO MARKET_ATTACHMENT
+		    (
+		    	MARKET_ATTACH_NO
+				, MARKET_NO
+				, ORIGIN_NAME
+				, CHANGE_NAME
+		    ) 
+		    VALUES 
+		    (
+		    	(SELECT GET_MARKET_ATTACHMENT_SEQ FROM DUAL)
+		    	, SEQ_MARKET_ATTACH_NO.CURRVAL
+		    	, #{fileVo.originName}
+		    	, #{fileVo.changeName}
+		    )
+ 		</foreach>
+	SELECT 1 FROM DUAL
+  </insert>
+  
+  
+  <select id="getLocationList" resultType="map">
+  	SELECT
+  		LOCATION_NO
+  		, LOCATION_NAME
+  	FROM LOCATION
+  </select>
+  
+  <select id="getFeedCount" resultType="int">
+  	SELECT COUNT(MARKET_NO)
+  	FROM MARKET
+  	WHERE DELETE_YN = 'N'
   </select>
   
   

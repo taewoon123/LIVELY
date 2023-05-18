@@ -1,3 +1,4 @@
+// 채팅
 function chat(){
 
 	let options = "width=500, height=600, top=100,left=500";
@@ -12,3 +13,4 @@ search_button.addEventListener("keydown",(event) => {
         document.querySelector('.hidden_button').click();
     }
 });
+

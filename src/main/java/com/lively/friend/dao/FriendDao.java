@@ -1,6 +1,7 @@
 package com.lively.friend.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,8 +13,8 @@ import com.lively.friend.vo.FriendVo;
 public class FriendDao {
 	
 	//피드
-	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst){
-		return sst.selectList("friend.FriendFeed");
+	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst ,  Map<String , String> searchMap ){
+		return sst.selectList("friend.FriendFeed" , searchMap );
 	}
 
 	//피드작성
@@ -21,8 +22,8 @@ public class FriendDao {
 		return sst.insert("friend.write" , vo);
 	}
 
-	public int insertAttachment(SqlSessionTemplate sst, List<FileVo> fvoList) {
-		return sst.insert("friend.insertAttachment" , fvoList);
+	public int insertAttachment(SqlSessionTemplate sst, List<FileVo> friendList) {
+		return sst.insert("friend.insertAttachment" , friendList);
 	}
 
 	

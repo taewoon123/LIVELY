@@ -6,11 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+  	
 <body>
 
     <div id="wrap">
         
+        
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
+        <%-- <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %> --%>
 
         <main>
             <div id="friend_title">
@@ -19,8 +23,13 @@
 
             <div id="search-upload-area">
                 <div id="upload_button">
-                    <input placeholder="Search" class="feed_search_input" name="text" type="text">
-                    <a class="hidden_button" type="submit" href="">검색</a>
+                    <input placeholder="Search" class="feed_search_input" name="feed_search_input" type="text" value="${searchMap.feed_search_input}">
+			<%-- 			<c:forEach items="${fvoList}" var="fvo">
+							<option value="${fvo.NO}">${fvo.NAME}</option> 
+						</c:forEach> --%>
+                  	   <a class="hidden_button" type="submit" name="feed_search_input" href="">검색</a> 
+                  	<!-- 	<button class="hidden_button" type="submit" name="feed_search_input">검색</button> -->
+						
                     <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/friend/write';">
                         <span class="actual-text">&nbsp;UPLOAD&nbsp;</span>
                         <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
@@ -35,6 +44,9 @@
                     <div id="profile_box">
                         <div id="profile_name">김본전</div>
                         <div id="profile_nick">라이블리</div>
+                    </div>
+                    <div id="friend_end_box">
+                        <input id="friend_end" type="text" value="모집마감" disabled/>
                     </div>
                 </div>
                 <div id="feed-image">

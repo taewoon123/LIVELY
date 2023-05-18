@@ -1,6 +1,7 @@
 package com.lively.friend.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +26,22 @@ public class FriendService {
 	}
 	
 	//피드
-	public List<FriendVo> getFriendFeed(){
-		return dao.getFriendFeed(sst);
+	public List<FriendVo> getFriendFeed(Map<String , String> searchMap){
+		return dao.getFriendFeed(sst , searchMap);
 	}
 	
 	//작성하기
-	public int write(FriendVo vo, List<FileVo> fvoList) throws Exception {
+	public int write(FriendVo vo, List<FileVo> friendList) throws Exception {
 		int friendResult = dao.write(sst, vo);
-		if(friendResult != 1) {
-			throw new Exception();
+		int attResult = 1;
+		if(friendList.size() > 0) {
+			attResult = dao.insertAttachment(sst, friendList);
 		}
-		return dao.insertAttachment(sst , fvoList);
+		return friendResult * attResult;
 	}
+	
+	// 수정하기(작성자만)
+    
+    // 삭제하기(작성자만)
 	
 }

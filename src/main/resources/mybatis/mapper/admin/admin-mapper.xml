@@ -30,9 +30,12 @@
     <update id="deleteMembers">
         UPDATE MEMBER
         SET QUIT_YN = 'Y'
-        WHERE ID = #{id}
+        WHERE NO IN
+        <foreach collection="list" item="deleteList" separator="," open="(" close=")">
+         #{deleteList.value}
+        </foreach>
     </update>
- 
+
 </mapper>
 
 

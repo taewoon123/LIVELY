@@ -21,6 +21,7 @@
 <link href="${rootContext}/resources/css/common/bootstrap-icons.css" rel="stylesheet">
 <link href="${rootContext}/resources/css/common/templatemo-festava-live.css" rel="stylesheet">
 
+	
 <body>
     <main>
         <nav class="navbar navbar-expand-lg">

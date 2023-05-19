@@ -2,7 +2,7 @@ package com.lively.fundraise.dao;
 
 
 import com.lively.fundraise.vo.FundraiseVo;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;

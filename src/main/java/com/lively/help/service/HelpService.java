@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.help.dao.HelpDao;
 import com.lively.help.vo.HelpVo;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 
 @Service
 @Transactional

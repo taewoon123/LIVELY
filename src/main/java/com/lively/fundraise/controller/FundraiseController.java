@@ -1,6 +1,6 @@
 package com.lively.fundraise.controller;
 
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 import com.lively.fundraise.service.FundraiseService;
 import com.lively.fundraise.vo.FundraiseVo;
 import org.springframework.beans.factory.annotation.Autowired;

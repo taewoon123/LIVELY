@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lively.common.FileVo;
 import com.lively.market.dao.MarketDao;
 import com.lively.market.vo.MarketVo;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 
 @Service
 @Transactional

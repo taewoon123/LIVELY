@@ -26,5 +26,9 @@ public class FriendDao {
 		return sst.insert("friend.insertAttachment" , friendList);
 	}
 
+	public List<Map<String, String>> getLocationNoList(SqlSessionTemplate sst) {
+		return sst.selectList("friend.getLocationNoList");
+	}
+
 	
 }

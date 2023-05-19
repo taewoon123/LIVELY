@@ -19,13 +19,13 @@
             <a href="${rootContext}/help/list" id="list-btn">목록</a>
             <div id="help-area">
                 <div id="help-title">제목</div>
-                <div id="help-inTitle">Help Me</div>
+                <div id="help-inTitle">${fundDetail.title}</div>
                 <div id="help-date">작성일자</div>
-                <div id="help-inDate">2023-04-24</div>
+                <div id="help-inDate">${fundDetail.enrollDate}</div>
                 <div id="help-hit">조회수</div>
-                <div id="help-inHit">1</div>
+                <div id="help-inHit">${fundDetail.views}</div>
                 <div id="help-content">내용</div>
-                <div id="help-inContent">여기 큰일났어요. 도와주세요ㅠㅠ</div>
+                <div id="help-inContent">${fundDetail.content}</div>
             </div>
 
             <!-- 작성 버튼 -->
@@ -59,5 +59,5 @@
 </html>
 
 <script src="${rootContext}/resources/js/board/comment-detail.js"></script>
-<link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/board/fundraise/fundraise-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

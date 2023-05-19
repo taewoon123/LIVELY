@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <%@ page language="java"
     pageEncoding="UTF-8"%>
 <html>
@@ -11,7 +10,7 @@
 <div id="wrap">
 <main>
 
-	<%@include file="/WEB-INF/views/common/header.jsp"%>
+	<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 	<section class="hero-section" id="section_1">
 		<div class="section-overlay"></div>

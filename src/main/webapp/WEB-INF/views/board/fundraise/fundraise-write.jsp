@@ -12,7 +12,7 @@
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
     <div class="write-board">
-        <form action="${rootContext}/query/detail" method="POST">
+        <form action="${rootContext}/fund/write" method="POST">
             <div class="write-group">
 
                 <h3 id="friend-title">Fundraise</h3>
@@ -54,7 +54,7 @@
 
             <div class="register">
                 <div id="registerName"><input value="취소" type="button"
-                                              onclick="location.href='${rootContext}/query/list'"></div>
+                                              onclick="location.href='${rootContext}/fund/list'"></div>
                 <!-- 등록버튼만 submit되야하므로 취소버튼은 button타입으로 바꾸고 onclick 속성으로 페이지이동 구현함. -->
                 <div id="registerName"><input value="등록" type="submit"></div>
             </div>

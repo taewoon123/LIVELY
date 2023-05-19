@@ -43,41 +43,15 @@
 				</thead>
 				
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Help Me</td>
-						<td>2023.04.26</td>
-						<td>강작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>SOS</td>
-						<td>2023.04.26</td>
-						<td>오작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>WTF</td>
-						<td>2023.04.26</td>
-						<td>최작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>Somebody Help</td>
-						<td>2023.04.26</td>
-						<td>정작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>HelpHelp</td>
-						<td>2023.04.26</td>
-						<td>심작성</td>
-						<td>1</td>
-					</tr>
+					<c:forEach items = "${hvoList}" var = "hvo">
+						<tr>
+							<td>${hvo.helpNo}</td>
+							<td>${hvo.title}</td>
+							<td>${hvo.enrollDate}</td>
+							<td>${hvo.writer}</td>
+							<td>${hvo.views}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 
@@ -90,19 +64,21 @@
 			<!-- pagenation -->
 			<div class="page-area">
 				<div class="pagination-custom">
-					<a class="prev page-numbers" href="help-list"> << </a> 
-						<span aria-current="page" class="page-numbers current">1</span> 
-						<a class="page-numbers" href="help-list">2</a> 
-						<a class="page-numbers" href="help-list">3</a> 
-						<a class="page-numbers" href="help-list">4</a>
-						<a class="page-numbers" href="help-list">5</a> 
-						<a class="page-numbers" href="help-list">6</a> 
-						<a class="page-numbers" href="help-list">7</a> 
-						<a class="page-numbers" href="help-list">8</a>
-						<a class="page-numbers" href="help-list">9</a> 
-						<a class="page-numbers" href="help-list">10</a> 
-						<a class="next page-numbers" href="help-list"> >> </a>
-				</div>
+				<c:if test="${pv.currentPage > 1}">
+					<a class = "prev page-numbers" href = "${rootContext}/help/list?page=${pv.currentPage-1}"> << </a>
+				</c:if>
+				<c:forEach begin = "${pv.startPage}" end = "${pv.endPage}" step = "1" var = "i">
+					<c:if test = "${pv.currentPage != i}">
+						<a class = "page-numbers" href = "${rootContext}/help/list?page=${i}">${i}</a>
+					</c:if>
+					<c:if test = "${pv.currentPage == i}">
+						<a class = "page-numbers">${i}</a>
+					</c:if>
+				</c:forEach>
+				<c:if test = "${pv.currentPage < pv.maxPage}">
+					<a class = "next page-numbers" href = "${rootContext}/help/list?page=${pv.currentPage+1}"> >> </a>
+				</c:if>
+				</div> <!-- div pagination-custom -->
 			</div> <!-- div page-area end -->
 		
 		<footer>
@@ -117,3 +93,11 @@
 </html>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-list.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+
+<script>
+const table = document.querySelector("main table tbody");
+table.addEventListener("click", function(event){
+	const num = event.target.parentNode.children[0].innerText; //해당 글 번호를 불러올수있음
+	location.href = '${rootContext}/help/detail?num=' + num;
+});
+</script>

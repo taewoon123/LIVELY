@@ -22,4 +22,12 @@ public class MemberDao {
 		return sst.selectOne("member.login", memberVo);
 	}
 
+	public int myInfo(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.update("member.myInfo", vo);
+	}
+
+	public MemberVo selectOneByNo(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.selectOne("member.getMember", vo);
+	}
+
 }// class

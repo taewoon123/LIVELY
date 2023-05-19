@@ -42,7 +42,7 @@ public class MemberController {
 
 		if (result != 1) {
 			// 에러메세지 담아서 forwording 하기
-			model.addAttribute("errorMsg", "회원가입 실패");
+			model.addAttribute("alertMsg", "회원가입 실패");
 			return "member/join";
 		}
 		session.setAttribute("alertMsg", "회원가입 성공!");
@@ -51,7 +51,7 @@ public class MemberController {
 	}// join
 
 	// 아이디 중복확인
-	@RequestMapping("id-check") // url은 케밥케이스로
+	@PostMapping("id-check") // url은 케밥케이스로
 	@ResponseBody // 문자 그대로 반환되도록
 	public String idCheck(String id) {
 
@@ -62,43 +62,72 @@ public class MemberController {
 		} else {
 			return "notDup";
 		}
-	}//idCheck
+	}// idCheck
 
+	// 로그인 화면
 	@GetMapping("login")
 	public String login() {
 		return "member/login";
 	}
 
+	// 로그인 처리
 	@PostMapping("login")
-	public String login(MemberVo memberVo,HttpSession session) {
+	public String login(MemberVo memberVo, HttpSession session) {
 		MemberVo memberLog = ms.login(memberVo);
 
 		if (memberLog == null) {
-			session.setAttribute("memberLoginAlert","아이디 또는 비밀번호를 확인해주세요.");
+			session.setAttribute("alertMsg", "아이디 또는 비밀번호를 확인해주세요.");
 			System.out.println(memberLog);
 			return "member/login";
 		}
 		System.out.println(memberLog);
-		session.setAttribute("memberLog",memberLog);
+		session.setAttribute("memberLog", memberLog);
 		return "redirect:/main";
 	}
 
+	// my-info 화면
 	@GetMapping("my-info")
 	public String myInfo(HttpSession session) {
 		if (session.getAttribute("memberLog") == null) {
-			session.setAttribute("myInfoAlert", "로그인이 필요합니다.");
+			session.setAttribute("alertMsg", "로그인이 필요합니다.");
 			return "member/login";
 		}
-			return "member/my-info";
+		return "member/my-info";
 	}
 
+	// 정보수정 처리
+	@PostMapping("my-info")
+	public String myInfo(MemberVo vo, Model model, HttpSession session) throws Exception {
+
+		// 서비스
+		MemberVo updatedMember = ms.myInfo(vo);
+
+		// 화면
+		if (updatedMember == null) {
+			model.addAttribute("alertMsg", "정보수정실패");
+			return "member/my-info";
+		}
+		session.setAttribute("loginMember", updatedMember);
+		session.setAttribute("alertMsg", "정보 수정 성공!!");
+		return "redirect:/member/my-info";
+	}
+
+	// my-board 화면
 	@GetMapping("my-board")
 	public void myBoard() {
 
 	}
 
+	// my-feed 화면
 	@GetMapping("my-feed")
 	public void myFeed() {
+	}
+
+	// 로그아웃
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
 	}
 
 }// class

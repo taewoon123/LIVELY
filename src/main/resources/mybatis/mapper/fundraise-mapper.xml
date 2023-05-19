@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fundraise">
+    <select id="getFundList" resultType="FundraiseVo">
+        SELECT F.FUNDRAISE_NO,
+        M.NAME AS WRITER,
+        F.TITLE,
+        F.CONTENT,
+        F.ENROLL_DATE,
+        F.EDIT_DATE,
+        F.DELETE_YN,
+        F.VIEWS,
+        F.MONEY,
+        F.MONEY_GOAL
+        FROM FUNDRAISE F
+        JOIN MEMBER M ON M.NO = F.WRITER
+        WHERE DELETE_YN = 'N'
+        ORDER BY FUNDRAISE_NO DESC
+    </select>
+
+    <select id="getFundDetail" resultType="FundraiseVo">
+        SELECT F.FUNDRAISE_NO AS NO,
+        M.NAME AS WRITER,
+        F.TITLE,
+        F.CONTENT,
+        F.ENROLL_DATE,
+        F.EDIT_DATE,
+        F.DELETE_YN,
+        F.VIEWS,
+        F.MONEY,
+        F.MONEY_GOAL
+        FROM FUNDRAISE F
+        JOIN MEMBER M ON M.NO = F.WRITER
+        WHERE DELETE_YN = 'N'
+        AND FUNDRAISE_NO = #{no}
+    </select>
+    <select id="getFundListCount" resultType="int">
+        SELECT COUNT(*)
+        FROM FUNDRAISE
+        WHERE DELETE_YN = 'N'
+    </select>
+    <update id="gainViews">
+        UPDATE FUNDRAISE
+        SET VIEWS = VIEWS + 1
+        WHERE FUNDRAISE_NO = #{no}
+        AND DELETE_YN = 'N'
+    </update>
+</mapper>
+
+
+
+
+
+
+

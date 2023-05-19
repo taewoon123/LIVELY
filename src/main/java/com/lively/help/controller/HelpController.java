@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.help.service.HelpService;
 import com.lively.help.vo.HelpVo;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 
 @Controller
 @RequestMapping("help")

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.notice.dao.NoticeDao;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 import com.lively.notice.vo.NoticeVo;
 
 @Service

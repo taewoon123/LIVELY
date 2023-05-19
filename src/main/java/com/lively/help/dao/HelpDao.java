@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lively.help.vo.HelpVo;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 
 @Repository
 public class HelpDao {

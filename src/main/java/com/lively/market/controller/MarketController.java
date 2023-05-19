@@ -21,7 +21,7 @@ import com.lively.common.FileVo;
 import com.lively.market.service.MarketService;
 import com.lively.market.vo.MarketVo;
 import com.lively.member.vo.MemberVo;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 
 @Controller
 @RequestMapping("market")

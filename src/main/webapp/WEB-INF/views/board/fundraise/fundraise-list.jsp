@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +6,7 @@
     <title>Insert title here</title>
 </head>
 <header>
-    <%@ include file="/WEB-INF/views/common/header.jsp"%>
+    <%@ include file="/WEB-INF/views/common/header.jsp" %>
 </header>
 <body>
 
@@ -19,7 +19,10 @@
 
         <!-- search button -->
         <div class="container-input">
-            <input type="text" placeholder="Search" name="text" class="input">
+            <select name="" id="">
+                <option value="">강남구</option>
+            </select>
+            <input type="text" placeholder="Search" name="searchValue" class="input">
             <svg fill="#000000" width="20px" height="20px"
                  viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -43,41 +46,15 @@
             </thead>
 
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Help Me</td>
-                <td>2023.04.26</td>
-                <td>강작성</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>SOS</td>
-                <td>2023.04.26</td>
-                <td>오작성</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>WTF</td>
-                <td>2023.04.26</td>
-                <td>최작성</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Somebody Help</td>
-                <td>2023.04.26</td>
-                <td>정작성</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>HelpHelp</td>
-                <td>2023.04.26</td>
-                <td>심작성</td>
-                <td>1</td>
-            </tr>
+            <c:forEach items="${fundraiseList}" var="fundraise">
+                <tr>
+                    <td>${fundraise.fundraiseNo}</td>
+                    <td>${fundraise.title}</td>
+                    <td>${fundraise.enrollDate}</td>
+                    <td>${fundraise.writer}</td>
+                    <td>${fundraise.views}</td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
 
@@ -87,26 +64,29 @@
 				</span>
         </button>
 
-        <!-- pagenation -->
+        <%--   pagination   --%>
         <div class="page-area">
             <div class="pagination-custom">
-                <a class="prev page-numbers" href="help-list"> << </a>
-                <span aria-current="page" class="page-numbers current">1</span>
-                <a class="page-numbers" href="help-list">2</a>
-                <a class="page-numbers" href="help-list">3</a>
-                <a class="page-numbers" href="help-list">4</a>
-                <a class="page-numbers" href="help-list">5</a>
-                <a class="page-numbers" href="help-list">6</a>
-                <a class="page-numbers" href="help-list">7</a>
-                <a class="page-numbers" href="help-list">8</a>
-                <a class="page-numbers" href="help-list">9</a>
-                <a class="page-numbers" href="help-list">10</a>
-                <a class="next page-numbers" href="help-list"> >> </a>
+                <c:if test="${pageVo.currentPage > 1}">
+                    <a class="prev page-numbers" href="${rootContext}/fund/list?page=${pageVo.currentPage-1}"> << </a>
+                </c:if>
+                <c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" step="1" var="i">
+                    <c:if test="${pageVo.currentPage != i}">
+                        <a class="page-numbers" href="${rootContext}/fund/list?page=${i}">${i}</a>
+                    </c:if>
+                    <c:if test="${pageVo.currentPage == i}">
+                        <a class="page-numbers">${i}</a>
+                    </c:if>
+                </c:forEach>
+                <c:if test="${pageVo.currentPage < pageVo.maxPage}">
+                    <a class="next page-numbers" href="${rootContext}/fund/list?page=${pageVo.currentPage+1}"> >> </a>
+                </c:if>
             </div>
-        </div> <!-- div page-area end -->
+        </div>
+        <%--   pagination end  --%>
 
         <footer>
-            <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+            <%@ include file="/WEB-INF/views/common/footer.jsp" %>
         </footer>
 
     </main>
@@ -115,5 +95,6 @@
 
 </body>
 </html>
+<script src="${rootContext}/resources/js/board/fundraise/fund-list.js"></script>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-list.css">
-<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"/>

@@ -1,13 +1,23 @@
 package com.lively.friend.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +25,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
@@ -22,8 +34,11 @@ import com.lively.friend.service.FriendService;
 import com.lively.friend.vo.FriendVo;
 import com.lively.member.vo.MemberVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping("friend")
+@Slf4j
 public class FriendController {
 	
 	private final FriendService fs;
@@ -38,9 +53,11 @@ public class FriendController {
 	public String list(Model model,  @RequestParam Map<String, String> searchMap) {
 		
 		List<FriendVo> friendList = fs.getFriendFeed(searchMap);
+		List<Map<String, String>> lvoList = fs.getLocationNoList();
 		
 		model.addAttribute("friendList", friendList);
-		
+		model.addAttribute("searchMap" , searchMap);
+		model.addAttribute("lvoList", lvoList);
 		return "board/friend/friend-list";
 	}
 	
@@ -62,7 +79,7 @@ public class FriendController {
 	@PostMapping("write")
 	public String write(FriendVo vo , List<MultipartFile> f, HttpSession session, HttpServletRequest requestion) throws Exception {
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-
+		
 	   //데이터 준비 (파일)
 	      String path = requestion.getServletContext().getRealPath("/resources/upload/friend/");
 	      List<String> changeNameList = FileUploader.upload(f, path);
@@ -70,7 +87,6 @@ public class FriendController {
 
 	   //데이터 준비 (이름 리스트)
 	      List<FileVo> friendList = new ArrayList<FileVo>();
-	      
 	      if(changeNameList != null) {
 	    	  int size = changeNameList.size();
 	    	  for (int i = 0; i < size; i++) {
@@ -81,6 +97,10 @@ public class FriendController {
 	    	  }
 	      }
 	      
+	    //데이터 준비 (지역 관련)
+	      if ("없음".equals(vo.getLocationNo())) {
+	          vo.setLocationNo(null);
+	       }
 	      vo.setWriter(memberLog.getNo());
 	      
 	      int result = fs.write(vo, friendList);
@@ -93,6 +113,9 @@ public class FriendController {
 		// 수정하기(작성자만)
 	      
 	    // 삭제하기(작성자만)
+	      
 	    
 	}
+	
+	
 }

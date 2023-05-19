@@ -1,5 +1,17 @@
 /* 새로 추가한 것 */
 
+/* 지역태그 */
+.selections {
+  width: 90px;
+}
+
+.location-option {
+  background-color: black;
+  color: #7c7676;
+  border: 1px solid black;
+  margin: 0 0 0 3px;
+}
+
 /* 모집 */
 #friend_end_box{
   margin-left: 370px;

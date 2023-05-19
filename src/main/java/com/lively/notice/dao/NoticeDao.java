@@ -6,7 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 import com.lively.notice.vo.NoticeVo;
 
 @Repository

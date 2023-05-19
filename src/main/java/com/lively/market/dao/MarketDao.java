@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lively.common.FileVo;
 import com.lively.market.vo.MarketVo;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 
 @Repository
 public class MarketDao {

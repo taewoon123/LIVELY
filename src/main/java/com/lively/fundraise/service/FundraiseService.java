@@ -2,7 +2,7 @@ package com.lively.fundraise.service;
 
 import com.lively.fundraise.dao.FundraiseDao;
 import com.lively.fundraise.vo.FundraiseVo;
-import com.lively.notice.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

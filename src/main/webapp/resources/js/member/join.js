@@ -1,6 +1,3 @@
-/*
-DB 생겨야 구현가능해서 일단 주석처리함
-
 //아이디 중복검사
 
 function checkDup() {
@@ -10,28 +7,32 @@ function checkDup() {
   //3. 결과를 받아오기 (isDup , notDup)
   //4. 결과에 따라 , 중복 여부를 알려주기
   
-  const email = document.querySelector("input[name=email]").value;
+  const idTag = document.querySelector("input[name=id]");
+  const id = document.querySelector("input[name=id]").value;
+  const idValidity = document.querySelector('#id-validity');
+
   $.ajax({
-      url : '/app/member/email-check',
+      url : '/lively/member/id-check',
       type : 'POST',
       data : {
-          'email' : email
+          'id' : id
       },
       success : function(data) {
           if (data == 'notDup') {
-            alert("사용 가능한 아이디 입니다.");
+            idValidity.innerText = "사용가능";
+            idTag.style.border = "none";
           } else {
-            alert("사용 불가한 아이디 입니다.");
+            idValidity.innerText = "ID중복";
+            idTag.style.border = "2px solid red";
           }
       },
       error : function(e) {
+          alert("통신 실패");
           console.log(e);
       },
     });
 
 } 
-*/
-
 
 //비번 일치 여부 확인 & 유효성 검사
 const pwd = document.querySelector("input[name=pwd]");
@@ -40,8 +41,8 @@ const pwd2 = document.querySelector("input[name=pwd2]");
 //비번 유효성
 pwd.addEventListener("blur", () => {
   const pwdCheck = pwd.value;
-  const reg = /^(?=.*[A-Za-z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,12}$/;
-  //문자와 특수문자 포함한 6~12자리
+  const reg = /^(?=.*[A-Za-z])(?=.*[~!@#$%^&*()_+])[A-Za-z\d~!@#$%^&*()_+]{6,12}$/;
+  //문자,특수문자 포함한 6~12자리
   const result = reg.test(pwdCheck);
   const pwdValidity = document.querySelector("#pwd-validity");
   

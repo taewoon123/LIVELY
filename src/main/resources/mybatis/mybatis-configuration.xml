@@ -13,7 +13,7 @@
         <typeAlias type="com.lively.admin.vo.AdminVo" alias="AdminVo"/>
 <!--        <typeAlias type="com.lively.chat.vo.ChatVo" alias="ChatVo"/>-->
         <typeAlias type="com.lively.friend.vo.FriendVo" alias="FriendVo"/>
-<!--        <typeAlias type="com.lively.fundraise.vo.FundraiseVo" alias="FundraiseVo"/>-->
+        <typeAlias type="com.lively.fundraise.vo.FundraiseVo" alias="FundraiseVo"/>
 <!--        <typeAlias type="com.lively.help.vo.HelpVo" alias="HelpVo"/>-->
         <typeAlias type="com.lively.job.vo.JobVo" alias="JobVo"/>
         <typeAlias type="com.lively.market.vo.MarketVo" alias="MarketVo"/>

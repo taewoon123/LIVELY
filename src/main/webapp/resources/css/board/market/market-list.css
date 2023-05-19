@@ -5,8 +5,8 @@
 }
 
 /* 피드 영역 */
-#feed_box {
-    height: 500px;
+.feed_box {
+    height: 560px;
     display: grid;
     grid-template-rows: 1fr 7fr 2fr 1fr;
     border: 1px solid grey;
@@ -14,6 +14,23 @@
     border-radius: 1%;
     margin-bottom: 40px;
 }
+
+.feed_more_box {
+  height: 600px;
+}
+
+.feed_content_more_box {
+  height: 70px;
+}
+
+.feed_done {
+  opacity: 0.3;
+}
+
+.feed_hidden {
+	display: none;
+}
+
 
 /* #profile_area, #content_area {
     background-color: rgb(195, 207, 217);
@@ -46,6 +63,89 @@
     color: aliceblue;
 }
 
+/* 거래완료 버튼 */
+#feed_status {
+	margin-top: 5px;
+	margin-left: 390px;
+}
+
+#feed_select_button, .dropdown {
+	margin-left: 425px;
+	color: white;
+	font-size: 25px;
+}
+
+/* 수정 / 삭제 드롭다운 */
+.dropdown {
+  position : relative;
+  display : inline-block;
+}
+
+.dropbtn {
+  border-radius : 2px;
+  background-color: rgb(26, 26, 26);
+  font-weight: 700;
+  color : white;
+  padding : 12px;
+  width :20px;
+  text-align: center;
+  margin: -10px 0 0 -15px;
+  cursor : pointer;
+  font-size : 20px;
+}
+.dropdown-edit-delete {
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 500;
+  background-color: white;
+  min-idth: 100px;
+}
+
+.dropdown-edit-delete a {
+  display : block;
+  text-decoration : none;
+  color : rgb(37, 37, 37);
+  font-size: 17px;
+  font-weight: 520;
+  text-align: center;
+  padding : 15px 5px 15px 0;
+}
+
+.dropdown_toggle .dropdown-edit-delete {
+  display: block;
+  width: 90px;
+}
+
+
+/*  */
+
+#feed_select_button:hover {
+	cursor: pointer;
+}
+
+.feed_status_text {
+	width: 75px;
+	text-align: center;
+	background-color: rgb(39, 39, 39);
+  color: rgb(177, 176, 176);
+  border: 1px solid rgb(177, 176, 176);
+  border-radius: 5px;
+}
+
+
+/* 거래중만 보기 체크박스 */
+#feed_checkbox {
+	margin: 30px 0 -30px 0;
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+}
+
+#feed_checkbox span {
+	color: white;
+}
+
 /* 피드 사진 */
 .carousel-item  {
     /* position: absolute; */
@@ -59,7 +159,7 @@
 
 
 /* 내용 영역 */
-#content_area a {
+#content_area a, #content_area span {
     padding-left: 10px;
     padding-top: 10px;
     font-size: 13px;
@@ -203,6 +303,7 @@
     background-color: black;
     color: white;
     padding: 5px;
+    margin-left: -5px;
     transition: .5s linear;
     font-family: monospace;
     letter-spacing: 1px;
@@ -237,10 +338,6 @@
   margin-bottom: 20px;
 }
 
-#feed_box{
-  height: 560px;
-}
-
 #content_area{
   margin : 15px;
 }
@@ -257,4 +354,26 @@
 #market_title {
 	/* text-align: center; */
 	margin-bottom: 50px;
+}
+
+/* content more / hide button */
+
+.more-button-invisible {
+  display: none;
+}
+
+.feed-content-more-button {
+  appearance: none;
+  border: none;
+  background-color: rgb(26, 26, 26);
+  color: #717171;
+}
+
+.feed-content-hide {
+  display: none;
+}
+
+/* page list 숨기기 */
+#page-area {
+	display: none;
 }

@@ -6,11 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 
     <div id="wrap">
         
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
+        <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
         <main>
 
@@ -19,25 +21,35 @@
             </div>
 
             <div id="search-upload-area">
+                <input placeholder="Search" class="feed_search_input" name="text" type="text">
+                <a class="hidden_button" type="submit" href="">검색</a>
+                
                 <div id="upload_button">
-                    <input placeholder="Search" class="feed_search_input" name="text" type="text">
-                    <a class="hidden_button" type="submit" href="">검색</a>
+	                <div id="feed_checkbox">
+	            		<input class="feed_checkbox_status" id="statusCheckbox" type="checkbox" onclick="feed_toggle();"><span>&nbsp; 거래가능만 보기</span>
+	            	</div>
                     <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/market/write';">
                         <span class="actual-text">&nbsp;UPLOAD&nbsp;</span>
                         <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
                     </button>
                 </div>
+            	
             </div>
 
 			<c:forEach items="${marketList}" var="mList">
 	            <!-- 첫번째 피드 시작 -->
-	            <div id="feed_box">
+	            <div class="feed_box feed_status_${mList.statusYn}">
 	                <div id="profile_area">
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
 	                        <div id="profile_name">김본전</div>
 	                        <div id="profile_nick">라이블리</div>
 	                    </div>
+	                    <c:if test="${mList.statusYn == 'N'}">
+		                    <div id="feed_status">
+		                    	<input class="feed_status_text" value="거래완료" readonly>
+		                    </div>
+	                    </c:if>
 	                </div>
 	                <div id="feed-image">
 	                    <div id="img_area">
@@ -80,7 +92,9 @@
 	                </div>
 	                <div id="content_area">
 	                	<h7>${mList.title} &nbsp;&nbsp; ￦ ${mList.price}</h7> <br>
-	                    <a>${mList.content}</a>
+	                    <span class="feed-content">${mList.content}</span>
+	                    <span class="feed-content-hide"></span>
+	                    <button class="feed-content-more-button">more</button>
 	                </div>
 	                <div id="chat_area">
 	                    <button onclick="return chat();"><a>CHAT</a></button>
@@ -88,169 +102,24 @@
 	            </div>
 	            <!-- 첫번째 피드 끝 -->
             </c:forEach>
+            
+            <div id="page-area">
+				<c:if test="${pageVo.currentPage > 1}">
+					<a class="prevPage" href="${rootContext}/market/list?page=${pageVo.currentPage-1}">이전</a>
+				</c:if>
+				<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" step="1" var="i">
+					<c:if test="${pageVo.currentPage != i }">
+						<a class="btn btn-secondary btn-sm page_button" href="${rootContext}/market/list?page=${i}">${i}</a>
+					</c:if>
+					<c:if test="${pageVo.currentPage == i }">
+						<a class="btn btn-dark btn-sm page_button">${i}</a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pageVo.currentPage < pageVo.maxPage}">
+					<a class="nextPage" href="${rootContext}/market/list?page=${pageVo.currentPage+1}">다음</a>
+				</c:if>
+			</div>
 
-            <%-- <div id="feed_box">
-                <div id="profile_area">
-                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
-                    <div id="profile_box">
-                        <div id="profile_name">김본전</div>
-                        <div id="profile_nick">라이블리</div>
-                    </div>
-                </div>
-                <div id="feed-image">
-                    <div id="img_area">
-                    <!-- Image Slider -->
-                    <div id="myCarousel2" class="carousel slide">
-                        <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#myCarousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#myCarousel2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#myCarousel2" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-                            <image class="first" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%"/>
-                            </svg>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="second" href="${rootContext}/resources/img/bear.png" width="100%" height="100%"/>
-                            </svg>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="third" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%">
-                            </svg>
-
-                        </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel2" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel2" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-                
-                </div>
-                <div id="content_area">
-                    <a>같이 밥 먹을 친구 구함.</a>
-                </div>
-                <div id="chat_area">
-                    <button onclick="chat();"> <a>CHAT</a></button>
-                </div>
-            </div>
-            <div id="feed_box">
-                <div id="profile_area">
-                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
-                    <div id="profile_box">
-                        <div id="profile_name">김본전</div>
-                        <div id="profile_nick">라이블리</div>
-                    </div>
-                </div>
-                <div id="feed-image">
-                    <div id="img_area">
-                    <!-- Image Slider -->
-                    <div id="myCarousel3" class="carousel slide">
-                        <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#myCarousel3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#myCarousel3" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#myCarousel3" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-                            <image class="first" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%"/>
-                            </svg>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="second" href="${rootContext}/resources/img/bear.png" width="100%" height="100%"/>
-                            </svg>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="third" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%">
-                            </svg>
-
-                        </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel3" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel3" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-                
-                </div>
-                <div id="content_area">
-                    <a>같이 밥 먹을 친구 구함.</a>
-                </div>
-                <div id="chat_area">
-                    <button onclick="chat();"> <a>CHAT</a></button>
-                </div>
-            </div>
-            <div id="feed_box">
-                <div id="profile_area">
-                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
-                    <div id="profile_box">
-                        <div id="profile_name">김본전</div>
-                        <div id="profile_nick">라이블리</div>
-                    </div>
-                </div>
-                <div id="feed-image">
-                    <div id="img_area">
-                    <!-- Image Slider -->
-                    <div id="myCarousel" class="carousel slide">
-                        <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-                            <image class="first" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%"/>
-                            </svg>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="second" href="${rootContext}/resources/img/bear.png" width="100%" height="100%"/>
-                            </svg>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="third" href="${rootContext}/resources/img/dog2.jpg" width="100%" height="100%">
-                            </svg>
-
-                        </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-                
-                </div>
-                <div id="content_area">
-                    <a>같이 밥 먹을 친구 구함.</a>
-                </div>
-                <div id="chat_area">
-                    <button onclick="chat();"> <a>CHAT</a></button>
-                </div> 
-            </div> --%>
         </main>
         
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>

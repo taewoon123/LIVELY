@@ -29,13 +29,23 @@ public class MemberService {
 		// conn : 이미 지역변수 sst 있음.
 		// sql : dao에게 보내기.
 		return dao.checkId(sst, id);
-		// tx || rs : tx는 자동처리 / rs는 mybaris가 처리해줌.
+		// tx || rs : tx는 자동처리 / rs는 mybatis가 처리해줌.
 		// close : spring이 처리해줌
 	}
 
 	public MemberVo login(MemberVo memberVo) {
 
 		return dao.login(sst, memberVo);
+	}
+
+	public MemberVo myInfo(MemberVo vo)throws Exception {
+
+		int result = dao.myInfo(sst, vo);
+		if (result != 1) {
+			throw new Exception();
+		}
+		return dao.selectOneByNo(sst, vo);
+
 	}
 
 }// class

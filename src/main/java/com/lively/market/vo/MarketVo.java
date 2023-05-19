@@ -14,7 +14,9 @@ public class MarketVo {
 	private String editDate;
 	private String deleteYn;
 	private String locationNo;
+	private String statusYn;
 	
 	private String locationName;
 	private String writerName;
+	
 }

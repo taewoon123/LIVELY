@@ -12,7 +12,7 @@
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
                 <div class="write-board">
-                    <form action="${rootContext}/query/detail" method="POST">
+                    <form action="${rootContext}/help/write" method="POST">
                         <div class="write-group">
 
                             <h3 id="friend-title">Help</h3>

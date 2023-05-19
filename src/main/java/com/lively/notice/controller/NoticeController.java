@@ -98,6 +98,7 @@ public class NoticeController {
 		return "redirect:notice/detail?num=" + vo.getNoticeNo();
 	}
 	
+	//공지사항 삭제하기
 	@GetMapping("delete")
 	public String delete(String num, RedirectAttributes ra) throws Exception {
 		

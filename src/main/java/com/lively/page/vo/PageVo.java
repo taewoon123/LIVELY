@@ -1,4 +1,4 @@
-package com.lively.notice.page.vo;
+package com.lively.page.vo;
 
 import lombok.Getter;
 import lombok.ToString;

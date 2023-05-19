@@ -44,4 +44,11 @@ public class FriendService {
     
     // 삭제하기(작성자만)
 	
+	
+	//지역
+	public List<Map<String, String>> getLocationNoList() {
+		return dao.getLocationNoList(sst);
+	}
+
+
 }

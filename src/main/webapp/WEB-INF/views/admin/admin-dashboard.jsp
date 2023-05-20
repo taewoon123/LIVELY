@@ -113,7 +113,7 @@
 </body>
 <script>
 
-    if (${adminLog == null}) {
+    if (${adminLog == null && adminLog.adminId != "superuser"}) {
         alert("관리자 로그인이 필요합니다.");
         location.href = "${rootContext}/main";
     }

@@ -27,6 +27,7 @@
         <nav class="navbar navbar-expand-lg">
                     <div class="container">
                         <a class="navbar-brand" href="${rootContext}/main">
+                            <img src="/lively/resources/img/Lively.png" alt="Lively Logo" width="60px" height="60px" class="site-footer-logo-img">
                             Lively
                         </a>
 
@@ -74,17 +75,19 @@
                                     <a class="nav-link click-scroll" href="#section_6">Contact</a>
                                 </li>
                             </ul>
+
                             <c:choose>
                                 <c:when test="${sessionScope.memberLog == null}">
+                                    <span style="width: 135px;"></span>
                                     <a href="${rootContext}/member/join" class="btn custom-btn d-lg-block d-none">Sign Up</a> &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="${rootContext}/member/login" class="btn custom-btn d-lg-block d-none">Sign In</a>
                                 </c:when>
                                 <c:when test="${sessionScope.memberLog != null}">
+                                    <span style="width: 135px; color: #078735; font-size: 17px;">hello! <br> <strong>${memberLog.name}</strong> &nbsp;&nbsp;</span>
                                     <a href="${rootContext}/member/my-info" class="btn custom-btn d-lg-block d-none">My Page</a> &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="${rootContext}/member/logout" class="btn custom-btn d-lg-block d-none">Logout</a>
                                 </c:when>
                             </c:choose>
-
 
                         </div>
                     </div>

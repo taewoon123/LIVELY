@@ -12,6 +12,7 @@
 	<body>
 
 		<%@ include file="/WEB-INF/views/common/header.jsp" %>
+		<%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
 			<div id="wrap">
 				<div class="form-container">
@@ -63,14 +64,8 @@
 			</div>
 
 			<%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
 	</body>
-	<script>
-		if (${not empty memberLoginAlert}){
-			alert("${memberLoginAlert}")
-		}
 
-	</script>
 	<link rel="stylesheet" href="${rootContext}/resources/css/member/login.css">
 	<script src="${rootContext}/resources/js/member/login.js"></script>
 	<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css">

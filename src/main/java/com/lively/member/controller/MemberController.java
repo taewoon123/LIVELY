@@ -45,7 +45,7 @@ public class MemberController {
 			model.addAttribute("alertMsg", "회원가입 실패");
 			return "member/join";
 		}
-		session.setAttribute("alertMsg", "회원가입 성공!");
+		session.setAttribute("alertMsg", "회원가입완료! 로그인 해주세요 :)");
 		return "redirect:/member/login";
 
 	}// join
@@ -57,9 +57,9 @@ public class MemberController {
 
 		int result = ms.checkId(id);
 
-		if (result > 0) {
+		if (result > 0 ) {
 			return "isDup";
-		} else {
+		}else{
 			return "notDup";
 		}
 	}// idCheck
@@ -77,10 +77,8 @@ public class MemberController {
 
 		if (memberLog == null) {
 			session.setAttribute("alertMsg", "아이디 또는 비밀번호를 확인해주세요.");
-			System.out.println(memberLog);
 			return "member/login";
 		}
-		System.out.println(memberLog);
 		session.setAttribute("memberLog", memberLog);
 		return "redirect:/main";
 	}

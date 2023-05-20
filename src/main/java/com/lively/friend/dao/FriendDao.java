@@ -33,7 +33,7 @@ public class FriendDao {
 	}
 
 	public List<Map<String, String>> getLocationNoList(SqlSessionTemplate sst) {
-		return sst.selectList("friend.getLocationNoList");
+		return sst.selectList("friend.getLocationList");
 	}
 
 	public int getFeedCount(SqlSessionTemplate sst) {

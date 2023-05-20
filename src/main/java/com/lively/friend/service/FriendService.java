@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lively.common.FileVo;
 import com.lively.friend.dao.FriendDao;
 import com.lively.friend.vo.FriendVo;
+import com.lively.page.vo.PageVo;
 
 @Service
 @Transactional
@@ -26,8 +27,8 @@ public class FriendService {
 	}
 	
 	//피드
-	public List<FriendVo> getFriendFeed(Map<String , String> searchMap){
-		return dao.getFriendFeed(sst , searchMap);
+	public List<FriendVo> getFriendFeed(Map<String , String> searchMap , PageVo pageVo){
+		return dao.getFriendFeed(sst , searchMap , pageVo);
 	}
 	
 	//작성하기
@@ -49,6 +50,14 @@ public class FriendService {
 	public List<Map<String, String>> getLocationNoList() {
 		return dao.getLocationNoList(sst);
 	}
+
+	//총갯수
+	public int getFeedCount() {
+		return dao.getFeedCount(sst);
+	}
+
+
+
 
 
 }

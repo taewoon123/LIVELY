@@ -18,6 +18,9 @@
         FROM FUNDRAISE F
         JOIN MEMBER M ON M.NO = F.WRITER
         WHERE DELETE_YN = 'N'
+      <if test="searchValue != null">
+        AND F.TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
         ORDER BY FUNDRAISE_NO DESC
     </select>
 
@@ -47,6 +50,12 @@
         SET VIEWS = VIEWS + 1
         WHERE FUNDRAISE_NO = #{no}
         AND DELETE_YN = 'N'
+    </update>
+    <update id="delete">
+      UPDATE FUNDRAISE
+      SET DELETE_YN = 'Y',
+      EDIT_DATE = SYSDATE
+      WHERE FUNDRAISE_NO = #{no}
     </update>
 </mapper>
 

@@ -16,15 +16,15 @@
 <div id="wrap">
 
     <main>
-
+        <form action="${rootContext}/fund/list" method="get">
         <!-- search button -->
         <div class="container-input">
-            <label for="search-type" id=""></label>
-            <select name="search-type" id="search-type">
-                <option value="">제목</option>
-                <option value="">내용</option>
-                <option value="">작성자</option>
-            </select>
+<%--            <label for="search-type" id=""></label>--%>
+<%--            <select name="search-type" id="search-type">--%>
+<%--                <option value="">제목</option>--%>
+<%--                <option value="">내용</option>--%>
+<%--                <option value="">작성자</option>--%>
+<%--            </select>--%>
             <input type="text" placeholder="Search" name="searchValue" class="input">
             <svg fill="#000000" width="20px" height="20px"
                  viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@
                 </path>
             </svg>
         </div>
-
+        </form>
         <br> <br> <br>
 
         <table>

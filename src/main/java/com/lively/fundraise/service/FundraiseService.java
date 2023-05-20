@@ -21,8 +21,8 @@ public class FundraiseService {
         this.sqlSessionTemplate = sqlSessionTemplate;
     }
 
-    public List<FundraiseVo> getFundList(PageVo pageVo) {
-        return dao.getFundList(sqlSessionTemplate, pageVo);
+    public List<FundraiseVo> getFundList(PageVo pageVo,String searchValue) {
+        return dao.getFundList(sqlSessionTemplate, pageVo,searchValue);
     }
 
     public FundraiseVo getFundDetail(int no) {
@@ -35,5 +35,12 @@ public class FundraiseService {
 
     public int getNoticeListCount() {
        return dao.getFundListCount(sqlSessionTemplate);
+    }
+
+    public List<String> search(String searchValue) {
+        return dao.search(sqlSessionTemplate, searchValue);
+    }
+    public int delete(int no) {
+      return dao.delete(sqlSessionTemplate, no);
     }
 }

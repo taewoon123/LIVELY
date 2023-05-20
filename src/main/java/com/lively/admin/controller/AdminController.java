@@ -28,10 +28,10 @@ public class AdminController {
     @GetMapping("dashboard")
     public String admin(HttpSession session, Model model, MemberVo memberVo) {
         //retrieve signed in admin Information from the session
-        //if admin is not signed in, redirect to log in view
+        //if admin is not signed in, redirect to login view
         AdminVo adminLog = (AdminVo) session.getAttribute("adminLog");
 
-        //retrieve memberList from Database
+        //receive memberList from Database
         List<MemberVo> memberList = service.presentMembers(memberVo);
         //if memberList is not null, add memberList to model
         if(memberList != null) {
@@ -104,6 +104,10 @@ public class AdminController {
         }
         return "admin/admin-signup";
     }
-
+    @RequestMapping("logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/main";
+    }
 
 }

@@ -33,7 +33,7 @@
 
 				<c:if test="${adminLog.adminId eq 'admin'}">
 				<div id="notice-btn-area">
-					<button id="write_submit_delete" onclick="location.href='${root}/notice/delete?num=${vo.noticeNo}'"><span>삭제하기</span></button>
+					<button id="write_submit_delete" onclick="location.href='${rootContext}/notice/delete?num=${vo.noticeNo}'"><span>삭제하기</span></button>
 					<button id="write_submit_edit" onclick="toggleActive();"><span>수정하기</span></button>
 				</div>
 				</c:if>
@@ -70,8 +70,6 @@
 </body>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/notice/notice-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"/>
-</html>
-
 <script>
 
     function toggleActive(){
@@ -83,3 +81,4 @@
     }
     
 </script>
+</html>

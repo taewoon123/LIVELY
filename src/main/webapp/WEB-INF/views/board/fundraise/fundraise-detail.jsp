@@ -15,8 +15,9 @@
 
         <br>
 
+        <div id="fund-no" style="color: white">${fundraiseNo}</div>
         <div class="view-area active">
-            <a href="${rootContext}/help/list" id="list-btn">목록</a>
+            <a href="${rootContext}/fund/list" id="list-btn">목록</a>
             <div id="help-area">
                 <div id="help-title">제목</div>
                 <div id="help-inTitle">${fundDetail.title}</div>
@@ -28,14 +29,17 @@
                 <div id="help-inContent">${fundDetail.content}</div>
             </div>
 
-            <!-- 작성 버튼 -->
-            <button id="write_submit_delete">
-                <span>삭제하기</span>
-            </button>
+            <c:if test="${memberLog.id eq fundDetail.writer }">
+                <!-- 작성 버튼 --> <button id="write_submit_delete" onclick="location.href='${rootContext}/fund/delete?no=${fundDetail.fundraiseNo}'">
+                    <span>삭제하기</span>
+                </button>
+                <span style="color: whitesmoke">${fundraiseNo}</span>
 
-            <button id="write_submit_edit">
-                <span>수정하기</span>
-            </button>
+                <button id="write_submit_edit">
+                    <span>수정하기</span>
+                </button>
+            </c:if>
+
 
         </div>
 
@@ -56,8 +60,15 @@
 </div> <!-- div wrap end -->
 
 </body>
+<script>
+    if(${fundDetailAlert != null}){
+        alert("${fundDetailAlert}");
+    }
+
+</script>
 </html>
 
 <script src="${rootContext}/resources/js/board/comment-detail.js"></script>
+<%--<script src="${rootContext}/resources/js/board/fundraise/fund-detail.js"></script>--%>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/fundraise/fundraise-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

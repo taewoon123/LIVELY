@@ -54,11 +54,13 @@
 			</table>
 
 			<!-- 작성 버튼 -->
+			<c:if test="${adminLog.adminId == 'admin'}">
 			<button id="write_submit">
 				<span> 
 					<a class="write-btn" href="${rootContext}/notice/write">write</a>
 				</span>
-			</button>
+			</button>			
+			</c:if>
 
 			<!-- pagenation -->
 			<div class="page-area">
@@ -90,10 +92,9 @@
 
 	
 </body>
-</html>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/notice/notice-list.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
-
+</html>
 <script>
 const table = document.querySelector("main table tbody");
 table.addEventListener("click", function(event){

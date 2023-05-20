@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.lively.page.vo.PageVo;
+import com.lively.admin.vo.AdminVo;
 import com.lively.notice.service.NoticeService;
 import com.lively.notice.vo.NoticeVo;
 
@@ -49,9 +49,24 @@ public class NoticeController {
 		return "board/manage/notice/notice-list";
    }
 	
-	//공지사항 작성하기 (화면)
+	//공지사항 작성하기 (화면 / 관리자)
 	@GetMapping("write")
-	public String write() {
+	public String write(HttpSession session, Model model) {
+		AdminVo adminLog = (AdminVo) session.getAttribute("adminLog");
+		
+		if(adminLog == null) {
+			model.addAttribute("errorMsg", "잘못된 접근입니다.");
+			return "common/error-page";
+		}
+		
+		String adminId = adminLog.getAdminId();
+		boolean isAdmin = "admin".equals(adminId);
+		
+		if(!isAdmin) {
+			model.addAttribute("errorMsg", "잘못된 접근입니다.");
+			return "common/error-page";
+		}
+		
 		return "board/manage/notice/notice-write";
 	}
 	
@@ -87,6 +102,16 @@ public class NoticeController {
 	//공지사항 수정하기 (실패함 다시봐야됨)
 	@PostMapping("edit")
 	public String edit(NoticeVo vo, Model model, HttpSession session) {
+		AdminVo adminLog = (AdminVo) session.getAttribute("adminLog");
+		String adminId = "";
+		if(adminLog != null) {
+			adminId = adminLog.getAdminId();
+		}
+		
+		if(!"admin".equalsIgnoreCase(adminId)) {
+			model.addAttribute("errorMsg", "잘못된 요청입니다...");
+			return "common/error-page";
+		}
 		
 		int result = ns.edit(vo);
 		
@@ -96,7 +121,7 @@ public class NoticeController {
 		}
 		
 		session.setAttribute("alertMsg", "수정성공!!");
-		return "redirect:notice/detail?num=" + vo.getNoticeNo();
+		return "redirect:/notice/detail?num=" + vo.getNoticeNo();
 	}
 	
 	//공지사항 삭제하기

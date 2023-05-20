@@ -31,18 +31,18 @@
                         <!-- 0505 : 파일 업로드란 감싸고 있던 form 태그 제거함 -->
 
                         <!-- UI첨부파일(drop files) -->
-                        <p class="form-paragraph">
+                        <!-- <p class="form-paragraph">
                             File should be an image or video
                         </p>
                         <label for="file-input" class="drop-container">
                             <span class="drop-title">Drop files here</span>
                             <a>or</a>
                             <input type="file" accept="image/*" id="file-input" style="font-size: 15px">
-                            <!-- 0505 :required 삭제 -->
+                            0505 :required 삭제
                         </label>
                         <div class="tag-group">
                             <input type="text" class="tag" placeholder="#태그">
-                        </div>
+                        </div> -->
 
                         <div class="register">
                             <div id="registerName"><input value="취소" type="button"

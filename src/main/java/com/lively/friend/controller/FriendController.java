@@ -1,6 +1,5 @@
 package com.lively.friend.controller;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -33,12 +32,12 @@ import com.lively.common.FileVo;
 import com.lively.friend.service.FriendService;
 import com.lively.friend.vo.FriendVo;
 import com.lively.member.vo.MemberVo;
+import com.lively.page.vo.PageVo;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("friend")
-@Slf4j
 public class FriendController {
 	
 	private final FriendService fs;
@@ -50,14 +49,23 @@ public class FriendController {
 	
 	//피드목록
 	@GetMapping("list")
-	public String list(Model model,  @RequestParam Map<String, String> searchMap) {
+	public String list(Model model,  @RequestParam Map<String, String> searchMap, @RequestParam(defaultValue = "1") int page) {
 		
-		List<FriendVo> friendList = fs.getFriendFeed(searchMap);
-		List<Map<String, String>> lvoList = fs.getLocationNoList();
+		//데이터
+		int listCount = fs.getFeedCount();
+		int currentPage = page;
+		int pageLimit = 3;
+		int boardLimit = 3;
+		PageVo pageVo = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
+		List<FriendVo> friendList = fs.getFriendFeed(searchMap , pageVo);
+		List<Map<String, String>> LocationList = fs.getLocationNoList();
+		
+		model.addAttribute("pageVo" , pageVo);
 		model.addAttribute("friendList", friendList);
 		model.addAttribute("searchMap" , searchMap);
-		model.addAttribute("lvoList", lvoList);
+		model.addAttribute("LocationList", LocationList);
+		
 		return "board/friend/friend-list";
 	}
 	

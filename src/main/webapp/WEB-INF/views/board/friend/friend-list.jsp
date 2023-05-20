@@ -48,16 +48,18 @@
 	                </div>
 		<c:forEach items="${friendList}" var="fList">
             <!-- 첫번째 피드 시작 -->
-            <div id="feed_box">
+            <div id="feed_box feed_status_${fList.statusYn}">
                 <div id="profile_area">
                     <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
                     <div id="profile_box">
                         <div id="profile_name">김본전</div>
                         <div id="profile_nick">라이블리</div>
                     </div>
-                    <div id="friend_end_box">
-                        <input id="friend_end" type="text" value="모집마감" disabled/>
+                    <c:if test="${fList.statusYn == 'N'}">
+                    <div id="feed_status">
+                        <input class="feed_status_text" value="모집마감" readonly/>
                     </div>
+                    </c:if>
                 </div>
                 <div id="feed-image">
                     <div id="img_area">
@@ -100,13 +102,33 @@
                 </div>
                 <div id="content_area">
                 	<h7>${fList.title}</h7><br>
-                    <a>${fList.content}</a>
+                    <span class="feed-content">${fList.content}</span>
+	                <span class="feed-content-hide"></span>
+	                <button class="feed-content-more-button">more</button>
                 </div>
                 <div id="chat_area">
                     <button onclick="chat();"><a>CHAT</a></button>
                 </div>
             </div>
 		</c:forEach>
+		
+		<div id="page-area">
+				<c:if test="${pageVo.currentPage > 1}">
+					<a class="prevPage" href="${rootContext}/friend/list?page=${pageVo.currentPage-1}">이전</a>
+				</c:if>
+				<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" step="1" var="i">
+					<c:if test="${pageVo.currentPage != i }">
+						<a class="btn btn-secondary btn-sm page_button" href="${rootContext}/friend/list?page=${i}">${i}</a>
+					</c:if>
+					<c:if test="${pageVo.currentPage == i }">
+						<a class="btn btn-dark btn-sm page_button">${i}</a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pageVo.currentPage < pageVo.maxPage}">
+					<a class="nextPage" href="${rootContext}/friend/list?page=${pageVo.currentPage+1}">다음</a>
+				</c:if>
+			</div>
+		
             
         </main>
         

@@ -44,6 +44,9 @@
 
 .form-area {
    display: none;
+   color: white;
+   margin-top: 15%;
+   margin-bottom: 15%;
 }
 
 .active {

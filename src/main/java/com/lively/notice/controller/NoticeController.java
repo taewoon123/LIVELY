@@ -121,7 +121,7 @@ public class NoticeController {
 		}
 		
 		session.setAttribute("alertMsg", "수정성공!!");
-		return "redirect:notice/detail?num=" + vo.getNoticeNo();
+		return "redirect:/notice/detail?num=" + vo.getNoticeNo();
 	}
 	
 	//공지사항 삭제하기

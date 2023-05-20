@@ -5,22 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-.view-area {
-	display: none;
-}
-
-.form-area {
-	display: none;
-	color: white;
-   	margin-top: 15%;
-   	margin-bottom: 15%;
-}
-
-.active {
-	display: block;
-}
-</style>
 </head>
 <header>
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -37,15 +21,16 @@
 			
 			<a href="${rootContext}/notice/list" id="list-btn">목록</a>
 				<div id="notice-area">
-					<div id="notice-title">제목</div>
-					<div id="notice-inTitle">${vo.noticeTitle}</div>
-					<div id="notice-date">작성일자</div>
-					<div id="notice-inDate">${vo.enrollDate}</div>
-					<div id="notice-hit">조회수</div>
-					<div id="notice-inHit">${vo.views}</div>
-					<div id="notice-content">내용</div>
-					<div id="notice-inContent">${vo.noticeContent}</div>
-				</div>
+               		<div id="notice-title">제목</div>
+               		<div id="notice-inTitle">${vo.noticeTitle}</div>
+               		<div id="notice-date">작성일자</div>
+               		<div id="notice-inDate">${vo.enrollDate}</div>
+               		<div id="notice-hit">조회수</div>
+               		<div id="notice-inHit">${vo.views}</div>
+               		<div id="notice-content">내용</div>
+               		<div id="notice-inContent">${vo.noticeContent}</div>
+            	</div>
+
 				<c:if test="${adminLog.adminId eq 'admin'}">
 				<div id="notice-btn-area">
 					<button id="write_submit_delete" onclick="location.href='${root}/notice/delete?num=${vo.noticeNo}'"><span>삭제하기</span></button>
@@ -55,7 +40,7 @@
 			</div>
 
 			<div class="form-area">
-				<form action="${root}/notice/edit" method="POST" enctype="multipart/form-data">
+				<form action="${rootContext}/notice/edit" method="POST" enctype="multipart/form-data">
 					<input type = "hidden" name = "noticeNo" value = "${vo.noticeNo}">
 					<div id="notice-area">
 						<div id="notice-title">제목</div>
@@ -68,7 +53,7 @@
 						<div id="notice-inHit">${vo.views}</div>
 						<div id="notice-content">내용</div>
 						<div>
-							<textarea id="notice-inContent" name="content">${vo.noticeContent}</textarea>
+							<textarea id="notice-inContent" name="noticeContent">${vo.noticeContent}</textarea>
 						</div>
 					</div>
 					<br> <button id="write_submit_edit" style = "margin-right: 240px;"><span>수정하기</span></button>

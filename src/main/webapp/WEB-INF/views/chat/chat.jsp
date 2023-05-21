@@ -20,7 +20,7 @@
                 CHAT
             </div>
 
-            <div class="chat_wrap">
+ <!--            <div class="chat_wrap">
                 <div class="chat ch1">
                     <div class="icon"><i class=""></i></div>
                     <div class="textbox">안녕하세요! </div>
@@ -37,10 +37,22 @@
                     <div class="icon"><i class=""></i></div>
                     <div class="textbox">잘 지내고 있어요 ㅎㅎ</div>
                 </div>
-            </div>
+            </div> -->
             <div class="input_div">
                 <textarea placeholder="Press Enter for send message."></textarea>
             </div>
+            <div class="chat format">
+        <ul>
+            <li>
+                <div class="sender">
+                    <span></span>
+                </div>
+                <div class="message">
+                    <span></span>
+                </div>
+            </li>
+        </ul>
+    </div>
         </main>
 
     </div>
@@ -49,3 +61,4 @@
 </body>
 </html>
     <link rel="stylesheet" href="${rootContext}/resources/css/chat/chat.css">
+    <script src="${rootContext}/resources/js/chat/chat.js"></script>

@@ -31,7 +31,11 @@ public class FundraiseDao {
     public List<String> search(SqlSessionTemplate sqlSessionTemplate,String searchValue) {
         return sqlSessionTemplate.selectList("fundraise.search", searchValue);
     }    
-    public int delete(SqlSessionTemplate sqlSessionTemplate, int no) {
+    public int delete(SqlSessionTemplate sqlSessionTemplate, String no) {
         return sqlSessionTemplate.delete("fundraise.delete", no);
+    }
+    public int write(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
+        System.out.println(vo.getWriter());
+        return sqlSessionTemplate.insert("fundraise.write", vo);
     }
 }

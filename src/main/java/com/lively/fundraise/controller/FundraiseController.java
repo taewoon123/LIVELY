@@ -1,5 +1,6 @@
 package com.lively.fundraise.controller;
 
+import com.lively.member.vo.MemberVo;
 import com.lively.page.vo.PageVo;
 import com.lively.fundraise.service.FundraiseService;
 import com.lively.fundraise.vo.FundraiseVo;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Member;
 import java.util.List;
 @Slf4j
 @Controller
@@ -36,7 +38,6 @@ public class FundraiseController {
         PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit);
         List<FundraiseVo> fundraiseList = service.getFundList(pageVo, searchValue);
         if (fundraiseList != null) {
-            log.info("fundraiseList : {}", fundraiseList.get(0));
             model.addAttribute("pageVo", pageVo);
             model.addAttribute("fundraiseList", fundraiseList);
         }
@@ -45,21 +46,21 @@ public class FundraiseController {
 
     @GetMapping("detail")
     public String fundDetail(int no, Model model,HttpSession session) {
-        log.info("D E T A I L " +  model.getAttribute("fundraiseList"));
         FundraiseVo vo = service.getFundDetail(no);
         if (vo == null) {
             model.addAttribute("fundDetailAlert", "해당 글이 존재하지 않습니다");
             return "board/fundraise/fundraise-detail";
         }
         model.addAttribute("fundDetail", vo);
+        model.addAttribute("fundNo",no);
         return "board/fundraise/fundraise-detail";
     }
 
 
     
-    //TODO : no의 값을 못가져옴
+    //TODO : no의 값을 가져와야함
     @GetMapping("delete")
-    public String fundDelete(int no, HttpSession session, Model model) {
+    public String fundDelete(String no, HttpSession session, Model model) {
         int result = service.delete(no);
         if (result > 0) {
             session.setAttribute("fundDeleteAlert", "글 삭제 성공");
@@ -71,15 +72,25 @@ public class FundraiseController {
 
 
     @GetMapping("write")
-    public String fundWrite() {
+    public String fundWrite(Model model, HttpSession session) {
+        MemberVo memberLog = (MemberVo)session.getAttribute("memberLog");
+        if(memberLog == null) {
+            model.addAttribute("alertMsg", "로그인 후 이용 가능합니다.");
+            return "member/login";
+        }
         return "board/fundraise/fundraise-write";
     }
 
     @PostMapping("write")
-    public String fundWrite(FundraiseVo vo, Model model) {
-      int result = service.write(vo); 
-      if(result > 0){
-      
-      }
+    public String fundWrite(FundraiseVo vo, Model model, HttpSession session) {
+        MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+        vo.setWriter(memberLog.getNo());
+
+        int result = service.write(vo);
+        if (result > 0) {
+            return "redirect:/fund/list";
+        }
+        model.addAttribute("fundWriteAlert", "글 작성 실패");
+        return "redirect:/fund/list";
     }
 }

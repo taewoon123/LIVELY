@@ -87,7 +87,7 @@
                                     <a href="${rootContext}/member/my-info" class="btn custom-btn d-lg-block d-none">My Page</a> &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="${rootContext}/member/logout" class="btn custom-btn d-lg-block d-none">Logout</a>
                                 </c:when>
-                                <c:when test="${sessionScope.adminLog != null && sessionScope.superuser != null}">
+                                <c:when test="${sessionScope.adminLog != null}">
                                     <a href="${rootContext}/admin/dashboard" class="btn custom-btn d-lg-block d-none">DashBoard</a> &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="${rootContext}/admin/logout" class="btn custom-btn d-lg-block d-none">Logout</a>
                                 </c:when>

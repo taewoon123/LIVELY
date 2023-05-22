@@ -12,6 +12,7 @@ import com.lively.page.vo.PageVo;
 @Repository
 public class HelpDao {
 
+	//목록 조회
 	public List<HelpVo> getHelpList(SqlSessionTemplate sst, PageVo pv) {
 		int limit = pv.getBoardLimit();
 		int offset = (pv.getCurrentPage()-1) * limit;
@@ -19,6 +20,7 @@ public class HelpDao {
 		return sst.selectList("help.getHelpList", null, rb);
 	}
 
+	//게시글 갯수 조회
 	public int getHelpListCnt(SqlSessionTemplate sst) {
 		return sst.selectOne("help.getHelpListCnt");
 	}
@@ -27,6 +29,7 @@ public class HelpDao {
 		return sst.insert("help.write", vo);
 	}
 
+	//조회수
 	public int increaseViews(SqlSessionTemplate sst, String num) {
 		return sst.update("help.increaseViews", num);
 	}

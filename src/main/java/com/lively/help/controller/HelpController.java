@@ -34,7 +34,7 @@ public class HelpController {
 	
 	//도움 목록 조회
 	@GetMapping("list")
-    public String list(Model model, @RequestParam(defaultValue = "1") int page) {
+    public String list(HelpVo vo, Model model, @RequestParam(defaultValue = "1") int page) {
       
 		//서비스 호출
 		int listCount = hs.getHelpListCnt();

@@ -13,6 +13,7 @@ public class FriendVo {
 	private String deleteYn;
 	private String editDate;
 	private String locationNo;
+	private String statusYn;
 	
 	private String writerName;
 	private String locationName;

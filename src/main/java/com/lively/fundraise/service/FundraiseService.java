@@ -40,7 +40,12 @@ public class FundraiseService {
     public List<String> search(String searchValue) {
         return dao.search(sqlSessionTemplate, searchValue);
     }
-    public int delete(int no) {
+    public int delete(String no) {
       return dao.delete(sqlSessionTemplate, no);
+    }
+
+    public int write(FundraiseVo vo) {
+        System.out.println(vo.getWriter());
+        return dao.write(sqlSessionTemplate, vo);
     }
 }

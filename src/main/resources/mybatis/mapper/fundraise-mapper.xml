@@ -57,6 +57,24 @@
       EDIT_DATE = SYSDATE
       WHERE FUNDRAISE_NO = #{no}
     </update>
+    <insert id="write">
+            INSERT INTO FUNDRAISE
+            (FUNDRAISE_NO,
+            WRITER,
+            TITLE,
+            CONTENT,
+            VIEWS,
+            MONEY,
+            MONEY_GOAL)
+            VALUES
+            (SEQ_FUNDRAISE_NO.nextval,
+            #{writer},
+            #{title},
+            #{content},
+            0,
+            #{money},
+            #{moneyGoal})
+    </insert>
 </mapper>
 
 

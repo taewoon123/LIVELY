@@ -31,7 +31,6 @@
 
         <div class="col-lg-6 col-12">
           <div class="site-footer-logo-img-div">
-            <img src="${rootContext}/resources/img/Lively.png" alt="Lively Logo" width="70px" height="70px" class="site-footer-logo-img">
           <h2 class="text-white mb-lg-0 logo-img-text">Lively</h2>
           </div>
         </div>

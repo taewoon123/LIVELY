@@ -2,6 +2,7 @@ package com.lively.help.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.help.service.HelpService;
 import com.lively.help.vo.HelpVo;
+import com.lively.member.vo.MemberVo;
 import com.lively.page.vo.PageVo;
 
 @Controller
@@ -56,7 +59,14 @@ public class HelpController {
 	
 	//도움 작성하기
 	@PostMapping("write")
-	public String write(HelpVo vo, HttpSession session) {
+	public String write(HelpVo vo, HttpSession session, HttpServletRequest req) throws Exception {
+		
+		//로그인 여부 체크
+		MemberVo memberLog = (MemberVo)session.getAttribute("memberLog");
+		if(memberLog == null) {
+			throw new Exception("로그인 후 이용 가능합니다.");
+		}
+		vo.setWriter(memberLog.getNo());
 		
 		int result = hs.write(vo);
 		
@@ -76,16 +86,17 @@ public class HelpController {
 		
 		if(vo == null) {
 			model.addAttribute("errorMsg", "조회 실패...");
-			return "common/error-page";
+			return "board/help/help-detail";
 		}
 		
-		model.addAttribute("vo", vo);
+		model.addAttribute("hvo", vo);
+		model.addAttribute("helpNo", num);
 		return "board/help/help-detail";
 	}
 	
 	//도움 삭제하기
 	@GetMapping("delete")
-	public String delete(String num, RedirectAttributes ra) throws Exception {
+	public String delete(String num) throws Exception {
 		
 		int result = hs.delete(num);
 		

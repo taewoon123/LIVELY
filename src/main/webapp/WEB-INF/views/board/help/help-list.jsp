@@ -56,10 +56,12 @@
 			</table>
 
 			<!-- 작성 버튼 -->
+			<c:if test = "${not empty memberLog}">
 			<button id="write_submit">
 				<span> <a class="write-btn" href="${rootContext}/help/write">write</a>
 				</span>
 			</button>
+			</c:if>
 
 			<!-- pagenation -->
 			<div class="page-area">

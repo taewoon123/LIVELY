@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace = "help">
-	<select id="getHelpList" resultType = "helpVo">
+	<select id="getHelpList" resultType = "HelpVo">
 		SELECT *
 		FROM HELP
 		WHERE DELETE_YN = 'N'
@@ -30,7 +30,7 @@
 			SEQ_HELP_NO.NEXTVAL
 			, #{title}
 			, #{content}
-			, 1
+			, #{writer}
 		)
 	</insert>
 	
@@ -41,11 +41,19 @@
 		AND DELETE_YN = 'N'
 	</update>
 	
-	<select id="getHelp" resultType = "helpVo">
-		SELECT *
-		FROM HELP
-		WHERE HELP_NO = #{num}
-		AND DELETE_YN = 'N'
+	<select id="getHelp" resultType = "HelpVo">
+		SELECT H.HELP_NO AS NO,
+        M.NAME AS WRITER,
+        H.TITLE,
+        H.CONTENT,
+        H.ENROLL_DATE,
+        H.EDIT_DATE,
+        H.DELETE_YN,
+        H.VIEWS
+        FROM HELP H
+        JOIN MEMBER M ON M.NO = H.WRITER
+        WHERE DELETE_YN = 'N'
+        AND HELP_NO = #{num}
 	</select>
 	
 	<update id="delete">

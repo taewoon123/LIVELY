@@ -56,6 +56,17 @@ public class FriendService {
 		return dao.getFeedCount(sst);
 	}
 
+	public FileVo getAttachment(String friendAttachNo) {
+		return dao.getAttachment(sst , friendAttachNo);
+	}
+
+	/*
+	 * public FriendVo getFriendFeed(String no) {
+	 * 
+	 * FriendVo fvo = dao.getFriendFeed(sst,no); List<FileVo> fileList =
+	 * dao.getAttachmentList(sst , no); fvo.setAttachmentList(fileList); return fvo;
+	 * }
+	 */
 
 
 

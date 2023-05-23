@@ -41,5 +41,22 @@ public class FriendDao {
 	}
 
 
+	public FileVo getAttachment(SqlSessionTemplate sst, String friendAttachNo) {
+		return sst.selectOne("friend.getAttachment" , friendAttachNo);
+	}
+
+
+	/*
+	 * public FriendVo getFriendFeed(SqlSessionTemplate sst, String no) { return
+	 * sst.selectOne("friend.getFriendFeed" , no); }
+	 */
+
+	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("friend.getAttachmentList" , no);
+	}
+	
+	//상세조회
+	
+
 	
 }

@@ -2,6 +2,7 @@
 .idea/*
 target/*
 .project
+root-context.xml
 # Created by https://www.toptal.com/developers/gitignore/api/maven,eclipse,intellij,vim,macos,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=maven,eclipse,intellij,vim,macos,windows
 
@@ -284,3 +285,18 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/maven,eclipse,intellij,vim,macos,windows
+src/main/webapp/resources/upload/friend/20230519151246_66638.jpg
+src/main/webapp/resources/upload/friend/20230520203541_49322.jpg
+src/main/webapp/resources/upload/friend/20230521165655_29003.png
+src/main/webapp/resources/upload/friend/20230521165655_68274.jpg
+src/main/webapp/resources/upload/friend/20230521165655_85846.jpg
+src/main/webapp/resources/upload/friend/20230521183740_25585.jpg
+src/main/webapp/resources/upload/friend/20230521183740_31271.jpg
+src/main/webapp/resources/upload/friend/20230521183740_54870.jpg
+src/main/webapp/resources/upload/friend/20230521184248_37981.png
+src/main/webapp/resources/upload/friend/20230521184248_53910.jpg
+src/main/webapp/resources/upload/friend/20230521184248_77975.jpg
+src/main/webapp/resources/upload/friend/20230521185230_47350.png
+src/main/webapp/resources/upload/friend/20230521185230_70125.jpg
+src/main/webapp/resources/upload/friend/20230521185230_78665.jpg
+src/main/webapp/WEB-INF/spring/root-context.xml

@@ -115,6 +115,7 @@
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
     
+    
 
 </body>
  <script src="${rootContext}/resources/js/board/market/market-list.js"></script>

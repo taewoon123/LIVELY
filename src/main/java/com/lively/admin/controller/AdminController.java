@@ -79,6 +79,7 @@ public class AdminController {
             return "admin/admin-signup";
           }
             session.setAttribute("adminLog", adminLog);
+            System.out.println(adminLog);
             return "redirect:dashboard";
         }
         model.addAttribute("adminLoginAlert", "아이디 또는 비밀번호를 확인해주세요.");

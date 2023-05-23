@@ -15,7 +15,6 @@
 
         <br>
 
-        <div id="fund-no" style="color: white">${fundraiseNo}</div>
         <div class="view-area active">
             <a href="${rootContext}/fund/list" id="list-btn">목록</a>
             <div id="help-area">
@@ -30,7 +29,8 @@
             </div>
 
             <c:if test="${memberLog.id eq fundDetail.writer }">
-                <!-- 작성 버튼 --> <button id="write_submit_delete" onclick="location.href='${rootContext}/fund/delete?no=${fundDetail.fundraiseNo}'">
+                <!-- 작성 버튼 -->
+                <button id="write_submit_delete" onclick="location.href='${rootContext}/fund/delete?no=${fundNo}'">
                     <span>삭제하기</span>
                 </button>
                 <span style="color: whitesmoke">${fundraiseNo}</span>
@@ -69,6 +69,5 @@
 </html>
 
 <script src="${rootContext}/resources/js/board/comment-detail.js"></script>
-<%--<script src="${rootContext}/resources/js/board/fundraise/fund-detail.js"></script>--%>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/fundraise/fundraise-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

@@ -63,7 +63,7 @@
 
         <!-- 작성 버튼 -->
         <button id="write_submit">
-				<span> <a class="write-btn" href="${rootContext}/help/write">write</a>
+				<span> <a class="write-btn" href="${rootContext}/fund/write">write</a>
 				</span>
         </button>
 
@@ -98,6 +98,11 @@
 
 </body>
 </html>
+<script>
+    if(${fundWriteAlert != null}){
+        alert("${fundWriteAlert}")
+    }
+</script>
 <script src="${rootContext}/resources/js/board/fundraise/fund-list.js"></script>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/fundraise/fundraise-list.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"/>

@@ -99,7 +99,7 @@ public class NoticeController {
 		return "board/manage/notice/notice-detail";
 	}
 	
-	//공지사항 수정하기 (실패함 다시봐야됨)
+	//공지사항 수정하기
 	@PostMapping("edit")
 	public String edit(NoticeVo vo, Model model, HttpSession session) {
 		AdminVo adminLog = (AdminVo) session.getAttribute("adminLog");

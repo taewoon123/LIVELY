@@ -29,6 +29,7 @@
     <!-- header 올자리 -->
 
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
+    <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
       <!-- ================ HTML은 이 아래에다가 ================== -->
 

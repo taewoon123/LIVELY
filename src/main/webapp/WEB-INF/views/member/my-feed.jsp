@@ -12,6 +12,7 @@
         <div id="wrap">
 
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
+            <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
                 <main>
                     <div id="search-upload-area">

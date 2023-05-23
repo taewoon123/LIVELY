@@ -1,5 +1,6 @@
-//아이디 중복검사
+//var joinTest = false;
 
+//아이디 중복검사
 function checkDup() {
   
   //1. 현재 입력된 아이디 준비
@@ -8,29 +9,30 @@ function checkDup() {
   //4. 결과에 따라 , 중복 여부를 알려주기
   
   const idTag = document.querySelector("input[name=id]");
-  const id = document.querySelector("input[name=id]").value;
+  const id = document.querySelector("input[name=id]");
   const idValidity = document.querySelector('#id-validity');
-
-  $.ajax({
-      url : '/lively/member/id-check',
-      type : 'POST',
-      data : {
-          'id' : id
-      },
-      success : function(data) {
-          if (data == 'notDup') {
-            idValidity.innerText = "사용가능";
-            idTag.style.border = "none";
-          } else {
-            idValidity.innerText = "ID중복";
-            idTag.style.border = "2px solid red";
-          }
-      },
-      error : function(e) {
-          alert("통신 실패");
-          console.log(e);
-      },
-    });
+    
+    $.ajax({
+        url : '/lively/member/id-check',
+        type : 'POST',
+        data : {
+            'id' : id.value
+        },
+        success : function(data) {
+            if (data == 'notDup') {
+              idValidity.innerText = "";
+              idTag.style.border = "none";
+            } else {
+              idValidity.innerText = "ID중복";
+              idTag.style.border = "2px solid red";
+              id.value = " ";
+            }
+        },
+        error : function(e) {
+            alert("통신 실패");
+            console.log(e);
+        },
+      });
 
 } 
 
@@ -49,7 +51,7 @@ pwd.addEventListener("blur", () => {
   if (!result) {
     pwdValidity.innerText = "사용불가";
     pwd.style.border = "2px solid red";
-    
+    pwd.value = "";
   } else {
     pwdValidity.innerText = "사용가능";
     pwd.style.border = "none";
@@ -63,6 +65,7 @@ pwd2.addEventListener("blur", () => {
   if (pwd.value != pwd2.value) {
     pwd2Validity.innerText = "불일치";
     pwd2.style.border = "2px solid red";
+    pwd2.value = "";
   } else {
     pwd2Validity.innerText = "일치";
     pwd2.style.border = "none";
@@ -77,8 +80,7 @@ const emailValidity = document.querySelector("#email-validity");
 
 email.addEventListener("blur", () => {
   const reg = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-  const emailCheck = email.value;
-  const result = reg.test(emailCheck);
+  const result = reg.test(email.value);
   
   if (!result) {
     emailValidity.innerText = "사용불가";
@@ -90,23 +92,8 @@ email.addEventListener("blur", () => {
 });
 
 
-// birthValue.length가 계속 0이 나와서 적용이 안됨. UI 다 만들고 해결해보겠습니다!
+// type을 data로 바꿔서 js 필요없음. (나중에 필요할 수 도 있으니 코드 그대로 둠)
 //생년월일 8자리 검사
-var birth = document.querySelector("#birth");
-var birthValidity = document.querySelector("#birth-validity");
-
-birth.addEventListener("blur", function() {
-  var birthValue = birth.value;
-  var regex = /^\d{8}$/; // 정규식: 8자리 숫자만 허용
-  
-  if (!regex.test(birthValue)) {
-    birthValidity.innerText = "8글자형식";
-    birth.style.border = "2px solid red";
-  } else {
-    birthValidity.innerText = "";
-    birth.style.border = "none";
-  }
-});
 
 // const birth = document.querySelector("#birth");
 // const birthValidity = document.querySelector("#birth-validity");
@@ -130,17 +117,35 @@ const hp = document.querySelector("#hp");
 const hpValidity = document.querySelector("#hp-validity");
 
 hp.addEventListener("blur",()=>{
-  const hpValue = hp.value;
-  console.log(hpValue); 
-
-  if(hpValue.length < 10 || hpValue.length > 11 || hpValue < 0100000000){
-    hpValidity.innerText = "10~11글자형식";
-    hp.style.border = "2px solid red";
-  }else{
-    hpValidity.innerText = "";
-    hp.style.border = "none";
-  }
+ const hpRegex = /^\d$/;
+ if(hp.value.length >= 10 && hp.value.length <= 11 && hp.value >= 0100000000){
+   hpValidity.innerText = "";
+   hp.style.border = "none";
+ }else{
+   hpValidity.innerText = "10~11글자형식";
+   hp.style.border = "2px solid red";
+   hp.value = "";
+ }
 });
 
+// //성별선택 필수
+// const female = document.querySelector('#female').checked;
+// const male = document.querySelector('#male').checked;
+// const genderCodeValidity = document.querySelector('#genderCode-validity');
 
+// if(!female && !male){
+//   genderCodeValidity.innerText = "선택필요";
+// }else{
+//   genderCodeValidity.innerText = "";
+// }
+
+// //지역선택 필수
+// const location = document.querySelector('#location').value;
+// const locationValidity = document.querySelector('#location-validity');
+
+// if(location === "Select"){
+//  locationValidity.innerText = "선택필요";
+// }else{
+//  locationValidity.innerText = "";
+// }
 

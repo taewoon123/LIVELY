@@ -12,6 +12,7 @@
 	<body>
 		<div>
 			<%@ include file="/WEB-INF/views/common/header.jsp" %>
+			<%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 		</div>
 
 		<div id="wrap">
@@ -99,7 +100,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="text" name="birth" id="birth" placeholder=" ex) 19951231" required>
+										<input type="date" name="birth" id="birth" required>
 									</div>
 								</th>
 								<td id="birth-validity">
@@ -113,7 +114,7 @@
 								</td>
 								<th>
 									<div class="input-group">
-										<input type="text" name="hp" id="hp" placeholder=" ex) 01055550000" required>
+										<input type="tel" name="hp" id="hp" placeholder=" ex) 01055550000" required>
 									</div>
 								</th>
 								<td id="hp-validity">
@@ -128,10 +129,10 @@
 								<th>
 									<div class="selections">
 										<span id="Female">
-											<input type="radio" name="genderCode" id="female" value="0"> <label for="female">Female</label>
+											<input type="radio" name="genderCode" id="female" value="0" required> <label for="female">Female</label>
 										</span>
 										<span id="Male">
-											<input type="radio" name="genderCode" id="male" value="1"> <label for="male">Male</label>
+											<input type="radio" name="genderCode" id="male" value="1" required> <label for="male" >Male</label>
 										</span>
 									</div>
 								</th>
@@ -148,7 +149,7 @@
 								<th>
 									<div class="selections">
 										<select class="location-option" name="locationNo" id="location" required>
-											<option value="0" selected>Select</option>
+											<option value="">Select</option>
 											<option value="1">강동구</option>
 											<option value="2">강서구</option>
 											<option value="3">강남구</option>

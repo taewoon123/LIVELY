@@ -10,6 +10,7 @@
 
 <div id="wrap">
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
+    <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
     <div class="write-board">
         <form action="${rootContext}/fund/write" method="POST">
@@ -48,6 +49,9 @@
                 <input type="file" accept="image/*" id="file-input" style="font-size: 15px">
                 <!-- 0505 :required 삭제 -->
             </label>
+            <div class="tag-group">
+                <input type="text" class="tag" placeholder="목표금액">
+            </div>
             <div class="tag-group">
                 <input type="text" class="tag" placeholder="#태그">
             </div>

@@ -41,6 +41,9 @@
                 </div>      
             </form>
 	                <div id="upload_button">
+   	                	<div id="feed_checkbox">
+	            			<input class="feed_checkbox_status" id="statusCheckbox" type="checkbox" onclick="feed_toggle();"><span>&nbsp; 모집중만 보기</span>
+           				</div>
 	                    <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/friend/write';">
 	                        <span class="actual-text">&nbsp;UPLOAD&nbsp;</span>
 	                        <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
@@ -48,16 +51,18 @@
 	                </div>
 		<c:forEach items="${friendList}" var="fList">
             <!-- 첫번째 피드 시작 -->
-            <div id="feed_box">
+            <div id="feed_box feed_status_${fList.statusYn}">
                 <div id="profile_area">
                     <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
                     <div id="profile_box">
                         <div id="profile_name">김본전</div>
                         <div id="profile_nick">라이블리</div>
                     </div>
-                    <div id="friend_end_box">
-                        <input id="friend_end" type="text" value="모집마감" disabled/>
+                    <c:if test="${fList.statusYn == 'N'}">
+                    <div id="feed_status">
+                        <input class="feed_status_text" value="모집마감" readonly/>
                     </div>
+                    </c:if>
                 </div>
                 <div id="feed-image">
                     <div id="img_area">
@@ -100,13 +105,33 @@
                 </div>
                 <div id="content_area">
                 	<h7>${fList.title}</h7><br>
-                    <a>${fList.content}</a>
+                    <span class="feed-content">${fList.content}</span>
+	                <span class="feed-content-hide"></span>
+	                <button class="feed-content-more-button">more</button>
                 </div>
                 <div id="chat_area">
                     <button onclick="chat();"><a>CHAT</a></button>
                 </div>
             </div>
 		</c:forEach>
+		
+		<div id="page-area">
+				<c:if test="${pageVo.currentPage > 1}">
+					<a class="prevPage" href="${rootContext}/friend/list?page=${pageVo.currentPage-1}">이전</a>
+				</c:if>
+				<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" step="1" var="i">
+					<c:if test="${pageVo.currentPage != i }">
+						<a class="btn btn-secondary btn-sm page_button" href="${rootContext}/friend/list?page=${i}">${i}</a>
+					</c:if>
+					<c:if test="${pageVo.currentPage == i }">
+						<a class="btn btn-dark btn-sm page_button">${i}</a>
+					</c:if>
+				</c:forEach>
+				<c:if test="${pageVo.currentPage < pageVo.maxPage}">
+					<a class="nextPage" href="${rootContext}/friend/list?page=${pageVo.currentPage+1}">다음</a>
+				</c:if>
+			</div>
+		
             
         </main>
         
@@ -117,6 +142,32 @@
 </body>
 
 </html>
+
+<script>
+
+const div = document.querySelector('#thumbnail-area');
+
+let imgTag;
+let aTag;
+<c:forEach items="${fvo.attachmentList}" var="fvo">
+	//a태그 만들기
+	aTag = document.createElement('a');
+	aTag.href = "${root}/friend/att/down?ano=${fvo.no}";
+	//이미지 요소 만들기
+	imgTag = document.createElement('img');
+	imgTag.setAttribute("src" , "${root}/${path}/${fvo.changeName}");
+	imgTag.setAttribute("alt" , "${fvo.originName}");
+	imgTag.setAttribute("width" , "100px");
+	imgTag.setAttribute("height" , '100px');
+
+	//a태그 내부에 img 추가
+	aTag.appendChild(imgTag);
+
+	//div 안에 a태그 추가
+	div.appendChild(aTag);
+</c:forEach>
+
+</script>
 
  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-list.css">
  <script src="${rootContext}/resources/js/board/friend-list.js"></script>

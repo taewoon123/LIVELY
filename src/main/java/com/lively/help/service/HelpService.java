@@ -28,6 +28,7 @@ public class HelpService {
 		return dao.getHelpList(sst, pv);
 	}
 
+	//게시글 갯수 조회
 	public int getHelpListCnt() {
 		return dao.getHelpListCnt(sst);
 	}
@@ -36,15 +37,18 @@ public class HelpService {
 		return dao.write(sst, vo);
 	}
 
+	//상세조회 (조회수)
 	public HelpVo getHelp(String num) throws Exception {
 		int result = dao.increaseViews(sst, num);
 		if(result != 1) {
 			throw new Exception();
 		}
 		
-		return dao.getHelp(sst, num);
+		HelpVo hvo = dao.getHelp(sst, num);
+		return hvo;
 	}
 
+	//삭제하기
 	public int delete(String num) {
 		return dao.delete(sst, num);
 	}

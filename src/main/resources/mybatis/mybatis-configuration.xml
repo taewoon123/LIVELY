@@ -9,9 +9,10 @@
         <setting name="jdbcTypeForNull" value="NULL"/>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+    
     <typeAliases>
         <typeAlias type="com.lively.admin.vo.AdminVo" alias="AdminVo"/>
-<!--        <typeAlias type="com.lively.chat.vo.ChatVo" alias="ChatVo"/>-->
+		<typeAlias type="com.lively.chat.vo.ChatVo" alias="ChatVo"/>
         <typeAlias type="com.lively.friend.vo.FriendVo" alias="FriendVo"/>
         <typeAlias type="com.lively.fundraise.vo.FundraiseVo" alias="FundraiseVo"/>
         <typeAlias type="com.lively.help.vo.HelpVo" alias="HelpVo"/>
@@ -19,11 +20,10 @@
         <typeAlias type="com.lively.market.vo.MarketVo" alias="MarketVo"/>
         <typeAlias type="com.lively.member.vo.MemberVo" alias="MemberVo"/>
         <typeAlias type="com.lively.notice.vo.NoticeVo" alias="NoticeVo"/>
-<!--        <typeAlias type="com.lively.qna.vo.QnaVo" alias="QnaVo"/>-->
-<!--        <typeAlias type="com.lively.query.vo.QueryVo" alias="QueryVo"/>-->
 		<typeAlias type="com.lively.common.LocationVo" alias="LocationVo"/>
-		<typeAlias type="com.lively.common.FileVo" alias="FileVo"/>
+		<typeAlias type="com.lively.qna.vo.QnaVo" alias="QnaVo"/>
+        <typeAlias type="com.lively.query.vo.QueryVo" alias="QueryVo"/>
+        <typeAlias type="com.lively.common.FileVo" alias="FileVo"/>
     </typeAliases>
-
 
 </configuration>

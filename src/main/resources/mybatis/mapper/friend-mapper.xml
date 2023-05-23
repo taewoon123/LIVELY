@@ -5,6 +5,7 @@
   
 <mapper namespace="friend">
   
+  <!-- 피드(전체) -->
   <select id="FriendFeed" resultType="FriendVo">
 	SELECT
 	    F.FRIEND_NO
@@ -67,7 +68,7 @@
 	WHERE F.DELETE_YN = 'N'
   </select>
   
-  <select id="getLocationNoList" resultType="map">
+  <select id="getLocationList" resultType="map">
   	SELECT
   		LOCATION_NO
 		,LOCATION_NAME
@@ -94,6 +95,45 @@
 			</foreach>
 		SELECT 1 FROM DUAL
 	</insert>	
+	
+	<select id="getAttachmentList" resultType="fileVo">
+		SELECT
+			FRIEND_ATTACH_NO
+			,FRIEND_NO
+			,ORIGIN_NAME
+			,CHANGE_NAME
+			,DELETE_YN
+		FROM FRI_ATTACH
+		WHERE FRIEND_NO = #{friendNo}
+		AND DELETE_YN = 'N'
+	</select>
+	
+	<select id="getAttachment" resultType="fileVo">
+		SELECT
+		FROM FRI_ATTACH
+		WHERE FRIEND_ATTACH_NO = #{friendAttachNo}
+		AND DELETE_YN = 'N'
+	</select>	
+	
+<!-- 	<select id="getFriendFeed" resultType="FriendVo">
+		SELECT
+			F.FRIEND_NO
+			,F.WRITER
+			,F.TITLE
+			,F.CONTENT
+			,F.ENROLL_DATE
+			,F.DELETE_YN
+			,F.EDIT_DATE
+			,F.LOCATION_NO
+			,F.STATUS_YN
+			,L.LOCATION_NAME as locationName
+			, M.NAME as writerName
+		FROM FRIEND F
+		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+		WHERE F.DELETE_YN = 'N'
+		AND		F.FRIEND_NO = #{friendNo}
+	</select> -->
 	
   
 </mapper>

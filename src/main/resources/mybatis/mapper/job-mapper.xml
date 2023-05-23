@@ -1,15 +1,81 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-<mapper namespace="job">
-	<select id="getJobList" resultType="JobVo">
-		SELECT *
-		FROM JOB
-		WHERE DELETE_YN = 'N'
-	</select>
+
+<mapper namespace = "job">
+
+	<insert id="write">
+		INSERT INTO JOB
+		(
+			JOB_NO
+			, TITLE
+			, CONTENT
+			, WRITER
+			, JOB_CHOICE_CODE
+		) 
+		VALUES 
+		(
+			SEQ_JOB_NO.NEXTVAL
+			, #{title}
+			, #{content}
+			, 1
+			, 1
+		)
+	</insert> 
 	
+	<select id="getJobList" resultType = "jobVo">
+  		SELECT *
+  		FROM JOB
+  		WHERE DELETE_YN = 'N'
+  		ORDER BY JOB_NO DESC
+  	</select>
+  	
+  	<select id="getCnt" resultType = "int">
+  		SELECT COUNT(*)
+  		FROM JOB
+  		WHERE DELETE_YN = 'N'
+  	</select>
+  	
+  	<update id="increaseHit">
+  		UPDATE JOB
+		    SET VIEWS = VIEWS+1
+	    WHERE   JOB_NO = #{no}
+	    AND     DELETE_YN= 'N'
+  	</update>
+  	
+  	<select id="getJob" resultType = "JobVo">
+  		 SELECT J.JOB_NO AS NO,
+        M.NAME AS WRITER,
+        J.TITLE,
+        J.CONTENT,
+        J.ENROLL_DATE,
+        J.EDIT_DATE,
+        J.DELETE_YN,
+        J.VIEWS,
+        J.JOB_CHOICE_CODE
+        FROM JOB J
+        JOIN MEMBER M ON M.NO = J.WRITER
+        WHERE DELETE_YN = 'N'
+        AND JOB_NO = #{no}
+  	</select>
+  	
+  	<update id="edit">
+  		UPDATE JOB
+  			SET
+  				TITLE = #{title}
+  				,CONTENT = #{content}
+  				,EDIT_DATE = SYSDATE
+  			WHERE JOB_NO = #{no}
+  	</update>
+  	
+  	<update id="delete">
+  		UPDATE JOB
+  			SET
+  				DELETE_YN = 'Y'
+  			,EDIT_DATE = SYSDATE
+  		WHERE JOB_NO = #{no}
+  	</update>
+  	
 </mapper>
-
-
+	

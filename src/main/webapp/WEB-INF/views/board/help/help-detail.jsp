@@ -19,23 +19,26 @@
 				<a href="${rootContext}/help/list" id="list-btn">목록</a>
 				<div id="help-area">
 					<div id="help-title">제목</div>
-					<div id="help-inTitle">${vo.title}</div>
+					<div id="help-inTitle">${hvo.title}</div>
 					<div id="help-date">작성일자</div>
-					<div id="help-inDate">${vo.enrollDate}</div>
+					<div id="help-inDate">${hvo.enrollDate}</div>
 					<div id="help-hit">조회수</div>
-					<div id="help-inHit">${vo.views}</div>
+					<div id="help-inHit">${hvo.views}</div>
 					<div id="help-content">내용</div>
-					<div id="help-inContent">${vo.content}</div>
+					<div id="help-inContent">${hvo.content}</div>
 				</div>
 
 				<!-- 작성 버튼 -->
-				<button id="write_submit_delete" onclick = "location.href = '${rootContext}/help/delete?num=${vo.helpNo}'">
+				<c:if test="${memberLog.id eq hvo.writer }">
+				<button id="write_submit_delete" onclick="location.href='${rootContext}/help/delete?num=${helpNo}'">
 					<span>삭제하기</span>
 				</button>
+				<span style="color: whitesmoke">${HelpNo}</span>
 
 				<button id="write_submit_edit">
 					<span>수정하기</span>
 				</button>
+				</c:if>
 
 			</div>
 

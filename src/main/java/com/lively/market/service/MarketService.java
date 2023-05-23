@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
+import com.lively.common.LocationVo;
 import com.lively.market.dao.MarketDao;
 import com.lively.market.vo.MarketVo;
 import com.lively.page.vo.PageVo;
@@ -31,29 +32,58 @@ public class MarketService {
 		return dao.getMarketFeed(sst, pageVo);
 	}
 	
-	//피드 목록 (거래중만)
-	public List<MarketVo> getMarketFeedING(PageVo pageVo){
-		return dao.getMarketFeedING(sst, pageVo);
-	}
-
 	//피드 작성
 	public int write(MarketVo marketVo, List<FileVo> fileVoList) throws Exception {
 		int writeResult = dao.write(sst, marketVo);
-		if(writeResult != 1) {
-			throw new Exception();
+		int attachResult = 1;
+		if(fileVoList.size() > 0) {
+			attachResult = dao.insertAttachment(sst, fileVoList);
 		}
 		
-		return dao.insertAttachment(sst, fileVoList);
+		return writeResult * attachResult;
 	}
 
 	//지역 목록
-	public List<Map<String, String>> getLocationList() {
+	public List<LocationVo> getLocationList() {
 		return dao.getLocationList(sst);
 	}
 
 	//총 갯수
 	public int getFeedCount() {
 		return dao.getFeedCount(sst);
+	}
+
+	//수정하기 (작성자만)
+	public int updateFeed(MarketVo marketVo) {
+		return dao.updateFeed(sst, marketVo);
+	}
+
+	//삭제하기 (작성자만)
+	public int delete(MarketVo marketVo) {
+		return dao.delete(sst, marketVo);
+	}
+
+//	public int getMyFeedCount() {
+//		return dao.getMyFeedCount(sst);
+//	}
+//
+//	public List<MarketVo> getMyMarketFeed(PageVo myPageVo) {
+//		return dao.getMyMarketFeed(sst, myPageVo);
+//	}
+	
+	//상세조회
+	public MarketVo getFeed(String no) throws Exception {
+		
+		MarketVo marketVo = dao.getFeed(sst, no);
+		List<FileVo> fileList = dao.getAttachmentList(sst, no);
+		
+		marketVo.setAttachmentList(fileList);
+		
+		return marketVo;
+	}
+	
+	public FileVo getAttachment(String attachmentNo) {
+		return dao.getAttachment(sst, attachmentNo);
 	}
 }
 

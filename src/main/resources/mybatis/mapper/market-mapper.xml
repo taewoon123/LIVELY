@@ -27,30 +27,7 @@
 	ORDER BY MARKET_NO DESC
   </select>
   
-  <!-- 피드 목록 (거래중만) -->
-  <select id="MarketFeedING" resultType="MarketVo">
- 	SELECT 
-	    K.MARKET_NO
-		, K.WRITER
-		, K.TITLE
-		, K.CONTENT
-		, K.PRICE
-		, K.ENROLL_DATE
-		, K.EDIT_DATE
-		, K.DELETE_YN
-		, K.LOCATION_NO
-		, K.STATUS_YN
-		, L.LOCATION_NAME as locationName
-		, M.NAME as writerName
-	FROM MARKET K
-	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
-	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
-	WHERE K.DELETE_YN = 'N'
-	AND K.STATUS_YN = 'Y'
-	ORDER BY MARKET_NO DESC
-  </select>
-  
-  
+  <!-- 피드 작성 -->
   <insert id="write">
   	INSERT INTO MARKET
   	(
@@ -72,41 +49,103 @@
   	)
   </insert>
   
-  
+  <!-- 피드 작성 (사진) -->
   <insert id="insertAttachment">
   	INSERT ALL
 		<foreach collection="list" item="fileVo" separator=" ">
-		    INTO MARKET_ATTACHMENT
+		    INTO MARKET_ATTACH
 		    (
 		    	MARKET_ATTACH_NO
 				, MARKET_NO
 				, ORIGIN_NAME
 				, CHANGE_NAME
 		    ) 
-		    VALUES 
-		    (
-		    	(SELECT GET_MARKET_ATTACHMENT_SEQ FROM DUAL)
-		    	, SEQ_MARKET_ATTACH_NO.CURRVAL
-		    	, #{fileVo.originName}
-		    	, #{fileVo.changeName}
-		    )
+		   VALUES 
+			    (
+			    	(SELECT GET_ATTACHMENT_SEQ FROM DUAL) 
+			    	,SEQ_MARKET_NO.CURRVAL 
+			    	,#{fileVo.originName} 
+			    	, #{fileVo.changeName}
+			    )
  		</foreach>
 	SELECT 1 FROM DUAL
   </insert>
   
-  
-  <select id="getLocationList" resultType="map">
+  <!-- 지역 리스트 -->
+  <select id="getLocationList" resultType="LocationVo">
   	SELECT
   		LOCATION_NO
   		, LOCATION_NAME
   	FROM LOCATION
   </select>
   
+  <!-- 피드 갯수 -->
   <select id="getFeedCount" resultType="int">
   	SELECT COUNT(MARKET_NO)
   	FROM MARKET
   	WHERE DELETE_YN = 'N'
   </select>
   
+  <!-- 피드 수정 -->
+  <update id="updateFeed">
+  	UPDATE MARKET
+  		SET TITLE = #{title}
+  			, CONTENT = #{content}
+  			, EDIT_DATE = SYSDATE
+  		WHERE MARKET_NO = #{marketNo}
+  		AND DELETE_YN = 'N'
+  		AND WRITER = #{writer}
+  </update>
+  
+  <!-- 피드 삭제 -->
+  <update id="delete">
+  	UPDATE MARKET
+  		SET DELETEYN = 'Y'
+  		, EDIT_DATE = SYSDATE
+  	WHERE MARKET_NO = #{marketNo}
+  	AND WRITER = #{writer}
+  </update>
+  
+  
+  <select id="getAttachmentList" resultType="fileVo">
+  	SELECT
+  		MARKET_ATTACH_NO
+		,MARKET_NO
+		,ORIGIN_NAME
+		,CHANGE_NAME
+		,DELETE_YN
+	FROM MARKET_ATTACH
+	WHERE MARKET_NO = #{no}
+	AND DELETE_YN = 'N'
+  </select>
+  
+  <select id="getAttachment" resultType="fileVo">
+  	SELECT *
+  	FROM MARKET_ATTACH
+  	WHERE MARKET_ATTACH_NO = #{attachmentNo}
+  	AND DELETE_YN = 'N'
+  </select>
+  
+  
+  <select id="getFeed" resultType="MarketVo">
+	SELECT 
+	    K.MARKET_NO
+		, K.WRITER
+		, K.TITLE
+		, K.CONTENT
+		, K.PRICE
+		, K.ENROLL_DATE
+		, K.EDIT_DATE
+		, K.DELETE_YN
+		, K.LOCATION_NO
+		, K.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+	FROM MARKET K
+	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
+	WHERE K.DELETE_YN = 'N'
+	AND K.WRITER = #{no}
+  </select>
   
 </mapper>

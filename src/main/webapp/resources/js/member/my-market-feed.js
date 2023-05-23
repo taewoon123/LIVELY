@@ -57,7 +57,7 @@ function hide_feed_content(){
     });
 }
 
-
+hide_feed_content();
 
 //거래 완료 시 투명도 낮게
 
@@ -73,31 +73,6 @@ function hide_feed_content(){
 }
  
 feed_done();
-
-//거래중만 보기 체크 하면 거래완료 게시판 사라지게
-
-function handleCheckboxChange() {
-    var checkbox = document.getElementById("statusCheckbox");
-    var feedBoxes = document.getElementsByClassName("feed_box");
-
-    for (var i = 0; i < feedBoxes.length; i++) {
-        var feedBox = feedBoxes[i];
-        if (checkbox.checked) {
-            // Show only 'Y' status feed boxes
-            if (feedBox.classList.contains("feed_status_Y")) {
-                feedBox.style.display = "block";
-            } else {
-                feedBox.style.display = "none";
-            }
-        } else {
-            // Show all feed boxes
-            feedBox.style.display = "block";
-        }
-    }
-}
-
-var checkbox = document.getElementById("statusCheckbox");
-checkbox.addEventListener("change", handleCheckboxChange);
 
 
 

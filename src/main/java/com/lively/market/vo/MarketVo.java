@@ -1,5 +1,9 @@
 package com.lively.market.vo;
 
+import java.util.List;
+
+import com.lively.common.FileVo;
+
 import lombok.Data;
 
 @Data
@@ -18,5 +22,6 @@ public class MarketVo {
 	
 	private String locationName;
 	private String writerName;
+	private List<FileVo> attachmentList;
 	
 }

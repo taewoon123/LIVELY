@@ -63,10 +63,10 @@
 	                        <div class="carousel-inner">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-	                            <image class="first" href="${rootContext}/resources/img/one${mList.marketNo}.jpg" width="100%" height="100%"/>
+	                            <%-- <image class="first" href="${rootContext}/resources/upload/market/${fileVoList.changeNameList}" width="100%" height="100%"/> --%>
 	                            </svg>
 	                        </div>
-	                        <div class="carousel-item">
+	                        <%-- <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
 	                            <image class="second" href="${rootContext}/resources/img/two${mList.marketNo}.jpg" width="100%" height="100%"/>
 	                            </svg>
@@ -76,7 +76,7 @@
 	                            <image class="third" href="${rootContext}/resources/img/three${mList.marketNo}.jpg" width="100%" height="100%">
 	                            </svg>
 	
-	                        </div>
+	                        </div> --%>
 	                        </div>
 	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${mList.marketNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -127,7 +127,33 @@
     
 
 </body>
- <script src="${rootContext}/resources/js/board/market-list.js"></script>
+ <script src="${rootContext}/resources/js/board/market/market-list.js"></script>
  <link rel="stylesheet" href="${rootContext}/resources/css/board/market/market-list.css">
 </html>
 
+<script>
+
+	const svg = document.querySelector(".bd-placeholder-img");
+	
+	let imageTag;
+	let aTag;
+	
+	<c:forEach items="${marketVo.attachmentList}" var="fileVo">
+		//a태그 만들기
+		aTag = document.createElement('a');
+		aTag.href = "${root}/market/attachment/download?attachmentNo=${fileVo.no}";
+	
+		//이미지 요소 만들기
+		imgTag = document.createElement('img');
+		imgTag.setAttribute("src", "${root}/${path}/${fileVo.changeName}");  //imgTag.src = "~"; 와 동일한 코드
+		imgTag.setAttribute("alt", "${fileVo.originName}");
+		imgTag.setAttribute("width", '100%');
+		imgTag.setAttribute("height", '100%');
+		
+		//a태그 내부에 img 추가하기
+		aTag.appendChild(imgTag);
+		
+		//div 안에 a태그 추가하기
+		svg.appendChild(aTag);
+	</c:forEach>
+</script>

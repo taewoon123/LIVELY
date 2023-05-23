@@ -36,7 +36,6 @@ public class FundraiseController {
         PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit);
         List<FundraiseVo> fundraiseList = service.getFundList(pageVo, searchValue);
         if (fundraiseList != null) {
-            log.info("fundraiseList : {}", fundraiseList.get(0));
             model.addAttribute("pageVo", pageVo);
             model.addAttribute("fundraiseList", fundraiseList);
         }

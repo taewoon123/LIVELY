@@ -11,37 +11,23 @@
 </head>
 
 <body>
-  <body>
     
-      <div id="wrap">
-
+    <div id="wrap">
+        
         <main>
             <div class="header">
                 CHAT
             </div>
-
- <!--            <div class="chat_wrap">
-                <div class="chat ch1">
-                    <div class="icon"><i class=""></i></div>
-                    <div class="textbox">안녕하세요! </div>
-                </div>
-                <div class="chat ch2">
-                    <div class="icon"><i class=""></i></div>
-                    <div class="textbox">안녕하세요~ </div>
-                </div>
-                <div class="chat ch1">
-                    <div class="icon"><i class=""></i></div>
-                    <div class="textbox">요즘 어떻게 지내세요?</div>
-                </div>
-                <div class="chat ch2">
-                    <div class="icon"><i class=""></i></div>
-                    <div class="textbox">잘 지내고 있어요 ㅎㅎ</div>
-                </div>
-            </div> -->
-            <div class="input_div">
-                <textarea placeholder="Press Enter for send message."></textarea>
-            </div>
             <div class="chat format">
+        
+            </div>
+            <form action="" onsubmit="return sendMsg();">
+	            <div class="input_div">
+	                <!-- <textarea placeholder="Press Enter for send message." ></textarea> -->
+	                <input placeholder="Press Enter for send message." type="text" name="msg">
+	                <button type="submit">전송</button>
+	            </div>
+            </form>
         <ul>
             <li>
                 <div class="sender">
@@ -52,12 +38,10 @@
                 </div>
             </li>
         </ul>
-    </div>
         </main>
 
     </div>
 
-</body>
 </body>
 </html>
     <link rel="stylesheet" href="${rootContext}/resources/css/chat/chat.css">

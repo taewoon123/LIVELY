@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lively.job.file.FileVo;
+import com.lively.common.FileVo;
 import com.lively.job.page.vo.PageVo;
 import com.lively.qna.dao.QnaDao;
 import com.lively.qna.vo.QnaVo;

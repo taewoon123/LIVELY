@@ -33,8 +33,7 @@ import com.lively.notice.vo.NoticeVo;
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.lively.job.file.FileVo;
-import com.lively.job.file.fileupload.FileUploader;
+import com.lively.common.FileVo;
 import com.lively.job.page.vo.PageVo;
 import com.lively.job.service.JobService;
 

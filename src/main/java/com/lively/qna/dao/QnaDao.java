@@ -6,7 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.lively.job.file.FileVo;
+import com.lively.common.FileVo;
 import com.lively.job.page.vo.PageVo;
 import com.lively.qna.vo.QnaVo;
 

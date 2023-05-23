@@ -1,3 +1,5 @@
+# root-context databaseSourceBean port number
+root-context.xml
 *.iml
 .idea/*
 target/*

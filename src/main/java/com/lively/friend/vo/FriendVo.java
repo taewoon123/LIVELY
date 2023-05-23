@@ -1,5 +1,9 @@
 package com.lively.friend.vo;
 
+import java.util.List;
+
+import com.lively.common.FileVo;
+
 import lombok.Data;
 
 @Data
@@ -17,7 +21,7 @@ public class FriendVo {
 	
 	private String writerName;
 	private String locationName;
-	
+	private List<FileVo> attachmentList;
 	
 	
 }

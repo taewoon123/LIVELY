@@ -21,6 +21,19 @@ function disconnect(){
 	console.log('연결 끊김;;');
 }
 
+//엔터키
+/*function chatKeyDown() {
+	if(window.event.keyCode==13) //enter 일 경우
+	{
+		sendServer();
+	}
+}*/
+
+// 메세지 전송
+function sendMsg() {
+	const msg = document.querySelector("textarea[name=msg]").value;
+	socket.send(msg);
+}
 //메세지 수신
 function rcvMsg(event){
 	console.log('메세지 수신');
@@ -34,6 +47,7 @@ function rcvMsg(event){
 
 
 
+/*
 //채팅 구현
 const Chat = (function(){
     const myName = "blue";
@@ -77,11 +91,6 @@ const Chat = (function(){
         $('div.chat').scrollTop($('div.chat').prop('scrollHeight'));
     }
  
-    // 메세지 전송
-    function sendMsg() {
-        const msg = document.querySelector("textarea[name=msg]").value;
-        socket.send(msg);
-    }
  
     // 메세지 입력박스 내용 지우기
     function clearTextarea() {
@@ -102,4 +111,4 @@ const Chat = (function(){
 $(function(){
     Chat.init();
 });
-
+*/

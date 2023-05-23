@@ -5,10 +5,18 @@
   
 <mapper namespace = "help">
 	<select id="getHelpList" resultType = "HelpVo">
-		SELECT *
-		FROM HELP
-		WHERE DELETE_YN = 'N'
-		ORDER BY HELP_NO DESC
+		SELECT H.HELP_NO,
+        M.NAME AS WRITER,
+        H.TITLE,
+        H.CONTENT,
+        H.ENROLL_DATE,
+        H.EDIT_DATE,
+        H.DELETE_YN,
+        H.VIEWS
+        FROM HELP H
+        JOIN MEMBER M ON M.NO = H.WRITER
+        WHERE DELETE_YN = 'N'
+        ORDER BY HELP_NO DESC
 	</select>
 	
 	<select id="getHelpListCnt" resultType = "int">

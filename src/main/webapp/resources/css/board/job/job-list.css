@@ -19,6 +19,10 @@ th, td {
    border-right: none;
 }
 
+.title{
+	width: 40%;
+}
+
 main table {
    width: 60%;
    margin: auto;

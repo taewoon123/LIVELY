@@ -29,13 +29,10 @@
    </div>
    
       <main>
-         
          <br>
          <br>
          <br>
-
          <table>
-         
             <thead>
                <tr>
                   <th>No</th>
@@ -46,47 +43,17 @@
                </tr>
             </thead>
             <tbody>
-            
-               <tr>
-                  <td>1</td>
-                  <td>문의는 어디로 하나요?</td>
-                  <td>2023.04.24</td>
-                  <td>강작성</td>
-                  <td>1</td>
-               </tr>
-               <tr>
-                  <td>2</td>
-                  <td>다른 지역에서도 가능한가요?</td>
-                  <td>2023.04.24</td>
-                  <td>오작성</td>
-                  <td>1</td>
-               </tr>
-               <tr>
-                  <td>3</td>
-                  <td>질문질문</td>
-                  <td>2023.04.24</td>
-                  <td>최작성</td>
-                  <td>1</td>
-               </tr>
-               <tr>
-                  <td>4</td>
-                  <td>교통상황어떤가요</td>
-                  <td>2023.04.24</td>
-                  <td>정작성</td>
-                  <td>1</td>
-               </tr>
-               <tr>
-                  <td>5</td>
-                  <td>긴급 qna 긴급</td>
-                  <td>2023.04.24</td>
-                  <td>심작성</td>
-                  <td>1</td>
-               </tr>
-
+             <c:forEach items = "${qvoList}" var = "qvo">
+						<tr>
+							<td>${qvo.qnaNo}</td>
+							<td>${qvo.qnaTitle}</td>
+							<td>${qvo.enrollDate}</td>
+							<td>${qvo.writer}</td>
+							<td>${qvo.views}</td>
+						</tr>
+					</c:forEach>
             </tbody>
-
          </table>
-         
          <!-- 작성 버튼 -->
          <button id = "write_submit">
             <span>
@@ -95,22 +62,17 @@
          </button>
    
    <!-- pagenation -->
-   <div class="page-area">
-      <div class="pagination-custom">
-         <a class="prev page-numbers" href="list"> << </a>
-            <span aria-current="page" class="page-numbers current">1</span>
-            <a class="page-numbers" href="list">2</a>
-            <a class="page-numbers" href="list">3</a>
-            <a class="page-numbers" href="list">4</a>
-            <a class="page-numbers" href="list">5</a>
-            <a class="page-numbers" href="list">6</a>
-            <a class="page-numbers" href="list">7</a>
-            <a class="page-numbers" href="list">8</a>
-            <a class="page-numbers" href="list">9</a>
-            <a class="page-numbers" href="list">10</a>
-            <a class="next page-numbers" href="list"> >> </a>
-      </div>
-   </div>
+	   <div id="page-area">
+	            <c:if test="${pv.currentPage > 1 }">
+	               <a href="${root}/board/qna/list?page=${pv.currentPage - 1}&searchType=${searchMap.searchType}&searchValue=${searchMap.searchValue}" class="btn btn-secondary btn-sm">이전</a>
+	            </c:if>
+	            <c:forEach begin="${pv.startPage}" end="${pv.endPage}" step="1" var="i">
+	               <a href="${root}/board/qna/list?page=${i}&searchType=${searchMap.searchType}&searchValue=${searchMap.searchValue}" class="btn btn-secondary btn-sm">${i}</a>
+	            </c:forEach>
+	            <c:if test="${pv.currentPage < pv.maxPage}">
+	               <a href="${root}/board/qna/list?page=${pv.currentPage + 1}&searchType=${searchMap.searchType}&searchValue=${searchMap.searchValue}" class="btn btn-secondary btn-sm">다음</a>
+	            </c:if>
+	         </div>
 
          
       </main>
@@ -123,3 +85,10 @@
 </html> 
     <link rel="stylesheet" href="${rootContext}/resources/css/board/qna/qna-list.css">
     <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"/>
+<script>
+const table = document.querySelector("main table tbody");
+table.addEventListener("click", function(event){
+	const num = event.target.parentNode.children[0].innerText; //해당 글 번호를 불러올수있음
+	location.href = '${rootContext}/qna/detail?num=' + num;
+});
+</script>

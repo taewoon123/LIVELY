@@ -143,6 +143,32 @@
 
 </html>
 
+<script>
+
+const div = document.querySelector('#thumbnail-area');
+
+let imgTag;
+let aTag;
+<c:forEach items="${fvo.attachmentList}" var="fvo">
+	//a태그 만들기
+	aTag = document.createElement('a');
+	aTag.href = "${root}/friend/att/down?ano=${fvo.no}";
+	//이미지 요소 만들기
+	imgTag = document.createElement('img');
+	imgTag.setAttribute("src" , "${root}/${path}/${fvo.changeName}");
+	imgTag.setAttribute("alt" , "${fvo.originName}");
+	imgTag.setAttribute("width" , "100px");
+	imgTag.setAttribute("height" , '100px');
+
+	//a태그 내부에 img 추가
+	aTag.appendChild(imgTag);
+
+	//div 안에 a태그 추가
+	div.appendChild(aTag);
+</c:forEach>
+
+</script>
+
  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-list.css">
  <script src="${rootContext}/resources/js/board/friend-list.js"></script>
 

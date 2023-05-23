@@ -214,10 +214,12 @@
 			<artifactId>gson</artifactId>
 			<version>2.10.1</version>
 		</dependency>
+		
+		<!-- 웹소켓 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-websocket</artifactId>
-			<version>6.0.8</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 
 		<!-- Test -->

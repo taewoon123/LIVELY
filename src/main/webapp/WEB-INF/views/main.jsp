@@ -102,10 +102,10 @@
 
 					<div class="chat_text_area">
 						<p>
-							<strong>Course you can reply them !</strong>
+							<strong>You can easily keep in touch with your friends, neighbours</strong>
 						</p>
 						<p>
-							<strong>You can easily keep in touch with your friends, neighbours</strong>
+							<strong>Course you can reply them !</strong>
 						</p>
 					</div>
 				</div>

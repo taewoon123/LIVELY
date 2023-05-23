@@ -1,5 +1,8 @@
 package com.lively.member.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lively.friend.vo.FriendVo;
+import com.lively.market.vo.MarketVo;
 import com.lively.member.service.MemberService;
 import com.lively.member.vo.MemberVo;
 
@@ -118,9 +123,48 @@ public class MemberController {
 
 	}
 
-	// my-feed 화면
-	@GetMapping("my-feed")
-	public void myFeed() {
+	// my-market-feed 화면
+	@GetMapping("my-market-feed")
+	public String myFeed(MarketVo marketVo, HttpSession session, Model model) {
+		
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		String writerNo = memberLog.getNo();
+		
+		marketVo.setWriter(writerNo);
+		
+		//내 피드 총 갯수
+		int MyMarketFeedCount = ms.getMyMarketFeedCount(marketVo);
+		
+		List<MarketVo> myMarketList = ms.getMyMarketFeed(marketVo);
+		List<Map<String, String>> LocationList = ms.getLocationList();
+		
+		model.addAttribute("MyFeedCount", MyMarketFeedCount);
+		model.addAttribute("myMarketList", myMarketList);
+		model.addAttribute("LocationList", LocationList);
+		
+		return "member/my-market-feed";
+	}
+	
+	// my-friend-feed 화면
+	@GetMapping("my-friend-feed")
+	public String myFeed(FriendVo friendVo, HttpSession session, Model model) {
+		
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		String writerNo = memberLog.getNo();
+		
+		friendVo.setWriter(writerNo);
+		
+		//내 피드 총 갯수
+		int MyFriendFeedCount = ms.getMyFriendFeedCount(friendVo);
+		
+		List<FriendVo> myFriendList = ms.getMyFriendFeed(friendVo);
+		List<Map<String, String>> LocationList = ms.getLocationList();
+		
+		model.addAttribute("MyFeedCount", MyFriendFeedCount);
+		model.addAttribute("myFriendList", myFriendList);
+		model.addAttribute("LocationList", LocationList);
+		
+		return "member/my-friend-feed";
 	}
 
 	// 로그아웃

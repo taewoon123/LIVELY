@@ -77,7 +77,7 @@
   	<insert id="insertAttachment"> <!-- open은 맨앞에 , close는 맨뒤 , separator는 중간중간 /를 나타냄 -->
 		INSERT ALL
 			<foreach collection="list" item="x" separator=" ">
-			    INTO ATTACHMENT
+			    INTO FRI_ATTACH
 			    (
 			    	FRIEND_ATTACH_NO
 					, FRIEND_NO

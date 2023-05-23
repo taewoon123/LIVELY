@@ -1,8 +1,13 @@
 package com.lively.member.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.lively.friend.vo.FriendVo;
+import com.lively.market.vo.MarketVo;
 import com.lively.member.vo.MemberVo;
 
 @Repository
@@ -28,6 +33,26 @@ public class MemberDao {
 
 	public MemberVo selectOneByNo(SqlSessionTemplate sst, MemberVo vo) {
 		return sst.selectOne("member.getMember", vo);
+	}
+
+	public List<MarketVo> getMyMarketFeed(SqlSessionTemplate sst, MarketVo marketVo) {
+		return sst.selectList("member.marketFeed", marketVo);
+	}
+
+	public List<Map<String, String>> getLocationList(SqlSessionTemplate sst) {
+		return sst.selectList("member.getLocationList");
+	}
+
+	public int getMyMarketFeedCount(SqlSessionTemplate sst, MarketVo marketVo) {
+		return sst.selectOne("member.myMarketFeedCount", marketVo);
+	}
+
+	public int getMyFriendFeedCount(SqlSessionTemplate sst, FriendVo friendVo) {
+		return sst.selectOne("member.myFriendFeedCount", friendVo);
+	}
+
+	public List<FriendVo> getMyFriendFeed(SqlSessionTemplate sst, FriendVo friendVo) {
+		return sst.selectList("member.friendFeed", friendVo);
 	}
 
 }// class

@@ -2,7 +2,7 @@ package com.lively.job.vo;
 
 import java.util.List;
 
-import com.lively.job.file.FileVo;
+import com.lively.common.FileVo;
 
 import lombok.Data;
 

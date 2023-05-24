@@ -1,10 +1,17 @@
 package com.lively.help.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lively.common.FileUploader;
+import com.lively.common.FileVo;
 import com.lively.help.service.HelpService;
 import com.lively.help.vo.HelpVo;
 import com.lively.member.vo.MemberVo;
@@ -59,16 +67,34 @@ public class HelpController {
 	
 	//도움 작성하기
 	@PostMapping("write")
-	public String write(HelpVo vo, HttpSession session, HttpServletRequest req) throws Exception {
+	public String write(HelpVo vo, List<MultipartFile> f, HttpSession session, HttpServletRequest req) throws Exception {
 		
 		//로그인 여부 체크
 		MemberVo memberLog = (MemberVo)session.getAttribute("memberLog");
 		if(memberLog == null) {
 			throw new Exception("로그인 후 이용 가능합니다.");
 		}
+		
+		//데이터 준비(파일)
+		String path = req.getServletContext().getRealPath("/resources/upload/help/");
+		List<String> changeNameList = FileUploader.upload(f, path);
+		List<String> originNameList = FileUploader.getOriginNameList(f);
+		
+		//데이터 준비(이름 리스트)
+		List<FileVo> fvoList = new ArrayList<FileVo>();
+		if(changeNameList != null) {
+			int size = changeNameList.size();
+			for(int i = 0; i < size; i++) {
+				FileVo fvo = new FileVo();
+				fvo.setOriginName(originNameList.get(i));
+				fvo.setChangeName(changeNameList.get(i));
+				fvoList.add(fvo);
+			}
+		}
+		
 		vo.setWriter(memberLog.getNo());
 		
-		int result = hs.write(vo);
+		int result = hs.write(vo, fvoList);
 		
 		if(result == 1) {
 			session.setAttribute("alertMsg", "도움글 작성 완료");
@@ -105,6 +131,28 @@ public class HelpController {
 		}
 		
 		return "redirect:/help/list";
+	}
+	
+	//파일다운로드
+	@GetMapping("att/down")
+	public void download(HttpServletRequest req, HttpServletResponse resp, String ano) throws Exception {
+		
+		//파일 객체 준비
+		String path = req.getServletContext().getRealPath("/resources/upload/help/");
+		FileVo fvo = hs.getAttachment(ano);
+		File f = new File(path + fvo.getChangeName());
+		
+		byte[] data = FileUtils.readFileToByteArray(f);
+		
+		resp.setHeader("Content-Type", "application/octet-stream");
+		resp.setHeader("Content-Disposition", "attachment; filename=" + "\"" + URLEncoder.encode(fvo.getOriginName(), "UTF-8") + "\"");
+		resp.setHeader("Content-Length", data.length + "");
+		
+		//내보낼 통로 준비
+		ServletOutputStream os = resp.getOutputStream();
+		FileInputStream fis = new FileInputStream(f);
+		
+		os.write(data);
 	}
 	
 }

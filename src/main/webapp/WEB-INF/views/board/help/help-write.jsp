@@ -12,7 +12,7 @@
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
                 <div class="write-board">
-                    <form action="${rootContext}/help/write" method="POST">
+                    <form action="${rootContext}/help/write" method="POST" enctype = "multipart/form-data">
                         <div class="write-group">
 
                             <h3 id="friend-title">Help</h3>
@@ -45,7 +45,7 @@
                         <label for="file-input" class="drop-container">
                             <span class="drop-title">Drop files here</span>
                             <a>or</a>
-                            <input type="file" accept="image/*" id="file-input" style="font-size: 15px">
+                            <input type="file" accept="image/*" id="file-input" style="font-size: 15px" name="f" multiple accept=".jpg,.png,.jpeg">
                             <!-- 0505 :required 삭제 -->
                         </label>
                         <div class="tag-group">

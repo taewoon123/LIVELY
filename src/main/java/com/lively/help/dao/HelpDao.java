@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.lively.common.FileVo;
 import com.lively.help.vo.HelpVo;
 import com.lively.page.vo.PageVo;
 
@@ -40,6 +41,14 @@ public class HelpDao {
 
 	public int delete(SqlSessionTemplate sst, String num) {
 		return sst.delete("help.delete", num);
+	}
+
+	public FileVo getAttachment(SqlSessionTemplate sst, String ano) {
+		return sst.selectOne("help.getAttachment", ano);
+	}
+
+	public int insertAttachment(SqlSessionTemplate sst, List<FileVo> helpList) {
+		return sst.insert("help.insertAttachment", helpList);
 	}
 
 }

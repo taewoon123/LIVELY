@@ -15,6 +15,4 @@ public class FundraiseVo {
     private String views;
     private String money;
     private String moneyGoal;
-
-    
 }

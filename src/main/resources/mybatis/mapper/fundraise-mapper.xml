@@ -75,6 +75,30 @@
             #{money},
             #{moneyGoal})
     </insert>
+
+
+
+    <insert id="insertAttachment"> <!-- open은 맨앞에 , close는 맨뒤 , separator는 중간중간 /를 나타냄 -->
+        INSERT ALL
+        <foreach collection="list" item="x" separator=" ">
+            INTO FUND_ATTACH
+            (
+            FUND_ATTACH_NO
+            , FUNDRAISE_NO
+            , ORIGIN_NAME
+            , CHANGE_NAME
+            )
+            VALUES
+            (
+            (SELECT GET_ATTACHMENT_SEQ FROM DUAL)
+            ,SEQ_FUNDRAISE_NO.CURRVAL
+            ,#{x.originName}
+            , #{x.changeName}
+            )
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
+
 </mapper>
 
 

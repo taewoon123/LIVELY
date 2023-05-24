@@ -47,11 +47,12 @@ public class FundraiseService {
     }
 
     public int write(FundraiseVo vo, List<FileVo> fileVoList)throws Exception {
-        int writeResult = dao.write(sqlSessionTemplate, vo);
-        if(writeResult != 1) {
-            throw new Exception();
-        }
-        return dao.insertAttachment(sqlSessionTemplate, fileVoList);
+          int writeResult = dao.write(sqlSessionTemplate, vo);
+          int attResult = 1;
+          if (fileVoList.size() > 0) {
+              attResult = dao.insertAttachment(sqlSessionTemplate, fileVoList);
+          }
+          return writeResult * attResult;
     }
 
 }

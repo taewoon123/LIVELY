@@ -1,6 +1,7 @@
 package com.lively.fundraise.dao;
 
 
+import com.lively.common.FileVo;
 import com.lively.fundraise.vo.FundraiseVo;
 import com.lively.page.vo.PageVo;
 import org.apache.ibatis.session.RowBounds;
@@ -35,7 +36,11 @@ public class FundraiseDao {
         return sqlSessionTemplate.delete("fundraise.delete", no);
     }
     public int write(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
-        System.out.println(vo.getWriter());
+        System.out.println("dao write " + vo);
         return sqlSessionTemplate.insert("fundraise.write", vo);
+    }
+    public int insertAttachment(SqlSessionTemplate sst, List<FileVo> fileVoList) {
+        System.out.println("dao's fileVo LIst " + fileVoList);
+        return sst.insert("fundraise.insertAttachment", fileVoList);
     }
 }

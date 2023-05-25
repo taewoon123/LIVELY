@@ -1,8 +1,10 @@
+# root-context databaseSourceBean port number
+src/main/webapp/WEB-INF/spring/root-context.xml
 *.iml
 .idea/*
 target/*
 .project
-root-context.xml
+src/main/webapp/WEB-INF/spring/root-context.xml
 # Created by https://www.toptal.com/developers/gitignore/api/maven,eclipse,intellij,vim,macos,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=maven,eclipse,intellij,vim,macos,windows
 

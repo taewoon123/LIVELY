@@ -35,4 +35,6 @@ public class PageVo {
 	
 	private int beginRow;
 	private int lastRow;
+
+	
 }

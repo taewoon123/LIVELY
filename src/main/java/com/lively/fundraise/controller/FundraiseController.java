@@ -1,5 +1,7 @@
 package com.lively.fundraise.controller;
 
+import com.lively.common.FileUploader;
+import com.lively.common.FileVo;
 import com.lively.member.vo.MemberVo;
 import com.lively.page.vo.PageVo;
 import com.lively.fundraise.service.FundraiseService;
@@ -12,9 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
 @Slf4j
 @Controller
@@ -45,20 +50,19 @@ public class FundraiseController {
     }
 
     @GetMapping("detail")
-    public String fundDetail(int no, Model model,HttpSession session) {
+    public String fundDetail(int no, Model model, HttpSession session) {
         FundraiseVo vo = service.getFundDetail(no);
         if (vo == null) {
             model.addAttribute("fundDetailAlert", "해당 글이 존재하지 않습니다");
             return "board/fundraise/fundraise-detail";
         }
         model.addAttribute("fundDetail", vo);
-        model.addAttribute("fundNo",no);
+        model.addAttribute("fundNo", no);
         return "board/fundraise/fundraise-detail";
     }
 
 
-    
-    //TODO : no의 값을 가져와야함
+    //TODO : no의 값을 가져와야함 ACCOMPLISHED
     @GetMapping("delete")
     public String fundDelete(String no, HttpSession session, Model model) {
         int result = service.delete(no);
@@ -73,24 +77,38 @@ public class FundraiseController {
 
     @GetMapping("write")
     public String fundWrite(Model model, HttpSession session) {
-        MemberVo memberLog = (MemberVo)session.getAttribute("memberLog");
-        if(memberLog == null) {
+        MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+        if (memberLog == null) {
             model.addAttribute("alertMsg", "로그인 후 이용 가능합니다.");
             return "member/login";
         }
         return "board/fundraise/fundraise-write";
     }
-
+//TODO: 업로드 파일을 가져와야함
     @PostMapping("write")
-    public String fundWrite(FundraiseVo vo, Model model, HttpSession session) {
+    public String fundWrite(FundraiseVo fundVo, HttpSession session, HttpServletRequest request, List<MultipartFile> file) throws Exception {
         MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-        vo.setWriter(memberLog.getNo());
+        String path = request.getServletContext().getRealPath("/resources/upload/fundraise/");
 
-        int result = service.write(vo);
-        if (result > 0) {
-            return "redirect:/fund/list";
+        List<String> changeFileNames = FileUploader.upload(file,path);
+        List<String> originalFileNames = FileUploader.getOriginNameList(file);
+
+        List<FileVo> fileVoList = new ArrayList<FileVo>();
+        if(changeFileNames != null) {
+            int size = changeFileNames.size();
+            for (int i = 0; i < size; i++) {
+                FileVo fileVo = new FileVo();
+                fileVo.setOriginName(originalFileNames.get(i));
+                fileVo.setChangeName(originalFileNames.get(i));
+                fileVoList.add(fileVo);
+            }
         }
-        model.addAttribute("fundWriteAlert", "글 작성 실패");
+        fundVo.setWriter(memberLog.getNo());
+
+        int result = service.write(fundVo, fileVoList);
+        if (result <= 0) {
+            throw new RuntimeException("글 작성 실패");
+        }
         return "redirect:/fund/list";
     }
 }

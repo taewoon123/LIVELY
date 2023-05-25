@@ -72,4 +72,44 @@
 		WHERE HELP_NO = #{num}
 	</update>
 	
+	<select id="getAttachment" resultType = "FileVo">
+		SELECT *
+		FROM HELP_ATTACH
+		WHERE HELP_ATTACH_NO = #{ano}
+		AND DELETE_YN = 'N'
+	</select>
+	
+	<insert id="insertAttachment">
+		INSERT ALL
+			<foreach collection = "list" item = "x" separator = " ">
+				INTO HELP_ATTACH
+				(
+					HELP_ATTACH_NO
+					, HELP_NO
+					, ORIGIN_NAME
+					, CHANGE_NAME
+				)
+				VALUES
+				(
+					(SELECT GET_ATTACHMENT_SEQ FROM DUAL)
+					, SEQ_HELP_NO.CURRVAL
+					, #{x.originName}
+					, #{x.changeName}
+				)
+			</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+	
+	<select id="getAttachmentList" resultType = "FileVo">
+		SELECT
+			HELP_ATTACH_NO
+			, HELP_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+			, DELETE_YN
+		FROM HELP_ATTACH
+		WHERE HELP_NO = #{helpNo}
+		AND DELETE_YN = 'N'
+	</select>
+	
 </mapper>

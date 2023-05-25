@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lively.common.FileVo;
 import com.lively.help.dao.HelpDao;
 import com.lively.help.vo.HelpVo;
 import com.lively.page.vo.PageVo;
@@ -33,8 +34,13 @@ public class HelpService {
 		return dao.getHelpListCnt(sst);
 	}
 
-	public int write(HelpVo vo) {
-		return dao.write(sst, vo);
+	public int write(HelpVo vo, List<FileVo> helpList) {
+		int helpResult = dao.write(sst, vo);
+		int attResult = 1;
+		if(helpList.size() > 0) {
+			attResult = dao.insertAttachment(sst, helpList);
+		}
+		return helpResult * attResult;
 	}
 
 	//상세조회 (조회수)
@@ -45,12 +51,18 @@ public class HelpService {
 		}
 		
 		HelpVo hvo = dao.getHelp(sst, num);
+		List<FileVo> fileList = dao.getAttachmentList(sst, num);
+		hvo.setAttList(fileList);
 		return hvo;
 	}
 
 	//삭제하기
 	public int delete(String num) {
 		return dao.delete(sst, num);
+	}
+
+	public FileVo getAttachment(String ano) {
+		return dao.getAttachment(sst, ano);
 	}
 
 }

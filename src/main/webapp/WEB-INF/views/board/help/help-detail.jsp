@@ -86,7 +86,7 @@ const div = document.querySelector('#thumbnail-area');
 		aTag.href = "${root}/board/att/down?ano=${fvo.no}";
 		//이미지 요소 만들기
 		imgTag = document.createElement('img');
-		imgTag.setAttribute("src" , "${root}/${path}/${fvo.changeName}");
+		imgTag.setAttribute("src" , "${rootContext}/${path}/${fvo.changeName}");
 		imgTag.setAttribute("alt" , "${fvo.originName}");
 		imgTag.setAttribute("width" , "100px");
 		imgTag.setAttribute("height" , '100px');

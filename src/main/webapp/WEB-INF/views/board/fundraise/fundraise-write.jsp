@@ -46,7 +46,7 @@
             <label for="file-input" class="drop-container">
                 <span class="drop-title">Drop files here</span>
                 <a>or</a>
-                <input type="file" accept="image/*" id="file-input" style="font-size: 15px" multiple>
+                <input type="file" accept="image/*" id="file-input" style="font-size: 15px" name="file" multiple accept=".jpg,.png,.jpeg">
                 <!-- 0505 :required 삭제 -->
             </label>
             <div class="tag-group">

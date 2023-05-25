@@ -42,11 +42,46 @@
 
 	<!-- 로그인 -->
 	<select id="login" resultType="MemberVo">
-		SELECT NO, NAME, ID, PWD, BIRTH, HP, EMAIL,QUIT_YN, LOCATION_NO, GENDER_CODE
+		SELECT 
+			NO
+			, NAME
+			, ID
+			, PWD
+			, BIRTH
+			, HP
+			, EMAIL
+			,QUIT_YN
+			, LOCATION_NO
+			, GENDER_CODE
 		FROM MEMBER
 		WHERE ID = #{id}
 		AND PWD = #{pwd}
 		AND QUIT_YN = 'N'
+	</select>
+	
+	<update id="edit">
+		UPDATE MEMBER
+		SET
+			PWD = #{pwd}
+			,HP = #{hp}
+			,EMAIL = #{email}
+			,LOCATION_NO = #{locationNo}
+			,GENDER_CODE = #{genderCode}
+		WHERE NO = #{no}
+	</update>
+	
+	<select id="getMember" resultType="MemberVo">
+		SELECT
+		    NAME
+		    ,ID
+		    ,PWD
+		    ,BIRTH
+		    ,HP
+		    ,EMAIL
+		    ,LOCATION_NO
+		    ,GENDER_CODE
+		FROM MEMBER
+		WHERE NO = #{no}
 	</select>
 	
 

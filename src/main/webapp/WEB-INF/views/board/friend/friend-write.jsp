@@ -56,9 +56,9 @@
                         <a>or</a>
                         <input type="file" accept="image/*"  id="file-input" style="font-size: 15px" name="f" multiple accept=".jpg,.png,.jpeg">
                     </label>
-                    <div class="tag-group">
+<!--                     <div class="tag-group">
                         <input type="text" class="tag" placeholder="#태그" >
-                    </div>
+                    </div> -->
 
                 
 

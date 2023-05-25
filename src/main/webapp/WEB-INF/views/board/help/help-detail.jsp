@@ -79,7 +79,7 @@ const div = document.querySelector('#thumbnail-area');
 	<c:forEach items="${hvo.attList}" var="fvo">
 		//a태그 만들기
 		aTag = document.createElement('a');
-		aTag.href = "${root}/board/att/down?ano=${fvo.no}";
+		/* aTag.href = "${rootContext}/board/att/down?ano=${fvo.no}"; */
 		//이미지 요소 만들기
 		imgTag = document.createElement('img');
 		imgTag.setAttribute("src" , "${rootContext}/${path}/${fvo.changeName}");

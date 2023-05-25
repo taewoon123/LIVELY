@@ -28,10 +28,6 @@
 					<div id="help-inContent">${hvo.content}</div>
 				</div>
 				
-					<div>
-						<label for="thumbnail-tag">사진</label>
-						<input id="thumbnail-tag" type="file" name="f" multiple accept=".jpg,.png,.jpeg">
-					</div>
 					<div id="thumbnail-area"></div>
 
 				<!-- 작성 버튼 -->

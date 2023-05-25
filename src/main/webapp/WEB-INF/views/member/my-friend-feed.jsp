@@ -132,7 +132,7 @@
 	
 	
 	const toggle_text = document.querySelector(".toggle_text");
-	const toggle_checkbox = document.querySelector(".toggle_checkbox");
+	const toggle_checkbox = document.querySelector("#button-3");
 	
 	window.onload = function(){
 		const page_switch = document.querySelector(".toggle_checkbox");
@@ -144,7 +144,7 @@
 	function go(){
 		toggle_checkbox.addEventListener("click",() => {
 			location.href='${rootContext}/member/my-market-feed';
-			/* page_switch.checked = false; */
+			/* page_switch.checked = true; */
 			/* toggle-text.classList.remove("layer"); */
 			/* toggle_text.classList.remove("knobs");
 			toggle_text.classList.add("layer"); */

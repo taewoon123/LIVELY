@@ -28,7 +28,7 @@
 	                <div id="feed_checkbox">
 	            		<input class="feed_checkbox_status" id="statusCheckbox" type="checkbox" onclick="feed_toggle();"><span>&nbsp; 거래가능만 보기</span>
 	            	</div>
-                    <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/market/write';">
+                    <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/gallery/write';">
                         <span class="actual-text">&nbsp;UPLOAD&nbsp;</span>
                         <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
                     </button>
@@ -36,16 +36,16 @@
             	
             </div>
 
-			<c:forEach items="${marketList}" var="mList">
+			<c:forEach items="${galleryVoList}" var="mList">
 	            <!-- 첫번째 피드 시작 -->
-	            <div class="feed_box feed_status_${mList.statusYn}">
+	            <div class="feed_box feed_status_${mList.status}">
 	                <div id="profile_area">
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
-	                        <div id="profile_name">${mList.writerName}</div>
-	                        <div id="profile_nick">${}</div>
+	                        <div id="profile_name">김본전</div>
+	                        <div id="profile_nick">라이블리</div>
 	                    </div>
-	                    <c:if test="${mList.statusYn == 'N'}">
+	                    <c:if test="${mList.status == 'N'}">
 		                    <div id="feed_status">
 		                    	<input class="feed_status_text" value="거래완료" readonly>
 		                    </div>
@@ -54,37 +54,36 @@
 	                <div id="feed-image">
 	                    <div id="img_area">
 	                    <!-- Image Slider -->
-	                    <div id="myCarousel${mList.marketNo}" class="carousel slide">
+	                    <div id="myCarousel${mList.no}" class="carousel slide">
 	                        <div class="carousel-indicators">
-	                        <button type="button" data-bs-target="#myCarousel${mList.marketNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-	                        <button type="button" data-bs-target="#myCarousel${mList.marketNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
-	                        <button type="button" data-bs-target="#myCarousel${mList.marketNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	                        <button type="button" data-bs-target="#myCarousel${mList.no}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+	                        <button type="button" data-bs-target="#myCarousel${mList.no}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+	                        <button type="button" data-bs-target="#myCarousel${mList.no}" data-bs-slide-to="2" aria-label="Slide 3"></button>
 	                        </div>
 	                        <div class="carousel-inner">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-	                            <%-- <image class="first" href="${rootContext}/resources/upload/market/${fileVoList.changeNameList}" width="100%" height="100%"/> --%>
-               	                <image class="first" href="${rootContext}/resources/upload/market/${mList.changeName}" alt="${rootContext}/resources/upload/market/${mList.originName}" width="100%" height="100%"/>
 	                            
+	                            <image class="first" href="${rootContext}/resources/upload/market/${mList.changeName}" alt="${rootContext}/resources/upload/market/${mList.originName}" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
-	                        <%-- <div class="carousel-item">
+	                         <%-- <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="second" href="${rootContext}/resources/img/two${mList.marketNo}.jpg" width="100%" height="100%"/>
+	                            <image class="second" src="${rootContext}/resources/upload/market/${mList.changeName}" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
 	                        <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="third" href="${rootContext}/resources/img/three${mList.marketNo}.jpg" width="100%" height="100%">
+	                            <image class="third" src="${rootContext}/resources/upload/market/${mList.changeName}" width="100%" height="100%">
 	                            </svg>
 	
-	                        </div> --%>
+	                        </div> --%> 
 	                        </div>
-	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${mList.marketNo}" data-bs-slide="prev">
+	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${mList.no}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	                        <span class="visually-hidden">Previous</span>
 	                        </button>
-	                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${mList.marketNo}" data-bs-slide="next">
+	                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${mList.no}" data-bs-slide="next">
 	                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
 	                        <span class="visually-hidden">Next</span>
 	                        </button>
@@ -93,7 +92,7 @@
 	                
 	                </div>
 	                <div id="content_area">
-	                	<h7>${mList.title} &nbsp;&nbsp; ￦ ${mList.price}</h7> <br>
+	                	<h7>${mList.title} &nbsp;&nbsp; ￦ <%-- ${mList.price} --%></h7> <br>
 	                    <span class="feed-content">${mList.content}</span>
 	                    <span class="feed-content-hide"></span>
 	                    <button class="feed-content-more-button">more</button>
@@ -105,7 +104,7 @@
 	            <!-- 첫번째 피드 끝 -->
             </c:forEach>
             
-            <div id="page-area">
+           <%--  <div id="page-area">
 				<c:if test="${pageVo.currentPage > 1}">
 					<a class="prevPage" href="${rootContext}/market/list?page=${pageVo.currentPage-1}">이전</a>
 				</c:if>
@@ -120,7 +119,7 @@
 				<c:if test="${pageVo.currentPage < pageVo.maxPage}">
 					<a class="nextPage" href="${rootContext}/market/list?page=${pageVo.currentPage+1}">다음</a>
 				</c:if>
-			</div>
+			</div> --%>
 
         </main>
         

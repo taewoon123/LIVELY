@@ -98,7 +98,7 @@ public class MemberController {
 	public String myInfo(MemberVo vo, Model model, HttpSession session) throws Exception {
 
 		// 서비스
-		MemberVo updatedMember = ms.edit(vo);
+		MemberVo updatedMember = ms.myInfo(vo);
 
 		// 화면
 		if (updatedMember == null) {

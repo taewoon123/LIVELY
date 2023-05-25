@@ -73,7 +73,7 @@
                           </td>
                           <th>
                             <div class="input-group">
-                              <input type="password" name="pwd" id="pwd" placeholder="문자,특수문자 포함 6~12글자">
+                              <input type="password" name="password" id="password" placeholder="문자,특수문자 포함 6~12글자">
                             </div>
                           </th>
                           <td id="password-validity">
@@ -87,7 +87,7 @@
                           </td>
                           <th>
                             <div class="input-group">
-                              <input type="password" name="pwd2" id="pwd2" placeholder="">
+                              <input type="password" name="password2" id="password2" placeholder="">
                             </div>
                           </th>
                           <td id="passwordCheck-validity">
@@ -101,7 +101,7 @@
                           </td>
                           <th>
                             <div class="input-group">
-                              <input type="text" name="name" id="name" placeholder="" value="정연우" readonly>
+                              <input type="text" name="Name" id="name" placeholder="" value="정연우" readonly>
                             </div>
                           </th>
                           <td>
@@ -143,7 +143,7 @@
                           </td>
                           <th>
                             <div class="input-group">
-                              <input type="text" name="hp" id="hp" placeholder=" ex) 01055550000" value="01077775555">
+                              <input type="text" name="phone" id="phone" placeholder=" ex) 01055550000" value="01077775555">
                             </div>
                           </th>
                           <td id="hp-validity">
@@ -158,10 +158,10 @@
                           <th>
                             <div class="selections">
                               <span id="Female">
-                                <input type="radio" name="genderCode" id="female" value="0"checked> <label for="female">Female</label>
+                                <input type="radio" name="gender" id="female" value="0"checked> <label for="female">Female</label>
                               </span>
                               <span id="Male">
-                                <input type="radio" name="genderCode" id="male" value="1"> <label for="male">Male</label>
+                                <input type="radio" name="gender" id="male" value="1"> <label for="male">Male</label>
                               </span>
                             </div>
                           </th>
@@ -177,11 +177,11 @@
                           </td>
                           <th>
                             <div>
-                              <select class="location-option" name="locationNo" id="location">
+                              <select class="location-option" name="location" id="location">
                                 <option value="0" selected>Select</option>
                                 <option value="1">강동구</option>
                                 <option value="2">강서구</option>
-                                <option value="3">강남구</option>
+                                <option value="3" selected>강남구</option>
                                 <option value="4">강북구</option>
                               </select>
                             </div>

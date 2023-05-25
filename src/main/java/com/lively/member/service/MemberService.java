@@ -38,9 +38,9 @@ public class MemberService {
 		return dao.login(sst, memberVo);
 	}
 
-	public MemberVo edit(MemberVo vo)throws Exception {
+	public MemberVo myInfo(MemberVo vo)throws Exception {
 
-		int result = dao.edit(sst, vo);
+		int result = dao.myInfo(sst, vo);
 		if (result != 1) {
 			throw new Exception();
 		}

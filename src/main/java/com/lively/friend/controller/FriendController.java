@@ -58,6 +58,7 @@ public class FriendController {
 		List<FriendVo> friendList = fs.getFriendFeed(searchMap , pageVo);
 		List<Map<String, String>> LocationList = fs.getLocationNoList();
 		
+		
 		model.addAttribute("pageVo" , pageVo);
 		model.addAttribute("friendList", friendList);
 		model.addAttribute("searchMap" , searchMap);

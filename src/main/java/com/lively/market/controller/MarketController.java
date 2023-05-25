@@ -40,7 +40,7 @@ public class MarketController {
 	@GetMapping("list")
 	public String list(Model model, @RequestParam(defaultValue = "1") int page, String no) throws Exception {
 		
-		MarketVo marketVo = ms.getFeed(no);
+//		MarketVo marketVo = ms.getFeed(no);
 		
 		//데이터
 		int listCount = ms.getFeedCount();
@@ -52,11 +52,9 @@ public class MarketController {
 		List<MarketVo> marketList = ms.getMarketFeed(pageVo);
 		List<LocationVo> LocationList = ms.getLocationList();
 		
-		System.out.println(LocationList.size());
 		System.out.println(marketList);
 		
-		model.addAttribute("marketVo", marketVo);
-		model.addAttribute("path", "resources/upload/market");
+//		model.addAttribute("marketVo", marketVo);
 		model.addAttribute("pageVo", pageVo);
 //		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("marketList", marketList);
@@ -90,14 +88,20 @@ public class MarketController {
 		List<String> originNameList = FileUploader.getOriginNameList(f);
 		
 		//데이터 준비
+		int size = 0;
 		List<FileVo> fileVoList = new ArrayList<FileVo>();
 		if(changeNameList != null) {
-			int size = changeNameList.size();
+			size = changeNameList.size();
+			System.out.println(size);
 			for(int i=0; i < size; i++) {
 				FileVo fileVo = new FileVo();
 				fileVo.setOriginName(originNameList.get(i));
 				fileVo.setChangeName(changeNameList.get(i));
 				fileVoList.add(fileVo);
+				
+//				MarketVo marketVo = new MarketVo();
+				marketVo.setOriginNameList(originNameList.get(i));
+				marketVo.setChangeNameList(changeNameList.get(i));
 			}
 		}
 
@@ -110,7 +114,10 @@ public class MarketController {
 			
 			return "board/market/market-write";
 		}
+		model.addAttribute("marketVo", marketVo);
 		model.addAttribute("fileVoList", fileVoList);
+		model.addAttribute("changeNameList", changeNameList);
+		model.addAttribute("size", size);
 		
 		return "redirect:/market/list";
 	}

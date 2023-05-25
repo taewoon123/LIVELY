@@ -62,25 +62,17 @@ public class MarketService {
 	public int delete(MarketVo marketVo) {
 		return dao.delete(sst, marketVo);
 	}
-
-//	public int getMyFeedCount() {
-//		return dao.getMyFeedCount(sst);
-//	}
-//
-//	public List<MarketVo> getMyMarketFeed(PageVo myPageVo) {
-//		return dao.getMyMarketFeed(sst, myPageVo);
-//	}
 	
-	//상세조회
-	public MarketVo getFeed(String no) throws Exception {
-		
-		MarketVo marketVo = dao.getFeed(sst, no);
-		List<FileVo> fileList = dao.getAttachmentList(sst, no);
-		
-		marketVo.setAttachmentList(fileList);
-		
-		return marketVo;
-	}
+//	//상세조회
+//	public MarketVo getFeed(String no) throws Exception {
+//		
+//		MarketVo marketVo = dao.getFeed(sst, no);
+//		List<FileVo> fileList = dao.getAttachmentList(sst, no);
+//		
+//		marketVo.setAttachmentList(fileList);
+//		
+//		return marketVo;
+//	}
 	
 	public FileVo getAttachment(String attachmentNo) {
 		return dao.getAttachment(sst, attachmentNo);

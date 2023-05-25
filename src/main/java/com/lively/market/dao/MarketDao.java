@@ -66,18 +66,18 @@ public class MarketDao {
 //	}
 	
 	//첨부파일
-	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String no) {
-		return sst.selectList("market.getAttachmentList", no);
+	public int getAttachmentList(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("market.getAttachmentList", no);
 	}
 
 	public FileVo getAttachment(SqlSessionTemplate sst, String attachmentNo) {
 		return sst.selectOne("market.getAttachment", attachmentNo);
 	}
 	
-	//상세조회
-	public MarketVo getFeed(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("market.getFeed", no);
-	}
+//	//상세조회
+//	public MarketVo getFeed(SqlSessionTemplate sst, String no) {
+//		return sst.selectOne("market.getFeed", no);
+//	}
 }
 
 

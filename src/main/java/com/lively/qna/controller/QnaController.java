@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.qna.vo.QnaVo;
-import com.lively.job.file.fileupload.*;
+
 import com.lively.job.page.vo.PageVo;
 import com.lively.member.vo.MemberVo;
 

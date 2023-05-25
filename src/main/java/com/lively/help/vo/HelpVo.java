@@ -1,5 +1,9 @@
 package com.lively.help.vo;
 
+import java.util.List;
+
+import com.lively.common.FileVo;
+
 import lombok.Data;
 
 @Data
@@ -12,4 +16,6 @@ public class HelpVo {
 	private String editDate;
 	private String deleteYn;
 	private String views;
+	
+	private List<FileVo> attList;
 }

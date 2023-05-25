@@ -27,6 +27,12 @@
 					<div id="help-content">내용</div>
 					<div id="help-inContent">${hvo.content}</div>
 				</div>
+				
+					<div>
+						<label for="thumbnail-tag">사진</label>
+						<input id="thumbnail-tag" type="file" name="f" multiple accept=".jpg,.png,.jpeg">
+					</div>
+					<div id="thumbnail-area"></div>
 
 				<!-- 작성 버튼 -->
 				<c:if test="${memberLog.id eq hvo.writer }">
@@ -69,6 +75,28 @@
         viewArea.classList.remove('active');
         formArea.classList.add('active');
     }
+    
+const div = document.querySelector('#thumbnail-area');
+	
+	let imgTag;
+	let aTag;
+	<c:forEach items="${hvo.attList}" var="fvo">
+		//a태그 만들기
+		aTag = document.createElement('a');
+		aTag.href = "${root}/board/att/down?ano=${fvo.no}";
+		//이미지 요소 만들기
+		imgTag = document.createElement('img');
+		imgTag.setAttribute("src" , "${root}/${path}/${fvo.changeName}");
+		imgTag.setAttribute("alt" , "${fvo.originName}");
+		imgTag.setAttribute("width" , "100px");
+		imgTag.setAttribute("height" , '100px');
+
+		//a태그 내부에 img 추가
+		aTag.appendChild(imgTag);
+
+		//div 안에 a태그 추가
+		div.appendChild(aTag);
+	</c:forEach>
     
 </script>
 

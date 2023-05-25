@@ -100,4 +100,16 @@
 		SELECT 1 FROM DUAL
 	</insert>
 	
+	<select id="getAttachmentList" resultType = "FileVo">
+		SELECT
+			HELP_ATTACH_NO
+			, HELP_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+			, DELETE_YN
+		FROM HELP_ATTACH
+		WHERE HELP_NO = #{helpNo}
+		AND DELETE_YN = 'N'
+	</select>
+	
 </mapper>

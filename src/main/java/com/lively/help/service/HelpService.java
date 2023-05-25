@@ -51,6 +51,8 @@ public class HelpService {
 		}
 		
 		HelpVo hvo = dao.getHelp(sst, num);
+		List<FileVo> fileList = dao.getAttachmentList(sst, num);
+		hvo.setAttList(fileList);
 		return hvo;
 	}
 

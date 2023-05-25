@@ -51,4 +51,8 @@ public class HelpDao {
 		return sst.insert("help.insertAttachment", helpList);
 	}
 
+	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String num) {
+		return sst.selectList("help.getAttachmentList", num);
+	}
+
 }

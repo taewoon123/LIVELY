@@ -77,7 +77,7 @@
                             </ul>
 
                             <c:choose>
-                                <c:when test="${sessionScope.memberLog == null}">
+                                <c:when test="${sessionScope.memberLog == null && sessionScope.adminLog == null}">
                                     <span style="width: 135px;"></span>
                                     <a href="${rootContext}/member/join" class="btn custom-btn d-lg-block d-none">Sign Up</a> &nbsp;&nbsp;&nbsp;&nbsp;
                                     <a href="${rootContext}/member/login" class="btn custom-btn d-lg-block d-none">Sign In</a>

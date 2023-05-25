@@ -117,7 +117,7 @@ public class HelpController {
 		
 		model.addAttribute("hvo", vo);
 		model.addAttribute("helpNo", num);
-		model.addAttribute("path", "/resources/upload/help");
+		model.addAttribute("path", "resources/upload/help");
 		return "board/help/help-detail";
 	}
 	

@@ -25,7 +25,11 @@
                 <div id="help-hit">조회수</div>
                 <div id="help-inHit">${fundDetail.views}</div>
                 <div id="help-content">내용</div>
-                <div id="help-inContent">${fundDetail.content}</div>
+                <div id="help-inContent">${fundDetail.content}
+                    <c:forEach items="${fundDetail.attList}" var="image">
+                    <img src="${rootContext}/resources/upload/fundraise/${image.changeName}"></img>
+                    </c:forEach>
+                </div>
             </div>
 
             <c:if test="${memberLog.id eq fundDetail.writer }">
@@ -33,7 +37,6 @@
                 <button id="write_submit_delete" onclick="location.href='${rootContext}/fund/delete?no=${fundNo}'">
                     <span>삭제하기</span>
                 </button>
-                <span style="color: whitesmoke">${fundraiseNo}</span>
 
                 <button id="write_submit_edit">
                     <span>수정하기</span>

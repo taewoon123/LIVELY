@@ -43,4 +43,7 @@ public class FundraiseDao {
         System.out.println("dao's fileVo LIst " + fileVoList);
         return sst.insert("fundraise.insertAttachment", fileVoList);
     }
+    public List<FileVo> getAttachmentList(SqlSessionTemplate sst, int no) {
+        return sst.selectList("fundraise.getAttachmentList", no);
+    }
 }

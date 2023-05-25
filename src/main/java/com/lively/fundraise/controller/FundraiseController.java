@@ -50,13 +50,14 @@ public class FundraiseController {
     }
 
     @GetMapping("detail")
-    public String fundDetail(int no, Model model, HttpSession session) {
+    public String fundDetail(@RequestParam("no") int no, Model model, HttpSession session) {
         FundraiseVo vo = service.getFundDetail(no);
         if (vo == null) {
             model.addAttribute("fundDetailAlert", "해당 글이 존재하지 않습니다");
             return "board/fundraise/fundraise-detail";
         }
         model.addAttribute("fundDetail", vo);
+        log.info("fundDetail : {}", vo);
         model.addAttribute("fundNo", no);
         return "board/fundraise/fundraise-detail";
     }
@@ -84,7 +85,7 @@ public class FundraiseController {
         }
         return "board/fundraise/fundraise-write";
     }
-//TODO: 업로드 파일을 가져와야함
+//TODO: 업로드 파일을 가져와야함 해결함.
     @PostMapping("write")
     public String fundWrite(FundraiseVo fundVo, HttpSession session, HttpServletRequest request, List<MultipartFile> file) throws Exception {
         MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
@@ -99,7 +100,7 @@ public class FundraiseController {
             for (int i = 0; i < size; i++) {
                 FileVo fileVo = new FileVo();
                 fileVo.setOriginName(originalFileNames.get(i));
-                fileVo.setChangeName(originalFileNames.get(i));
+                fileVo.setChangeName(changeFileNames.get(i));
                 fileVoList.add(fileVo);
             }
         }

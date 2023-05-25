@@ -22,8 +22,8 @@ public class MemberDao {
 		return sst.selectOne("member.login", memberVo);
 	}
 
-	public int myInfo(SqlSessionTemplate sst, MemberVo vo) {
-		return sst.update("member.myInfo", vo);
+	public int edit(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.update("member.edit", vo);
 	}
 
 	public MemberVo selectOneByNo(SqlSessionTemplate sst, MemberVo vo) {

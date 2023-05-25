@@ -38,18 +38,28 @@
   		WHERE DELETE_YN = 'N'
   	</select>
   	
-  	<update id="increaseViews">
+  	<update id="increaseHit">
 		UPDATE QNA
 		    SET VIEWS = VIEWS+1
 	    WHERE   QNA_NO = #{no}
 	    AND     DELETE_YN= 'N'
 	</update>
 	
-	<select id="getQna" resultType = "qnaVo">
-  		SELECT *
-  		FROM QNA
-  		WHERE QNA_NO = #{no}
-  		AND DELETE_YN = 'N'
+	<select id="getQna" resultType = "QnaVo">
+  		SELECT QNA_NO AS NO,
+        M.NAME AS WRITER
+        ,Q.QNA_TITLE
+        ,Q.QNA_CONTENT
+        ,Q.VIEWS
+        ,Q.ENROLL_DATE
+        ,Q.EDIT_DATE
+        ,Q.DELETE_YN
+        ,Q.WRITER
+        ,Q.ADMIN_NO
+        FROM QNA Q
+        JOIN MEMBER M ON M.NO = Q.WRITER
+        WHERE DELETE_YN = 'N'
+        AND QNA_NO = #{no}
   	</select>
   	
   	<update id="edit">

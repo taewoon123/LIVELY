@@ -35,14 +35,14 @@ public class QnaService {
 	}
 
 	//상세조회(조회수)
-	public QnaVo getQna(String qnaNo) throws Exception {
-		int result = dao.increaseViews(sst, qnaNo);
+	public QnaVo getQna(String no) throws Exception {
+		int result = dao.increaseHit(sst, no);
+		
 		if(result != 1) {
 			throw new Exception();
 		}
-		QnaVo qvo = dao.getQna(sst, qnaNo);
-		List<FileVo> fileList = dao.getAttachmentList(sst , qnaNo);
-		qvo.setAttList(fileList);
+		QnaVo qvo = dao.getQna(sst, no);
+		
 		return qvo;
 		}
 
@@ -51,8 +51,9 @@ public class QnaService {
 		return dao.edit(sst, vo);
 	}
 
-	public int delete(String num) {
-		return dao.delete(sst, num);
+	//삭제하기
+	public int delete(QnaVo vo) {
+		return dao.delete(sst, vo);
 	}
 
 	public List<Map<String, String>> CategoryList() {

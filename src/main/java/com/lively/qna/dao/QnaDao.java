@@ -28,25 +28,26 @@ public class QnaDao {
 		return sst.selectOne("qna.getQnaListCnt");
 	}
 
-	public int increaseViews(SqlSessionTemplate sst, String qnaNo) {
-		return sst.update("qna.increaseViews", qnaNo);
-	}
 
-	public QnaVo getQna(SqlSessionTemplate sst, String qnaNo) {
 
-		return sst.selectOne("qna.getQna", qnaNo);
+	public QnaVo getQna(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("qna.getQna", no);
 	}
 
 	public int edit(SqlSessionTemplate sst, QnaVo vo) {
 		return sst.update("qna.edit", vo);
 	}
 
-	public int delete(SqlSessionTemplate sst, String qnaNo) {
-		return sst.delete("qna.delete", qnaNo);
+	public int delete(SqlSessionTemplate sst, QnaVo vo) {
+		return sst.delete("qna.delete", vo);
 	}
 
-	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String qnaNo) {
+	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String no) {
 		return null;
+	}
+
+	public int increaseHit(SqlSessionTemplate sst, String no) {
+		return sst.update("qna.increaseHit", no);
 	}
 
 }

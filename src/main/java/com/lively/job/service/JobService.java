@@ -41,7 +41,7 @@ public class JobService {
     public JobVo getJob(String no) throws Exception {
     	int result = dao.increaseHit(sst, no);
 		if(result != 1) {
-		
+			
 			throw new Exception();
 		}
 		

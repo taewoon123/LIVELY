@@ -88,23 +88,20 @@ public class QnaController {
 		}
 
 		// 상세조회
-//		@GetMapping("detail")
-//		public String detail(String qnaNo, Model model) throws Exception {
-//			QnaVo vo = qs.getQna(qnaNo);
-//			if(vo == null) {
-//				System.out.println(vo);
-//				model.addAttribute("errorMsg", "조회 실패...");
-//				return "common/error-page";
-//			}
-//			
-//			model.addAttribute("vo", vo);
-//			return "board/manage/qna/Qna-detail";
-//		}
-//		
 		@GetMapping("detail")
-		public String datail() {
+		public String detail(String no, Model model) throws Exception {
+			QnaVo vo = qs.getQna(no);
+			if(vo == null) {
+				System.out.println(vo);
+				model.addAttribute("errorMsg", "조회 실패...");
+				return "common/error-page";
+			}
+			
+			model.addAttribute("qvo", vo);
 			return "board/manage/qna/qna-detail";
 		}
+		
+		
 		// 수정하기
 		@PostMapping("edit")
 		public String edit(QnaVo vo, Model model, HttpSession session) {
@@ -117,20 +114,21 @@ public class QnaController {
 			}
 			
 			session.setAttribute("alertMsg", "수정성공!!");
-			return "redirect:qna/detail?num=" + vo.getQnaNo();
+			return "redirect:qna/detail?no=" + vo.getQnaNo();
 		}
 		
-		//공지사항 삭제하기
+		//삭제하기
 		@GetMapping("delete")
-		public String delete(String num, RedirectAttributes ra) throws Exception {
+		public String delete(QnaVo vo , HttpSession session) throws Exception {
 			
-			int result = qs.delete(num);
+			int result = qs.delete(vo);
 			
 			if(result != 1) {
-				throw new Exception("공지사항 삭제 실패...");
+				throw new Exception("삭제 실패...");
 			}
 			
-			return "redirect:/qna/list";
+			session.setAttribute("alertMsg", "삭제 성공!");
+			return "redirect:/board/list";
 		}
 		
 	}

@@ -97,14 +97,13 @@ public class JobController{
 	@GetMapping("detail")
 	public String detail(String no, Model model) throws Exception {
 			JobVo vo = js.getJob(no);
-			System.out.println(no);
-		
+
 		if(vo == null) {
 			model.addAttribute("errorMsg", "조회 실패...");
 			return "common/error-page";
 		}
 		model.addAttribute("jvo", vo);
-		model.addAttribute("jobNo", no);
+
 		return "board/job/job-detail";
 		}
 	// 수정하기 (작성자 본인만)

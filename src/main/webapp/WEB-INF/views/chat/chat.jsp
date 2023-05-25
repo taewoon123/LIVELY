@@ -19,13 +19,13 @@
                 CHAT
             </div>
             <div class="chat format">
-        
+        		<div id="chat_wrap"></div>
             </div>
             <form action="" onsubmit="return sendMsg();">
 	            <div class="input_div">
 	                <!-- <textarea placeholder="Press Enter for send message." ></textarea> -->
 	                <input placeholder="Press Enter for send message." type="text" name="msg">
-	                <button type="submit">전송</button>
+	                <button type="submit" id="sendBtn">전송</button>
 	            </div>
             </form>
         <ul>

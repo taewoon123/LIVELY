@@ -1,14 +1,18 @@
+var socket;
 //웹소켓 생성
-const socket = new WebSocket("ws://127.0.0.1:8888/lively/server");
 
-socket.onopen = connectOk;
-socket.onerror = connectFail;
-socket.onclose = disconnect;
-socket.onmessage = rcvMsg;
+function connect(){
+	socket = new WebSocket("ws://127.0.0.1:8888/lively/server");
+	socket.onopen = connectOk;
+	socket.onmessage = rcvMsg;
+	socket.onclose = disconnect;
+	socket.onerror = connectFail;
+	
+}
 
 //웹소켓 연결 성공
-function connectOk(){
-		console.log('연결 성공 ~');
+function connectOk(event){
+		appendMessage("연결되었습니다.");
 }
 
 //웹소켓 연결 실패
@@ -17,34 +21,52 @@ function connectFail(){
 }
 
 //웹소켓 끊김
-function disconnect(){
-	console.log('연결 끊김;;');
+function disconnect(event){
+	appendMessage("연결이끊겼습니다.");
+	socket.close();
 }
 
-//엔터키
-/*function chatKeyDown() {
-	if(window.event.keyCode==13) //enter 일 경우
-	{
-		sendServer();
-	}
-}*/
+
 
 // 메세지 전송
 function sendMsg() {
-	const msg = document.querySelector("textarea[name=msg]").value;
-	socket.send(msg);
+	var name = val();
+	var msg = $("#msg").val();
+	socket.sendMsg("msg"+name+":" + msg);
+	$("#msg").val("");
 }
-//메세지 수신
-function rcvMsg(event){
-	console.log('메세지 수신');
-	const socketServer = JSON.parse(event.data);
-	console.log("발신자 : " + socketServer.sender);
-	console.log("메세지 : " + socketServer.msgContent);
-	console.log("전송시각 : " + socketServer.msgTime);
+
+function appendMessage(msg) {
+	$("#chat_wrap").append(msg+"<br>");
+
 	
 }
 
+//메세지 수신
+function rcvMsg(event){
+//	console.log('메세지 수신');
+//	const socketServer = JSON.parse(event.data);
+//	console.log("발신자 : " + socketServer.sender);
+//	console.log("메세지 : " + socketServer.msgContent);
+//	console.log("전송시각 : " + socketServer.msgTime);
+	var data = event.data;
+	if (data.substring(0 , 4) == "msg:"){
+		appendMessage(data.substring(4));
+	}
+}
 
+
+//엔터키
+$(document).ready(function() {
+	$('#msg').keypress(function(event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == '13'){
+			send();
+		}
+		event.stopPropagation();
+	});
+	$('#msg').click(function(){send();});
+});
 
 
 /*

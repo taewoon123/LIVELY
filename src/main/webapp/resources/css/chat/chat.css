@@ -1,19 +1,5 @@
 /* 새로 추가한 것 */
 
-/* 메인크기조절 */
-#wrap{
-    /* position: relative; */
-}
-
-
-/* CHAT헤더 */
-.header {
-   font-size: 14px; 
-   padding: 15px 0; 
-   background: #078735; 
-   color: white; 
-   text-align: center;  
-}
 /* 채팅입력창 */
 .input_div { 
   position: fixed; 
@@ -30,6 +16,20 @@
   border: none; 
   padding: 10px; 
 }
+/* 메인크기조절 */
+#wrap{
+    /* position: relative; */
+}
+
+
+/* CHAT헤더 */
+.header {
+   font-size: 14px; 
+   padding: 15px 0; 
+   background: #078735; 
+   color: white; 
+   text-align: center;  
+}
 
 /* 원래 있던거 */
 * {
@@ -42,7 +42,7 @@ a {
     text-decoration: none;
 }
 
-.chat_wrap {
+#chat_wrap {
     padding: 100px 0;
     height: 600px;
     background-color: #4b4d4e;

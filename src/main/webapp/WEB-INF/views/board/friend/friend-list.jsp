@@ -76,17 +76,18 @@
                         <div class="carousel-inner">
                         <div class="carousel-item active">
                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-                            <image class="first" href="${rootContext}/resources/img/first${fList.friendNo}.jpg" width="100%" height="100%"/>
+                            <%-- <image class="first" href="${rootContext}/resources/img/first${fList.friendNo}.jpg" width="100%" height="100%"/> --%>
+                            <image class="first" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%"/>
                             </svg>
                         </div>
                         <div class="carousel-item">
                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="second" href="${rootContext}/resources/img/second${fList.friendNo}.jpg" width="100%" height="100%"/>
+                            <image class="second" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%"/>
                             </svg>
                         </div>
                         <div class="carousel-item">
                             <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="third" href="${rootContext}/resources/img/third${fList.friendNo}.jpg" width="100%" height="100%">
+                            <image class="third" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%">
                             </svg>
 
                         </div>
@@ -143,7 +144,7 @@
 
 </html>
 
-<script>
+<!-- <script>
 
 const div = document.querySelector('#thumbnail-area');
 
@@ -167,7 +168,7 @@ let aTag;
 	div.appendChild(aTag);
 </c:forEach>
 
-</script>
+</script> -->
 
  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-list.css">
  <script src="${rootContext}/resources/js/board/friend-list.js"></script>

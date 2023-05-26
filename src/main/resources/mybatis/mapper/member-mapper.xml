@@ -59,34 +59,4 @@
 		AND QUIT_YN = 'N'
 	</select>
 	
-	<update id="myInfo">
-		UPDATE MEMBER
-		SET
-			PWD = #{pwd}
-			,HP = #{hp}
-			,EMAIL = #{email}
-			,LOCATION_NO = #{locationNo}
-			,GENDER_CODE = #{genderCode}
-		WHERE NO = #{no}
-	</update>
-	
-	<select id="getMember" resultType="MemberVo">
-		SELECT
-		    NO
-			,NAME
-			,ID
-			,PWD
-			,BIRTH
-			,HP
-			,EMAIL
-			,QUIT_YN
-			,JOIN_DATE
-			,LOCATION_NO
-			,GENDER_CODE
-		FROM MEMBER
-		WHERE NO = #{no}
-	</select>
-	
-
-
 </mapper>

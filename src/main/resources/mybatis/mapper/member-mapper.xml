@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="member">
-	
+
 	<!-- 회원가입 -->
 	<insert id="join">
 		INSERT INTO MEMBER
@@ -32,7 +32,7 @@
 			, #{genderCode}
 		)
 	</insert>
-	
+
 	<!-- 아이디 중복체크 -->
 	<select id="checkId" resultType="int">
 		SELECT COUNT(*)
@@ -42,7 +42,7 @@
 
 	<!-- 로그인 -->
 	<select id="login" resultType="MemberVo">
-		SELECT 
+		SELECT
 			NO
 			, NAME
 			, ID
@@ -55,8 +55,7 @@
 			, GENDER_CODE
 		FROM MEMBER
 		WHERE ID = #{id}
-		AND PWD = #{pwd}
-		AND QUIT_YN = 'N'
+			AND PWD = #{pwd}
+			AND QUIT_YN = 'N'
 	</select>
-	
 </mapper>

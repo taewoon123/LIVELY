@@ -57,9 +57,9 @@ public class MemberController {
 
 		int result = ms.checkId(id);
 
-		if (result > 0 ) {
+		if (result > 0) {
 			return "isDup";
-		}else{
+		} else {
 			return "notDup";
 		}
 	}// idCheck
@@ -93,19 +93,19 @@ public class MemberController {
 		return "member/my-info";
 	}
 
-	// 정보수정 처리
+	// 회원정보 수정 처리
 	@PostMapping("my-info")
 	public String myInfo(MemberVo vo, Model model, HttpSession session) throws Exception {
 
 		// 서비스
-		MemberVo updatedMember = ms.edit(vo);
+		MemberVo updatedMember = ms.myInfo(vo);
 
 		// 화면
 		if (updatedMember == null) {
 			model.addAttribute("alertMsg", "정보수정실패");
 			return "member/my-info";
 		}
-		session.setAttribute("loginMember", updatedMember);
+		session.setAttribute("memberLog", updatedMember);
 		session.setAttribute("alertMsg", "정보 수정 성공!!");
 		return "redirect:/member/my-info";
 	}

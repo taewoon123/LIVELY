@@ -21,10 +21,12 @@ public class MemberService {
 		this.dao = dao;
 	}
 
+	//회원가입
 	public int join(MemberVo vo) throws Exception {
 		return dao.join(vo, sst);
 	}
 
+	//아이디 중복확인
 	public int checkId(String id) {
 		// conn : 이미 지역변수 sst 있음.
 		// sql : dao에게 보내기.
@@ -33,14 +35,16 @@ public class MemberService {
 		// close : spring이 처리해줌
 	}
 
+	//로그인
 	public MemberVo login(MemberVo memberVo) {
 
 		return dao.login(sst, memberVo);
 	}
 
-	public MemberVo edit(MemberVo vo)throws Exception {
+	//회원정보 수정
+	public MemberVo myInfo(MemberVo vo)throws Exception {
 
-		int result = dao.edit(sst, vo);
+		int result = dao.myInfo(sst, vo);
 		if (result != 1) {
 			throw new Exception();
 		}

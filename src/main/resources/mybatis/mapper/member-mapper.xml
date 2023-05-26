@@ -59,7 +59,7 @@
 		AND QUIT_YN = 'N'
 	</select>
 	
-	<update id="edit">
+	<update id="myInfo">
 		UPDATE MEMBER
 		SET
 			PWD = #{pwd}
@@ -72,14 +72,17 @@
 	
 	<select id="getMember" resultType="MemberVo">
 		SELECT
-		    NAME
-		    ,ID
-		    ,PWD
-		    ,BIRTH
-		    ,HP
-		    ,EMAIL
-		    ,LOCATION_NO
-		    ,GENDER_CODE
+		    NO
+			,NAME
+			,ID
+			,PWD
+			,BIRTH
+			,HP
+			,EMAIL
+			,QUIT_YN
+			,JOIN_DATE
+			,LOCATION_NO
+			,GENDER_CODE
 		FROM MEMBER
 		WHERE NO = #{no}
 	</select>

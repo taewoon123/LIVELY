@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
-import com.lively.job.page.vo.PageVo;
+import com.lively.page.vo.PageVo;
 import com.lively.qna.dao.QnaDao;
 import com.lively.qna.vo.QnaVo;
 
@@ -52,8 +52,8 @@ public class QnaService {
 	}
 
 	//삭제하기
-	public int delete(QnaVo vo) {
-		return dao.delete(sst, vo);
+	public int delete(String no) {
+		return dao.delete(sst, no);
 	}
 
 	public List<Map<String, String>> CategoryList() {

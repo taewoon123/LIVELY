@@ -345,3 +345,16 @@ h5 {
    float: right;
    font-size: 13px;
 }
+
+/* 댓글  css */ 
+	#comment-header {
+		width: 100%;
+		border-left: 1px solid black;
+		border-right: 1px solid black;
+		display: grid;
+		grid-template-columns: 4fr 1fr;
+	}
+	
+	#comment-area {
+	color: white;
+	}

@@ -175,4 +175,3 @@ initSearchValueInput();
 //이벤트 리스너 //서치밸류 형태 변경하는 이벤트 등록
 searchTypeTag.addEventListener('change' , toggleSearchValueTag);
 
-

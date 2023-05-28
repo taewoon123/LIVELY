@@ -216,15 +216,10 @@
 
                   <!-- 아코디언 -->
                   <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-
-
-
-
-
-
-
-
-
+                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-info'">나의 정보 수정</button>
+                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-board'">내가 올린 글</button>
+                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-feed'">내가 올린 피드</button>
+                  </div>
                 </ul>
               </div>
               <!-- //////////////////위까지 사이드바////////////////// -->

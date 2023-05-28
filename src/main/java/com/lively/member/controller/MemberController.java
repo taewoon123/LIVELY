@@ -110,7 +110,7 @@ public class MemberController {
 			model.addAttribute("alertMsg", "정보수정실패");
 			return "member/my-info";
 		}
-		session.setAttribute("loginMember", updatedMember);
+		session.setAttribute("memberLog", updatedMember);
 		session.setAttribute("alertMsg", "정보 수정 성공!!");
 		return "redirect:/member/my-info";
 	}

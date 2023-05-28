@@ -42,11 +42,49 @@
 
 	<!-- 로그인 -->
 	<select id="login" resultType="MemberVo">
-		SELECT NO, NAME, ID, PWD, BIRTH, HP, EMAIL,QUIT_YN, LOCATION_NO, GENDER_CODE
+		SELECT
+			NO
+			, NAME
+			, ID
+			, PWD
+			, BIRTH
+			, HP
+			, EMAIL
+			,QUIT_YN
+			, LOCATION_NO
+			, GENDER_CODE
 		FROM MEMBER
 		WHERE ID = #{id}
-		AND PWD = #{pwd}
-		AND QUIT_YN = 'N'
+			AND PWD = #{pwd}
+			AND QUIT_YN = 'N'
+	</select>
+	
+	<!-- my-info 회원정보 수정 -->
+	<update id="myInfo">
+		UPDATE MEMBER
+			SET
+		    	PWD = #{pwd}
+		    	,HP = #{hp}
+			    ,EMAIL = #{email}
+			    ,LOCATION_NO = #{locationNo}
+			    ,GENDER_CODE = #{genderCode}
+			WHERE NO = #{no}
+	</update>
+	
+	<!-- my-info 수정된 회원정보 조회하기 -->
+	<select id="getMember" resultType="MemberVo">
+		SELECT
+			NO
+		    ,NAME
+		    ,ID
+		    ,PWD
+		    ,BIRTH
+		    ,HP
+		    ,EMAIL
+		    ,LOCATION_NO
+		    ,GENDER_CODE
+		FROM MEMBER
+		WHERE NO = #{no}
 	</select>
 	
 	<!-- 나의 market feed -->
@@ -116,5 +154,5 @@
 		WHERE DELETE_YN = 'N'
 		AND WRITER = #{writer}
 	</select>
-
+	
 </mapper>

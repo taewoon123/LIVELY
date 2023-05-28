@@ -26,10 +26,12 @@ public class MemberService {
 		this.dao = dao;
 	}
 
+	//회원가입
 	public int join(MemberVo vo) throws Exception {
 		return dao.join(vo, sst);
 	}
 
+	//아이디 중복확인
 	public int checkId(String id) {
 		// conn : 이미 지역변수 sst 있음.
 		// sql : dao에게 보내기.
@@ -37,12 +39,14 @@ public class MemberService {
 		// tx || rs : tx는 자동처리 / rs는 mybatis가 처리해줌.
 		// close : spring이 처리해줌
 	}
-
+	
+	//로그인
 	public MemberVo login(MemberVo memberVo) {
 
 		return dao.login(sst, memberVo);
 	}
 
+	//회원정보 수정
 	public MemberVo myInfo(MemberVo vo)throws Exception {
 
 		int result = dao.myInfo(sst, vo);
@@ -53,6 +57,7 @@ public class MemberService {
 
 	}
 
+	//my-feed
 	public List<MarketVo> getMyMarketFeed(MarketVo marketVo) {
 		return dao.getMyMarketFeed(sst, marketVo);
 	}

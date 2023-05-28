@@ -13,20 +13,24 @@ import com.lively.member.vo.MemberVo;
 @Repository
 public class MemberDao {
 
+	//회원가입
 	public int join(MemberVo vo, SqlSessionTemplate sst) throws Exception {
 		return sst.insert("member.join", vo);
 	}
 
+	//아이디 중복확인
 	public int checkId(SqlSessionTemplate sst, String id) {
 		// return conn.mybatis메소드("쿼리문위치", 전달할 객체);
 		return sst.selectOne("member.checkId", id);
 	}
 
+	//로그인
 	public MemberVo login(SqlSessionTemplate sst, MemberVo memberVo) {
 
 		return sst.selectOne("member.login", memberVo);
 	}
 
+	//my-info
 	public int myInfo(SqlSessionTemplate sst, MemberVo vo) {
 		return sst.update("member.myInfo", vo);
 	}
@@ -35,6 +39,7 @@ public class MemberDao {
 		return sst.selectOne("member.getMember", vo);
 	}
 
+	//my-feed
 	public List<MarketVo> getMyMarketFeed(SqlSessionTemplate sst, MarketVo marketVo) {
 		return sst.selectList("member.marketFeed", marketVo);
 	}

@@ -35,7 +35,9 @@ public class FundraiseService {
         }
         FundraiseVo vo = dao.getFundDetail(no, sqlSessionTemplate);
         List<FileVo> fileList = dao.getAttachmentList(sqlSessionTemplate, no);
-        log.info(fileList.toString());
+    //    int money = dao.getMoney(sqlSessionTemplate, no);
+//        log.info(fileList.toString());
+     //   vo.setMoney(String.valueOf(money));
         vo.setAttList(fileList);
         return vo;
     }
@@ -58,6 +60,10 @@ public class FundraiseService {
               attResult = dao.insertAttachment(sqlSessionTemplate, fileVoList);
           }
           return writeResult * attResult;
+    }
+
+    public int fundDonate(FundraiseVo vo) {
+        return dao.fundDonate(sqlSessionTemplate, vo);
     }
 
 }

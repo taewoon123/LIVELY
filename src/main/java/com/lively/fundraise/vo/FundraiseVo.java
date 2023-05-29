@@ -21,4 +21,5 @@ public class FundraiseVo {
     private String originName;
     private String changeName;
     private List<FileVo> attList;
+    private String donateMoney;
 }

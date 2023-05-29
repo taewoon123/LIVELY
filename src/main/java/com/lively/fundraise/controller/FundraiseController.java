@@ -85,17 +85,18 @@ public class FundraiseController {
         }
         return "board/fundraise/fundraise-write";
     }
-//TODO: 업로드 파일을 가져와야함 해결함.
+
+    //TODO: 업로드 파일을 가져와야함 해결함.
     @PostMapping("write")
     public String fundWrite(FundraiseVo fundVo, HttpSession session, HttpServletRequest request, List<MultipartFile> file) throws Exception {
         MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
         String path = request.getServletContext().getRealPath("/resources/upload/fundraise/");
 
-        List<String> changeFileNames = FileUploader.upload(file,path);
+        List<String> changeFileNames = FileUploader.upload(file, path);
         List<String> originalFileNames = FileUploader.getOriginNameList(file);
 
         List<FileVo> fileVoList = new ArrayList<FileVo>();
-        if(changeFileNames != null) {
+        if (changeFileNames != null) {
             int size = changeFileNames.size();
             for (int i = 0; i < size; i++) {
                 FileVo fileVo = new FileVo();
@@ -111,5 +112,16 @@ public class FundraiseController {
             throw new RuntimeException("글 작성 실패");
         }
         return "redirect:/fund/list";
+    }
+
+    @PostMapping("donate")
+    public String fundDonate(FundraiseVo vo,HttpSession session) {
+        int result = service.fundDonate(vo);
+        if(result > 0){
+        session.setAttribute("fundDonateAlert","기부 성공");
+        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
+        }
+        session.setAttribute("fundDonateAlert","기부에 실패했습니다. 다시 시도해주세요.");
+        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
     }
 }

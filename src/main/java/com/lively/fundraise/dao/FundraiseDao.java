@@ -46,4 +46,10 @@ public class FundraiseDao {
     public List<FileVo> getAttachmentList(SqlSessionTemplate sst, int no) {
         return sst.selectList("fundraise.getAttachmentList", no);
     }
+    public int getMoney(SqlSessionTemplate sqlSessionTemplate, int no) {
+        return sqlSessionTemplate.selectOne("fundraise.getMoney", no);
+    }
+    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
+        return sqlSessionTemplate.update("fundraise.gainCurrentMoney",vo);
+    }
 }

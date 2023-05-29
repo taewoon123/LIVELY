@@ -110,6 +110,24 @@ WHERE F.DELETE_YN = 'N'
 		AND DELETE_YN = 'N'
 	</select>
 
+    <select id="getMoney" resultType="Integer">
+        SELECT MONEY FROM FUNDRAISE
+        WHERE FUNDRAISE_NO = #{no}
+        AND DELETE_YN = 'N'
+    </select>
+    <select id="getCurrentMoneyGoal" resultType="Integer">
+        SELECT MONEY_GOAL FROM FUNDRAISE
+        WHERE FUNDRAISE_NO = #{no}
+        AND DELETE_YN = 'N'
+    </select>
+    <update id="gainCurrentMoney">
+        UPDATE FUNDRAISE
+        SET MONEY = MONEY + #{donateMoney}
+        WHERE FUNDRAISE_NO = #{fundraiseNo}
+        AND DELETE_YN = 'N'
+    </update>
+    
+
 </mapper>
 
 

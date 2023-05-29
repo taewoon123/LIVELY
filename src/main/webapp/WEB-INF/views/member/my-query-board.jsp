@@ -1,10 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
-<title>질문게시판</title>
+<title>나의 질문 게시글</title>
 </head>
 <header>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>

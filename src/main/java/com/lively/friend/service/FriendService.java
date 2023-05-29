@@ -27,8 +27,12 @@ public class FriendService {
 	}
 	
 	//피드
-	public List<FriendVo> getFriendFeed(Map<String , String> searchMap , PageVo pageVo){
-		return dao.getFriendFeed(sst , searchMap , pageVo);
+	public List<FriendVo> getFriendFeed(String searchValue , PageVo pageVo){
+		return dao.getFriendFeed(sst , searchValue , pageVo);
+	}
+	//검색
+	public List<String> search(String searchValue) {
+		return dao.search(sst, searchValue);
 	}
 	
 	//작성하기
@@ -67,7 +71,7 @@ public class FriendService {
 	 * dao.getAttachmentList(sst , no); fvo.setAttachmentList(fileList); return fvo;
 	 * }
 	 */
-
+	
 
 
 

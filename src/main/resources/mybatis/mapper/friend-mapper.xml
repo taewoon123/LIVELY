@@ -29,15 +29,18 @@
 	LEFT JOIN FRI_ATTACH A ON (F.FRIEND_NO = A.FRIEND_NO)
 	WHERE F.DELETE_YN = 'N'
 	AND A.DELETE_YN = 'N'
- 		<if test="searchType == 'title'">
+		<if test="searchValue != null">
+			AND F.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+<!--  		<if test="searchType == 'title'">
 			AND F.TITLE LIKE '%${searchValue}%'
-		</if>
-		<if test="searchType == 'content'">
+		</if> -->
+<!-- 		<if test="searchType == 'content'">
 			AND F.CONTENT LIKE '%${searchValue}%'
-		</if>
-		<if test="searchType == 'locationNo'">
+		</if> -->
+<!-- 		<if test="searchType == 'locationNo'">
 			AND F.LOCATION_NO = #{searchValue}
-		</if>
+		</if> -->
 	ORDER BY F.FRIEND_NO DESC
   </select>
   

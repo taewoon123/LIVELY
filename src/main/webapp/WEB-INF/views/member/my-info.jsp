@@ -217,8 +217,8 @@
                   <!-- 아코디언 -->
                   <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
                     <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-info'">나의 정보 수정</button>
-                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-board'">내가 올린 글</button>
-                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-friend-feed'">내가 올린 피드</button>
+                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-board'">내가 쓴 글</button>
+                    <button type="button" class="btn" onclick="location.href='${rootContext}/member/my-friend-feed'">내가 쓴 피드</button>
                   </div>
                 </ul>
               </div>
@@ -239,10 +239,7 @@
 
         <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-          if (${ myInfoAlert != null }) {
-            alert(${ myInfoAlert });
-          }
-
+          
           // 로그인 한 회원의 genderCode 체크해놓기 
           const genderCode = '${memberLog.genderCode}';
           const genderValue = "input[value='"+ genderCode +"']";

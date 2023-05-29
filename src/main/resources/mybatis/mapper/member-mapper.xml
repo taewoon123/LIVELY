@@ -102,10 +102,16 @@
 		, K.STATUS_YN
 		, L.LOCATION_NAME as locationName
 		, M.NAME as writerName
+		, M.ID as writerId
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
 	FROM MARKET K
 	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
 	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
+	LEFT JOIN MARKET_ATTACH A ON (K.MARKET_NO = A.MARKET_NO)
 	WHERE K.DELETE_YN = 'N'
+	AND A.DELETE_YN = 'N'
 	AND K.WRITER = #{writer}
 	ORDER BY MARKET_NO DESC
 	</select>
@@ -123,6 +129,7 @@
 	    , F.LOCATION_NO 
 	    , L.LOCATION_NAME as locationName
 	    , M.NAME as writerName
+	    , M.ID as writerId
 	FROM FRIEND F
 	LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
 	LEFT JOIN MEMBER M ON (F.WRITER = M.NO)

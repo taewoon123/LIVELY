@@ -20,6 +20,7 @@
 		, K.STATUS_YN
 		, L.LOCATION_NAME as locationName
 		, M.NAME as writerName
+		, M.ID as writerId
 		, A.MARKET_ATTACH_NO as marketAttachNo
 		, A.ORIGIN_NAME as originName
 		, A.CHANGE_NAME as changeName

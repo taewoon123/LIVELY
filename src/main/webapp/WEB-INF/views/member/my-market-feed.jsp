@@ -41,23 +41,23 @@
 	                <div id="profile_area">
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
-	                        <div id="profile_name">김본전</div>
-	                        <div id="profile_nick">라이블리</div>
+	                        <div id="profile_name">${myList.writerName}</div>
+	                        <div id="profile_nick">${myList.writerId}</div>
 	                    </div>
 	                    <div class="drop-edit-delete-area">
 					      <a class="drop-edit-delete-box"> 
 					        ·&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;·
 					      </a>
 					      <div class="dropdown-edit-delete">
-					        <a href="${rootContext}/market/edit">수정</a>
-					        <a href="${rootContext}/market/delete?no=${marketVo.marketNo}">삭제</a>
+					        <a href="${rootContext}/market/edit/${myList.marketNo}"><div>수정</div></a>
+					        <a href="${rootContext}/market/delete/${myList.marketNo}"><div>삭제</div></a>
 					    </div>
 					    </div>
 	                </div>
 	                <div id="feed-image">
 	                    <div id="img_area">
 	                    <!-- Image Slider -->
-	                    <div id="myCarousel${mList.marketNo}" class="carousel slide">
+	                    <div id="myCarousel${myList.marketNo}" class="carousel slide">
 	                        <div class="carousel-indicators">
 	                        <button type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 	                        <button type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -66,10 +66,10 @@
 	                        <div class="carousel-inner">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-	                            <image class="first" href="${rootContext}/resources/img/one${myList.marketNo}.jpg" width="100%" height="100%"/>
+               	                <image class="first" href="${rootContext}/resources/upload/market/${myList.changeName}" alt="${rootContext}/resources/upload/market/${myList.originName}" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
-	                        <div class="carousel-item">
+	                        <%-- <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
 	                            <image class="second" href="${rootContext}/resources/img/two${myList.marketNo}.jpg" width="100%" height="100%"/>
 	                            </svg>
@@ -79,7 +79,7 @@
 	                            <image class="third" href="${rootContext}/resources/img/three${myList.marketNo}.jpg" width="100%" height="100%">
 	                            </svg>
 	
-	                        </div>
+	                        </div> --%>
 	                        </div>
 	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -120,40 +120,3 @@
  <script src="${rootContext}/resources/js/member/my-market-feed.js"></script>
  <link rel="stylesheet" href="${rootContext}/resources/css/member/my-feed.css">
 </html>
-
-<script>
-	const toggle = document.querySelector(".drop-edit-delete-box");
-	const dropdown = document.querySelector(".drop-edit-delete-area");
-
-	dropdown.addEventListener("click", () => {
-		dropdown.classList.toggle("dropdown_toggle");
-	});
-	
-	
-	const toggle_text = document.querySelector(".toggle_text");
-	const toggle_checkbox = document.querySelector("#button-3");
-	
-	window.onload = function(){
-		const page_switch = document.querySelector(".toggle_checkbox");
-		page_switch.onclick = go;
-	}
-	
-	page_switch.checked = false;
-	
-	function go(){
-		toggle_checkbox.addEventListener("click",() => {
-			/* location.href='${rootContext}/member/my-friend-feed'; */
-			/* page_switch.checked = false; */
-			/* toggle-text.classList.remove("layer"); */
-			/* toggle_text.classList.remove("knobs");
-			toggle_text.classList.add("layer"); */
-		});
-	}
-	
-	/* function toggle(){
-		page_switch_checked = true;
-	} */
-	
-	/* toggle(); */
-	
-</script>

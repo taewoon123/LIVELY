@@ -22,6 +22,7 @@ public class MarketVo {
 	
 	private String locationName;
 	private String writerName;
+	private String writerId;
 	private List<FileVo> attachmentList;
 	private String marketAttachNo;
 	private String originName;

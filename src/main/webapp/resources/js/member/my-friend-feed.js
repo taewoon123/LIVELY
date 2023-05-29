@@ -69,12 +69,12 @@ feed_done();
 
 
 // 수정 / 삭제 버튼
-const toggle = document.querySelector(".drop-edit-delete-box");
-const dropdown = document.querySelector(".drop-edit-delete-area");
-
-dropdown.addEventListener("click", () => {
-	dropdown.classList.toggle("dropdown_toggle");
-});
+//const toggle = document.querySelector(".drop-edit-delete-box");
+//const dropdown = document.querySelector(".drop-edit-delete-area");
+//
+//dropdown.addEventListener("click", () => {
+//	dropdown.classList.toggle("dropdown_toggle");
+//});
 
 
 //friend / market 페이지 전환
@@ -86,11 +86,10 @@ const page_switch = document.querySelector(".toggle_checkbox");
 	page_switch.onclick = go;
 } */
 
-page_switch.checked = true;
 
 function go(){
 	page_switch.addEventListener("click",() => {
-		location.href='/lively/member/my-friend-feed';
+		location.href='/lively/member/my-market-feed';
 	});
 }
 

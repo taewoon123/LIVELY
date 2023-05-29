@@ -120,6 +120,31 @@ public class MemberController {
 	public void myBoard() {
 
 	}
+	
+	//my-query-board 화면
+	@GetMapping("my-query-board")
+	public String myQuery() {
+		return "member/my-query-board";
+	}
+	
+	//my-help-board 화면
+	@GetMapping("my-help-board")
+	public String myHelp() {
+		return "member/my-help-board";
+	}
+	
+	//my-job-board 화면
+	@GetMapping("my-job-board")
+	public String myJob() {
+		return "member/my-job-board";
+	}
+	
+	//my-fundraise-board 화면
+	@GetMapping("my-fundraise-board")
+	public String myFundraise() {
+		return "member/my-fundraise-board";
+	}
+	
 
 	// my-market-feed 화면
 	@GetMapping("my-market-feed")

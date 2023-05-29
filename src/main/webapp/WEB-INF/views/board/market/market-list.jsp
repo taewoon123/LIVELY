@@ -43,7 +43,7 @@
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
 	                        <div id="profile_name">${mList.writerName}</div>
-	                        <div id="profile_nick"></div>
+	                        <div id="profile_nick"><%-- ${marketVo.attachCount} --%>${mList.writerId}</div>
 	                    </div>
 	                    <c:if test="${mList.statusYn == 'N'}">
 		                    <div id="feed_status">

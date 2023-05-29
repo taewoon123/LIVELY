@@ -20,6 +20,7 @@ public class FriendVo {
 	private String statusYn;
 	
 	private String writerName;
+	private String writerId;
 	private String locationName;
 	private List<FileVo> attachmentList;
 	private String originName;

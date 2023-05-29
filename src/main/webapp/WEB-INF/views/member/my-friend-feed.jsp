@@ -24,6 +24,7 @@
                 <input placeholder="Search" class="feed_search_input" name="text" type="text">
                 <a class="hidden_button" type="submit" href="">검색</a>
                 
+                
 					<div class="toggle-button-cover">
 				        <div id="button-3" class="button r">
 				          <input class="toggle_checkbox" type="checkbox">
@@ -31,7 +32,6 @@
 				          <div class="toggle_text layer"></div>
 				        </div>
 				      </div>
-                <!-- </div> -->
             	
             </div>
 
@@ -41,16 +41,16 @@
 	                <div id="profile_area">
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
-	                        <div id="profile_name">김본전</div>
-	                        <div id="profile_nick">라이블리</div>
+	                        <div id="profile_name">${myList.writerName}</div>
+	                        <div id="profile_nick">${myList.writerId}</div>
 	                    </div>
 	                    <div class="drop-edit-delete-area">
 					      <a class="drop-edit-delete-box"> 
 					        ·&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;·
 					      </a>
-					      <div id="edit_delete_show" class="dropdown-edit-delete">
-					        <a href="${rootContext}/market/edit">수정</a>
-					        <a href="${rootContext}/market/delete?no=${friendVo.friendNo}">삭제</a>
+					      <div class="dropdown-edit-delete">
+					        <a href="${rootContext}/market/edit/${myList.friendNo}"><div>수정</div></a>
+					        <a href="${rootContext}/market/delete/${myList.friendNo}"><div>삭제</div></a>
 					    </div>
 					    </div>
 	                </div>
@@ -66,7 +66,7 @@
 	                        <div class="carousel-inner">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-	                            <image class="first" href="${rootContext}/resources/img/one${myList.friendNo}.jpg" width="100%" height="100%"/>
+               	                <image class="first" href="${rootContext}/resources/upload/market/${myList.changeName}" alt="${rootContext}/resources/upload/market/${myList.originName}" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
 	                        <div class="carousel-item">
@@ -115,40 +115,8 @@
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
     </div>
     
-    
 
 </body>
- <script src="${rootContext}/resources/js/board/market/market-list.js"></script>
+ <script src="${rootContext}/resources/js/member/my-friend-feed.js"></script>
  <link rel="stylesheet" href="${rootContext}/resources/css/member/my-feed.css">
 </html>
-
-<script>
-	const toggle = document.querySelector(".drop-edit-delete-box");
-	const dropdown = document.querySelector(".drop-edit-delete-area");
-
-	dropdown.addEventListener("click", () => {
-		dropdown.classList.toggle("dropdown_toggle");
-	});
-	
-	
-	const toggle_text = document.querySelector(".toggle_text");
-	const toggle_checkbox = document.querySelector("#button-3");
-	
-	window.onload = function(){
-		const page_switch = document.querySelector(".toggle_checkbox");
-		page_switch.onclick = go;
-	}
-	
-	
-	
-	function go(){
-		toggle_checkbox.addEventListener("click",() => {
-			location.href='${rootContext}/member/my-market-feed';
-			/* page_switch.checked = true; */
-			/* toggle-text.classList.remove("layer"); */
-			/* toggle_text.classList.remove("knobs");
-			toggle_text.classList.add("layer"); */
-		});
-	}
-	
-</script>

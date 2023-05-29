@@ -161,6 +161,8 @@ public class MemberController {
 		List<MarketVo> myMarketList = ms.getMyMarketFeed(marketVo);
 		List<Map<String, String>> LocationList = ms.getLocationList();
 		
+		System.out.println(myMarketList);
+		
 		model.addAttribute("MyFeedCount", MyMarketFeedCount);
 		model.addAttribute("myMarketList", myMarketList);
 		model.addAttribute("LocationList", LocationList);

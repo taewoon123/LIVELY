@@ -46,15 +46,15 @@
             <label for="file-input" class="drop-container">
                 <span class="drop-title">Drop files here</span>
                 <a>or</a>
-                <input type="file" accept="image/*" id="file-input" style="font-size: 15px" multiple>
+                <input type="file" accept="image/*" id="file-input" style="font-size: 15px" name="file" multiple accept=".jpg,.png,.jpeg">
                 <!-- 0505 :required 삭제 -->
             </label>
             <div class="tag-group">
                 <input type="text" name="moneyGoal" class="tag" placeholder="목표금액">
             </div>
-            <div class="tag-group">
-                <input type="text" class="tag" placeholder="#태그">
-            </div>
+<%--            <div class="tag-group">--%>
+<%--                <input type="text" class="tag" placeholder="#태그">--%>
+<%--            </div>--%>
 
             <div class="register">
                 <div id="registerName"><input value="취소" type="button"

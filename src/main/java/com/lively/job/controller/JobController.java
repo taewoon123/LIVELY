@@ -29,8 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.job.vo.JobVo;
 import com.lively.member.vo.MemberVo;
-import com.lively.notice.vo.NoticeVo;
-import com.lively.page.vo.PageVo;
+
 
 import lombok.extern.slf4j.Slf4j;
 

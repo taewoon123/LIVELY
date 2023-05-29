@@ -6,7 +6,7 @@
 <mapper namespace="admin">
 
     <select id="login" resultType="AdminVo">
-        SELECT ADMIN_ID,ADMIN_PWD FROM ADMIN
+        SELECT * FROM ADMIN
         WHERE ADMIN_ID = #{adminId}
         AND ADMIN_PWD = #{adminPwd}
     </select>

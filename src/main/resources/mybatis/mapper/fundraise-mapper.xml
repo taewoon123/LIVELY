@@ -26,19 +26,19 @@
 
     <select id="getFundDetail" resultType="FundraiseVo">
         SELECT F.FUNDRAISE_NO AS NO,
-        M.NAME AS WRITER,
-        F.TITLE,
-        F.CONTENT,
-        F.ENROLL_DATE,
-        F.EDIT_DATE,
-        F.DELETE_YN,
-        F.VIEWS,
-        F.MONEY,
-        F.MONEY_GOAL
-        FROM FUNDRAISE F
-        JOIN MEMBER M ON M.NO = F.WRITER
-        WHERE DELETE_YN = 'N'
-        AND FUNDRAISE_NO = #{no}
+       M.NAME AS WRITER,
+       F.TITLE,
+       F.CONTENT,
+       F.ENROLL_DATE,
+       F.EDIT_DATE,
+       F.DELETE_YN,
+       F.VIEWS,
+       F.MONEY,
+       F.MONEY_GOAL
+FROM FUNDRAISE F
+         LEFT JOIN MEMBER M ON M.NO = F.WRITER
+WHERE F.DELETE_YN = 'N'
+        AND F.FUNDRAISE_NO =#{no} 
     </select>
     <select id="getFundListCount" resultType="int">
         SELECT COUNT(*)
@@ -98,6 +98,35 @@
         </foreach>
         SELECT 1 FROM DUAL
     </insert>
+    <select id="getAttachmentList" resultType = "FileVo">
+		SELECT
+			FUND_ATTACH_NO
+			, FUNDRAISE_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+			, DELETE_YN
+		FROM FUND_ATTACH
+		WHERE FUNDRAISE_NO = #{no}
+		AND DELETE_YN = 'N'
+	</select>
+
+    <select id="getMoney" resultType="Integer">
+        SELECT MONEY FROM FUNDRAISE
+        WHERE FUNDRAISE_NO = #{no}
+        AND DELETE_YN = 'N'
+    </select>
+    <select id="getCurrentMoneyGoal" resultType="Integer">
+        SELECT MONEY_GOAL FROM FUNDRAISE
+        WHERE FUNDRAISE_NO = #{no}
+        AND DELETE_YN = 'N'
+    </select>
+    <update id="gainCurrentMoney">
+        UPDATE FUNDRAISE
+        SET MONEY = MONEY + #{donateMoney}
+        WHERE FUNDRAISE_NO = #{fundraiseNo}
+        AND DELETE_YN = 'N'
+    </update>
+    
 
 </mapper>
 

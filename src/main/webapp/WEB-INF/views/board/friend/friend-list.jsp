@@ -51,9 +51,9 @@
 	                </div>
 		<c:forEach items="${friendList}" var="fList">
             <!-- 첫번째 피드 시작 -->
-            <div id="feed_box feed_status_${fList.statusYn}">
+             <div id="feed_box feed_status_${fList.statusYn}">
                 <div id="profile_area">
-                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
+                    <div id="profile_img"><img src="${rootContext}/resources/img/marketimg.png" alt="프로필사진"></div>
                     <div id="profile_box">
                         <div id="profile_name">김본전</div>
                         <div id="profile_nick">라이블리</div>
@@ -77,20 +77,20 @@
                         <div class="carousel-item active">
                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
                             <%-- <image class="first" href="${rootContext}/resources/img/first${fList.friendNo}.jpg" width="100%" height="100%"/> --%>
-                            <image class="first" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%"/>
+                         	<image class="first" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/>
                             </svg>
                         </div>
                         <div class="carousel-item">
                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="second" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%"/>
+                         	<image class="second" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/> 
                             </svg>
                         </div>
                         <div class="carousel-item">
                             <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                            <image class="third" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%">
+                   			<image class="third" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"> 
                             </svg>
-
                         </div>
+                        
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -113,7 +113,7 @@
                 <div id="chat_area">
                     <button onclick="chat();"><a>CHAT</a></button>
                 </div>
-            </div>
+             </div>
 		</c:forEach>
 		
 		<div id="page-area">
@@ -144,7 +144,7 @@
 
 </html>
 
-<!-- <script>
+<script>
 
 const div = document.querySelector('#thumbnail-area');
 
@@ -168,8 +168,7 @@ let aTag;
 	div.appendChild(aTag);
 </c:forEach>
 
-</script> -->
+</script>
 
  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-list.css">
  <script src="${rootContext}/resources/js/board/friend-list.js"></script>
-

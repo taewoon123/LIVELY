@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lively.common.FileVo;
 import com.lively.job.dao.JobDao;
 
-import com.lively.job.page.vo.PageVo;
 import com.lively.job.vo.JobVo;
+import com.lively.page.vo.PageVo;
 
 
 @Service
@@ -33,8 +33,13 @@ public class JobService {
     }
     
     //작성하기
-    public int write(JobVo vo) throws Exception {
-		return dao.write(sst,vo);
+    public int write(JobVo vo, List<FileVo> jobList) {
+		int jobResult = dao.write(sst,vo);
+		int attResult = 1;
+		if(jobList.size() > 0) {
+			jobResult = dao.insertAttachment(sst, jobList);			
+		}
+		return jobResult * attResult;
 	}
 
     //상세조회(조회수)
@@ -46,6 +51,8 @@ public class JobService {
 		}
 		
 		JobVo jvo = dao.getJob(sst, no);
+		List<FileVo> fileList = dao.getAttachmentList(sst, no);
+		jvo.setAttList(fileList);
 		return jvo;
 	
     }
@@ -53,15 +60,13 @@ public class JobService {
 	public int updateJob(JobVo vo) {
 		return dao.updateJob(sst, vo);
 	}
+	
 	// 삭제하기 (작성자 본인만)
-	public int delete(JobVo vo) {
-		return dao.delete(sst, vo);
+	public int delete(String no) {
+		System.out.println(no);
+		return dao.delete(sst, no);
 	}
-	// 게시글 갯수 조회
-	public int getCnt(Object searchMap) {
-		return dao.getCnt(sst , searchMap);
-	}
-
+	
 //	public List<Map<String, String>> getCategoryList() {
 //		return dao.getCategoryList(sst);
 //	}
@@ -70,6 +75,11 @@ public class JobService {
 
 	public FileVo getAttachment(String ano) {
 		return dao.getAttachment(sst, ano);
+	}
+
+	// 게시글 갯수 조회
+	public int getJobListCnt() {
+		return dao.getJobListCnt(sst);
 	}
 
 	

@@ -18,9 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.qna.vo.QnaVo;
 
-import com.lively.job.page.vo.PageVo;
 import com.lively.member.vo.MemberVo;
-
+import com.lively.page.vo.PageVo;
 import com.lively.qna.service.QnaService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -98,6 +97,7 @@ public class QnaController {
 			}
 			
 			model.addAttribute("qvo", vo);
+			model.addAttribute("qnaNo",no);
 			return "board/manage/qna/qna-detail";
 		}
 		
@@ -119,16 +119,16 @@ public class QnaController {
 		
 		//삭제하기
 		@GetMapping("delete")
-		public String delete(QnaVo vo , HttpSession session) throws Exception {
+		public String delete(String no, HttpSession session) throws Exception {
 			
-			int result = qs.delete(vo);
+			int result = qs.delete(no);
 			
 			if(result != 1) {
 				throw new Exception("삭제 실패...");
 			}
 			
 			session.setAttribute("alertMsg", "삭제 성공!");
-			return "redirect:/board/list";
+			return "redirect:/qna/list";
 		}
 		
 	}

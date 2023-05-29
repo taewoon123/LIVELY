@@ -41,28 +41,22 @@
 					<div id="detail-inHit">${qvo.views}</div>
 					<div id="detail-content">내용</div>
 					<div id="detail-inContent">${qvo.qnaContent}</div>
+					
 				</div>
 
 				<!-- 작성 버튼 -->
+				<%-- 		<c:if test="${memberLog.id eq vo.writer}"> --%>
 				<button id="write_submit_delete"
-					onclick="location.href = '${rootContext}/qna/delete?no=${vo.qnaNo}'">
+					onclick="location.href='${rootContext}/qna/delete?no=${qnaNo}'">
 					<span>삭제하기</span>
 				</button>
+				<span style="color: whitesmoke">${qnaNo}</span>
 
-				<!-- <button id="write_subformit_edit" onclick="toggleActive();">
+				<button id="write_submit_edit">
 					<span>수정하기</span>
-				</button> -->
+				</button>
+				<%-- 		</c:if> --%>
 
-				<!-- edit 코드인데 실패인듯아닌듯 일단 고쳐야할듯... -->
-				<div id="form-area">
-					<form action="${rootContext}/qna/edit" method="post">
-						<input type="hidden" name="qnaNo" value="${vo.no}">
-
-							<button id="write_submit_edit">
-								<span>수정하기</span>
-							</button>
-					</form>
-				</div>
 
 			</div>
 			<!-- div view-area active end -->

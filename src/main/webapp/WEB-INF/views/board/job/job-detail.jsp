@@ -13,10 +13,10 @@
 	<div id="wrap">
 		<main>
 
-			<div class="view-area active">
-				<%-- <form action="${rootContext}/job/job-write" method="POST"> --%>
-				<a href="${rootContext}/job/list" id="list-btn">목록</a>
+			<br>
 
+			<div class="view-area active">
+				<a href="${rootContext}/job/list" id="list-btn">목록</a>
 				<div id="detail-area">
 					<div id="detail-title">제목</div>
 					<div id="detail-inTitle">${jvo.title}</div>
@@ -25,41 +25,165 @@
 					<div id="detail-hit">조회수</div>
 					<div id="detail-inHit">${jvo.views}</div>
 					<div id="detail-content">내용</div>
-					<div id="detail-inContent">${jvo.content}</div>
+					<div id="detail-inContent">${jvo.content}
+					
+					</div>
 				</div>
+				
+					<div>
+						<label for="thumbnail-tag">사진</label>
+						<input id="thumbnail-tag" type="file" name="f" multiple accept=".jpg,.png,.jpeg">
+					</div>
+					<div id="thumbnail-area"></div>
+
 				<!-- 작성 버튼 -->
-				<button id="write_submit_delete">
+		<%-- 		<c:if test="${memberLog.id eq vo.writer}"> --%>
+				<button id="write_submit_delete" onclick="location.href='${rootContext}/job/delete?no=${jobNo}'">
 					<span>삭제하기</span>
 				</button>
+				<span style="color: whitesmoke">${jobNo}</span>
 
 				<button id="write_submit_edit">
 					<span>수정하기</span>
 				</button>
+		<%-- 		</c:if> --%>
 
 			</div>
-			<!-- </form> -->
-	</div>
 
-	<div id="comment-header">
-		<input type="text" name="comment" placeholder="댓글을 입력하세요">
-		<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
-	</div>
-	<div id="comment-area"></div>
+			<div id="comment-header">
+				<input type="text" name="comment" placeholder="댓글을 입력하세요">
+				<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
+			</div>
+			<div id="comment-area">
+				
+			</div>
 
-	</div>
-	</main>
+		<footer>
+			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+		</footer>
 
-	<!-- div wrap end -->
+		</main>
+		
+	</div> <!-- div wrap end -->
 
-	<footer>
-		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-	</footer>
 </body>
 </html>
+<script>
 
-<script src="${rootContext}/resources/js/board/comment-detail.js"></script>
+    function toggleActive(){
+        const viewArea = document.querySelector(".view-area");
+        const formArea = document.querySelector(".form-area");
 
-<link rel="stylesheet"
-	href="${rootContext}/resources/css/board/job/job-detail.css">
-<link rel="stylesheet"
-	href="${rootContext}/resources/css/common/wrap-style.css" />
+        viewArea.classList.remove('active');
+        formArea.classList.add('active');
+    }
+    
+const div = document.querySelector('#thumbnail-area');
+	
+	let imgTag;
+	let aTag;
+	<c:forEach items="${jvo.attList}" var="fvo">
+		//a태그 만들기
+		aTag = document.createElement('a');
+		aTag.href = "${root}/board/att/down?ano=${fvo.no}";
+		//이미지 요소 만들기
+		imgTag = document.createElement('img');
+		imgTag.setAttribute("src" , "${root}/${path}/${fvo.changeName}");
+		imgTag.setAttribute("alt" , "${fvo.originName}");
+		imgTag.setAttribute("width" , "100px");
+		imgTag.setAttribute("height" , '100px');
+
+		//a태그 내부에 img 추가
+		aTag.appendChild(imgTag);
+
+		//div 안에 a태그 추가
+		div.appendChild(aTag);
+	</c:forEach>
+    
+	
+	function writeComment(){
+		//로그인 안되어있으면 ㄴㄴ
+		const writer = '${memberLog.no}';
+		if(writer <= 0){
+			alert("로그인 후 작성 가능합니다. (JS에서 검사)");
+			return;
+		}
+
+		//ajax 이용해서 서버에 댓글내용 보내기
+		const content = document.querySelector('input[name=comment]').value;
+		
+		$.ajax({
+			url : '${rootContext}/job/reply/write' ,
+			type : 'POST' ,
+			data : {
+				'jobNo' : '${jvo.jobNo}' ,
+				'content' : content ,
+			} , 
+			success : function(data){
+				if(data == 'ok'){
+					 alert("댓글 작성 완료 !");
+					document.querySelector('input[name=comment]').value = '';
+					loadReply();
+				}else if(data == 'unauthor'){
+					alert("로그인 후 작성 가능합니다.");
+				}else{
+					alert("댓글 작성 실패 ..."); 
+				}
+			} , 
+			error : function(){
+				alert('bad...');
+			} ,
+		});
+	}
+	
+	
+	//댓글 불러오기
+	loadReply();
+
+	function loadReply(){
+
+		const commentArea = document.querySelector('#comment-area');
+		commentArea.innerHTML = '';
+		const writer = '${memberLog.no}';
+
+		$.ajax({
+			url : '${rootContext}/job/reply/list' ,
+			type  : 'get' ,
+			data : {
+				'jobNo' : '${jvo.jobNo}'	
+			} ,
+			dataType : 'json' ,
+			success : function(data){
+				console.log(data);
+
+				for(let replyVo of data){
+					let str = "";
+					str += "<div>";
+					str += replyVo.content;
+					str += "</div>";
+					str += "<div>";
+					str += "<span>"
+					/* str += replyVo.writerNick;
+					str += "</span>"
+					if(writerNo == replyVo.writerNo || writerNo == 1 ){
+						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + replyVo.no + ");'>수정</button>";
+						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + replyVo.no + ");'>삭제</button>";
+					} */
+					str += "</div>";
+					commentArea.innerHTML += str;
+				}
+
+			} ,
+			error : function(error){
+				console.log(error);
+			} ,
+		});
+
+	}
+	
+	
+	
+	
+</script>
+<link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-detail.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

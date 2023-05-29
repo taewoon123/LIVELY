@@ -103,3 +103,4 @@ table.addEventListener("click", function(event){
 	location.href = '${rootContext}/help/detail?num=' + num;
 });
 </script>
+

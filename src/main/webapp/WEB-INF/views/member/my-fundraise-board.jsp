@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>나의 기부 게시글</title>
+<meta charset="UTF-8">
+<title>나의 기부 게시글</title>
 </head>
 <header>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>

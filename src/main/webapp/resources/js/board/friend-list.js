@@ -94,15 +94,24 @@ function chat(){
 
 }
 
-//검색기능
+/*//검색기능
 const search_button = document.querySelector(".feed_search_input");
 search_button.addEventListener("keydown",(event) => {
     if(event.keyCode == 13){
         event.preventDefault();
         document.querySelector('.hidden_button').click();
     }
-});
-//변수 준비
+});*/
+/*const feed_search_input = document.querySelector(".feed_search_input");
+feed_search_input.addEventListener("keydown",(event) => {
+	  
+	const actualTarget = event.target.parentNode.childNodes[1].innerText;
+	if(event.keyCode == 13){
+		location.href = "/lively/friend/list?no=${actualTarget}"
+		
+	}
+});*/
+/*//변수 준비
 const searchTypeTag = document.querySelector('select[name="searchType"]');
 const svInput = document.querySelector('input[name="searchValue"]');
 const svSelect = document.querySelector('select[name="searchValue"]');
@@ -113,9 +122,9 @@ function initSearchType (){
     if(optionTag != null){
         optionTag.selected = true;
     }
-}
+}*/
 
-//서치밸류 형태 변경
+/*//서치밸류 형태 변경
 function toggleSearchValueTag(){
     if(searchTypeTag.value != 'LocationNo'){
         showNotLocationNo();
@@ -152,9 +161,9 @@ function initSearchValueType(){
         showNotLocationNo();
     }
 }
-
+*/
 //서치밸류 selected 셋팅
-function initSearchValueSelected(){
+/*function initSearchValueSelected(){
     const optionTag = document.querySelector('option[value="${searchMap.searchValue}"]');
     if(optionTag != null){
         optionTag.selected = true;
@@ -174,4 +183,4 @@ initSearchValueInput();
 
 //이벤트 리스너 //서치밸류 형태 변경하는 이벤트 등록
 searchTypeTag.addEventListener('change' , toggleSearchValueTag);
-
+*/

@@ -32,12 +32,13 @@
 	                        <option value="4">강북구</option>
 	                    </select>
 	                </div> -->
-                    <input placeholder="Search" class="feed_search_input" name="searchValue" type="text" value="${searchMap.searchValue}">
-                            <c:forEach items="${fvoList}" var="fvo">
+                    <%-- <input placeholder="Search" class="feed_search_input" name="searchValue" type="text" value="${searchMap.searchValue}"> --%>
+                    <input type="text" placeholder="Search" name="searchValue" class="feed_search_input">
+                          <%--   <c:forEach items="${fvoList}" var="fvo">
                                 <option value="${fvo.NO}">${fvo.NAME}</option> 
-                            </c:forEach> 
-                         <a class="hidden_button" type="submit" name="searchValue" href="">검색</a> 
-                      	<!-- <button class="hidden_button" type="submit" name="searchValue">검색</button> -->
+                            </c:forEach>  --%>
+                         	 <!-- <a class="hidden_button" type="submit" name="searchValue" href="">검색</a> --> 
+                      		 <!-- <button class="hidden_button" type="submit" name="searchValue">검색</button> --> 
                 </div>      
             </form>
 	                <div id="upload_button">

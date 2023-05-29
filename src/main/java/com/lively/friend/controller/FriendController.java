@@ -44,7 +44,7 @@ public class FriendController {
 	
 	//피드목록
 	@GetMapping("list")
-	public String list(Model model,  @RequestParam Map<String, String> searchMap, @RequestParam(defaultValue = "1") int page , String no) {
+	public String list(Model model,  String searchValue, @RequestParam(defaultValue = "1") int page , String no) {
 		/* FriendVo vo = fs.getFriendFeed(no); */
 		
 		
@@ -53,16 +53,19 @@ public class FriendController {
 		int currentPage = page;
 		int pageLimit = 3;
 		int boardLimit = 3;
-		PageVo pageVo = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		/* PageVo pageVo = new PageVo(listCount, currentPage, pageLimit, boardLimit); */
 		
-		List<FriendVo> friendList = fs.getFriendFeed(searchMap , pageVo);
+		PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit);
+		List<FriendVo> friendList = fs.getFriendFeed(searchValue , pageVo);
 		List<Map<String, String>> LocationList = fs.getLocationNoList();
+		if (friendList != null) {
+			model.addAttribute("pageVo" , pageVo);
+			model.addAttribute("friendList", friendList);
+			/* model.addAttribute("searchMap" , searchMap); */
+			model.addAttribute("LocationList", LocationList);
+			
+		}
 		
-		
-		model.addAttribute("pageVo" , pageVo);
-		model.addAttribute("friendList", friendList);
-		model.addAttribute("searchMap" , searchMap);
-		model.addAttribute("LocationList", LocationList);
 		
 		/*
 		 * model.addAttribute("fvo" , vo); model.addAttribute("path" ,

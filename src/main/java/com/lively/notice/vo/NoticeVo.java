@@ -12,4 +12,5 @@ public class NoticeVo {
 	private String editDate;
 	private String deleteYn;
 	private String adminNo;
+
 }

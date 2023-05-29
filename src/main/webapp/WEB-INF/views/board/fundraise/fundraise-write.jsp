@@ -52,9 +52,9 @@
             <div class="tag-group">
                 <input type="text" name="moneyGoal" class="tag" placeholder="목표금액">
             </div>
-            <div class="tag-group">
-                <input type="text" class="tag" placeholder="#태그">
-            </div>
+<%--            <div class="tag-group">--%>
+<%--                <input type="text" class="tag" placeholder="#태그">--%>
+<%--            </div>--%>
 
             <div class="register">
                 <div id="registerName"><input value="취소" type="button"

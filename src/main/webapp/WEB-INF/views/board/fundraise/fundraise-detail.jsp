@@ -17,6 +17,24 @@
 
         <div class="view-area active">
             <a href="${rootContext}/fund/list" id="list-btn">목록</a>
+           <div id="money-area">
+               <div class="money-goal">목표 금액</div>
+               <div class="money-goal money-goal-target">${fundDetail.moneyGoal}₩</div>
+               <div class="current-money">현재 금액</div>
+               <div class="current-money current-money-target">${fundDetail.money}₩</div>
+               <button class="donate btn custom-btn">기부 하기</button>
+
+               <form action="${rootContext}/fund/donate" method="post">
+               <div class="donate-input">
+                   <input type="text" name="donateMoney" class="" value="기부할 금액을 입력해주세요.">
+                   <input type="submit" class="btn custom-btn donate-hide " value="기부 하기">
+               </div>
+               </form>
+
+               <div class="progress-bar">
+                    <div class="progress"></div>
+               </div>
+           </div>
             <div id="help-area">
                 <div id="help-title">제목</div>
                 <div id="help-inTitle">${fundDetail.title}</div>
@@ -25,7 +43,12 @@
                 <div id="help-hit">조회수</div>
                 <div id="help-inHit">${fundDetail.views}</div>
                 <div id="help-content">내용</div>
-                <div id="help-inContent">${fundDetail.content}</div>
+                <div id="help-inContent">${fundDetail.content}
+                    <br>
+                    <c:forEach items="${fundDetail.attList}" var="image">
+                    <img src="${rootContext}/resources/upload/fundraise/${image.changeName}" width="200px" height="200px"/>
+                    </c:forEach>
+                </div>
             </div>
 
             <c:if test="${memberLog.id eq fundDetail.writer }">
@@ -33,7 +56,6 @@
                 <button id="write_submit_delete" onclick="location.href='${rootContext}/fund/delete?no=${fundNo}'">
                     <span>삭제하기</span>
                 </button>
-                <span style="color: whitesmoke">${fundraiseNo}</span>
 
                 <button id="write_submit_edit">
                     <span>수정하기</span>
@@ -69,5 +91,6 @@
 </html>
 
 <script src="${rootContext}/resources/js/board/comment-detail.js"></script>
+<script src="${rootContext}/resources/js/board/fundraise/fund-detail-progress-bar.js"></script>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/fundraise/fundraise-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />

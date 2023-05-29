@@ -4,6 +4,7 @@ import com.lively.common.FileVo;
 import com.lively.fundraise.dao.FundraiseDao;
 import com.lively.fundraise.vo.FundraiseVo;
 import com.lively.page.vo.PageVo;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-
+@Slf4j
 @Service
 @Transactional
 public class FundraiseService {
@@ -32,7 +33,13 @@ public class FundraiseService {
         if (result != 1) {
             throw new RuntimeException();
         }
-        return dao.getFundDetail(no, sqlSessionTemplate);
+        FundraiseVo vo = dao.getFundDetail(no, sqlSessionTemplate);
+        List<FileVo> fileList = dao.getAttachmentList(sqlSessionTemplate, no);
+    //    int money = dao.getMoney(sqlSessionTemplate, no);
+//        log.info(fileList.toString());
+     //   vo.setMoney(String.valueOf(money));
+        vo.setAttList(fileList);
+        return vo;
     }
 
     public int getNoticeListCount() {
@@ -53,6 +60,10 @@ public class FundraiseService {
               attResult = dao.insertAttachment(sqlSessionTemplate, fileVoList);
           }
           return writeResult * attResult;
+    }
+
+    public int fundDonate(FundraiseVo vo) {
+        return dao.fundDonate(sqlSessionTemplate, vo);
     }
 
 }

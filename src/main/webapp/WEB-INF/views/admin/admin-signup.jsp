@@ -33,7 +33,7 @@
           </td>
           <th>
             <div class="input-group">
-              <input type="text" name="suId" id="id" placeholder="">
+              <input type="text" name="adminId" id="id" placeholder="">
             </div>
           </th>
           <td id="id-validity">
@@ -47,7 +47,7 @@
                   </td>
                   <th>
                     <div class="input-group">
-                      <input type="password" name="suPwd" id="pwd">
+                      <input type="password" name="adminPwd" id="pwd">
                     </div>
                   </th>
                   <td id="pwd-validity">

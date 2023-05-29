@@ -1,6 +1,6 @@
 #intellij for bumgu
 src/main/webapp/META-INF/*
-src/main/webapp/lib/*
+src/main/webapp/WEB-INF/lib/*
 # root-context databaseSourceBean port number
 src/main/webapp/WEB-INF/spring/root-context.xml
 *.iml

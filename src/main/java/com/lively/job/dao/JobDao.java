@@ -8,8 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lively.common.FileVo;
-import com.lively.job.page.vo.PageVo;
 import com.lively.job.vo.JobVo;
+import com.lively.page.vo.PageVo;
 
 
 @Repository
@@ -17,7 +17,7 @@ public class JobDao {
     
 	//목록조회
     public List<JobVo> getJobList(SqlSessionTemplate sst, PageVo pv, Map<String, String> searchMap) {
-    	int limit = pv.getJobLimit();
+    	int limit = pv.getBoardLimit();
 		int offset = (pv.getCurrentPage()-1) * limit;
 		RowBounds rb = new RowBounds(offset , limit);
 		return sst.selectList("job.getJobList" , searchMap , rb);
@@ -44,13 +44,10 @@ public class JobDao {
 		return sst.update("job.updateJob" , vo);
 	}
 	//삭제하기(작성자만)
-	public int delete(SqlSessionTemplate sst, JobVo vo) {
-		return sst.update("job.delete" , vo);
+	public int delete(SqlSessionTemplate sst, String no) {
+		return sst.update("job.delete" , no);
 	}
-	//게시글 갯수 조회
-	public int getCnt(SqlSessionTemplate sst, Object searchMap) {
-		return sst.selectOne("job.getCnt", searchMap);
-	}
+	
 	
 	public List<Map<String, String>> getCategoryList(SqlSessionTemplate sst) {
 		return sst.selectList("job.getCategoryList");
@@ -66,6 +63,10 @@ public class JobDao {
 
 	public FileVo getAttachment(SqlSessionTemplate sst, String ano) {
 		return sst.selectOne("job.getAttachment",ano);
+	}
+
+	public int getJobListCnt(SqlSessionTemplate sst) {
+		return sst.selectOne("job.getJobListCnt");
 	}
 
     

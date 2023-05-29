@@ -24,6 +24,7 @@
 		<typeAlias type="com.lively.qna.vo.QnaVo" alias="QnaVo"/>
         <typeAlias type="com.lively.query.vo.QueryVo" alias="QueryVo"/>
         <typeAlias type="com.lively.common.FileVo" alias="FileVo"/>
+
         
     </typeAliases>
 

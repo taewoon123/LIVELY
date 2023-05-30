@@ -16,11 +16,11 @@ public class NoticeDao {
 		return sst.insert("notice.write", vo);
 	}
 
-	public List<NoticeVo> getNoticeList(SqlSessionTemplate sst, PageVo pv) {
+	public List<NoticeVo> getNoticeList(SqlSessionTemplate sst, PageVo pv, String searchValue) {
 		int limit = pv.getBoardLimit(); //쿼리문 수정안해도 페이징 처리가 가능
 		int offset = (pv.getCurrentPage()-1) * limit;
 		RowBounds rb = new RowBounds(offset, limit);
-		return sst.selectList("notice.getNoticeList", null, rb);
+		return sst.selectList("notice.getNoticeList", searchValue, rb);
 	}
 
 	public int getNoticeListCnt(SqlSessionTemplate sst) {
@@ -41,6 +41,10 @@ public class NoticeDao {
 
 	public int delete(SqlSessionTemplate sst, String num) {
 		return sst.delete("notice.delete", num);
+	}
+
+	public List<String> search(SqlSessionTemplate sst, String searchValue) {
+		return sst.selectList("notice.search", searchValue);
 	}
 
 }

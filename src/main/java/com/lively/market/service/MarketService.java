@@ -32,6 +32,11 @@ public class MarketService {
 		return dao.getMarketFeed(sst, pageVo, searchValue);
 	}
 	
+	//검색
+	public List<String> search(String searchValue) {
+		return dao.search(sst, searchValue);
+	}
+	
 	//피드 작성
 	public int write(MarketVo marketVo, List<FileVo> fileVoList) throws Exception {
 		int writeResult = dao.write(sst, marketVo);

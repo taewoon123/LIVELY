@@ -34,7 +34,7 @@
 	<if test="searchValue != null">
         AND K.TITLE LIKE '%' || #{searchValue} || '%'
     </if>
-	ORDER BY MARKET_NO DESC
+	ORDER BY K.MARKET_NO DESC
   </select>
   
   <!-- 피드 작성 -->

@@ -114,14 +114,33 @@ public class FundraiseController {
         return "redirect:/fund/list";
     }
 
-    @PostMapping("donate")
-    public String fundDonate(FundraiseVo vo,HttpSession session) {
-        int result = service.fundDonate(vo);
-        if(result > 0){
-        session.setAttribute("fundDonateAlert","기부 성공");
-        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
-        }
-        session.setAttribute("fundDonateAlert","기부에 실패했습니다. 다시 시도해주세요.");
-        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
+    //    @PostMapping("donate")
+//    public String fundDonate(FundraiseVo vo,HttpSession session) {
+//        int result = service.fundDonate(vo);
+//        if(result > 0){
+//        session.setAttribute("fundDonateAlert","기부 성공");
+//        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
+//        }
+//        session.setAttribute("fundDonateAlert","기부에 실패했습니다. 다시 시도해주세요.");
+//        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
+//    }
+   @GetMapping("edit")
+    public String fundEdit(Model model){
+        FundraiseVo fundVo  = (FundraiseVo) model.getAttribute("fundDetail");
+        model.addAttribute("fundVo", fundVo);
+      return "board/fundraise/fundraise-edit";
     }
+
+    @PostMapping("edit")
+    public String fundEdit(FundraiseVo fundVo, HttpSession session) {
+        int result = service.edit(fundVo);
+        log.info("fundVo in edit method {} ", fundVo);
+        if (result > 0) {
+            session.setAttribute("fundEditAlert", "기부 성공");
+            return "redirect:/fund/detail?no=" + fundVo.getFundraiseNo();
+        }
+        session.setAttribute("fundEditAlert", "기부에 실패했습니다. 다시 시도해주세요.");
+        return "redirect:/fund/detail?no=" + fundVo.getFundraiseNo();
+    }
+
 }

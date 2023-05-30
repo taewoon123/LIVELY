@@ -62,8 +62,13 @@ public class FundraiseService {
           return writeResult * attResult;
     }
 
-    public int fundDonate(FundraiseVo vo) {
-        return dao.fundDonate(sqlSessionTemplate, vo);
+    public int edit(FundraiseVo vo) {
+        return dao.edit(sqlSessionTemplate,vo);
     }
+
+
+//    public int fundDonate(FundraiseVo vo) {
+//        return dao.fundDonate(sqlSessionTemplate, vo);
+//    }
 
 }

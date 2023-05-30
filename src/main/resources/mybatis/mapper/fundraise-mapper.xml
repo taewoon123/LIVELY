@@ -126,13 +126,21 @@ WHERE F.DELETE_YN = 'N'
         WHERE FUNDRAISE_NO = #{fundraiseNo}
         AND DELETE_YN = 'N'
     </update>
+
+    <update id="edit">
+        UPDATE FUNDRAISE
+        SET TITLE = #{title},
+        CONTENT = #{content},
+        MONEY = #{money},
+        EDIT_DATE = SYSDATE
+        WHERE FUNDRAISE_NO = #{fundraiseNo}
+        AND DELETE_YN = 'N'
+    </update>
+
+    <select id="getLocationList" resultType="locationVo">
+        SELECT * FROM LOCATION
+    </select>
     
 
 </mapper>
-
-
-
-
-
-
 

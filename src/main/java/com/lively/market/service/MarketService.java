@@ -64,8 +64,8 @@ public class MarketService {
 	}
 
 	//삭제하기 (작성자만)
-	public int delete(MarketVo marketVo) {
-		return dao.delete(sst, marketVo);
+	public int delete(String no) {
+		return dao.delete(sst, no);
 	}
 	
 //	//상세조회

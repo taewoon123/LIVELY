@@ -1,3 +1,10 @@
+/* 피드 슬라이드 버튼 */
+.carousel-control-next {
+	height: 80px;
+	margin-top: 120px;
+}
+
+
 /* 수정 / 삭제 드롭다운 */
 
 .dropdown_toggle {

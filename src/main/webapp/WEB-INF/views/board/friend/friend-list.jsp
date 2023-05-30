@@ -21,7 +21,7 @@
                 <h2>Friend</h2>
             </div>
 			
-			<form action="${rootContext}/friend/friend-list" method="get">
+			<form action="${rootContext}/friend/list" method="get">
 	            <div id="search-upload-area">
 	                <!-- <div class="selections">
 	                    <select class="location-option" name="locationNo" id="location" required>
@@ -145,7 +145,7 @@
 
 </html>
 
-<script>
+<!-- <script>
 
 const div = document.querySelector('#thumbnail-area');
 
@@ -169,7 +169,7 @@ let aTag;
 	div.appendChild(aTag);
 </c:forEach>
 
-</script>
+</script> -->
 
  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-list.css">
  <script src="${rootContext}/resources/js/board/friend-list.js"></script>

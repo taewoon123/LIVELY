@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lively.friend.vo.FriendVo;
+import com.lively.help.vo.HelpVo;
 import com.lively.market.vo.MarketVo;
 import com.lively.member.service.MemberService;
 import com.lively.member.vo.MemberVo;
@@ -62,9 +63,9 @@ public class MemberController {
 
 		int result = ms.checkId(id);
 
-		if (result > 0 ) {
+		if (result > 0) {
 			return "isDup";
-		}else{
+		} else {
 			return "notDup";
 		}
 	}// idCheck
@@ -120,75 +121,89 @@ public class MemberController {
 	public void myBoard() {
 
 	}
-	
-	//my-query-board 화면
+
+	// my-query-board 화면
 	@GetMapping("my-query-board")
 	public String myQuery() {
 		return "member/my-query-board";
 	}
-	
-	//my-help-board 화면
+
+	// my-help-board 화면
 	@GetMapping("my-help-board")
-	public String myHelp() {
+	public String myHelp(HelpVo helpVo, HttpSession session, Model model) {
+
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		String writeNo = memberLog.getNo();
+		System.out.println("writeNo : " + writeNo);
+		helpVo.setWriter(writeNo);
+		System.out.println("helpVo : " + helpVo);
+		
+		List<HelpVo> myHelpList = ms.getMyHelpBoard(helpVo, writeNo);
+		List<Map<String, String>> LocationList = ms.getLocationList();
+
+		System.out.println(myHelpList);
+
+		model.addAttribute("myMarketList", myHelpList);
+		model.addAttribute("LocationList", LocationList);
+
 		return "member/my-help-board";
 	}
-	
-	//my-job-board 화면
+
+	// my-job-board 화면
 	@GetMapping("my-job-board")
 	public String myJob() {
 		return "member/my-job-board";
 	}
-	
-	//my-fundraise-board 화면
+
+	// my-fundraise-board 화면
 	@GetMapping("my-fundraise-board")
 	public String myFundraise() {
 		return "member/my-fundraise-board";
 	}
-	
 
 	// my-market-feed 화면
 	@GetMapping("my-market-feed")
 	public String myFeed(MarketVo marketVo, HttpSession session, Model model) {
-		
+
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
 		String writerNo = memberLog.getNo();
-		
+
 		marketVo.setWriter(writerNo);
-		
-		//내 피드 총 갯수
+
+		// 내 피드 총 갯수
 		int MyMarketFeedCount = ms.getMyMarketFeedCount(marketVo);
-		
+
 		List<MarketVo> myMarketList = ms.getMyMarketFeed(marketVo);
 		List<Map<String, String>> LocationList = ms.getLocationList();
-		
+
 		System.out.println(myMarketList);
-		
+
 		model.addAttribute("MyFeedCount", MyMarketFeedCount);
 		model.addAttribute("myMarketList", myMarketList);
 		model.addAttribute("LocationList", LocationList);
-		
+
 		return "member/my-market-feed";
 	}
-	
+
 	// my-friend-feed 화면
 	@GetMapping("my-friend-feed")
 	public String myFeed(FriendVo friendVo, HttpSession session, Model model) {
-		
+
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
 		String writerNo = memberLog.getNo();
-		
+
 		friendVo.setWriter(writerNo);
-		
-		//내 피드 총 갯수
+
+		// 내 피드 총 갯수
 		int MyFriendFeedCount = ms.getMyFriendFeedCount(friendVo);
-		
+
 		List<FriendVo> myFriendList = ms.getMyFriendFeed(friendVo);
 		List<Map<String, String>> LocationList = ms.getLocationList();
-		
+
 		model.addAttribute("MyFeedCount", MyFriendFeedCount);
 		model.addAttribute("myFriendList", myFriendList);
 		model.addAttribute("LocationList", LocationList);
-		
+
 		return "member/my-friend-feed";
 	}
 

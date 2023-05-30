@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lively.friend.vo.FriendVo;
+import com.lively.help.vo.HelpVo;
 import com.lively.market.vo.MarketVo;
 import com.lively.member.vo.MemberVo;
 
@@ -58,6 +59,11 @@ public class MemberDao {
 
 	public List<FriendVo> getMyFriendFeed(SqlSessionTemplate sst, FriendVo friendVo) {
 		return sst.selectList("member.friendFeed", friendVo);
+	}
+
+	//my-help
+	public List<HelpVo> getMyHelpBoard(SqlSessionTemplate sst, HelpVo helpVo) {
+		return sst.selectList("member.helpBoard", helpVo);
 	}
 
 }// class

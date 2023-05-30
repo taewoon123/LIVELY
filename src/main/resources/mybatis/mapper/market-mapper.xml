@@ -31,6 +31,9 @@
 	LEFT JOIN MARKET_ATTACH A ON (K.MARKET_NO = A.MARKET_NO)
 	WHERE K.DELETE_YN = 'N'
 	AND A.DELETE_YN = 'N'
+	<if test="searchValue != null">
+        AND K.TITLE LIKE '%' || #{searchValue} || '%'
+    </if>
 	ORDER BY MARKET_NO DESC
   </select>
   

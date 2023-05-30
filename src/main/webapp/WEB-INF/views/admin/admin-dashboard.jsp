@@ -43,17 +43,28 @@
                   </tr>
               </c:forEach>
 <%--      삭제 버튼      --%>
-            <button id="deleteMemberButton">삭제</button>
+            <button id="deleteMemberButton" class="btn-close-white">삭제</button>
           </table>
-          <div class="pagination-area">
-          <a href="">이전</a>
-          <a href="">1</a>
-          <a href="">2</a>
-          <a href="">3</a>
-          <a href="">4</a>
-          <a href="">5</a>
-          <a href="">다음</a>
+
+          <div class="page-area">
+              <div class="pagination-custom">
+                  <c:if test="${pageVo.currentPage > 1}">
+                      <a class="prev page-numbers" href="${rootContext}/admin/dashboard?page=${pageVo.currentPage-1}"> << </a>
+                  </c:if>
+                  <c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" step="1" var="i">
+                      <c:if test="${pageVo.currentPage != i}">
+                          <a class="page-numbers" href="${rootContext}/admin/dashboard?page=${i}">${i}</a>
+                      </c:if>
+                      <c:if test="${pageVo.currentPage == i}">
+                          <a class="page-numbers">${i}</a>
+                      </c:if>
+                  </c:forEach>
+                  <c:if test="${pageVo.currentPage < pageVo.maxPage}">
+                      <a class="next page-numbers" href="${rootContext}/admin/dashboard?page=${pageVo.currentPage+1}"> >> </a>
+                  </c:if>
+              </div>
           </div>
+
       </div>
 
 
@@ -62,50 +73,45 @@
 
             <div class="dashboard" id="some-dashboard" style="background-color: whitesmoke">
                 <div class="inside-card">
-                    <span class="dashboard-text" >SOME</span>
+                    <span class="dashboard-text">사이트 현황</span>
                 </div>
                 <hr>
                 <table class="table-tag">
                     <tr class="table-trs">
-                        <th class="table-ths"><input type="checkbox" id="some-check-all"></th>
-                        <th class="table-ths">아이디</th>
-                        <th class="table-ths">닉네임</th>
-                        <th class="table-ths">가입일</th>
+                        <th class="table-tds" style="text-align: center;" colspan="2">사이트 현황</th>
                     </tr>
                     <tr class="table-trs">
-                        <td class="table-tds"><input type="checkbox" class="some-checkbox"> </td>
-                        <td class="table-tds">some</td>
-                        <td class="table-tds">some</td>
-                        <td class="table-tds">some</td>
+                        <th class="table-tds">총 회원 수</th>
+                        <td class="table-tds">${memberCount} (명)</td>
                     </tr>
                     <tr class="table-trs">
-                        <td class="table-tds"><input type="checkbox" class="some-checkbox"> </td>
-                        <td class="table-tds">some</td>
-                        <td class="table-tds">some</td>
-                        <td class="table-tds">some</td>
+                        <th class="table-tds">질문 게시판</th>
+                        <td class="table-tds">${queryCount} (개)</td>
                     </tr>
                     <tr class="table-trs">
-                        <td class="table-tds"><input type="checkbox" class="some-checkbox"> </td>
-                        <td class="table-tds">some</td>
-                        <td class="table-tds">some</td>
-                        <td class="table-tds">some</td>
+                        <th class="table-tds">도움 게시판</th>
+                        <td class="table-tds">${helpCount} (개)</td>
                     </tr>
                     <tr class="table-trs">
-                        <td class="table-tds"><input type="checkbox" class="some-checkbox"> </td>
-                        <td class="table-tds">some</td>
-                        <td class="table-tds">some</td>
-                        <td class="table-tds">some</td>
+                        <th class="table-tds">구인구직 게시판</th>
+                        <td class="table-tds">${jobCount} (개)</td>
                     </tr>
+                    <tr class="table-trs">
+                        <th class="table-tds">기부 게시판</th>
+                        <td class="table-tds">${fundCount} (개)</td>
+                    </tr>
+                    <tr class="table-trs">
+                        <th class="table-tds">중고장터</th>
+                        <td class="table-tds">${jobCount} (개)</td>
+                    </tr>
+                    <tr class="table-trs">
+                        <th class="table-tds">친구 게시판</th>
+                        <td class="table-tds">${friendCount} (개)</td>
+                    </tr>
+<%--                    <a href="${rootContext}/notice/list" class="btn custom-btn d-lg-block d-none">Notice 바로가기</a>--%>
+                    <button onclick="location.href='${rootContext}/notice/list'" class="btn custom-btn">Notice 바로가기</button>
+                    <br>
                 </table>
-                <div class="pagination-area">
-                    <a href="">이전</a>
-                    <a href="">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a href="">4</a>
-                    <a href="">5</a>
-                    <a href="">다음</a>
-                </div>
             </div>
 
     </div>

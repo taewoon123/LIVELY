@@ -5,22 +5,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>내가 올린 글</title>
-	<style>
-		/* select 태그 배경색상,글자색상 검정으로 */
-		.boardType {
-			background-color: #232121;
-			color: #ffffff;
-		}
-	</style>
 </head>
 <header>
 	<%@ include file="/WEB-INF/views/common/header.jsp" %>
-		<%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
+	<%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 </header>
 
 <body>
 
-	
 	<h2>My Board</h2>
 	
 	<!-- list table -->
@@ -30,12 +22,12 @@
 			
 			<!-- search button -->
 			<div class="container-input">
-				<select class="boardType" name="boardType">
-					<option value="" >- 게시판 선택 -</option>
-					<option value="1" onselect="location.href='${rootContext}/member/my-query-board'">질문 게시판</option>
-					<option value="2" onclick="location.href='${rootContext}/member/my-help-board'">도움 게시판</option>
-					<option value="3" onclick="location.href='${rootContext}/member/my-job-board'">구인구직 게시판</option>
-					<option value="4" onclick="location.href='${rootContext}/member/my-fundraise-board'">기부 게시판</option>
+				<select class="boardType" name="boardType" onchange="if(this.value) location.href=(this.value);">
+					<option value="" >--게시판 선택--</option>
+					<option value="${rootContext}/member/my-query-board">질문 게시판</option>
+					<option value="${rootContext}/member/my-help-board">도움 게시판</option>
+					<option value="${rootContext}/member/my-job-board">구인구직 게시판</option>
+					<option value="${rootContext}/member/my-fundraise-board">기부 게시판</option>
 				</select>
 				<input type="text" placeholder="Search" name="text" class="input">
 		</div>
@@ -125,3 +117,4 @@
 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-list.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
 <script src="${rootContext}/resources/js/query/query-list.js"></script>
+<link rel="stylesheet" href="${rootContext}\resources\css\member\my-board.css">

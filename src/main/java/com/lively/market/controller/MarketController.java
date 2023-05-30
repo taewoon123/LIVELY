@@ -38,7 +38,7 @@ public class MarketController {
 
 	//피드 목록
 	@GetMapping("list")
-	public String list(Model model, @RequestParam(defaultValue = "1") int page, String no) throws Exception {
+	public String list(Model model, @RequestParam(defaultValue = "1") int page, String no, String searchValue) throws Exception {
 		
 //		MarketVo marketVo = ms.getFeed(no);
 		
@@ -49,7 +49,7 @@ public class MarketController {
 		int boardLimit = 3;
 		PageVo pageVo = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		
-		List<MarketVo> marketList = ms.getMarketFeed(pageVo);
+		List<MarketVo> marketList = ms.getMarketFeed(pageVo, searchValue);
 		List<LocationVo> LocationList = ms.getLocationList();
 		
 		System.out.println(marketList);

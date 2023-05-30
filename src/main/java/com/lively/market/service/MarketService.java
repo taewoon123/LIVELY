@@ -28,8 +28,8 @@ public class MarketService {
 	}
 	
 	//피드 목록 (전체)
-	public List<MarketVo> getMarketFeed(PageVo pageVo){
-		return dao.getMarketFeed(sst, pageVo);
+	public List<MarketVo> getMarketFeed(PageVo pageVo, String searchValue){
+		return dao.getMarketFeed(sst, pageVo, searchValue);
 	}
 	
 	//피드 작성

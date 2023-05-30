@@ -16,11 +16,11 @@ import com.lively.page.vo.PageVo;
 public class MarketDao {
 	
 	//피드 목록 (전체)
-	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, PageVo pageVo){
+	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, PageVo pageVo, String searchValue){
 		int limit = pageVo.getBoardLimit();
 		int offset = (pageVo.getCurrentPage()-1) * limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return sst.selectList("market.MarketFeed", null, rowBounds);
+		return sst.selectList("market.MarketFeed", searchValue, rowBounds);
 	}
 	
 	//피드 작성

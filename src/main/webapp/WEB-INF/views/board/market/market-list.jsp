@@ -16,12 +16,14 @@
 
         <main>
 
+			<form action="${rootContext}/market/list" method="get">
+
             <div id="market_title">
                 <h2>Market</h2>
             </div>
 
             <div id="search-upload-area">
-                <input placeholder="Search" class="feed_search_input" name="text" type="text">
+                <input placeholder="Search" class="feed_search_input" name="searchValue" type="text">
                 <a class="hidden_button" type="submit" href="">검색</a>
                 
                 <div id="upload_button">
@@ -35,6 +37,7 @@
                 </div>
             	
             </div>
+            </form>
 
 			<c:forEach items="${marketList}" var="mList">
 	            <!-- 첫번째 피드 시작 -->

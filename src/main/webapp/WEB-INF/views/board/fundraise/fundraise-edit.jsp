@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Fundrasie-write</title>
+    <title>Fundraise-write</title>
 </head>
 
 <body>
@@ -13,18 +13,13 @@
     <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
     <div class="write-board">
-        <form action="${rootContext}/fund/edit" method="POST" enctype="multipart/form-data">
+        <form action="${rootContext}/fund/edit?no=${fundVo.fundraiseNo}" method="POST" enctype="multipart/form-data">
             <div class="write-group">
 
                 <h3 id="friend-title">Fundraise</h3>
 
-                <select class="location-option" name="location" id="location">
-<%
-                    for(int i=0; i<locationList.size(); i++) {
-
-                    }
-%>
-                </select>
+                <%--      지역 넣어야됨  with scriptlet      --%>
+                
 
                 <div class="form__group">
                     <input type="text" name="title" class="form__field" placeholder="제목" required>
@@ -33,7 +28,7 @@
             </div>
             <div class="write-group">
                             <textarea name="content" id="content" cols="30" rows="10" style="resize: none"
-                                      placeholder="내용" required></textarea>
+                            placeholder="내용" required>${fundDetail.content}</textarea>
                 <!-- 0505 :required 추가 -->
             </div>
 
@@ -52,15 +47,15 @@
             <div class="tag-group">
                 <input type="text" name="moneyGoal" class="tag" placeholder="목표금액">
             </div>
-<%--            <div class="tag-group">--%>
-<%--                <input type="text" class="tag" placeholder="#태그">--%>
-<%--            </div>--%>
+            <%--            <div class="tag-group">--%>
+            <%--                <input type="text" class="tag" placeholder="#태그">--%>
+            <%--            </div>--%>
 
             <div class="register">
                 <div id="registerName"><input value="취소" type="button"
                                               onclick="location.href='${rootContext}/fund/list'"></div>
                 <!-- 등록버튼만 submit되야하므로 취소버튼은 button타입으로 바꾸고 onclick 속성으로 페이지이동 구현함. -->
-                <div id="registerName"><input value="등록" type="submit"></div>
+                <div id="registerName"><input value="수정" type="submit"></div>
             </div>
         </form>
     </div>

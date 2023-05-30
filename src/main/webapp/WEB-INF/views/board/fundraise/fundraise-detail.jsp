@@ -57,7 +57,7 @@
                     <span>삭제하기</span>
                 </button>
 
-                <button id="write_submit_edit">
+                <button id="write_submit_edit" onclick="location.href='${rootContext}/fund/edit?no=${fundNo}'">
                     <span>수정하기</span>
                 </button>
             </c:if>

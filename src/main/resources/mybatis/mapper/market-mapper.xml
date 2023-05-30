@@ -110,10 +110,9 @@
   <!-- 피드 삭제 -->
   <update id="delete">
   	UPDATE MARKET
-  		SET DELETEYN = 'Y'
+  		SET DELETE_YN = 'Y'
   		, EDIT_DATE = SYSDATE
-  	WHERE MARKET_NO = #{marketNo}
-  	AND WRITER = #{writer}
+  	WHERE MARKET_NO = #{no}
   </update>
   
   

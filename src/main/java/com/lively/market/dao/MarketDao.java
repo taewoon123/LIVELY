@@ -50,8 +50,8 @@ public class MarketDao {
 	}
 
 	//삭제 (작성자만)
-	public int delete(SqlSessionTemplate sst, MarketVo marketVo) {
-		return sst.update("market.delete", marketVo);
+	public int delete(SqlSessionTemplate sst, String no) {
+		return sst.update("market.delete", no);
 	}
 
 //	public int getMyFeedCount(SqlSessionTemplate sst) {

@@ -89,6 +89,32 @@ public class MemberController {
 		session.setAttribute("memberLog", memberLog);
 		return "redirect:/main";
 	}
+	
+	// 로그아웃
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
+	}
+	
+	//비밀번호 찾기 화면
+	@GetMapping("forgot-password")
+	public String forgotPassword() {
+		return "member/forgot-password";
+	}
+	
+	//비밀번호 찾기 처리
+	@PostMapping("forgot-password")
+	public String forgotPassword(MemberVo memberVo, HttpSession session) {
+		MemberVo memberLog = ms.login(memberVo);
+		if(memberLog == null) {
+			session.setAttribute("alertMsg", "일치하는 회원정보가 없습니다. 다시 시도해주세요.");
+			return "member/forgot-password";
+		}
+		session.setAttribute("memberLog", memberLog);
+		return "member/reset-password";
+	}
+	
 
 	// my-info 화면
 	@GetMapping("my-info")
@@ -208,13 +234,6 @@ public class MemberController {
 		model.addAttribute("LocationList", LocationList);
 
 		return "member/my-friend-feed";
-	}
-
-	// 로그아웃
-	@RequestMapping("logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/main";
 	}
 
 }// class

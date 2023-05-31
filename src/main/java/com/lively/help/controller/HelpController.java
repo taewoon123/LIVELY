@@ -107,7 +107,7 @@ public class HelpController {
 	
 	//도움 상세조회
 	@GetMapping("detail")
-	public String detail(String num, Model model) throws Exception {
+	public String detail(String num, Model model,HttpSession session) throws Exception {
 		HelpVo vo = hs.getHelp(num);
 		
 		if(vo == null) {

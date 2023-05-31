@@ -25,7 +25,7 @@ public class FriendVo {
 	private List<FileVo> attachmentList;
 	private String originName;
 	private String changeName;
-	
+	private String friendAttachNo;
 	
 	
 }

@@ -2,91 +2,89 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="friend">
-  
-  <!-- 피드(전체) -->
-  <select id="FriendFeed" resultType="FriendVo">
-	SELECT
-	    F.FRIEND_NO
-	    , F.WRITER
-	    , F.TITLE
-	    , F.CONTENT
-	    , F.ENROLL_DATE
-	    , F.DELETE_YN
-	    , F.EDIT_DATE
-	    , F.LOCATION_NO 
-	    , F.STATUS_YN
-	    , L.LOCATION_NAME as locationName
-	    , M.NAME as writerName
-	    , A.FRIEND_ATTACH_NO as friendAttachNo
-	    , A.ORIGIN_NAME as originName
-	    , A.CHANGE_NAME as changeName
-	    , A.DELETE_YN as deleteYnAttach
-	FROM FRIEND F
-	LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
-	LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
-	LEFT JOIN FRI_ATTACH A ON (F.FRIEND_NO = A.FRIEND_NO)
-	WHERE F.DELETE_YN = 'N'
-	AND A.DELETE_YN = 'N'
+
+	<!-- 피드(전체) -->
+	<select id="FriendFeed" resultType="FriendVo">
+		SELECT
+		F.FRIEND_NO
+		, F.WRITER
+		, F.TITLE
+		, F.CONTENT
+		, F.ENROLL_DATE
+		, F.DELETE_YN
+		, F.EDIT_DATE
+		, F.LOCATION_NO
+		, F.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+		, A.FRIEND_ATTACH_NO as friendAttachNo
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
+		FROM FRIEND F
+		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+		LEFT JOIN FRI_ATTACH A ON (F.FRIEND_NO = A.FRIEND_NO)
+		WHERE F.DELETE_YN = 'N'
+		AND A.DELETE_YN = 'N'
 		<if test="searchValue != null">
 			AND F.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
-<!--  		<if test="searchType == 'title'">
-			AND F.TITLE LIKE '%${searchValue}%'
-		</if> -->
-<!-- 		<if test="searchType == 'content'">
-			AND F.CONTENT LIKE '%${searchValue}%'
-		</if> -->
-<!-- 		<if test="searchType == 'locationNo'">
-			AND F.LOCATION_NO = #{searchValue}
-		</if> -->
-	ORDER BY F.FRIEND_NO DESC
-  </select>
-  
-  <insert id="write">
-	INSERT INTO FRIEND
- 	(
- 		FRIEND_NO
- 		, WRITER
- 		, TITLE
- 		, CONTENT
- 		, LOCATION_NO
- 		
- 	)
- 	VALUES
- 	(
- 		SEQ_FRIEND_NO.NEXTVAL
- 		,#{writer}
- 		,#{title}
- 		,#{content}
- 		,#{locationNo}
- 	)
-  </insert>
-  
-  <select id="FriendWrite" resultType="FriendVo">
-  	SELECT
-  		F.FRIEND_NO
+		<!-- <if test="searchType == 'title'"> AND F.TITLE LIKE '%${searchValue}%' 
+			</if> -->
+		<!-- <if test="searchType == 'content'"> AND F.CONTENT LIKE '%${searchValue}%' 
+			</if> -->
+		<!-- <if test="searchType == 'locationNo'"> AND F.LOCATION_NO = #{searchValue} 
+			</if> -->
+		ORDER BY F.FRIEND_NO DESC
+	</select>
+
+ 	<insert id="write">
+		INSERT INTO FRIEND
+		(
+		FRIEND_NO
+		, WRITER
+		, TITLE
+		, CONTENT
+		, LOCATION_NO
+
+		)
+		VALUES
+		(
+		SEQ_FRIEND_NO.NEXTVAL
+		,#{writer}
+		,#{title}
+		,#{content}
+		,#{locationNo}
+		)
+	</insert> 
+
+	<select id="FriendWrite" resultType="FriendVo">
+		SELECT
+		F.FRIEND_NO
 		, F.WRITER
 		, F.TITLE
 		, F.CONTENT
 		, F.LOCATION_NO
-		, L.LOCATION_NAME as locationName
+		, L.LOCATION_NAME as
+		locationName
 		, M.NAME as writerName
-	FROM FRIEND F
-	LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
-	LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
-	WHERE F.DELETE_YN = 'N'
-  </select>
-  
-  <select id="getLocationList" resultType="map">
-  	SELECT
-  		LOCATION_NO
+		FROM FRIEND F
+		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+		WHERE F.DELETE_YN = 'N'
+	</select>
+
+	<select id="getLocationList" resultType="map">
+		SELECT
+		LOCATION_NO
 		,LOCATION_NAME
-	FROM LOCATION
-  </select>
-  
-  	<insert id="insertAttachment"> <!-- open은 맨앞에 , close는 맨뒤 , separator는 중간중간 /를 나타냄 -->
+		FROM LOCATION
+	</select>
+
+	<insert id="insertAttachment"> <!-- open은 맨앞에 , close는 맨뒤 , separator는 중간중간 /를 나타냄 -->
 		INSERT ALL
 			<foreach collection="list" item="x" separator=" ">
 			    INTO FRI_ATTACH
@@ -106,45 +104,80 @@
 			</foreach>
 		SELECT 1 FROM DUAL
 	</insert>	
+
+	<!-- GPT 작품 -->
+<!-- 	<insert id="write" parameterType="FriendVo">
+		게시물 삽입
+		INSERT INTO FRIEND 
+		(
+			FRIEND_NO
+			, WRITER
+			, TITLE
+			, CONTENT
+			, ENROLL_DATE
+			, DELETE_YN
+			, EDIT_DATE
+			, LOCATION_NO
+			, STATUS_YN
+		)
+		VALUES 
+		(
+			SEQ_FRIEND_NO.NEXTVAL
+			, #{writer}
+			, #{title}
+			, #{content}
+			, SYSDATE
+			, 'N'
+			, SYSDATE
+			, #{locationNo}
+			, 'Y'
+		)
+	</insert> -->
+
+	<!-- <insert id="insertAttachment" parameterType="FriendVo">
+		사진 첨부 파일 삽입
+		<foreach collection="list" item="attachment">
+			INSERT INTO FRI_ATTACH 
+			(
+				FRIEND_ATTACH_NO
+				, FRIEND_NO
+				, ORIGIN_NAME
+				, CHANGE_NAME)
+			VALUES
+			(
+				SEQ_FRI_ATTACH_NO.NEXTVAL
+				, SEQ_FRIEND_NO.CURRVAL
+				,#{attachment.originName}
+				, #{attachment.changeName}
+			)
+		</foreach>
+	</insert> -->
 	
 	<select id="getAttachmentList" resultType="fileVo">
 		SELECT
-			FRIEND_ATTACH_NO
-			,FRIEND_NO
-			,ORIGIN_NAME
-			,CHANGE_NAME
-			,DELETE_YN
+		FRIEND_ATTACH_NO
+		,FRIEND_NO
+		,ORIGIN_NAME
+		,CHANGE_NAME
+		,DELETE_YN
 		FROM FRI_ATTACH
 		WHERE FRIEND_NO = #{friendNo}
 		AND DELETE_YN = 'N'
 	</select>
-	
+
 	<select id="getAttachment" resultType="fileVo">
 		SELECT
 		FROM FRI_ATTACH
 		WHERE FRIEND_ATTACH_NO = #{friendAttachNo}
 		AND DELETE_YN = 'N'
-	</select>	
-	
-<!-- 	<select id="getFriendFeed" resultType="FriendVo">
-		SELECT
-			F.FRIEND_NO
-			,F.WRITER
-			,F.TITLE
-			,F.CONTENT
-			,F.ENROLL_DATE
-			,F.DELETE_YN
-			,F.EDIT_DATE
-			,F.LOCATION_NO
-			,F.STATUS_YN
-			,L.LOCATION_NAME as locationName
-			, M.NAME as writerName
-		FROM FRIEND F
-		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
-		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
-		WHERE F.DELETE_YN = 'N'
-		AND		F.FRIEND_NO = #{friendNo}
-	</select> -->
-	
-  
+	</select>
+
+	<!-- <select id="getFriendFeed" resultType="FriendVo"> SELECT F.FRIEND_NO 
+		,F.WRITER ,F.TITLE ,F.CONTENT ,F.ENROLL_DATE ,F.DELETE_YN ,F.EDIT_DATE ,F.LOCATION_NO 
+		,F.STATUS_YN ,L.LOCATION_NAME as locationName , M.NAME as writerName FROM 
+		FRIEND F LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO) LEFT JOIN 
+		MEMBER M ON (F.WRITER = M.NO) WHERE F.DELETE_YN = 'N' AND F.FRIEND_NO = #{friendNo} 
+		</select> -->
+
+
 </mapper>

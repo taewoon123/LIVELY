@@ -37,7 +37,7 @@
 	                </div>
 		<c:forEach items="${friendList}" var="fList">
             <!-- 첫번째 피드 시작 -->
-             <div id="feed_box feed_status_${fList.statusYn}">
+             <div class="feed_box feed_status_${fList.statusYn}">
                 <div id="profile_area">
                     <div id="profile_img"><img src="${rootContext}/resources/img/marketimg.png" alt="프로필사진"></div>
                     <div id="profile_box">

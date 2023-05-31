@@ -42,7 +42,7 @@ public class HelpController {
 	
 	//도움 목록 조회
 	@GetMapping("list")
-    public String list(HelpVo vo, Model model, @RequestParam(defaultValue = "1") int page) {
+    public String list(HelpVo vo, Model model, @RequestParam(defaultValue = "1") int page, String searchValue) {
       
 		//서비스 호출
 		int listCount = hs.getHelpListCnt();
@@ -51,7 +51,7 @@ public class HelpController {
 		int boardLimit = 5;
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-		List<HelpVo> hvoList = hs.getHelpList(pv);
+		List<HelpVo> hvoList = hs.getHelpList(pv, searchValue);
 		
 		//화면
 		model.addAttribute("pv", pv);

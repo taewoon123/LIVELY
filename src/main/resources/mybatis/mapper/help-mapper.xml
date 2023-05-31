@@ -16,6 +16,9 @@
         FROM HELP H
         JOIN MEMBER M ON M.NO = H.WRITER
         WHERE DELETE_YN = 'N'
+        <if test = "searchValue != null">
+        AND H.TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
         ORDER BY HELP_NO DESC
 	</select>
 	

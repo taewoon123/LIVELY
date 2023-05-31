@@ -23,7 +23,22 @@
 			
 			<form action="${rootContext}/friend/list" method="get">
 	            <div id="search-upload-area">
+	                <!-- <div class="selections">
+	                    <select class="location-option" name="locationNo" id="location" required>
+	                        <option value="0" selected>지역선택</option>
+	                        <option value="1">강동구</option>
+	                        <option value="2">강서구</option>
+	                        <option value="3">강남구</option>
+	                        <option value="4">강북구</option>
+	                    </select>
+	                </div> -->
+                    <%-- <input placeholder="Search" class="feed_search_input" name="searchValue" type="text" value="${searchMap.searchValue}"> --%>
                     <input type="text" placeholder="Search" name="searchValue" class="feed_search_input">
+                          <%--   <c:forEach items="${fvoList}" var="fvo">
+                                <option value="${fvo.NO}">${fvo.NAME}</option> 
+                            </c:forEach>  --%>
+                         	 <!-- <a class="hidden_button" type="submit" name="searchValue" href="">검색</a> --> 
+                      		 <!-- <button class="hidden_button" type="submit" name="searchValue">검색</button> --> 
                 </div>      
             </form>
 	                <div id="upload_button">

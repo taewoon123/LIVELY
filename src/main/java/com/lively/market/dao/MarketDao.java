@@ -73,10 +73,6 @@ public class MarketDao {
 	public FileVo getAttachment(SqlSessionTemplate sst, String attachmentNo) {
 		return sst.selectOne("market.getAttachment", attachmentNo);
 	}
-
-	public List<String> search(SqlSessionTemplate sst, String searchValue) {
-		return sst.selectList("market.search", searchValue);
-	}
 	
 //	//상세조회
 //	public MarketVo getFeed(SqlSessionTemplate sst, String no) {

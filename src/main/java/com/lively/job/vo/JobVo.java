@@ -17,9 +17,9 @@ public class JobVo {
 	private String editDate;
 	private String deleteYn;
 	private String views;
-	private String jobChoiceCode;
+	private String jobCategoryNo;
 	
-	public String categoryName;
+	public String jobCategoryName;
 	private String writerName;
     private List<FileVo> attList;
 	

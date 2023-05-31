@@ -52,24 +52,39 @@
 		, TITLE
 		, CONTENT
 		, WRITER
-		, JOB_CHOICE_CODE
+		, JOB_CATEGORY_NO
 		)
 		VALUES
 		(
 		SEQ_JOB_NO.NEXTVAL
 		, #{title}
 		, #{content}
-		, 1
-		, 1
+		, #{writer}
+		, #{jobCategoryNo}
 		)
 	</insert>
 
 	<select id="getJobList" resultType="jobVo">
-		SELECT *
-		FROM JOB
-		WHERE DELETE_YN = 'N'
-		ORDER BY JOB_NO DESC
+		SELECT
+			J.JOB_NO,
+			J.TITLE, 
+			J.CONTENT,
+			J.ENROLL_DATE,
+			J.WRITER, 
+			J.EDIT_DATE,
+			J.DELETE_YN,
+			J.VIEWS, 
+			J.JOB_CATEGORY_NO, 
+			C.NAME AS jobCategoryName, 
+			M.NAME AS writerName 
+		FROM
+			JOB J
+			LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO) 
+			LEFT JOIN MEMBER M ON (J.WRITER = M.NO) 
+		WHERE
+			J.DELETE_YN = 'N' 
 	</select>
+	
 
 	<select id="getJobListCnt" resultType="int">
 		SELECT COUNT(*)
@@ -85,19 +100,20 @@
 	</update>
 
 	<select id="getJob" resultType="JobVo">
-		SELECT J.JOB_NO AS NO,
-		M.NAME AS WRITER,
+		SELECT 
+		J.JOB_NO,
 		J.TITLE,
 		J.CONTENT,
 		J.ENROLL_DATE,
 		J.EDIT_DATE,
 		J.DELETE_YN,
 		J.VIEWS,
-		J.JOB_CHOICE_CODE
-		FROM JOB J
-		JOIN MEMBER M ON M.NO = J.WRITER
-		WHERE DELETE_YN = 'N'
-		AND JOB_NO = #{no}
+		J.JOB_CATEGORY_NO,
+		C.NAME AS jobCategoryName
+		FROM JOB J 
+		LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO )
+		WHERE   J.DELETE_YN = 'N'
+		AND    J.JOB_NO = #{no}
 	</select>
 
 	<update id="edit">

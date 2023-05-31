@@ -63,6 +63,8 @@ public class JobController {
 
 		// 서비스
 		List<JobVo> jvoList = js.getJobList(pv, searchMap);
+		
+		System.out.println(jvoList);
 //		List<Map<String, String>> cvoList = js.getCategoryList();
 
 //		model.addAttribute("cvoList" , cvoList);
@@ -82,9 +84,10 @@ public class JobController {
 	@PostMapping("write")
 	public String write(JobVo vo, HttpSession session ,HttpServletRequest req, List<MultipartFile> file)
 			throws Exception {
-		MemberVo memberLog = (MemberVo)session.getAttribute("memberLog");
-		if(memberLog == null) {
-			throw new Exception("로그인 후 이용 가능합니다.");
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		if (memberLog == null) {
+			
+			return "alertMsg";
 		}
 		
 		String path = req.getServletContext().getRealPath("/resources/upload/job/");

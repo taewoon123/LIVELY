@@ -36,6 +36,41 @@
         </foreach>
     </update>
 
+    <select id="getMemberCount" resultType="Integer">
+        SELECT COUNT(*) FROM MEMBER
+        WHERE QUIT_YN = 'N'
+    </select>
+
+    <select id="getQueryCount" resultType="Integer">
+        SELECT COUNT(*) FROM QUERY
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getHelpCount" resultType="Integer">
+        SELECT COUNT(*) FROM HELP
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getJobCount" resultType="Integer">
+        SELECT COUNT(*) FROM JOB
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getFundCount" resultType="Integer">
+        SELECT COUNT(*) FROM FUNDRAISE
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getFriendCount" resultType="Integer">
+        SELECT COUNT(*) FROM FRIEND
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getMarketCount" resultType="Integer">
+        SELECT COUNT(*) FROM MARKET
+        WHERE DELETE_YN = 'N'
+    </select>
+
 </mapper>
 
 

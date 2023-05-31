@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.lively.admin.vo.AdminVo;
 import com.lively.admin.service.AdminService;
 import com.lively.member.vo.MemberVo;
+import com.lively.page.vo.PageVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,16 +27,38 @@ public class AdminController {
     }
 
     @GetMapping("dashboard")
-    public String admin(HttpSession session, Model model, MemberVo memberVo) {
+    public String admin(HttpSession session, Model model, MemberVo memberVo, @RequestParam(defaultValue = "1") int page) {
+        //dashboard member Pagination
+        int listCount = service.getMemberCount();
+        int pageLimit = 5;
+        int boardLimit = 5;
+
+        PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit);
         //retrieve signed in admin Information from the session
         //if admin is not signed in, redirect to login view
         AdminVo adminLog = (AdminVo) session.getAttribute("adminLog");
-
+        //회원 수 받기
+        int memberCount = service.getMemberCount();
+        //모든 게시판(6개)수 받아오기
+        int queryCount = service.getQueryCount();
+        int helpCount = service.getHelpCount();
+        int jobCount = service.getJobCount();
+        int fundCount = service.getFundCount();
+        int friendCount = service.getFriendCount();
+        int marketCount = service.getMarketCount();
         //receive memberList from Database
-        List<MemberVo> memberList = service.presentMembers(memberVo);
-        //if memberList is not null, add memberList to model
+        List<MemberVo> memberList = service.presentMembers(memberVo, pageVo);
+        //if memberList is not null, add memberList and boardList to model
         if(memberList != null) {
             model.addAttribute("memberList", memberList);
+            model.addAttribute("memberCount", memberCount);
+            model.addAttribute("queryCount", queryCount);
+            model.addAttribute("helpCount", helpCount);
+            model.addAttribute("jobCount", jobCount);
+            model.addAttribute("fundCount", fundCount);
+            model.addAttribute("friendCount", friendCount);
+            model.addAttribute("marketCount", marketCount);
+            model.addAttribute("pageVo", pageVo);
         }
         model.addAttribute("adminLog", adminLog);
         return "admin/admin-dashboard";

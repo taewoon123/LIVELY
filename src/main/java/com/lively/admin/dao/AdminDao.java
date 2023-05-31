@@ -2,7 +2,9 @@ package com.lively.admin.dao;
 
 import com.lively.admin.vo.AdminVo;
 import com.lively.member.vo.MemberVo;
+import com.lively.page.vo.PageVo;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -20,8 +22,11 @@ public class AdminDao {
       return sqlSessionTemplate.insert("admin.signup", adminVo);
     }
 
-    public List<MemberVo> presentMembers(MemberVo memberVo, SqlSessionTemplate sqlSessionTemplate) {
-        return sqlSessionTemplate.selectList("admin.presentMembers",memberVo);
+    public List<MemberVo> presentMembers(MemberVo memberVo, SqlSessionTemplate sqlSessionTemplate, PageVo pageVo) {
+        int limit = pageVo.getBoardLimit();
+        int offset = (pageVo.getCurrentPage() - 1) * limit;
+        RowBounds rb = new RowBounds(offset, limit);
+        return sqlSessionTemplate.selectList("admin.presentMembers", memberVo, rb);
     }
 
 
@@ -35,5 +40,28 @@ public class AdminDao {
             log.info(deleteList.toString());
         }
         return result;
+    }
+    public int getMemberCount(SqlSessionTemplate sqlSessionTemplate) {
+        return sqlSessionTemplate.selectOne("admin.getMemberCount");
+    }
+    public int getQueryCount(SqlSessionTemplate sqlSessionTemplate) {
+        return sqlSessionTemplate.selectOne("admin.getQueryCount");
+    }
+    public int getHelpCount(SqlSessionTemplate sqlSessionTemplate) {
+        return sqlSessionTemplate.selectOne("admin.getHelpCount");
+    }
+    public int getJobCount(SqlSessionTemplate sqlSessionTemplate) {
+        return sqlSessionTemplate.selectOne("admin.getJobCount");
+    }
+    public int getFundCount(SqlSessionTemplate sqlSessionTemplate) {
+        return sqlSessionTemplate.selectOne("admin.getFundCount");
+    }
+
+    public int getFriendCount(SqlSessionTemplate sqlSessionTemplate) {
+        return sqlSessionTemplate.selectOne("admin.getFriendCount");
+    }
+
+    public int getMarketCount(SqlSessionTemplate sqlSessionTemplate) {
+        return sqlSessionTemplate.selectOne("admin.getMarketCount");
     }
 }

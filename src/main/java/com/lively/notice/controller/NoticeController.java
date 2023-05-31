@@ -32,7 +32,7 @@ public class NoticeController {
 	
 	//공지사항 목록 조회
 	@GetMapping("list")
-    public String list(Model model, @RequestParam(defaultValue = "1") int page) {
+    public String list(Model model, @RequestParam(defaultValue = "1") int page, String searchValue) {
 		
 		//서비스 호출
 		int listCount = ns.getNoticeListCnt();
@@ -41,7 +41,7 @@ public class NoticeController {
 		int boardLimit = 5;
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-		List<NoticeVo> nvoList = ns.getNoticeList(pv);
+		List<NoticeVo> nvoList = ns.getNoticeList(pv, searchValue);
 		
 		//화면
 		model.addAttribute("pv", pv);

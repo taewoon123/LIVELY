@@ -50,12 +50,11 @@
 			, BIRTH
 			, HP
 			, EMAIL
-			,QUIT_YN
+			, QUIT_YN
 			, LOCATION_NO
 			, GENDER_CODE
 		FROM MEMBER
 		WHERE ID = #{id}
-			AND PWD = #{pwd}
 			AND QUIT_YN = 'N'
 	</select>
 	

@@ -41,7 +41,6 @@
 				<button id="write_submit_delete" onclick="location.href='${rootContext}/job/delete?no=${jobNo}'">
 					<span>삭제하기</span>
 				</button>
-				<span style="color: whitesmoke">${jobNo}</span>
 
 				<button id="write_submit_edit">
 					<span>수정하기</span>
@@ -51,7 +50,7 @@
 			</div>
 
 			<div id="comment-header">
-				<input type="text" name="comment" placeholder="댓글을 입력하세요">
+				<input type="text" name="content" placeholder="댓글을 입력하세요">
 				<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
 			</div>
 			<div id="comment-area">
@@ -110,7 +109,7 @@ const div = document.querySelector('#thumbnail-area');
 		}
 
 		//ajax 이용해서 서버에 댓글내용 보내기
-		const content = document.querySelector('input[name=comment]').value;
+		const content = document.querySelector('input[name=content]').value;
 		
 		$.ajax({
 			url : '${rootContext}/job/reply/write' ,
@@ -122,7 +121,7 @@ const div = document.querySelector('#thumbnail-area');
 			success : function(data){
 				if(data == 'ok'){
 					 alert("댓글 작성 완료 !");
-					document.querySelector('input[name=comment]').value = '';
+					document.querySelector('input[name=content]').value = '';
 					loadReply();
 				}else if(data == 'unauthor'){
 					alert("로그인 후 작성 가능합니다.");
@@ -139,7 +138,6 @@ const div = document.querySelector('#thumbnail-area');
 	
 	//댓글 불러오기
 	loadReply();
-
 	function loadReply(){
 
 		const commentArea = document.querySelector('#comment-area');
@@ -162,13 +160,16 @@ const div = document.querySelector('#thumbnail-area');
 					str += replyVo.content;
 					str += "</div>";
 					str += "<div>";
+					str += replyVo.enrollDate;
+					str += "</div>";
+					str += "<div>";
 					str += "<span>"
-					/* str += replyVo.writerNick;
+					 str += replyVo.writerName;
 					str += "</span>"
-					if(writerNo == replyVo.writerNo || writerNo == 1 ){
-						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + replyVo.no + ");'>수정</button>";
-						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + replyVo.no + ");'>삭제</button>";
-					} */
+					if(writer == replyVo.writer || writer == 1 ){
+						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + replyVo.jobNo + ");'>수정</button>";
+						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + replyVo.jobNo + ");'>삭제</button>";
+					} 
 					str += "</div>";
 					commentArea.innerHTML += str;
 				}

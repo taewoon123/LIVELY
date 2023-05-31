@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lively.friend.vo.FriendVo;
@@ -130,20 +131,22 @@ public class MemberController {
 
 	// my-help-board 화면
 	@GetMapping("my-help-board")
-	public String myHelp(HelpVo helpVo, HttpSession session, Model model) {
+	public String myHelp(HelpVo helpVo, HttpSession session, Model model, @RequestParam(defaultValue = "1") int page) {
 
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
 		String writeNo = memberLog.getNo();
-		System.out.println("writeNo : " + writeNo);
-		helpVo.setWriter(writeNo);
-		System.out.println("helpVo : " + helpVo);
+			System.out.println("writeNo : " + writeNo);
 		
+		helpVo.setWriter(writeNo);
+			System.out.println("helpVo : " + helpVo);
+				
 		List<HelpVo> myHelpList = ms.getMyHelpBoard(helpVo, writeNo);
+			System.out.println("myHelpList : " + myHelpList);
+		
 		List<Map<String, String>> LocationList = ms.getLocationList();
 
-		System.out.println(myHelpList);
 
-		model.addAttribute("myMarketList", myHelpList);
+		model.addAttribute("myHelpList", myHelpList);//범구가 수정함 "myMarketList => myHelpList"
 		model.addAttribute("LocationList", LocationList);
 
 		return "member/my-help-board";

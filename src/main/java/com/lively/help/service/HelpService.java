@@ -25,8 +25,12 @@ public class HelpService {
 		this.sst = sst;
 	}
 
-	public List<HelpVo> getHelpList(PageVo pv) {
-		return dao.getHelpList(sst, pv);
+	public List<HelpVo> getHelpList(PageVo pv, String searchValue) {
+		return dao.getHelpList(sst, pv, searchValue);
+	}
+	
+	public List<String> search(String searchValue) {
+		return dao.search(sst, searchValue);
 	}
 
 	//게시글 갯수 조회

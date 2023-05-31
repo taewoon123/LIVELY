@@ -14,11 +14,11 @@ import com.lively.page.vo.PageVo;
 public class HelpDao {
 
 	//목록 조회
-	public List<HelpVo> getHelpList(SqlSessionTemplate sst, PageVo pv) {
+	public List<HelpVo> getHelpList(SqlSessionTemplate sst, PageVo pv, String searchValue) {
 		int limit = pv.getBoardLimit();
 		int offset = (pv.getCurrentPage()-1) * limit;
 		RowBounds rb = new RowBounds(offset, limit);
-		return sst.selectList("help.getHelpList", null, rb);
+		return sst.selectList("help.getHelpList", searchValue, rb);
 	}
 
 	//게시글 갯수 조회
@@ -53,6 +53,10 @@ public class HelpDao {
 
 	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String num) {
 		return sst.selectList("help.getAttachmentList", num);
+	}
+
+	public List<String> search(SqlSessionTemplate sst, String searchValue) {
+		return sst.selectList("help.search", searchValue);
 	}
 
 }

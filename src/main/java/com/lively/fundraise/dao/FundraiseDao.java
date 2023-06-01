@@ -57,4 +57,5 @@ public class FundraiseDao {
 //        return sqlSessionTemplate.update("fundraise.gainCurrentMoney",vo);
 //    }
     
+    
 }

@@ -53,7 +53,7 @@
 	</update>
 	
 	<select id="getHelp" resultType = "HelpVo">
-		SELECT H.HELP_NO AS NO,
+		SELECT H.HELP_NO,
         M.NAME AS WRITER,
         H.TITLE,
         H.CONTENT,

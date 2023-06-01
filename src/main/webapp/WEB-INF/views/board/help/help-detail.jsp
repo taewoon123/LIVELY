@@ -148,7 +148,7 @@
 					str += "<span>"
 					 str += HelpReplyVo.writerName;
 					str += "</span>"
-					if(writer == HelpReplyVo.writer || writer == 1 ){
+					if(writer == HelpReplyVo.writer || writer == '${writerName}' ){
 						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + HelpReplyVo.helpNo + ");'>수정</button>";
 						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + HelpReplyVo.helpNo + ");'>삭제</button>";
 					} 

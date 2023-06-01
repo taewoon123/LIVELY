@@ -39,6 +39,8 @@ public class HelpReplyController {
 		String writer = memberLog.getNo();
 		vo.setWriter(writer);
 		
+		System.out.println(vo);
+		
 		int result = hrs.write(vo);
 		
 		if(result != 1) {

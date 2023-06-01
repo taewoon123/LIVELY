@@ -18,14 +18,23 @@
 		SEQ_HELP_REPLY_NO.NEXTVAL
 		, #{content}
 		, #{writer}
-		, 1
+		, #{helpNo}
 		)
 	</insert>
 	
 	<select id="getHelpReplyList" resultType = "HelpReplyVo">
-		SELECT *
-		FROM HELP_REPLY
+		SELECT
+			H.HELP_REPLY_NO
+			,H.CONTENT
+			,H.ENROLL_DATE
+			,H.DELETE_YN
+			,H.HELP_NO
+			,H.WRITER
+			,M.NAME as writerName
+		FROM HELP_REPLY H
+		JOIN MEMBER M ON (H.WRITER = M.NO)
 		WHERE DELETE_YN = 'N'
+		AND H.HELP_NO = {helpNo}
 		ORDER BY HELP_REPLY_NO DESC
 	</select>
 	

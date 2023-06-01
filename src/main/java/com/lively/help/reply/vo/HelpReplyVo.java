@@ -11,4 +11,6 @@ public class HelpReplyVo {
 	private String deleteYn;
 	private String helpNo;
 	private String writer;
+	
+	private String writerName;
 }

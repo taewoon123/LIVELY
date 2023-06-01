@@ -33,8 +33,8 @@
 			,M.NAME as writerName
 		FROM HELP_REPLY H
 		JOIN MEMBER M ON (H.WRITER = M.NO)
-		WHERE DELETE_YN = 'N'
-		AND H.HELP_NO = {helpNo}
+		WHERE H.HELP_NO = #{helpNo}
+		AND H.DELETE_YN = 'N'
 		ORDER BY HELP_REPLY_NO DESC
 	</select>
 	

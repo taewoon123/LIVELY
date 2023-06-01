@@ -142,13 +142,16 @@
 					str += HelpReplyVo.content;
 					str += "</div>";
 					str += "<div>";
+					str += HelpReplyVo.enrollDate;
+					str += "</div>";
+					str += "<div>";
 					str += "<span>"
-					/* str += replyVo.writerNick;
+					 str += HelpReplyVo.writerName;
 					str += "</span>"
-					if(writerNo == replyVo.writerNo || writerNo == 1 ){
-						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + replyVo.no + ");'>수정</button>";
-						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + replyVo.no + ");'>삭제</button>";
-					} */
+					if(writer == HelpReplyVo.writer || writer == 1 ){
+						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + HelpReplyVo.helpNo + ");'>수정</button>";
+						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + HelpReplyVo.helpNo + ");'>삭제</button>";
+					} 
 					str += "</div>";
 					commentArea.innerHTML += str;
 				}

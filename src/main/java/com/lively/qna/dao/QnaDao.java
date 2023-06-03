@@ -50,4 +50,12 @@ public class QnaDao {
 		return sst.update("qna.increaseHit", no);
 	}
 
+	public List<QnaVo> getQnaListMain(SqlSessionTemplate sst) {
+		return sst.selectList("qna.getQnaList");
+	}
+
+	public int replyedit(SqlSessionTemplate sst, QnaVo vo) {
+		return sst.update("qna.replyEdit", vo);
+	}
+
 }

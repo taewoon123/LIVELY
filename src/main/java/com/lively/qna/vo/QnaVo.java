@@ -21,6 +21,8 @@ public class QnaVo {
 	private String writer;
 	private String qnaReplyContent;
 	private String adminNo;
+	
+	private String writerName;
 	public void setAttList(List<FileVo> fileList) {
 	}
 

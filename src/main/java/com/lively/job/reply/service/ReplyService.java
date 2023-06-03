@@ -31,4 +31,8 @@ public class ReplyService {
 		return dao.getReplyList(sst, jobNo);
 	}
 
+	public int delete(ReplyVo rvo) {
+		return dao.delete(sst, rvo);
+	}
+
 }

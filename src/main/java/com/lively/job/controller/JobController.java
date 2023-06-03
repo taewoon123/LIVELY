@@ -51,7 +51,7 @@ public class JobController {
 
 //	목록 조회
 	@GetMapping("list")
-	public String getJobList(JobVo vo, @RequestParam(defaultValue = "1") int page,
+	public String getJobList( @RequestParam(defaultValue = "1") int page,
 			@RequestParam Map<String, String> searchMap, Model model) {
 
 		// 데이터

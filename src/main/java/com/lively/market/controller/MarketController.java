@@ -2,7 +2,6 @@ package com.lively.market.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
-import com.lively.common.LocationVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.market.service.MarketService;
 import com.lively.market.vo.MarketVo;
 import com.lively.member.vo.MemberVo;

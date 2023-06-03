@@ -1,4 +1,4 @@
-package com.lively.common;
+package com.lively.common.locaion.vo;
 
 import lombok.Data;
 

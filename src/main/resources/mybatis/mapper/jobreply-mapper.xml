@@ -38,4 +38,11 @@
       AND   R.DELETE_YN = 'N'
       ORDER BY JOB_REPLY_NO DESC
 	</select>
+	
+	<update id="delete">
+		UPDATE JOB_REPLY
+		    SET DELETE_YN = 'Y'
+		WHERE JOB_REPLY_NO = #{jobReplyNo}
+		AND ( WRITER = #{writer}  OR  ${writer} = 1 )
+	</update>
 </mapper>

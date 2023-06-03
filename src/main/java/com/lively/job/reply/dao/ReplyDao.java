@@ -18,4 +18,8 @@ public class ReplyDao {
 		return sst.selectList("job-reply.getReplyList", no);
 	}
 
+	public int delete(SqlSessionTemplate sst, ReplyVo rvo) {
+		return sst.update("job-reply.delete", rvo);
+	}
+
 }

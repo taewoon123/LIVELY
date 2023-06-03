@@ -166,9 +166,8 @@ const div = document.querySelector('#thumbnail-area');
 					str += "<span>"
 					 str += replyVo.writerName;
 					str += "</span>"
-					if(writer == replyVo.writer || writer == 1 ){
-						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + replyVo.jobNo + ");'>수정</button>";
-						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + replyVo.jobNo + ");'>삭제</button>";
+					if(writer == replyVo.writer){
+						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + replyVo.jobReplyNo + ");'>삭제</button>";
 					} 
 					str += "</div>";
 					commentArea.innerHTML += str;
@@ -183,7 +182,29 @@ const div = document.querySelector('#thumbnail-area');
 	}
 	
 	
-	
+	//댓글 삭제 
+	function deleteReply(rno){
+		
+		const result = confirm("댓글을 삭제하시겠습니까?");
+		if(!result){
+			return;
+		}
+
+		$.ajax({
+			url : '${rootContext}/job/reply/delete?rno=' + rno ,
+			type : 'delete' ,
+			success : function(data){
+				console.log(data);
+				alert("댓글이 삭제되었습니다");
+				loadReply();
+			} ,
+			error : function(error){
+				console.log(error);
+				alert("댓글 삭제에 실패하였습니다.");
+			} ,
+		});
+
+	}
 	
 </script>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-detail.css">

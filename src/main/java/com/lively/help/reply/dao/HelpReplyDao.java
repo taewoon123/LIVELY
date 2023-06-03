@@ -18,4 +18,8 @@ public class HelpReplyDao {
 		return sst.selectList("help-reply.getHelpReplyList", helpNo);
 	}
 
+	public int delete(SqlSessionTemplate sst, HelpReplyVo rvo) {
+		return sst.update("help-reply.delete", rvo);
+	}
+
 }

@@ -31,4 +31,8 @@ public class HelpReplyService {
 		return dao.getHelpReplyList(sst, helpNo);
 	}
 
+	public int delete(HelpReplyVo rvo) {
+		return dao.delete(sst, rvo);
+	}
+
 }

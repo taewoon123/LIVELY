@@ -70,7 +70,6 @@
 	</div> <!-- div wrap end -->
 
 </body>
-</html>
 <script>
 
     function toggleActive(){
@@ -149,8 +148,8 @@
 					 str += HelpReplyVo.writerName;
 					str += "</span>"
 					if(writer == HelpReplyVo.writer || writer == '${writerName}' ){
-						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + HelpReplyVo.helpNo + ");'>수정</button>";
-						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + HelpReplyVo.helpNo + ");'>삭제</button>";
+						/* str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + HelpReplyVo.helpNo + ");'>수정</button>"; */
+						str += "<button class='comment-delete' onclick='deleteReply(" + HelpReplyVo.helpNo + ");'>삭제</button>";
 					} 
 					str += "</div>";
 					commentArea.innerHTML += str;
@@ -170,3 +169,4 @@
 <%-- <script src="${rootContext}/resources/js/board/comment-detail.js"></script> --%>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+</html>

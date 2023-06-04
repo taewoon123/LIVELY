@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,13 +52,37 @@ public class HelpReplyController {
 	
 	//댓글 목록 조회
 	@GetMapping("list")
-	public String list(String helpNo) {
+	public String list(String helpNo, Model model) {
 		//서비스
 		List<HelpReplyVo> list = hrs.getHelpReplyList(helpNo);
 		
 		String str = gson.toJson(list);
 		
 		return str;
+	}
+	
+	//댓글 삭제
+	@DeleteMapping("delete")
+	public String delete(String rno, HttpSession session) throws Exception {
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		if(memberLog == null) {
+			return "unauthor";
+		}
+		String writer = memberLog.getNo();
+		
+		HelpReplyVo rvo = new HelpReplyVo();
+		rvo.setHelpReplyNo(rno);
+		rvo.setWriter(writer);
+		
+		int result = hrs.delete(rvo);
+		
+		System.out.println("delete result : " + result);
+		
+		if(result == 1) {
+			return "삭제 성공!";
+		} else {
+			return "삭제 실패...";
+		}
 	}
 	
 }

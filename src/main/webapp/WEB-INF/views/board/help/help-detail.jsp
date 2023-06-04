@@ -70,7 +70,6 @@
 	</div> <!-- div wrap end -->
 
 </body>
-</html>
 <script>
 
     function toggleActive(){
@@ -148,9 +147,8 @@
 					str += "<span>"
 					 str += HelpReplyVo.writerName;
 					str += "</span>"
-					if(writer == HelpReplyVo.writer || writer == 1 ){
-						str += "<button class='btn btn-warning btn-sm' onclick='editReply(" + HelpReplyVo.helpNo + ");'>수정</button>";
-						str += "<button class='btn btn-danger btn-sm' onclick='deleteReply(" + HelpReplyVo.helpNo + ");'>삭제</button>";
+					if(writer == HelpReplyVo.writer){
+						str += "<button class='comment-delete' onclick='deleteReply(" + HelpReplyVo.helpReplyNo + ");'>삭제</button>";
 					} 
 					str += "</div>";
 					commentArea.innerHTML += str;
@@ -163,6 +161,30 @@
 		});
 
 	}
+	
+	//댓글 삭제
+	function deleteReply(rno){
+		
+		const result = confirm("댓글을 삭제하시겠습니까?");
+		if(!result){
+			return;
+		}
+
+		$.ajax({
+			url : '${rootContext}/help/reply/delete?rno=' + rno ,
+			type : 'delete' ,
+			success : function(data){
+				console.log(data);
+				alert("댓글이 삭제되었습니다");
+				loadReply();
+			} ,
+			error : function(error){
+				console.log(error);
+				alert("댓글 삭제에 실패하였습니다.");
+			} ,
+		});
+
+	}
 
     
 </script>
@@ -170,3 +192,4 @@
 <%-- <script src="${rootContext}/resources/js/board/comment-detail.js"></script> --%>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+</html>

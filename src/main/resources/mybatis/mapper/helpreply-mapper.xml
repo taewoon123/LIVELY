@@ -38,4 +38,11 @@
 		ORDER BY HELP_REPLY_NO DESC
 	</select>
 	
+	<update id="delete">
+		UPDATE HELP_REPLY
+		SET DELETE_YN = 'Y'
+		WHERE HELP_REPLY_NO = #{helpReplyNo}
+		AND (WRITER = #{writer} OR ${writer} = 1)
+	</update>
+	
 </mapper>

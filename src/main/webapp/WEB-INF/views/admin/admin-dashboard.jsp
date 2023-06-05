@@ -84,28 +84,28 @@
                         <th class="table-tds">총 회원 수</th>
                         <td class="table-tds">${memberCount} (명)</td>
                     </tr>
-                    <tr class="table-trs">
-                        <th class="table-tds">질문 게시판</th>
+                    <tr class="table-trs" >
+                        <th class="table-tds" onclick="location.href='${rootContext}/query/list'">질문 게시판</th>
                         <td class="table-tds">${queryCount} (개)</td>
                     </tr>
-                    <tr class="table-trs">
-                        <th class="table-tds">도움 게시판</th>
+                    <tr class="table-trs" >
+                        <th class="table-tds" onclick="location.href='${rootContext}/help/list'">도움 게시판</th>
                         <td class="table-tds">${helpCount} (개)</td>
                     </tr>
-                    <tr class="table-trs">
-                        <th class="table-tds">구인구직 게시판</th>
+                    <tr class="table-trs" >
+                        <th class="table-tds" onclick="location.href='${rootContext}/job/list'">구인구직 게시판</th>
                         <td class="table-tds">${jobCount} (개)</td>
                     </tr>
                     <tr class="table-trs">
-                        <th class="table-tds">기부 게시판</th>
+                        <th class="table-tds" onclick="location.href='${rootContext}/fund/list'">기부 게시판</th>
                         <td class="table-tds">${fundCount} (개)</td>
                     </tr>
-                    <tr class="table-trs">
-                        <th class="table-tds">중고장터</th>
-                        <td class="table-tds">${jobCount} (개)</td>
+                    <tr class="table-trs" >
+                        <th class="table-tds" onclick="location.href='${rootContext}/market/list'">중고장터</th>
+                        <td class="table-tds">${marketCount} (개)</td>
                     </tr>
-                    <tr class="table-trs">
-                        <th class="table-tds">친구 게시판</th>
+                    <tr class="table-trs" >
+                        <th class="table-tds" onclick="location.href='${rootContext}/friend/list'">친구 게시판</th>
                         <td class="table-tds">${friendCount} (개)</td>
                     </tr>
 <%--                    <a href="${rootContext}/notice/list" class="btn custom-btn d-lg-block d-none">Notice 바로가기</a>--%>

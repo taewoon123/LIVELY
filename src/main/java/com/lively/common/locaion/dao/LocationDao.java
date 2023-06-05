@@ -15,5 +15,8 @@ public class LocationDao {
         log.info("getLocationList : {}", locationVo);   
         return sqlSessionTemplate.selectList("location.getLocationList", locationVo);
     }
+    public int insertLocation(SqlSessionTemplate sqlSessionTemplate, LocationVo locationVo) {
+        return sqlSessionTemplate.insert("location.insertLocation", locationVo);
+    }
     
 }

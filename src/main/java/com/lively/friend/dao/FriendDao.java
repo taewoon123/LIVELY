@@ -15,11 +15,13 @@ import com.lively.page.vo.PageVo;
 public class FriendDao {
 	
 	//피드(전체)
-	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst, String searchValue, PageVo pageVo) {
-		int limit = pageVo.getBoardLimit();
-		int offset = (pageVo.getCurrentPage()-1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		return sst.selectList("friend.FriendFeed", searchValue, rowBounds);
+	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst, String searchValue) {
+		/*
+		 * int limit = pageVo.getBoardLimit(); int offset = (pageVo.getCurrentPage()-1)
+		 * * limit;
+		 */
+		/* RowBounds rowBounds = new RowBounds(offset, limit); */
+		return sst.selectList("friend.FriendFeed", searchValue);
 	}
 
 

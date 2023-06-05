@@ -52,19 +52,21 @@ public class FriendController {
 		
 		
 		//데이터
-		int listCount = fs.getFeedCount();
-		int currentPage = page;
-		int pageLimit = 3;
-		int boardLimit = 3;
+		/*
+		 * int listCount = fs.getFeedCount(); int currentPage = page; int pageLimit = 3;
+		 * int boardLimit = 3;
+		 */
 		/* PageVo pageVo = new PageVo(listCount, currentPage, pageLimit, boardLimit); */
 		
-		PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit);
-		/* List<FriendVo> friendList = fs.getFriendFeed(searchValue , pageVo); */
+		/* PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit); */
+		List<FriendVo> friendList = fs.getFriendFeed(searchValue); 
 		Map<String, FriendVo> fvoMap = fs.getFriendFeed();
 		List<Map<String, String>> LocationList = fs.getLocationNoList();
 		
+		model.addAttribute("friendList" , friendList);
+		
 		if (fvoMap != null) {
-			model.addAttribute("pageVo" , pageVo);
+			/* model.addAttribute("pageVo" , pageVo); */
 			model.addAttribute("fvoMap", fvoMap);
 			/* model.addAttribute("searchMap" , searchMap); */
 			model.addAttribute("LocationList", LocationList);

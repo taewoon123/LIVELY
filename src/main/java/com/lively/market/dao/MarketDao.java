@@ -49,8 +49,8 @@ public class MarketDao {
 	}
 
 	//삭제 (작성자만)
-	public int delete(SqlSessionTemplate sst, MarketVo marketVo) {
-		return sst.update("market.delete", marketVo);
+	public int delete(SqlSessionTemplate sst, String no) {
+		return sst.update("market.delete", no);
 	}
 
 //	public int getMyFeedCount(SqlSessionTemplate sst) {
@@ -71,10 +71,6 @@ public class MarketDao {
 
 	public FileVo getAttachment(SqlSessionTemplate sst, String attachmentNo) {
 		return sst.selectOne("market.getAttachment", attachmentNo);
-	}
-
-	public List<String> search(SqlSessionTemplate sst, String searchValue) {
-		return sst.selectList("market.search", searchValue);
 	}
 	
 //	//상세조회

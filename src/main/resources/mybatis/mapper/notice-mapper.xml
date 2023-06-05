@@ -22,9 +22,21 @@
 	</insert> 
 	
 	<select id="getNoticeList" resultType = "noticeVo">
-  		SELECT *
-  		FROM NOTICE
-  		WHERE DELETE_YN = 'N'
+  		SELECT N.NOTICE_NO,
+        M.NAME AS WRITER,
+        N.NOTICE_TITLE,
+        N.NOTICE_CONTENT,
+        N.ENROLL_DATE,
+        N.EDIT_DATE,
+        N.DELETE_YN,
+        N.VIEWS,
+        N.ADMIN_NO
+        FROM NOTICE N
+        JOIN MEMBER M ON M.NO = N.ADMIN_NO
+        WHERE DELETE_YN = 'N'
+  		<if test = "searchValue != null">
+  		AND N.NOTICE_TITLE LIKE '%' || #{searchValue} || '%'
+  		</if>
   		ORDER BY NOTICE_NO DESC
   	</select>
   	

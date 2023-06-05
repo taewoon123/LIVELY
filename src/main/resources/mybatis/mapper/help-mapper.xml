@@ -16,6 +16,9 @@
         FROM HELP H
         JOIN MEMBER M ON M.NO = H.WRITER
         WHERE DELETE_YN = 'N'
+        <if test = "searchValue != null">
+        AND H.TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
         ORDER BY HELP_NO DESC
 	</select>
 	
@@ -50,7 +53,7 @@
 	</update>
 	
 	<select id="getHelp" resultType = "HelpVo">
-		SELECT H.HELP_NO AS NO,
+		SELECT H.HELP_NO,
         M.NAME AS WRITER,
         H.TITLE,
         H.CONTENT,

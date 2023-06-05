@@ -4,6 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	#comment-area {
+		color: white;
+	}
+</style>
 </head>
 <header>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -25,17 +30,16 @@
 					<div id="help-hit">조회수</div>
 					<div id="help-inHit">${hvo.views}</div>
 					<div id="help-content">내용</div>
-					<div id="help-inContent">${hvo.content}</div>
-				</div>
-				
-					<div>
-						<label for="thumbnail-tag">사진</label>
-						<input id="thumbnail-tag" type="file" name="f" multiple accept=".jpg,.png,.jpeg">
+					<div id="help-inContent">${hvo.content}
+						<br>
+                    	<c:forEach items="${hvo.attList}" var="image">
+                    	<img src="${rootContext}/resources/upload/help/${image.changeName}" width="200px" height="200px"/>
+                    	</c:forEach>
 					</div>
-					<div id="thumbnail-area"></div>
+				</div>
 
 				<!-- 작성 버튼 -->
-				<c:if test="${memberLog.id eq hvo.writer }">
+				<c:if test="${memberLog.name eq hvo.writer }">
 				<button id="write_submit_delete" onclick="location.href='${rootContext}/help/delete?num=${helpNo}'">
 					<span>삭제하기</span>
 				</button>
@@ -48,13 +52,14 @@
 
 			</div>
 
-			<div id="comment">
-				<input id="comment-input" name="comment" placeholder="댓글을 입력해 주세요.">
-				<button id="submit" name="comment">등록</button>
+			<div id="comment-header">
+				<input type="text" name="content" placeholder="댓글을 입력하세요">
+				<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
 			</div>
-
-			<!-- js때문에 있어야함. -->
-			<div id="comments"></div>
+			
+			<div id="comment-area">
+				
+			</div>
 
 		<footer>
 			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
@@ -65,7 +70,6 @@
 	</div> <!-- div wrap end -->
 
 </body>
-</html>
 <script>
 
     function toggleActive(){
@@ -76,30 +80,116 @@
         formArea.classList.add('active');
     }
     
-const div = document.querySelector('#thumbnail-area');
+    function writeComment(){
+		//로그인 안되어있으면 ㄴㄴ
+		const writer = '${memberLog.no}';
+		if(writer <= 0){
+			alert("로그인 후 작성 가능합니다.");
+			return;
+		}
+
+		//ajax 이용해서 서버에 댓글내용 보내기
+		const content = document.querySelector('input[name=content]').value;
+		
+		$.ajax({
+			url : '${rootContext}/help/reply/write' ,
+			type : 'POST' ,
+			data : {
+				'helpNo' : '${hvo.helpNo}' ,
+				'content' : content ,
+			} , 
+			success : function(data){
+				if(data == 'ok'){
+					 alert("댓글 작성 완료 !");
+					document.querySelector('input[name=content]').value = '';
+					loadReply();
+				}else if(data == 'unauthor'){
+					alert("로그인 후 작성 가능합니다.");
+				}else{
+					alert("댓글 작성 실패 ..."); 
+				}
+			} , 
+			error : function(){
+				alert('bad...');
+			} ,
+		});
+	}
 	
-	let imgTag;
-	let aTag;
-	<c:forEach items="${hvo.attList}" var="fvo">
-		//a태그 만들기
-		aTag = document.createElement('a');
-		aTag.href = "${root}/board/att/down?ano=${fvo.no}";
-		//이미지 요소 만들기
-		imgTag = document.createElement('img');
-		imgTag.setAttribute("src" , "${rootContext}/${path}/${fvo.changeName}");
-		imgTag.setAttribute("alt" , "${fvo.originName}");
-		imgTag.setAttribute("width" , "100px");
-		imgTag.setAttribute("height" , '100px');
+	
+	//댓글 불러오기
+	loadReply();
 
-		//a태그 내부에 img 추가
-		aTag.appendChild(imgTag);
+	function loadReply(){
 
-		//div 안에 a태그 추가
-		div.appendChild(aTag);
-	</c:forEach>
+		const commentArea = document.querySelector('#comment-area');
+		commentArea.innerHTML = '';
+		const writer = '${memberLog.no}';
+		
+		$.ajax({
+			url : '${rootContext}/help/reply/list' ,
+			type  : 'get' ,
+			data : {
+				'helpNo' : '${hvo.helpNo}'	
+			} ,
+			dataType : 'json' ,
+			success : function(data){
+				console.log(data);
+
+				for(let HelpReplyVo of data){
+					let str = "";
+					str += "<div>";
+					str += HelpReplyVo.content;
+					str += "</div>";
+					str += "<div>";
+					str += HelpReplyVo.enrollDate;
+					str += "</div>";
+					str += "<div>";
+					str += "<span>"
+					 str += HelpReplyVo.writerName;
+					str += "</span>"
+					if(writer == HelpReplyVo.writer){
+						str += "<button class='comment-delete' onclick='deleteReply(" + HelpReplyVo.helpReplyNo + ");'>삭제</button>";
+					} 
+					str += "</div>";
+					commentArea.innerHTML += str;
+				}
+
+			} ,
+			error : function(error){
+				console.log(error);
+			} ,
+		});
+
+	}
+	
+	//댓글 삭제
+	function deleteReply(rno){
+		
+		const result = confirm("댓글을 삭제하시겠습니까?");
+		if(!result){
+			return;
+		}
+
+		$.ajax({
+			url : '${rootContext}/help/reply/delete?rno=' + rno ,
+			type : 'delete' ,
+			success : function(data){
+				console.log(data);
+				alert("댓글이 삭제되었습니다");
+				loadReply();
+			} ,
+			error : function(error){
+				console.log(error);
+				alert("댓글 삭제에 실패하였습니다.");
+			} ,
+		});
+
+	}
+
     
 </script>
 
-<script src="${rootContext}/resources/js/board/comment-detail.js"></script>
+<%-- <script src="${rootContext}/resources/js/board/comment-detail.js"></script> --%>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+</html>

@@ -48,7 +48,7 @@
 							<td>${qvo.qnaNo}</td>
 							<td>${qvo.qnaTitle}</td>
 							<td>${qvo.enrollDate}</td>
-							<td>${qvo.writer}</td>
+							<td>${qvo.writerName}</td>
 							<td>${qvo.views}</td>
 						</tr>
 					</c:forEach>

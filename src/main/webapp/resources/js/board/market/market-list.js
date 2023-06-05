@@ -1,12 +1,12 @@
 
 //enter 누르면 검색 가능
-//const search_button = document.querySelector(".feed_search_input");
-//search_button.addEventListener("keydown",(event) => {
-//    if(event.keyCode == 13){
-//        event.preventDefault();
-//        document.querySelector('.hidden_button').click();
-//    }
-//});
+const search_button = document.querySelector(".feed_search_input");
+search_button.addEventListener("keydown",(event) => {
+    if(event.keyCode == 13){
+        event.preventDefault();
+        document.querySelector('.hidden_button').click();
+    }
+});
 
 
 //피드 내용
@@ -67,39 +67,6 @@ hide_feed_content();
  
 feed_done();
 
-//거래중만 보기 체크 하면 거래완료 게시판 사라지게
-
-function handleCheckboxChange() {
-    var checkbox = document.getElementById("statusCheckbox");
-    var feedBoxes = document.getElementsByClassName("feed_box");
-
-    for (var i = 0; i < feedBoxes.length; i++) {
-        var feedBox = feedBoxes[i];
-        if (checkbox.checked) {
-            // Show only 'Y' status feed boxes
-            if (feedBox.classList.contains("feed_status_Y")) {
-                feedBox.style.display = "block";
-            } else {
-                feedBox.style.display = "none";
-            }
-        } else {
-            // Show all feed boxes
-            feedBox.style.display = "block";
-        }
-    }
-}
-
-var checkbox = document.getElementById("statusCheckbox");
-checkbox.addEventListener("change", handleCheckboxChange);
-
-
-
-//채팅
-function chat(){
-
-	let options = "width=500, height=600, top=100,left=500";
-    window.open("/lively/chat", "chat", options);
-}
 
 
 //무한스크롤

@@ -14,8 +14,12 @@ public class ReplyDao {
 		return sst.insert("job-reply.write" , vo);
 	}
 
-	public List<ReplyVo> getReplyList(SqlSessionTemplate sst, String jobNo) {
-		return sst.selectList("job-reply.getReplyList", jobNo);
+	public List<ReplyVo> getReplyList(SqlSessionTemplate sst, String no) {
+		return sst.selectList("job-reply.getReplyList", no);
+	}
+
+	public int delete(SqlSessionTemplate sst, ReplyVo rvo) {
+		return sst.update("job-reply.delete", rvo);
 	}
 
 }

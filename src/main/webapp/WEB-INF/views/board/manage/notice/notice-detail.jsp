@@ -70,15 +70,5 @@
 </body>
 <link rel="stylesheet" href="${rootContext}/resources/css/board/notice/notice-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css"/>
-<script>
-
-    function toggleActive(){
-        const viewArea = document.querySelector(".view-area");
-        const formArea = document.querySelector(".form-area");
-
-        viewArea.classList.remove('active');
-        formArea.classList.add('active');
-    }
-    
-</script>
+<script src="${rootContext}/resources/js/board/notice/notice-detail.js"></script>
 </html>

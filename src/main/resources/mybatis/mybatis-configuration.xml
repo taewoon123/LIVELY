@@ -25,6 +25,7 @@
         <typeAlias type="com.lively.query.vo.QueryVo" alias="QueryVo"/>
         <typeAlias type="com.lively.common.FileVo" alias="FileVo"/>
         <typeAlias type="com.lively.job.reply.vo.ReplyVo" alias="ReplyVo"/>
+        <typeAlias type="com.lively.help.reply.vo.HelpReplyVo" alias="HelpReplyVo"/>
         
     </typeAliases>
 

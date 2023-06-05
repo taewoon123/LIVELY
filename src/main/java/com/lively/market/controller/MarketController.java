@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +55,7 @@ public class MarketController {
 		System.out.println(marketList);
 		
 //		model.addAttribute("marketVo", marketVo);
-//		model.addAttribute("pageVo", pageVo);
+		model.addAttribute("pageVo", pageVo);
 //		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("marketList", marketList);
 		model.addAttribute("LocationList", LocationList);
@@ -146,25 +147,25 @@ public class MarketController {
 	}
 	
 	//피드 삭제 (작성자만)
-	@GetMapping("delete")
-	public String delete(MarketVo marketVo, HttpSession session) {
-		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-		String writerNo = memberLog.getNo();
-		
-		marketVo.setWriter(writerNo);
-		
-		int result = ms.delete(marketVo);
-		
-		if(result != 1) {
-			session.setAttribute("alertMsg", "삭제 실패ㅠㅠ");
+		@GetMapping("delete/{no}")
+		public String delete(MarketVo marketVo, HttpSession session, @PathVariable(required = true) String no) {
+//			MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+//			String writerNo = memberLog.getNo();
+//			
+//			marketVo.setWriter(writerNo);
 			
-			return "board/member/my-market-feed";
+			int result = ms.delete(no);
+			
+			if(result != 1) {
+				session.setAttribute("alertMsg", "삭제 실패ㅠㅠ");
+				
+				return "board/member/my-market-feed";
+			}
+			
+			session.setAttribute("alertMsg", "삭제 성공  ~ !");
+			
+			return "redirect:/member/my-market-feed";
 		}
-		
-		session.setAttribute("alertMsg", "삭제 성공  ~ !");
-		
-		return "redirect:/member/my-market-feed";
-	}
 }
 	
 	

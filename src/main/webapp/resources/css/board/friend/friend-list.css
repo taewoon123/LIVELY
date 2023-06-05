@@ -1,5 +1,13 @@
 /* 새로 추가한 것 */
 
+/* .feed_more_box {
+  height: 600px;
+}
+
+.feed_content_more_box {
+  height: 70px;
+} */
+
 /* content more / hide button */
 
 .more-button-invisible {
@@ -134,8 +142,8 @@
 }
 
 /* 피드 영역 */
-#feed_box {
-    height: 500px;
+.feed_box {
+    height: 600px;
     display: grid;
     grid-template-rows: 1fr 7fr 2fr 1fr;
     border: 1px solid grey;

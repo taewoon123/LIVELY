@@ -31,11 +31,6 @@ public class MarketService {
 		return dao.getMarketFeed(sst, pageVo, searchValue);
 	}
 	
-	//검색
-	public List<String> search(String searchValue) {
-		return dao.search(sst, searchValue);
-	}
-	
 	//피드 작성
 	public int write(MarketVo marketVo, List<FileVo> fileVoList) throws Exception {
 		int writeResult = dao.write(sst, marketVo);
@@ -63,8 +58,8 @@ public class MarketService {
 	}
 
 	//삭제하기 (작성자만)
-	public int delete(MarketVo marketVo) {
-		return dao.delete(sst, marketVo);
+	public int delete(String no) {
+		return dao.delete(sst, no);
 	}
 	
 //	//상세조회

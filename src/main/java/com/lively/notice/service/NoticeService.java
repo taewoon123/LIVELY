@@ -24,8 +24,12 @@ public class NoticeService {
 		this.sst = sst;
 	}
 
-	public List<NoticeVo> getNoticeList(PageVo pv) {
-		return dao.getNoticeList(sst, pv);
+	public List<NoticeVo> getNoticeList(PageVo pv, String searchValue) {
+		return dao.getNoticeList(sst, pv, searchValue);
+	}
+	
+	public List<String> search(String searchValue) {
+		return dao.search(sst, searchValue);
 	}
 
 	public int write(NoticeVo vo) {

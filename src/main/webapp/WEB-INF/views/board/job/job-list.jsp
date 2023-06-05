@@ -35,6 +35,7 @@
 				<thead>
 					<tr>
 						<th>No</th>
+						<th>구분</th>
 						<th>Title</th>
 						<th>작성일시</th>
 						<th>조회수</th>
@@ -45,6 +46,7 @@
 					<c:forEach items = "${jvoList}" var = "job">
 						<tr>
 							<td>${job.jobNo}</td>
+							<td>${job.jobCategoryName}</td>
 							<td>${job.title}</td>
 							<td>${job.enrollDate}</td>
 							<td>${job.views}</td>

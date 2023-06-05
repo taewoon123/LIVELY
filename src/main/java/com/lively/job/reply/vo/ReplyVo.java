@@ -11,4 +11,6 @@ public class ReplyVo {
 	private String writer;
 	private String deleteYn;
 	private String jobNo;
+	
+	private String writerName;
 }

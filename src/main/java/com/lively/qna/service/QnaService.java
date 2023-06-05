@@ -68,4 +68,12 @@ public class QnaService {
 		return dao.getQnaList(sst, pv);
 	}
 
+	public List<QnaVo> getQnaListMain() {
+		return dao.getQnaListMain(sst);
+	}
+
+	public int replyedit(QnaVo vo) {
+		 return dao.replyedit(sst, vo);
+	}
+
 }

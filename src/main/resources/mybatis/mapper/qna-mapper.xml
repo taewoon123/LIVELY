@@ -7,7 +7,7 @@
 
 	<insert id="replyinsert">
 		INSERT INTO QNA
-		
+
 
 
 
@@ -22,23 +22,33 @@
 		, QNA_TITLE
 		, QNA_CONTENT
 		,WRITER
-		, ADMIN_NO
 		)
 		VALUES
 		(
 		SEQ_QNA_NO.NEXTVAL
 		, #{qnaTitle}
 		, #{qnaContent}
-		, '1'
-		, '1'
-
+		, #{writer}
 		)
 	</insert>
 
 	<select id="getQnaList" resultType="qnaVo">
-		SELECT *
-		FROM QNA
-		WHERE DELETE_YN = 'N'
+		SELECT 
+			Q.QNA_NO,
+			Q.QNA_TITLE,
+			Q.QNA_CONTENT,
+			Q.VIEWS,
+			Q.ENROLL_DATE,
+			Q.EDIT_DATE,
+			Q.DELETE_YN,
+			Q.WRITER,
+			Q.QNA_REPLY_CONTENT,
+			Q.ADMIN_NO,
+			M.NAME AS writerName 
+		FROM QNA Q
+		LEFT JOIN MEMBER M ON (Q.WRITER = M.NO) 
+		WHERE
+		DELETE_YN = 'N'
 		ORDER BY QNA_NO DESC
 	</select>
 
@@ -52,12 +62,14 @@
 		UPDATE QNA
 		SET VIEWS = VIEWS+1
 		WHERE QNA_NO = #{no}
-		AND DELETE_YN= 'N'
+		AND
+		DELETE_YN= 'N'
 	</update>
 
 	<select id="getQna" resultType="QnaVo">
 		SELECT QNA_NO AS NO,
-		M.NAME AS WRITER
+		M.NAME AS
+		WRITER
 		,Q.QNA_TITLE
 		,Q.QNA_CONTENT
 		,Q.VIEWS
@@ -66,8 +78,10 @@
 		,Q.DELETE_YN
 		,Q.WRITER
 		,Q.ADMIN_NO
+		,Q.QNA_REPLY_CONTENT
 		FROM QNA Q
-		JOIN MEMBER M ON M.NO = Q.WRITER
+		JOIN MEMBER M ON M.NO =
+		Q.WRITER
 		WHERE DELETE_YN = 'N'
 		AND QNA_NO = #{no}
 	</select>
@@ -76,9 +90,17 @@
 		UPDATE QNA
 		SET
 		QNA_TITLE = #{qnaTitle}
-		,QNA_CONTENT = #{qnaContent}
+		,QNA_CONTENT =
+		#{qnaContent}
 		,EDIT_DATE = SYSDATE
 		WHERE QNA_NO = #{qnaNo}
+	</update>
+	
+	<update id="replyEdit">
+		UPDATE QNA
+		SET
+		QNA_REPLY_CONTENT = #{qnaReplyContent}
+		WHERE NOTICE_NO = #{noticeNo}	
 	</update>
 
 	<update id="delete">

@@ -15,16 +15,16 @@
         <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
         <main>
-        
-        	<div id="market_title">
+
+			<form action="${rootContext}/market/list" method="get">
+
+            <div id="market_title">
                 <h2>Market</h2>
             </div>
 
-            <form action="${rootContext}/market/list" method="get">
-	            <div id="search-upload-area">
-                    <input type="text" placeholder="Search" name="searchValue" class="feed_search_input">
-                </div>      
-            </form>
+            <div id="search-upload-area">
+                <input placeholder="Search" class="feed_search_input" name="searchValue" type="text">
+                <a class="hidden_button" type="submit" href="">검색</a>
                 
                 <div id="upload_button">
 	                <div id="feed_checkbox">
@@ -36,6 +36,8 @@
                     </button>
                 </div>
             	
+            </div>
+            </form>
 
 			<c:forEach items="${marketList}" var="mList">
 	            <!-- 첫번째 피드 시작 -->
@@ -106,9 +108,7 @@
 	            <!-- 첫번째 피드 끝 -->
             </c:forEach>
             
-            
-            <!-- 무한업로드 (페이지) -->
-            <%-- <div id="page-area">
+            <div id="page-area">
 				<c:if test="${pageVo.currentPage > 1}">
 					<a class="prevPage" href="${rootContext}/market/list?page=${pageVo.currentPage-1}">이전</a>
 				</c:if>
@@ -123,7 +123,7 @@
 				<c:if test="${pageVo.currentPage < pageVo.maxPage}">
 					<a class="nextPage" href="${rootContext}/market/list?page=${pageVo.currentPage+1}">다음</a>
 				</c:if>
-			</div> --%>
+			</div>
 
         </main>
         

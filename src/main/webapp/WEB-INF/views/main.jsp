@@ -4,6 +4,10 @@
 <html>
 <head>
 	<title>Main</title>
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+	<%--네이버 지도 API--%>
+	<script type="text/javascript"
+			src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wg4n8e059m"></script>
 </head>
 <body>
 
@@ -18,14 +22,17 @@
 					   <%--구글맵 임베딩--%>
 		<div class="container d-flex justify-content-center align-items-center">
 		   <div class="video-wrap">
-			  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202405.65363635842!2d126.80933302536177!3d37.56476155626408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2012d5c39cf%3A0x7e11eca1405bf29b!2z7ISc7Jq47Yq567OE7Iuc!5e0!3m2!1sko!2skr!4v1682741737668!5m2!1sko!2skr"
-							 width="1700vw"
-							 height="750px"
-					style="border:0;"
-					allowfullscreen=""
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade">
-			  </iframe>
+<%--			  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202405.65363635842!2d126.80933302536177!3d37.56476155626408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2012d5c39cf%3A0x7e11eca1405bf29b!2z7ISc7Jq47Yq567OE7Iuc!5e0!3m2!1sko!2skr!4v1682741737668!5m2!1sko!2skr"--%>
+<%--							 width="1700vw"--%>
+<%--							 height="750px"--%>
+<%--					style="border:0;"--%>
+<%--					allowfullscreen=""--%>
+<%--					loading="lazy"--%>
+<%--					referrerpolicy="no-referrer-when-downgrade">--%>
+<%--			  </iframe>--%>
+
+				<%--네이버 지도 id는 무조건 map이여야함 && class는 api_position--%>
+			<map id="map" class="api_position" style="width:1700vw; height:750px;"></mapee>
 		   </div>
 					   <%--구글맵 임베딩 끝--%>
 		   <div class="row">
@@ -33,8 +40,7 @@
 			  <div class="col-12 mt-auto mb-5 text-center">
 			  </div>
 		   </div>
-		</div>
-	 </section>
+		</div> </section>
 
 
 	<section class="about-section section-padding" id="section_2">
@@ -414,6 +420,59 @@
 
 </body>
 </html>
+<script>
+	/////////네이버 지도 API
+	var map = new naver.maps.Map('map', {
+		center: new naver.maps.LatLng(37.3595704, 127.105399),
+		mapTypeControl: true,
+		mapTypeControlOptions: {
+			style: naver.maps.MapTypeControlStyle.DROPDOWN
+		},
+		zoom: 18
+	});
 
+	var trafficLayer = new naver.maps.TrafficLayer({
+		interval: 300000 // 5분마다 새로고침 (최소값 5분)
+	});
+
+	var btn = $('#traffic');
+
+	naver.maps.Event.addListener(map, 'trafficLayer_changed', function(trafficLayer) {
+		if (trafficLayer) {
+			btn.addClass('control-on');
+			$("#autorefresh").parent().show();
+			$("#autorefresh")[0].checked = true;
+		} else {
+			btn.removeClass('control-on');
+			$("#autorefresh").parent().hide();
+		}
+	});
+
+	btn.on("click", function(e) {
+		e.preventDefault();
+
+		if (trafficLayer.getMap()) {
+			trafficLayer.setMap(null);
+		} else {
+			trafficLayer.setMap(map);
+		}
+	});
+
+	$("#autorefresh").on("click", function(e) {
+		var btn = $(this),
+				checked = btn.is(":checked");
+
+		if (checked) {
+			trafficLayer.startAutoRefresh();
+		} else {
+			trafficLayer.endAutoRefresh();
+		}
+	});
+
+	naver.maps.Event.once(map, 'init', function() {
+		trafficLayer.setMap(map);
+	});
+
+</script>
 <link href="${rootContext}/resources/css/common/main.css" rel="stylesheet">
 <script src="${rootContext}/resources/js/common/main.js"></script>

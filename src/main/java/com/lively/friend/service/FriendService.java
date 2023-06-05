@@ -32,8 +32,8 @@ public class FriendService {
 	
 	
 	 //피드
-	public List<FriendVo> getFriendFeed(String searchValue , PageVo pageVo){
-		return dao.getFriendFeed(sst , searchValue , pageVo);
+	public List<FriendVo> getFriendFeed(String searchValue){
+		return dao.getFriendFeed(sst , searchValue);
 	}
 	
 

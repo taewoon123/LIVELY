@@ -36,7 +36,7 @@
 		ORDER BY F.FRIEND_NO DESC
 	</select> -->
 	<!-- 2번째리스트코드 -->
-<!-- 	<select id="FriendFeed" resultType="FriendVo">
+	<select id="FriendFeed" resultType="FriendVo">
 		SELECT 
 		F.FRIEND_NO
 		, F.WRITER
@@ -52,16 +52,16 @@
 		<if test="searchValue != null">
 			AND F.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
-	</select> -->
+	</select> 
 	<!-- 3번째 리스트 코드 -->
-		<select id="FriendFeed" resultType="FriendVo">
+<!-- 		<select id="FriendFeed" resultType="FriendVo">
 		SELECT *
 		FROM FRIEND F
 		WHERE F.DELETE_YN = 'N'
 		<if test="searchValue != null">
 			AND F.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
-	</select>
+	</select> -->
 
  	<insert id="write">
 		INSERT INTO FRIEND

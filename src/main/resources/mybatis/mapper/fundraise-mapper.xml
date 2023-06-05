@@ -25,7 +25,8 @@
     </select>
 
     <select id="getFundDetail" resultType="FundraiseVo">
-        SELECT F.FUNDRAISE_NO AS NO,
+        SELECT F.FUNDRAISE_NO,
+        F.WRITER,
        M.NAME AS WRITER,
        F.TITLE,
        F.CONTENT,
@@ -131,7 +132,7 @@ WHERE F.DELETE_YN = 'N'
         UPDATE FUNDRAISE
         SET TITLE = #{title},
         CONTENT = #{content},
-        MONEY = #{money},
+        MONEY_GOAL = #{moneyGoal},
         EDIT_DATE = SYSDATE
         WHERE FUNDRAISE_NO = #{fundraiseNo}
         AND DELETE_YN = 'N'

@@ -101,6 +101,8 @@
   	UPDATE MARKET
   		SET TITLE = #{title}
   			, CONTENT = #{content}
+  			, PRICE = #{price}
+  			, LOCATION_NO = #{locationNo}
   			, EDIT_DATE = SYSDATE
   		WHERE MARKET_NO = #{marketNo}
   		AND DELETE_YN = 'N'
@@ -134,8 +136,24 @@
   	AND DELETE_YN = 'N'
   </select>
   
+  <!-- 거래 상태 변경 (거래중으로) -->
+  <update id="statusY">
+  	UPDATE MARKET
+  		SET STATUS_YN = 'Y'
+  		, EDIT_DATE = SYSDATE
+  	WHERE MARKET_NO = #{no}
+  </update>
   
-  <!-- <select id="getFeed" resultType="MarketVo">
+  <!-- 거래 상태 변경 (거래완료로) -->
+  <update id="statusN">
+  	UPDATE MARKET
+  		SET STATUS_YN = 'N'
+  		, EDIT_DATE = SYSDATE
+  	WHERE MARKET_NO = #{no}
+  </update>
+  
+  
+  <select id="getFeed" resultType="MarketVo">
 	SELECT 
 	    K.MARKET_NO
 		, K.WRITER
@@ -148,12 +166,16 @@
 		, K.LOCATION_NO
 		, K.STATUS_YN
 		, L.LOCATION_NAME as locationName
-		, M.NAME as writerName
+		, A.MARKET_ATTACH_NO as marketAttachNo
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
 	FROM MARKET K
 	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
-	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
-	WHERE K.DELETE_YN = 'N'
-	AND K.WRITER = #{no}
-  </select> -->
+	LEFT JOIN MARKET_ATTACH A ON (K.MARKET_NO = A.MARKET_NO)
+	WHERE K.MARKET_NO = #{no}
+	AND K.DELETE_YN = 'N'
+	AND A.DELETE_YN = 'N'
+  </select>
   
 </mapper>

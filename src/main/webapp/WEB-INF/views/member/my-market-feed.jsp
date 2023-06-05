@@ -37,7 +37,9 @@
 
 			<c:forEach items="${myMarketList}" var="myList">
 	            <!-- 첫번째 피드 시작 -->
-	            <div class="feed_box">
+	            <div class="feed_box feed_status_${myList.statusYn}">
+	            	<input type="text" class="marketNo" value="${myList.marketNo}" style="display: none">
+	            	<input type="text" class="statusYn" value="${myList.statusYn}" style="display: none">
 	                <div id="profile_area">
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
@@ -45,13 +47,13 @@
 	                        <div id="profile_nick">${myList.writerId}</div>
 	                    </div>
 	                    <div class="drop-edit-delete-area">
-					      <a class="drop-edit-delete-box"> 
-					        ·&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;·
-					      </a>
-					      <div class="dropdown-edit-delete">
-					        <a href="${rootContext}/market/edit/${myList.marketNo}"><div>수정</div></a>
-					        <a href="${rootContext}/market/delete/${myList.marketNo}"><div>삭제</div></a>
-					    </div>
+							<a class="drop-edit-delete-box"> 
+								·&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;·
+							</a>
+							<div class="dropdown-edit-delete">
+								<a href="${rootContext}/market/edit/${myList.marketNo}"><div>수정</div></a>
+								<a href="${rootContext}/market/delete/${myList.marketNo}"><div>삭제</div></a>
+							</div>
 					    </div>
 	                </div>
 	                <div id="feed-image">
@@ -69,7 +71,7 @@
                	                <image class="first" href="${rootContext}/resources/upload/market/${myList.changeName}" alt="${rootContext}/resources/upload/market/${myList.originName}" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
-	                        <%-- <div class="carousel-item">
+	                        <!-- <%-- <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
 	                            <image class="second" href="${rootContext}/resources/img/two${myList.marketNo}.jpg" width="100%" height="100%"/>
 	                            </svg>
@@ -79,7 +81,7 @@
 	                            <image class="third" href="${rootContext}/resources/img/three${myList.marketNo}.jpg" width="100%" height="100%">
 	                            </svg>
 	
-	                        </div> --%>
+	                        </div> --%> -->
 	                        </div>
 	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -90,23 +92,26 @@
 	                        <span class="visually-hidden">Next</span>
 	                        </button>
 	                    </div>
+						</div>
 	                </div>
 	                
-	                </div>
 	                <div id="content_area">
-	                	<h7>${myList.title} &nbsp;&nbsp; ￦ ${myList.price}</h7> <br>
-	                    <span class="feed-content">${myList.content}</span>
-	                    <span class="feed-content-hide"></span>
-	                    <button class="feed-content-more-button">more</button>
+						<h7>${myList.title} &nbsp;&nbsp; ￦ ${myList.price}</h7> <br>
+						<div class="content-line">
+		                    <span class="feed-content">${myList.content}</span>
+		                    <span class="feed-content-hide"></span>
+		                    <button class="feed-content-more-button">more</button>
+	                    </div>
 	                </div>
 	                <div id="chat_area">
-	                <!-- 거래중일때는 채팅 목록 버튼 ??? -->
-		                    <div class="checkbox-wrapper-8">
-							  <input type="checkbox" id="cb3-8" class="tgl tgl-skewed">
-							  <label for="cb3-8" data-tg-on="거래완료" data-tg-off="거래중" class="tgl-btn"></label>
-							</div>
+						<!-- 거래중일때는 채팅 목록 버튼 ??? -->
+						<div class="checkbox-wrapper-8">
+							<input type="checkbox" id="cb3-8" class="tgl tgl-skewed">
+							<label for="cb3-8" data-tg-on="거래완료" data-tg-off="거래중" class="tgl-btn status${myList.statusYn}"></label>
+						</div>
 	                </div>
-	            </div>
+				</div>
+	            
 	            <!-- 첫번째 피드 끝 -->
             </c:forEach>
 
@@ -117,6 +122,153 @@
     
 
 </body>
- <script src="${rootContext}/resources/js/member/my-market-feed.js"></script>
+<%--  <script src="${rootContext}/resources/js/member/my-market-feed.js"></script> --%>
  <link rel="stylesheet" href="${rootContext}/resources/css/member/my-feed.css">
 </html>
+
+<script>
+//거래중 / 거래완료
+const marketNo = document.querySelector(".marketNo").getAttribute("value");
+const statusYn = document.querySelector(".statusYn").getAttribute("value");
+const market_status = document.querySelectorAll("#cb3-8");
+const label = document.querySelector('label[for="cb3-8"]');
+
+if(statusYn == 'Y'){
+	market_status.checked = false;
+}else if(statusYn == 'N'){
+	market_status.checked = true;
+}
+
+function status() {
+	market_status.forEach((element, index) => {
+		label.addEventListener('click', function() {
+			if (element.checked) {
+				location.href = '/lively/market/statusY/' + marketNo;
+			} else {
+				alert("ddd");
+				location.href = '/lively/market/statusN/' + marketNo;
+			}
+		});
+	});
+}
+
+status();
+
+
+
+/*function feed_status() {
+  var statusCheckboxes = document.getElementsByClassName("tgl-btn");
+
+  for (var i = 0; i < statusCheckboxes.length; i++) {
+      var statusss = statusCheckboxes[i];
+      if (statusss.classList.contains("statusN")) {
+      	market_status.checked = false;
+      } 
+  }
+}
+
+feed_status();*/
+
+
+
+//enter 누르면 검색 가능
+const search_button = document.querySelector(".feed_search_input");
+search_button.addEventListener("keydown",(event) => {
+  if(event.keyCode == 13){
+      event.preventDefault();
+      document.querySelector('.hidden_button').click();
+  }
+});
+
+
+//피드 내용
+
+const more_button = document.querySelectorAll('#content_area .feed-content-more-button');
+const feed_contents = document.querySelectorAll('#content_area .feed-content');
+const feed_hide_contents = document.querySelectorAll('#content_area .feed-content-hide');
+const feed_box = document.querySelectorAll('.feed_box');
+const content_area = document.querySelector("#content_area");
+
+
+//피드 내용 - 더보기 / 숨기기 버튼 활성화
+function show_more_hide_button(event, slice_length){
+  const hide_content = event.target.previousElementSibling;  //previousElementSibling : 동등한 관계의 이전 태그
+  const origin_content = hide_content.previousElementSibling;
+  if(event.target.innerHTML === 'more'){
+      origin_content.innerHTML += hide_content.innerHTML;
+      event.target.innerHTML = 'hide';
+      feed_box.classList.add('feed_more_box');
+      content_area.classList.add('feed_content_more_box');
+  }else{
+      origin_content.innerHTML = origin_content.innerHTML.slice(0, slice_length);
+      event.target.innerHTML = 'more';
+      feed_box.classList.remove('feed_more_box');
+      content_area.classList.remove('feed_content_more_box');
+  }
+}
+
+//피드 내용 - 더보기 / 숨기기
+function hide_feed_content(){
+  const slice_length = 50;
+  feed_contents.forEach((content, index) => {
+      if(content.innerHTML.length > slice_length){
+          feed_hide_contents[index].innerHTML = `${content.innerHTML.slice(slice_length)}`;
+          content.innerHTML = content.innerHTML.slice(0, slice_length);
+          more_button[index].classList.remove('more-button-invisible');
+          more_button[index].addEventListener("click", (event) => {
+              show_more_hide_button(event, slice_length);
+          });
+      }else more_button[index].classList.add('more-button-invisible');
+  });
+}
+
+hide_feed_content();
+
+//거래 완료 시 투명도 낮게
+
+function feed_done() {
+  var feedBoxes = document.getElementsByClassName("feed_box");
+
+  for (var i = 0; i < feedBoxes.length; i++) {
+      var feedBox = feedBoxes[i];
+      if (feedBox.classList.contains("feed_status_N")) {
+          feedBox.classList.add("feed_done");
+      } 
+  }
+}
+
+feed_done();
+
+
+//수정 / 삭제 버튼
+const toggle = document.querySelectorAll("#profile_area .drop-edit-delete-box");
+const dropdown = document.querySelectorAll("#profile_area .drop-edit-delete-area");
+
+function editDelete(){
+	toggle.forEach((element, index) => {
+		element.addEventListener("click", () => {
+			dropdown[index].classList.toggle("dropdown_toggle");
+		});
+	});
+}
+
+editDelete();
+
+
+//friend / market 페이지 전환
+const toggle_text = document.querySelector(".toggle_text");
+const toggle_checkbox = document.querySelector("#button-3");
+
+const page_switch = document.querySelector(".toggle_checkbox");
+
+page_switch.checked = true;
+
+function go(){
+	page_switch.addEventListener("click",() => {
+		location.href='/lively/member/my-friend-feed';
+	});
+}
+
+go();
+</script>
+

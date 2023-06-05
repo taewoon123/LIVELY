@@ -1,3 +1,19 @@
+
+//거래중 / 거래완료
+const market_status = document.querySelector("#cb3-8");
+/*if(market_status.checked){
+	market_status.checked = true;
+}*/
+
+const label = document.querySelector('label[for="cb3-8"]');
+
+market_status.addEventListener('click', function() {
+  if (market_status.checked) {
+	  alert("ddd");
+	  location.href='/lively/market/status/${myList.marketNo}';
+  }
+});
+
 //friend / market 페이지 전환
 const toggle_text = document.querySelector(".toggle_text");
 const toggle_checkbox = document.querySelector("#button-3");
@@ -97,13 +113,6 @@ dropdown.addEventListener("click", () => {
 
 
 
-
-
-//거래중 / 거래완료
-const market_status = document.querySelector("#cb3-8");
-if(market_status.checked){
-	market_status.checked = true;
-}
 
 
 //무한스크롤

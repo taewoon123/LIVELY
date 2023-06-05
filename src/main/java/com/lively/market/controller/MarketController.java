@@ -39,18 +39,16 @@ public class MarketController {
 
 	//피드 목록
 	@GetMapping("list")
-	public String list(Model model, @RequestParam(defaultValue = "1") int page, String no, String searchValue) throws Exception {
-		
-//		MarketVo marketVo = ms.getFeed(no);
+	public String list(Model model, String no, String searchValue) throws Exception {
 		
 		//데이터
-		int listCount = ms.getFeedCount();
-		int currentPage = page;
-		int pageLimit = 3;
-		int boardLimit = 3;
-		PageVo pageVo = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		/*
+		 * int listCount = ms.getFeedCount(); int currentPage = page; int pageLimit = 3;
+		 * int boardLimit = 3; PageVo pageVo = new PageVo(listCount, currentPage,
+		 * pageLimit, boardLimit);
+		 */
 		
-		List<MarketVo> marketList = ms.getMarketFeed(pageVo, searchValue);
+		List<MarketVo> marketList = ms.getMarketFeed(searchValue);
 		List<LocationVo> LocationList = ms.getLocationList();
 		
 		System.out.println(marketList);
@@ -124,9 +122,14 @@ public class MarketController {
 	}
 	
 	//피드 수정 화면 (작성자만)
-	@GetMapping("edit")
-	public String edit(MarketVo marketVo) {
-		return "board/member/my-market-feed";
+	@GetMapping("edit/{no}")
+	public String edit(@PathVariable(required = true) String no, Model model) throws Exception {
+		
+		MarketVo marketDetail = ms.getFeed(no);
+		
+		model.addAttribute("marketDetail", marketDetail);
+		
+		return "board/market/market-detail";
 	}
 	
 	//피드 수정 (작성자만)
@@ -135,10 +138,12 @@ public class MarketController {
 		
 		int result = ms.updateFeed(marketVo);
 		
+		System.out.println("수정 : " + marketVo);
+		
 		if(result != 1) {
 			session.setAttribute("alertMsg", "수정 실패ㅠㅠ");
 			
-			return "board/member/my-market-feed";
+			return "redirect:/member/my-market-feed";
 		}
 		
 		session.setAttribute("alertMsg", "수정 성공 ~ !");
@@ -150,10 +155,6 @@ public class MarketController {
 	//피드 삭제 (작성자만)
 		@GetMapping("delete/{no}")
 		public String delete(MarketVo marketVo, HttpSession session, @PathVariable(required = true) String no) {
-//			MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-//			String writerNo = memberLog.getNo();
-//			
-//			marketVo.setWriter(writerNo);
 			
 			int result = ms.delete(no);
 			
@@ -167,6 +168,40 @@ public class MarketController {
 			
 			return "redirect:/member/my-market-feed";
 		}
+		
+	
+	//피드 상태 변경 (거래중)
+	@GetMapping("statusY/{no}")
+	public String statusY(@PathVariable(required = true) String no, HttpSession session) {
+		int result = ms.statusY(no);
+		
+		if(result != 1) {
+			session.setAttribute("alertMsg", "변경에 실패하였습니다 .. (거래중)");
+			
+			return "redirect:/member/my-market-feed";
+		}
+		
+		session.setAttribute("alertMsg", "변경에 성공하였습니다 ~ (거래중)");
+		
+		return "redirect:/member/my-market-feed";
+	}
+		
+	//피드 상태 변경 (거래완료)
+	@GetMapping("statusN/{no}")
+	public String statusN(@PathVariable(required = true) String no, HttpSession session) {
+		int result = ms.statusN(no);
+		
+		if(result != 1) {
+			session.setAttribute("alertMsg", "변경에 실패하였습니다 .. (거래완료)");
+			
+			return "redirect:/member/my-market-feed";
+		}
+		
+		session.setAttribute("alertMsg", "변경에 성공하였습니다 ~ (거래완료)");
+		
+		return "redirect:/member/my-market-feed";
+	}
+	
 }
 	
 	

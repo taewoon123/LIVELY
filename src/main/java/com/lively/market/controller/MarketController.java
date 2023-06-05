@@ -53,7 +53,7 @@ public class MarketController {
 		System.out.println(marketList);
 		
 //		model.addAttribute("marketVo", marketVo);
-		model.addAttribute("pageVo", pageVo);
+//		model.addAttribute("pageVo", pageVo);
 //		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("marketList", marketList);
 		model.addAttribute("LocationList", LocationList);

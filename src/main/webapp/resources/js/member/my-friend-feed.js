@@ -1,3 +1,20 @@
+//friend / market 페이지 전환
+const toggle_text = document.querySelector(".toggle_text");
+const toggle_checkbox = document.querySelector("#button-3");
+
+const page_switch = document.querySelector(".toggle_checkbox");
+/* window.onload = function(){
+	page_switch.onclick = go;
+} */
+
+
+function go(){
+	page_switch.addEventListener("click",() => {
+		location.href='/lively/member/my-friend-feed';
+	});
+}
+
+go();
 
 //enter 누르면 검색 가능
 const search_button = document.querySelector(".feed_search_input");
@@ -77,29 +94,12 @@ feed_done();
 //});
 
 
-//friend / market 페이지 전환
-const toggle_text = document.querySelector(".toggle_text");
-const toggle_checkbox = document.querySelector("#button-3");
-
-const page_switch = document.querySelector(".toggle_checkbox");
-/* window.onload = function(){
-	page_switch.onclick = go;
-} */
-
-
-function go(){
-	page_switch.addEventListener("click",() => {
-		location.href='/lively/member/my-market-feed';
-	});
-}
-
-go();
 
 
 //거래중 / 거래완료
-const market_status = document.querySelector("#cb3-8");
-if(market_status.checked){
-	market_status.checked = true;
+const friend_status = document.querySelector("#cb3-8");
+if(friend_status.checked){
+	friend_status.checked = true;
 }
 
 

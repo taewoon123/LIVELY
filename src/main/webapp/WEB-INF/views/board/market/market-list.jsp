@@ -112,7 +112,7 @@
 	            <!-- 첫번째 피드 끝 -->
             </c:forEach>
             
-            <div id="page-area">
+            <%-- <div id="page-area">
 				<c:if test="${pageVo.currentPage > 1}">
 					<a class="prevPage" href="${rootContext}/market/list?page=${pageVo.currentPage-1}">이전</a>
 				</c:if>
@@ -128,7 +128,7 @@
 					<a class="nextPage" href="${rootContext}/market/list?page=${pageVo.currentPage+1}">다음</a>
 				</c:if>
 			</div>
-
+ --%>
         </main>
         
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>

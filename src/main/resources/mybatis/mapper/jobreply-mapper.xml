@@ -18,15 +18,31 @@
 		SEQ_JOB_REPLY_NO.NEXTVAL
 		, #{content}
 		, #{writer}
-		, 1
+		, #{jobNo}
 		)
 
 	</insert>
 
 	<select id="getReplyList" resultType="replyVo">
-		 SELECT *
-		FROM JOB_REPLY
-		WHERE DELETE_YN = 'N'
-		ORDER BY JOB_REPLY_NO DESC
+		   SELECT 
+          R.JOB_REPLY_NO
+         ,R.CONTENT
+         ,R.ENROLL_DATE
+         ,R.WRITER
+         ,R.DELETE_YN
+         ,R.JOB_NO
+         ,M.NAME AS writerName
+      FROM JOB_REPLY R
+      JOIN MEMBER M ON (R.WRITER = M.NO)
+      WHERE R.JOB_NO = #{jobNo}
+      AND   R.DELETE_YN = 'N'
+      ORDER BY JOB_REPLY_NO DESC
 	</select>
+	
+	<update id="delete">
+		UPDATE JOB_REPLY
+		    SET DELETE_YN = 'Y'
+		WHERE JOB_REPLY_NO = #{jobReplyNo}
+		AND ( WRITER = #{writer}  OR  ${writer} = 1 )
+	</update>
 </mapper>

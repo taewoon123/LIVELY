@@ -20,11 +20,12 @@
         <typeAlias type="com.lively.market.vo.MarketVo" alias="MarketVo"/>
         <typeAlias type="com.lively.member.vo.MemberVo" alias="MemberVo"/>
         <typeAlias type="com.lively.notice.vo.NoticeVo" alias="NoticeVo"/>
-		<typeAlias type="com.lively.common.LocationVo" alias="LocationVo"/>
+		<typeAlias type="com.lively.common.locaion.vo.LocationVo" alias="LocationVo"/>
 		<typeAlias type="com.lively.qna.vo.QnaVo" alias="QnaVo"/>
         <typeAlias type="com.lively.query.vo.QueryVo" alias="QueryVo"/>
         <typeAlias type="com.lively.common.FileVo" alias="FileVo"/>
         <typeAlias type="com.lively.job.reply.vo.ReplyVo" alias="ReplyVo"/>
+        <typeAlias type="com.lively.help.reply.vo.HelpReplyVo" alias="HelpReplyVo"/>
         
     </typeAliases>
 

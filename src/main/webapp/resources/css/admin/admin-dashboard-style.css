@@ -83,3 +83,32 @@ input[type=checkbox] {
 /*#some-dashboard {*/
 /*    padding-left: 10px;*/
 /*}*/
+
+/* pagenation */
+.pagination-custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+}
+
+/* 밑에 페이지 숫자 색 css */
+.pagination-custom .page-numbers {
+    border: none;
+    color: #555555;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    padding: 6px 10px;
+    transition: background-color 0.2s ease;
+}
+
+/* 현재 페이지 숫자 css */
+.pagination-custom .current {
+    color: #ffffff;
+    cursor: default;
+}
+
+.pagination-custom .page-numbers:hover {
+    color: #4CBB17;
+}

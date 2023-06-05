@@ -112,7 +112,24 @@ dropdown.addEventListener("click", () => {
 });
 
 
+//friend / market 페이지 전환
+const toggle_text = document.querySelector(".toggle_text");
+const toggle_checkbox = document.querySelector("#button-3");
 
+const page_switch = document.querySelector(".toggle_checkbox");
+/* window.onload = function(){
+	page_switch.onclick = go;
+} */
+
+page_switch.checked = true;
+
+function go(){
+	page_switch.addEventListener("click",() => {
+		location.href='/lively/member/my-friend-feed';
+	});
+}
+
+go();
 
 
 //무한스크롤

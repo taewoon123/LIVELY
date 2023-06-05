@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.friend.vo.FriendVo;
+import com.lively.help.vo.HelpVo;
 import com.lively.market.vo.MarketVo;
 import com.lively.member.dao.MemberDao;
 import com.lively.member.vo.MemberVo;
@@ -76,6 +77,11 @@ public class MemberService {
 
 	public List<FriendVo> getMyFriendFeed(FriendVo friendVo) {
 		return dao.getMyFriendFeed(sst, friendVo);
+	}
+
+	//my-help
+	public List<HelpVo> getMyHelpBoard(HelpVo helpVo, String writeNo) {
+		return dao.getMyHelpBoard(sst, helpVo);
 	}
 
 }// class

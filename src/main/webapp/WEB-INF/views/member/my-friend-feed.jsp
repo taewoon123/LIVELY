@@ -35,57 +35,57 @@
             	
             </div>
 
-			<c:forEach items="${myFriendList}" var="myList">
+			<c:forEach items="${fvoMap}" var="fvo">
 	            <!-- 첫번째 피드 시작 -->
 	            <div class="feed_box">
 	                <div id="profile_area">
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
-	                        <div id="profile_name">${myList.writerName}</div>
-	                        <div id="profile_nick">${myList.writerId}</div>
+	                        <div id="profile_name">${fvo.writerName}</div>
+	                        <div id="profile_nick">${fvo.writerId}</div>
 	                    </div>
 	                    <div class="drop-edit-delete-area">
 					      <a class="drop-edit-delete-box"> 
 					        ·&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;·
 					      </a>
 					      <div class="dropdown-edit-delete">
-					        <a href="${rootContext}/market/edit/${myList.friendNo}"><div>수정</div></a>
-					        <a href="${rootContext}/market/delete/${myList.friendNo}"><div>삭제</div></a>
+					        <a href="${rootContext}/market/edit/${fvo.friendNo}"><div>수정</div></a>
+					        <a href="${rootContext}/market/delete/${fvo.friendNo}"><div>삭제</div></a>
 					    </div>
 					    </div>
 	                </div>
 	                <div id="feed-image">
 	                    <div id="img_area">
 	                    <!-- Image Slider -->
-	                    <div id="myCarousel${myList.friendNo}" class="carousel slide">
+	                    <div id="myCarousel${fvoMap.friendAttachNo}" class="carousel slide">
 	                        <div class="carousel-indicators">
-	                        <button type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-	                        <button type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
-	                        <button type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+	                        <button type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+	                        <button type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+	                        <button type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
 	                        </div>
 	                        <div class="carousel-inner">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-               	                <image class="first" href="${rootContext}/resources/upload/market/${myList.changeName}" alt="${rootContext}/resources/upload/market/${myList.originName}" width="100%" height="100%"/>
+               	                <image class="first" href="${rootContext}/resources/upload/friend/${fvoMap.changeName}" alt="${rootContext}/resources/upload/market/${myList.originName}" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
 	                        <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="second" href="${rootContext}/resources/img/two${myList.friendNo}.jpg" width="100%" height="100%"/>
+	                            <image class="second" href="${rootContext}/resources/upload/friend/${fvoMap.changeName}" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
 	                        <div class="carousel-item">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="third" href="${rootContext}/resources/img/three${myList.friendNo}.jpg" width="100%" height="100%">
+	                            <image class="third" href="${rootContext}/resources/upload/friend/${fvoMap.changeName}" width="100%" height="100%">
 	                            </svg>
 	
 	                        </div>
 	                        </div>
-	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide="prev">
+	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	                        <span class="visually-hidden">Previous</span>
 	                        </button>
-	                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide="next">
+	                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide="next">
 	                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
 	                        <span class="visually-hidden">Next</span>
 	                        </button>
@@ -94,8 +94,8 @@
 	                
 	                </div>
 	                <div id="content_area">
-	                	<h7>${myList.title}</h7> <br>
-	                    <span class="feed-content">${myList.content}</span>
+	                	<h7>${fvoMap.title}</h7> <br>
+	                    <span class="feed-content">${fvoMap.content}</span>
 	                    <span class="feed-content-hide"></span>
 	                    <button class="feed-content-more-button">more</button>
 	                </div>
@@ -103,7 +103,7 @@
 	                <!-- 거래중일때는 채팅 목록 버튼 ??? -->
 		                    <div class="checkbox-wrapper-8">
 							  <input type="checkbox" id="cb3-8" class="tgl tgl-skewed">
-							  <label for="cb3-8" data-tg-on="거래완료" data-tg-off="거래중" class="tgl-btn"></label>
+							  <label for="cb3-8" data-tg-on="모집완료" data-tg-off="모집중" class="tgl-btn"></label>
 							</div>
 	                </div>
 	            </div>

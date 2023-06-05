@@ -1,12 +1,10 @@
 package com.lively.fundraise.controller;
 
-import com.lively.common.FileUploader;
-import com.lively.common.FileVo;
-import com.lively.member.vo.MemberVo;
-import com.lively.page.vo.PageVo;
-import com.lively.fundraise.service.FundraiseService;
-import com.lively.fundraise.vo.FundraiseVo;
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,18 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.lang.reflect.Member;
-import java.util.ArrayList;
-import java.util.List;
+import com.lively.common.FileUploader;
+import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
+import com.lively.fundraise.service.FundraiseService;
+import com.lively.fundraise.vo.FundraiseVo;
+import com.lively.member.vo.MemberVo;
+import com.lively.page.vo.PageVo;
+import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("fund")
 public class FundraiseController {
     private final FundraiseService service;
-
     @Autowired
     public FundraiseController(FundraiseService service) {
         this.service = service;
@@ -77,12 +76,15 @@ public class FundraiseController {
 
 
     @GetMapping("write")
-    public String fundWrite(Model model, HttpSession session) {
+    public String fundWrite(Model model, HttpSession session,LocationVo locationVo) {
         MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+
+        List<LocationVo> locationList = service.getLocationList(locationVo);
         if (memberLog == null) {
             model.addAttribute("alertMsg", "로그인 후 이용 가능합니다.");
             return "member/login";
         }
+        model.addAttribute("locationList", locationList);
         return "board/fundraise/fundraise-write";
     }
 

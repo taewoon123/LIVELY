@@ -50,7 +50,6 @@
 					onclick="location.href='${rootContext}/qna/delete?no=${qnaNo}'">
 					<span>삭제하기</span>
 				</button>
-				<span style="color: whitesmoke">${qnaNo}</span>
 
 				<button id="write_submit_edit">
 					<span>수정하기</span>

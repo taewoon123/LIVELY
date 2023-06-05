@@ -60,26 +60,30 @@ WHERE F.DELETE_YN = 'N'
     </update>
     <insert id="write">
             INSERT INTO FUNDRAISE
-            (FUNDRAISE_NO,
-            WRITER,
-            TITLE,
-            CONTENT,
-            VIEWS,
-            MONEY,
-            MONEY_GOAL)
+        (
+            F.FUNDRAISE_NO,
+            F.WRITER,
+            F.TITLE,
+            F.CONTENT,
+            F.VIEWS,
+            F.MONEY,
+            F.MONEY_GOAL
+        )
             VALUES
-            (SEQ_FUNDRAISE_NO.nextval,
+        (
+            F.SEQ_FUNDRAISE_NO.nextval,
             #{writer},
             #{title},
             #{content},
             0,
             #{money},
-            #{moneyGoal})
+            #{moneyGoal}
+        )
     </insert>
 
 
 
-    <insert id="insertAttachment"> <!-- open은 맨앞에 , close는 맨뒤 , separator는 중간중간 /를 나타냄 -->
+    <insert id="insertAttachment"> 
         INSERT ALL
         <foreach collection="list" item="x" separator=" ">
             INTO FUND_ATTACH
@@ -138,10 +142,7 @@ WHERE F.DELETE_YN = 'N'
         AND DELETE_YN = 'N'
     </update>
 
-    <select id="getLocationList" resultType="locationVo">
-        SELECT * FROM LOCATION
-    </select>
-    
+
 
 </mapper>
 

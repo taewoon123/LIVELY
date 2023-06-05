@@ -23,9 +23,7 @@ public class FriendVo {
 	private String writerId;
 	private String locationName;
 	private List<FileVo> attachmentList;
-	private String originName;
+	private String friendAttachNo;
 	private String changeName;
-	
-	
 	
 }

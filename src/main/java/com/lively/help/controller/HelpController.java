@@ -42,7 +42,7 @@ public class HelpController {
 	
 	//도움 목록 조회
 	@GetMapping("list")
-    public String list(HelpVo vo, Model model, @RequestParam(defaultValue = "1") int page) {
+    public String list(HelpVo vo, Model model, @RequestParam(defaultValue = "1") int page, String searchValue) {
       
 		//서비스 호출
 		int listCount = hs.getHelpListCnt();
@@ -51,7 +51,7 @@ public class HelpController {
 		int boardLimit = 5;
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-		List<HelpVo> hvoList = hs.getHelpList(pv);
+		List<HelpVo> hvoList = hs.getHelpList(pv, searchValue);
 		
 		//화면
 		model.addAttribute("pv", pv);
@@ -107,7 +107,7 @@ public class HelpController {
 	
 	//도움 상세조회
 	@GetMapping("detail")
-	public String detail(String num, Model model) throws Exception {
+	public String detail(String num, Model model,HttpSession session) throws Exception {
 		HelpVo vo = hs.getHelp(num);
 		
 		if(vo == null) {
@@ -117,7 +117,7 @@ public class HelpController {
 		
 		model.addAttribute("hvo", vo);
 		model.addAttribute("helpNo", num);
-		model.addAttribute("path", "resources/upload/help");
+		model.addAttribute("path", "/resources/upload/help");
 		return "board/help/help-detail";
 	}
 	
@@ -135,25 +135,25 @@ public class HelpController {
 	}
 	
 	//파일다운로드
-	@GetMapping("att/down")
-	public void download(HttpServletRequest req, HttpServletResponse resp, String ano) throws Exception {
-		
-		//파일 객체 준비
-		String path = req.getServletContext().getRealPath("/resources/upload/help/");
-		FileVo fvo = hs.getAttachment(ano);
-		File f = new File(path + fvo.getChangeName());
-		
-		byte[] data = FileUtils.readFileToByteArray(f);
-		
-		resp.setHeader("Content-Type", "application/octet-stream");
-		resp.setHeader("Content-Disposition", "attachment; filename=" + "\"" + URLEncoder.encode(fvo.getOriginName(), "UTF-8") + "\"");
-		resp.setHeader("Content-Length", data.length + "");
-		
-		//내보낼 통로 준비
-		ServletOutputStream os = resp.getOutputStream();
-		FileInputStream fis = new FileInputStream(f);
-		
-		os.write(data);
-	}
+//	@GetMapping("att/down")
+//	public void download(HttpServletRequest req, HttpServletResponse resp, String ano) throws Exception {
+//		
+//		//파일 객체 준비
+//		String path = req.getServletContext().getRealPath("/resources/upload/help/");
+//		FileVo fvo = hs.getAttachment(ano);
+//		File f = new File(path + fvo.getChangeName());
+//		
+//		byte[] data = FileUtils.readFileToByteArray(f);
+//		
+//		resp.setHeader("Content-Type", "application/octet-stream");
+//		resp.setHeader("Content-Disposition", "attachment; filename=" + "\"" + URLEncoder.encode(fvo.getOriginName(), "UTF-8") + "\"");
+//		resp.setHeader("Content-Length", data.length + "");
+//		
+//		//내보낼 통로 준비
+//		ServletOutputStream os = resp.getOutputStream();
+//		FileInputStream fis = new FileInputStream(f);
+//		
+//		os.write(data);
+//	}
 	
 }

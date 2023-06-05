@@ -1,7 +1,6 @@
 package com.lively.market.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
-import com.lively.common.LocationVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.market.dao.MarketDao;
 import com.lively.market.vo.MarketVo;
 import com.lively.page.vo.PageVo;
@@ -30,11 +29,6 @@ public class MarketService {
 	//피드 목록 (전체)
 	public List<MarketVo> getMarketFeed(String searchValue){
 		return dao.getMarketFeed(sst, searchValue);
-	}
-	
-	//검색
-	public List<String> search(String searchValue) {
-		return dao.search(sst, searchValue);
 	}
 	
 	//피드 작성

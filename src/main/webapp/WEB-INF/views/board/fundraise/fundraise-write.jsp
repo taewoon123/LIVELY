@@ -13,17 +13,15 @@
     <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
     <div class="write-board">
-        <form action="${rootContext}/fund/edit" method="POST" enctype="multipart/form-data">
+        <form action="${rootContext}/fund/write" method="POST" enctype="multipart/form-data">
             <div class="write-group">
 
                 <h3 id="friend-title">Fundraise</h3>
 
                 <select class="location-option" name="location" id="location">
-<%
-                    for(int i=0; i<locationList.size(); i++) {
-
-                    }
-%>
+                   <c:forEach items="${locationList}" var="locationList">
+                   <option value="${locationList.getLocationNo()}">${locationList.getLocationName()}</option>
+                   </c:forEach>
                 </select>
 
                 <div class="form__group">

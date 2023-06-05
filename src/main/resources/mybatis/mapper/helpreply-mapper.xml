@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="help-reply">
+
+	<insert id="write">
+		INSERT INTO HELP_REPLY
+		(
+		HELP_REPLY_NO
+		,CONTENT
+		,WRITER
+		,HELP_NO
+		)
+		VALUES
+		(
+		SEQ_HELP_REPLY_NO.NEXTVAL
+		, #{content}
+		, #{writer}
+		, #{helpNo}
+		)
+	</insert>
+	
+	<select id="getHelpReplyList" resultType = "HelpReplyVo">
+		SELECT
+			H.HELP_REPLY_NO
+			,H.CONTENT
+			,H.ENROLL_DATE
+			,H.DELETE_YN
+			,H.HELP_NO
+			,H.WRITER
+			,M.NAME as writerName
+		FROM HELP_REPLY H
+		JOIN MEMBER M ON (H.WRITER = M.NO)
+		WHERE H.HELP_NO = #{helpNo}
+		AND H.DELETE_YN = 'N'
+		ORDER BY HELP_REPLY_NO DESC
+	</select>
+	
+	<update id="delete">
+		UPDATE HELP_REPLY
+		SET DELETE_YN = 'Y'
+		WHERE HELP_REPLY_NO = #{helpReplyNo}
+		AND (WRITER = #{writer} OR ${writer} = 1)
+	</update>
+	
+</mapper>

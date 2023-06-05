@@ -10,8 +10,10 @@
   	
 <body>
 
+	
+
     <div id="wrap">
-        
+    
         
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
         <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
@@ -35,16 +37,17 @@
 	                        <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
 	                    </button>
 	                </div>
-		<c:forEach items="${friendList}" var="fList">
+ 		<c:forEach items="${fvoMap}" var="entry">
+ 		<c:set var="fvo" value="${entry.value}" />
             <!-- 첫번째 피드 시작 -->
-             <div id="feed_box feed_status_${fList.statusYn}">
+             <div class="feed_box feed_status_${fvo.statusYn}">
                 <div id="profile_area">
                     <div id="profile_img"><img src="${rootContext}/resources/img/marketimg.png" alt="프로필사진"></div>
                     <div id="profile_box">
                         <div id="profile_name">김본전</div>
                         <div id="profile_nick">라이블리</div>
                     </div>
-                    <c:if test="${fList.statusYn == 'N'}">
+                    <c:if test="${fvo.statusYn == 'N'}">
                     <div id="feed_status">
                         <input class="feed_status_text" value="모집마감" readonly/>
                     </div>
@@ -52,47 +55,51 @@
                 </div>
                 <div id="feed-image">
                     <div id="img_area">
+                    
                     <!-- Image Slider -->
-                    <div id="myCarousel${fList.friendNo}" class="carousel slide">
+                    <div id="myCarousel${fvo.friendAttachNo}" class="carousel slide">
                         <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
+                        <%-- <c:forEach items="${fvoMap.attachmentList}" var="att"> --%> 
                         <div class="carousel-item active">
                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-                            <%-- <image class="first" href="${rootContext}/resources/img/first${fList.friendNo}.jpg" width="100%" height="100%"/> --%>
-                         	<image class="first" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/>
+                         		<image class="first" href="${rootContext}/resources/upload/friend/${fvoMap.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/>
                             </svg>
                         </div>
-                        <div class="carousel-item">
+                        <%--  </c:forEach> --%>
+                          <%-- <div class="carousel-item">
                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                         	<image class="second" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/> 
+                         	<image class="second" href="${rootContext}/resources/upload/friend/${att.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/> 
                             </svg>
                         </div>
                         <div class="carousel-item">
                             <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                   			<image class="third" href="${rootContext}/resources/upload/friend/${fList.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"> 
+                   			<image class="third" href="${rootContext}/resources/upload/friend/${att.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"> 
                             </svg>
-                        </div>
+                        </div>   --%>
                         
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fList.friendNo}" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                         </button>
-                    </div>
-                </div>
+                    </div><!-- Image Slider 끝 -->
+                    
+                </div><!-- img_area 끝 -->
                 
-                </div>
+                </div><!-- feed-image 끝 -->
+                
                 <div id="content_area">
-                	<h7>${fList.title}</h7><br>
-                    <span class="feed-content">${fList.content}</span>
+                	<h7>${fvo.title}</h7><br>
+                    <span class="feed-content">${fvo.content}</span>
 	                <span class="feed-content-hide"></span>
 	                <button class="feed-content-more-button">more</button>
                 </div>
@@ -100,7 +107,7 @@
                     <button onclick="chat();"><a>CHAT</a></button>
                 </div>
              </div>
-		</c:forEach>
+	 	</c:forEach>
 		
 		<div id="page-area">
 				<c:if test="${pageVo.currentPage > 1}">
@@ -130,31 +137,6 @@
 
 </html>
 
-<!-- <script>
-
-const div = document.querySelector('#thumbnail-area');
-
-let imgTag;
-let aTag;
-<c:forEach items="${fvo.attachmentList}" var="fvo">
-	//a태그 만들기
-	aTag = document.createElement('a');
-	aTag.href = "${root}/friend/att/down?ano=${fvo.no}";
-	//이미지 요소 만들기
-	imgTag = document.createElement('img');
-	imgTag.setAttribute("src" , "${root}/${path}/${fvo.changeName}");
-	imgTag.setAttribute("alt" , "${fvo.originName}");
-	imgTag.setAttribute("width" , "100px");
-	imgTag.setAttribute("height" , '100px');
-
-	//a태그 내부에 img 추가
-	aTag.appendChild(imgTag);
-
-	//div 안에 a태그 추가
-	div.appendChild(aTag);
-</c:forEach>
-
-</script> -->
 
  <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-list.css">
  <script src="${rootContext}/resources/js/board/friend-list.js"></script>

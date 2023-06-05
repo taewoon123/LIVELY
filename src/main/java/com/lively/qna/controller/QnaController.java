@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.qna.vo.QnaVo;
-
+import com.lively.admin.vo.AdminVo;
 import com.lively.member.vo.MemberVo;
 import com.lively.page.vo.PageVo;
 import com.lively.qna.service.QnaService;
@@ -26,7 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("qna")
+@RequestMapping("")
+
 public class QnaController {
 	
 		private final QnaService qs;
@@ -36,9 +37,25 @@ public class QnaController {
 			this.qs = qs;
 			
 		}
+		
+	//메인페이지 목록 조회
+		//목록 조회
+				@GetMapping("main")
+				public String getQnaListMain( Model model) {
+					
+					
+					List<QnaVo> qvoListMain = qs.getQnaListMain();
+					
+					model.addAttribute("qvoList" , qvoListMain);
+					return "main";
+				}
+		
+		
+		
+		
 
 	//목록 조회
-		@GetMapping("list")
+		@GetMapping("qna/list")
 		public String getQnaList(@RequestParam(defaultValue = "1") int page , @RequestParam Map<String , String> searchMap,  Model model) {
 			
 			//데이터
@@ -60,21 +77,22 @@ public class QnaController {
 		}
 		
 		//공지사항 작성하기 (화면)
-		@GetMapping("write")
+		@GetMapping("qna/write")
 		public String write() {
 			return "board/manage/qna/qna-write";
 		}
 		
 		// 작성하기
-		@PostMapping("write")
+		@PostMapping("qna/write")
 		public String write(QnaVo vo, HttpSession session) throws Exception {
 			
 			//로그인 여부 체크
-//			MemberVo memberVo = (MemberVo) session.getAttribute("Membervo");
-//			if( memberVo == null ) {
-//				throw new Exception("로그인 후 이용 가능합니다.");
-//			}
-//			
+			MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+			if (memberLog == null) {
+				
+				return "alertMsg";
+			}
+			vo.setWriter(memberLog.getNo());
 			int result = qs.write(vo);
 			
 			if(result == 1) {
@@ -87,7 +105,7 @@ public class QnaController {
 		}
 
 		// 상세조회
-		@GetMapping("detail")
+		@GetMapping("qna/detail")
 		public String detail(String no, Model model) throws Exception {
 			QnaVo vo = qs.getQna(no);
 			if(vo == null) {
@@ -102,23 +120,48 @@ public class QnaController {
 		}
 		
 		
-		// 수정하기
-		@PostMapping("edit")
+		@PostMapping("qna/edit")
 		public String edit(QnaVo vo, Model model, HttpSession session) {
-			
-			int result = qs.edit(vo);
-			
-			if(result != 1) {
-				model.addAttribute("errorMsg", "수정실패...");
-				return "common/error-page";
-			}
-			
-			session.setAttribute("alertMsg", "수정성공!!");
-			return "redirect:qna/detail?no=" + vo.getQnaNo();
+		    int result = qs.edit(vo);
+
+		    if (result != 1) {
+		        model.addAttribute("errorMsg", "수정실패...");
+		        return "common/error-page";
+		    } else {
+		        session.setAttribute("alertMsg", "수정성공!!");
+		        return "redirect:qna/detail?no=" + vo.getQnaNo();
+		    }
+		}
+
+		@PostMapping("qna/replyedit")
+		public String replyedit(QnaVo vo, Model model, HttpSession session) {
+		    int replyresult = qs.replyedit(vo);
+
+		    if (replyresult != 1) {
+		        model.addAttribute("errorMsg", "답변 작성 실패..");
+		        return "common/error-page";
+		    } else {
+		        session.setAttribute("alertMsg", "답변 작성 성공!!");
+		        return "redirect:/qna/detail?no=" + vo.getQnaNo();
+		    }
 		}
 		
+			
+			
+			
+				/*
+				 * AdminVo adminLog = (AdminVo) session.getAttribute("adminLog"); String adminId
+				 * = ""; if(adminLog != null) { adminId = adminLog.getAdminId(); }
+				 * 
+				 * if(!"admin".equalsIgnoreCase(adminId)) { model.addAttribute("errorMsg",
+				 * "잘못된 요청입니다..."); return "common/error-page"; }
+				 */
+
+					
+		
+		
 		//삭제하기
-		@GetMapping("delete")
+		@GetMapping("qna/delete")
 		public String delete(String no, HttpSession session) throws Exception {
 			
 			int result = qs.delete(no);
@@ -131,4 +174,8 @@ public class QnaController {
 			return "redirect:/qna/list";
 		}
 		
+		
 	}
+
+
+	

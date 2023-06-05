@@ -8,5 +8,5 @@ public class FileVo {
 	private String no;
 	private String originName;
 	private String changeName;
-	
+	private String friendAttachNo;
 }

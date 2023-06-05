@@ -12,6 +12,7 @@
 
    <div id="wrap">
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
+        <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
     
         <div class="write-board">
             <form action="${rootContext}/market/edit" method="POST" enctype="multipart/form-data">
@@ -39,13 +40,14 @@
                     </div>
                     
                     <div class="form__group">
-                        <input type="hidden" name="no" value="${marketVo.marketNo}">
-                        <input type="text" class="form__field" id="title" name="title" value="${marketVo.title}" required>
-                        <input type="number" class="form__field" name="price" value="${marketVo.price}" required>
+                        <input type="hidden" name="writer" value="${marketDetail.writer}">
+                        <input type="hidden" name="marketNo" value="${marketDetail.marketNo}">
+                        <input type="text" class="form__field" id="title" name="title" value="${marketDetail.title}" required>
+                        <input type="number" class="form__field" name="price" value="${marketDetail.price}" required>
                     </div>
                 </div>
                 <div class="write-group">
-                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none" required value="${marketVo.content}"></textarea>
+                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none" required>${marketDetail.content}</textarea>
                 </div>
 
                 <!-- UI첨부파일(drop files) -->
@@ -58,9 +60,9 @@
                         <a>or</a>
                         <input type="file" accept="image/*"  id="file-input" style="font-size: 15px" name="f" multiple accept=".jpg,.png,.jpeg">
                     </label>
-                    <div class="tag-group">
+                    <!-- <div class="tag-group">
                         <input type="text" class="tag" value="" >
-                    </div>
+                    </div> -->
 
                 
 

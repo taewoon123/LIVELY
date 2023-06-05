@@ -19,15 +19,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
 import com.lively.friend.service.FriendService;
 import com.lively.friend.vo.FriendVo;
+import com.lively.market.vo.MarketVo;
 import com.lively.member.vo.MemberVo;
 import com.lively.page.vo.PageVo;
 
@@ -49,18 +52,22 @@ public class FriendController {
 		
 		
 		//데이터
-		int listCount = fs.getFeedCount();
-		int currentPage = page;
-		int pageLimit = 3;
-		int boardLimit = 3;
+		/*
+		 * int listCount = fs.getFeedCount(); int currentPage = page; int pageLimit = 3;
+		 * int boardLimit = 3;
+		 */
 		/* PageVo pageVo = new PageVo(listCount, currentPage, pageLimit, boardLimit); */
 		
-		PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit);
-		List<FriendVo> friendList = fs.getFriendFeed(searchValue , pageVo);
+		/* PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit); */
+		List<FriendVo> friendList = fs.getFriendFeed(searchValue); 
+		Map<String, FriendVo> fvoMap = fs.getFriendFeed();
 		List<Map<String, String>> LocationList = fs.getLocationNoList();
-		if (friendList != null) {
-			model.addAttribute("pageVo" , pageVo);
-			model.addAttribute("friendList", friendList);
+		
+		model.addAttribute("friendList" , friendList);
+		
+		if (fvoMap != null) {
+			/* model.addAttribute("pageVo" , pageVo); */
+			model.addAttribute("fvoMap", fvoMap);
 			/* model.addAttribute("searchMap" , searchMap); */
 			model.addAttribute("LocationList", LocationList);
 			
@@ -125,12 +132,47 @@ public class FriendController {
 	      
 	      return "redirect:/friend/list";
 		
-		// 수정하기(작성자만)
-	      
-	    // 삭제하기(작성자만)
-	      
-	    
 	}
+	// 수정하기화면(작성자만)
+	@GetMapping("edit")
+	public String edit(FriendVo friendVo) {
+		return "board/member/my-friend-feed";
+	}
+	
+	//수정하기(작성자만)
+	@PostMapping("edit")
+	public String edit(FriendVo friendVo, HttpSession session, RedirectAttributes ra) {
+		
+		int result = fs.updateFeed(friendVo);
+		
+		if(result != 1) {
+			session.setAttribute("alertMsg", "수정 실패ㅠㅠ");
+			
+			return "board/member/my-friend-feed";
+		}
+		
+		session.setAttribute("alertMsg", "수정 성공 ~ !");
+		ra.addAttribute("no", friendVo.getFriendNo());
+		
+		return "redirect:/member/my-friend-feed";
+	}
+	
+	// 삭제하기(작성자만)
+	@GetMapping("delete/{no}")
+	public String delete(FriendVo friendVo, HttpSession session, @PathVariable(required = true) String no) {
+		int result = fs.delete(no);
+		
+		if(result != 1) {
+			session.setAttribute("alertMsg", "삭제 실패ㅠㅠ");
+			
+			return "board/member/my-friend-feed";
+		}
+		
+		session.setAttribute("alertMsg", "삭제 성공  ~ !");
+		
+		return "redirect:/member/my-friend-feed";
+	}
+	
 	//파일 다운로드
 	@GetMapping("att/down")
 	public ResponseEntity<ByteArrayResource> download(String friendAttachNo , HttpServletRequest req) throws Exception{

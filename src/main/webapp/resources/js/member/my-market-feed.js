@@ -1,3 +1,42 @@
+//거래중 / 거래완료
+const market_status = document.querySelectorAll("#cb3-8");
+const label = document.querySelectorAll('label[for="cb3-8"]');
+
+
+/*market_status.checked = true;*/
+
+const market_status = document.querySelectorAll("#cb3-8");
+const label = document.querySelector('label[for="cb3-8"]');
+
+function status() {
+	market_status.forEach((element, index) => {
+		label.addEventListener('click', function() {
+			if (element.checked) {
+				location.href = '/lively/market/statusY/' + myList.marketNo;
+				/*market_status.checked = true;*/
+			} else {
+				alert("ddd");
+				location.href = '/lively/market/statusN/' + myList.marketNo;
+				/*market_status.checked = false;*/
+			}
+		});
+	});
+}
+
+/*function feed_status() {
+    var statusCheckboxes = document.getElementsByClassName("tgl-btn");
+
+    for (var i = 0; i < statusCheckboxes.length; i++) {
+        var statusss = statusCheckboxes[i];
+        if (statusss.classList.contains("statusN")) {
+        	market_status.checked = false;
+        } 
+    }
+}
+ 
+feed_status();*/
+
+
 
 //enter 누르면 검색 가능
 const search_button = document.querySelector(".feed_search_input");
@@ -54,7 +93,7 @@ hide_feed_content();
 
 //거래 완료 시 투명도 낮게
 
- function feed_done() {
+function feed_done() {
     var feedBoxes = document.getElementsByClassName("feed_box");
 
     for (var i = 0; i < feedBoxes.length; i++) {
@@ -69,12 +108,18 @@ feed_done();
 
 
 // 수정 / 삭제 버튼
-const toggle = document.querySelector(".drop-edit-delete-box");
-const dropdown = document.querySelector(".drop-edit-delete-area");
+const toggle = document.querySelectorAll("#profile_area .drop-edit-delete-box");
+const dropdown = document.querySelectorAll("#profile_area .drop-edit-delete-area");
 
-dropdown.addEventListener("click", () => {
-	dropdown.classList.toggle("dropdown_toggle");
-});
+function editDelete(){
+	toggle.forEach((element, index) => {
+		element.addEventListener("click", () => {
+			dropdown[index].classList.toggle("dropdown_toggle");
+		});
+	});
+}
+
+editDelete();
 
 
 //friend / market 페이지 전환
@@ -82,9 +127,6 @@ const toggle_text = document.querySelector(".toggle_text");
 const toggle_checkbox = document.querySelector("#button-3");
 
 const page_switch = document.querySelector(".toggle_checkbox");
-/* window.onload = function(){
-	page_switch.onclick = go;
-} */
 
 page_switch.checked = true;
 
@@ -95,13 +137,6 @@ function go(){
 }
 
 go();
-
-
-//거래중 / 거래완료
-const market_status = document.querySelector("#cb3-8");
-if(market_status.checked){
-	market_status.checked = true;
-}
 
 
 //무한스크롤

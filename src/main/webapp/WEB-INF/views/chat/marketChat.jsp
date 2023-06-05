@@ -13,6 +13,8 @@
 	<input type="text" name="message">
 	<button onclick="sendMessage();">전송</button>
 	
+	<div id="chat-area"></div>
+	
 	<script>
 
 		//웹소켓 생성
@@ -42,17 +44,24 @@
 		//메세지 수신
 		function receiveMessage(event){
 			console.log('메세지 수신');
+			console.log(event);
 			const chat = JSON.parse(event.data);  //event.data : 데이터 덩어리
 			console.log("발신자 : " + chat.sender);
-			console.log("메세지 : " + chat.MsgContent);
+			console.log("메세지 : " + chat.msgContent);
 			console.log("마켓번호 : " + chat.roomNo);
+			console.log("보낸시각 : " + chat.msgTime);
+			
+			const chatArea = document.querySelector("#chat-area");
+			chatArea.innerHTML +=  chat.roomNo + " : " + chat.msgContent + " (" + chat.sender + ") " + " " + chat.msgTime  + "<br>";
 		}
 
 		//메세지 발신
 		function sendMessage(){
-			const message = document.querySelector("input[name=message]");
+			const message = document.querySelector("input[name=message]").value;
 			socket.send(message);
+			//socket.send(marketNo);
 		}
+
 	</script>
 
 </body>

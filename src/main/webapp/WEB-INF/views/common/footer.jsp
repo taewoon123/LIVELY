@@ -171,10 +171,13 @@
       </div>
     </div>
   </div>
+  
+  <div id="fixedButton" onclick="TOP();">TOP</div>
 </footer>
 
 
 
+<link href="${rootContext}/resources/css/common/fixedButton.css" rel="stylesheet">
 
 
 </body>
@@ -183,4 +186,5 @@
 <script src="${rootContext}/resources/js/common/jquery.sticky.js"></script>
 <script src="${rootContext}/resources/js/common/click-scroll.js"></script>
 <script src="${rootContext}/resources/js/common/custom.js"></script>
+<script src="${rootContext}/resources/js/common/fixedButton.js"></script>
 </html>

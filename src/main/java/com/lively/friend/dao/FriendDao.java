@@ -15,11 +15,13 @@ import com.lively.page.vo.PageVo;
 public class FriendDao {
 	
 	//피드(전체)
-	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst, String searchValue, PageVo pageVo) {
-		int limit = pageVo.getBoardLimit();
-		int offset = (pageVo.getCurrentPage()-1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		return sst.selectList("friend.FriendFeed", searchValue, rowBounds);
+	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst, String searchValue) {
+		/*
+		 * int limit = pageVo.getBoardLimit(); int offset = (pageVo.getCurrentPage()-1)
+		 * * limit;
+		 */
+		/* RowBounds rowBounds = new RowBounds(offset, limit); */
+		return sst.selectList("friend.FriendFeed", searchValue);
 	}
 
 
@@ -51,14 +53,38 @@ public class FriendDao {
 	 * sst.selectOne("friend.getFriendFeed" , no); }
 	 */
 
-	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String no) {
-		return sst.selectList("friend.getAttachmentList" , no);
+	public List<FileVo> getAttachmentList(SqlSessionTemplate sst) {
+		return sst.selectList("friend.getAttachmentList");
 	}
 
-
+	//검색
 	public List<String> search(SqlSessionTemplate sst, String searchValue) {
 		return sst.selectList("friend.search", searchValue);
 	}
+
+
+	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst) {
+		return sst.selectList("friend.getFriendFeed");
+	}
+
+	//수정(작성자만)
+	public int updateFeed(SqlSessionTemplate sst, FriendVo friendVo) {
+		return sst.update("friend.updateFeed" , friendVo);
+	}
+
+	//삭제(작성자만)
+	public int delete(SqlSessionTemplate sst, String no) {
+		return sst.update("friend.delete", no);
+	}
+
+
+
+
+
+
+
+
+
 	
 	//상세조회
 	

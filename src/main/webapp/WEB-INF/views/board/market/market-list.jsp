@@ -97,18 +97,22 @@
 	                </div>
 	                <div id="content_area">
 	                	<h7>${mList.title} &nbsp;&nbsp; ￦ ${mList.price}</h7> <br>
-	                    <span class="feed-content">${mList.content}</span>
-	                    <span class="feed-content-hide"></span>
-	                    <button class="feed-content-more-button">more</button>
+	                	<div class="content-line">
+		                    <a class="feed-content">${mList.content}</a>
+		                    <a class="feed-content-hide"></a>
+		                    <button class="feed-content-more-button">more</button>
+	                    </div>
 	                </div>
 	                <div id="chat_area">
-	                    <button onclick="return chat();"><a>CHAT</a></button>
+	                	<div><br><span class="feedEnrollDate">${mList.enrollDate}</span></div>
+	                    <div><button onclick="return chat();"><a>CHAT</a></button>
+	                    <input type="text" style="display:none" class="hiddenMarketNo" value="${mList.marketNo}"></div>
 	                </div>
 	            </div>
 	            <!-- 첫번째 피드 끝 -->
             </c:forEach>
             
-            <div id="page-area">
+            <%-- <div id="page-area">
 				<c:if test="${pageVo.currentPage > 1}">
 					<a class="prevPage" href="${rootContext}/market/list?page=${pageVo.currentPage-1}">이전</a>
 				</c:if>
@@ -124,7 +128,7 @@
 					<a class="nextPage" href="${rootContext}/market/list?page=${pageVo.currentPage+1}">다음</a>
 				</c:if>
 			</div>
-
+ --%>
         </main>
         
         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -132,33 +136,6 @@
     
 
 </body>
- <script src="${rootContext}/resources/js/board/market/market-list.js"></script>
  <link rel="stylesheet" href="${rootContext}/resources/css/board/market/market-list.css">
+ <script src="${rootContext}/resources/js/board/market/market-list.js"></script>
 </html>
-
-<!-- <script>
-
-	const svg = document.querySelector(".bd-placeholder-img");
-	
-	let imageTag;
-	let aTag;
-	
-	<c:forEach items="${marketVo.attachmentList}" var="fileVo">
-		//a태그 만들기
-		aTag = document.createElement('a');
-		aTag.href = "${root}/market/attachment/download?attachmentNo=${fileVo.no}";
-	
-		//이미지 요소 만들기
-		imgTag = document.createElement('img');
-		imgTag.setAttribute("src", "${rootContext}/${path}/${fileVo.changeName}");  //imgTag.src = "~"; 와 동일한 코드
-		imgTag.setAttribute("alt", "${fileVo.originName}");
-		imgTag.setAttribute("width", '100%');
-		imgTag.setAttribute("height", '100%');
-		
-		//a태그 내부에 img 추가하기
-		aTag.appendChild(imgTag);
-		
-		//div 안에 a태그 추가하기
-		svg.appendChild(aTag);
-	</c:forEach>
-</script> -->

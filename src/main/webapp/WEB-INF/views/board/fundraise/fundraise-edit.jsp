@@ -13,7 +13,7 @@
     <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
     <div class="write-board">
-        <form action="${rootContext}/fund/edit?no=${fundVo.fundraiseNo}" method="POST" enctype="multipart/form-data">
+        <form action="${rootContext}/fund/edit?no=${fundDetail.fundraiseNo}" method="POST" enctype="multipart/form-data">
             <div class="write-group">
 
                 <h3 id="friend-title">Fundraise</h3>
@@ -22,8 +22,9 @@
                 
 
                 <div class="form__group">
-                    <input type="text" name="title" class="form__field" placeholder="제목" required>
-                    ${fundDetail.title}
+                	<input type="text" name="fundraiseNo" value="${fundDetail.fundraiseNo}" style="display: none">
+                	<input type="text" name="writer" value="${fundDetail.writer}" style="display: none">
+                    <input type="text" name="title" class="form__field" placeholder="제목" required value="${fundDetail.title}">
                 </div>
             </div>
             <div class="write-group">
@@ -45,7 +46,7 @@
                 <!-- 0505 :required 삭제 -->
             </label>
             <div class="tag-group">
-                <input type="text" name="moneyGoal" class="tag" placeholder="목표금액">
+                <input type="text" name="moneyGoal" class="tag" placeholder="목표금액" value="${fundDetail.moneyGoal}">
             </div>
             <%--            <div class="tag-group">--%>
             <%--                <input type="text" class="tag" placeholder="#태그">--%>

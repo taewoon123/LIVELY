@@ -270,48 +270,28 @@
 							<div>
 								<h5>QNA</h5>
 
-								<table>
-									<thead>
-										<tr>
-											<th>No</th>
-											<th>Title</th>
-											<th>Date</th>
-											<th>Writer</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<th>1</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>강씨</th>
-										</tr>
-										<tr>
-											<th>2</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>정씨</th>
-										</tr>
-										<tr>
-											<th>3</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>최씨</th>
-										</tr>
-										<tr>
-											<th>4</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>오씨</th>
-										</tr>
-										<tr>
-											<th>5</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>심씨</th>
-										</tr>
-									</tbody>
-								</table>
+		                        <table>
+		                           <thead>
+		                              <tr>
+		                                 <th>No</th>
+		                                 <th>Title</th>
+		                                 <th>Date</th>
+		                                 <th>Writer</th>
+		                              </tr>
+		                           </thead>
+		                                 <tbody>
+		                                    <c:forEach items="${qvoList}" var="qvo" varStatus="loop">
+		                                       <c:if test="${loop.index < 5}">
+		                                          <tr>
+		                                             <td>${qvo.qnaNo}</td>
+		                                             <td>${qvo.qnaTitle}</td>
+		                                             <td>${qvo.enrollDate}</td>
+		                                             <td>${qvo.writerName}</td>
+		                                          </tr>
+		                                       </c:if>
+		                                    </c:forEach>
+		                                 </tbody>
+		                              </table>
 
 								<a class="link-fx-1 color-contrast-higher mt-4" href="${rootContext}/qna/list">
 									<div class="bootstrap_more_button">
@@ -407,7 +387,7 @@
 
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 
-	<div id="fixedButton" onclick="TOP();">TOP</div>
+	
 
 </div>
 

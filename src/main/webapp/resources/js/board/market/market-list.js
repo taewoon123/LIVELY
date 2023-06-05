@@ -14,7 +14,7 @@ search_button.addEventListener("keydown",(event) => {
 const more_button = document.querySelectorAll('#content_area .feed-content-more-button');
 const feed_contents = document.querySelectorAll('#content_area .feed-content');
 const feed_hide_contents = document.querySelectorAll('#content_area .feed-content-hide');
-const feed_box = document.querySelectorAll('.feed_box');
+const feed_box = document.querySelector('.feed_box');
 const content_area = document.querySelector("#content_area");
 
 
@@ -25,12 +25,14 @@ function show_more_hide_button(event, slice_length){
     if(event.target.innerHTML === 'more'){
         origin_content.innerHTML += hide_content.innerHTML;
         event.target.innerHTML = 'hide';
+        feed_box.classList.remove('feed_box');
         feed_box.classList.add('feed_more_box');
         content_area.classList.add('feed_content_more_box');
     }else{
         origin_content.innerHTML = origin_content.innerHTML.slice(0, slice_length);
         event.target.innerHTML = 'more';
         feed_box.classList.remove('feed_more_box');
+        feed_box.classList.add('feed_box');
         content_area.classList.remove('feed_content_more_box');
     }
 }
@@ -66,6 +68,13 @@ hide_feed_content();
 }
  
 feed_done();
+
+
+//채팅 버튼 클릭시 마켓 번호 전달
+function sendMarketNo(){
+	const marketNo = document.querySelector(".hiddenMarketNo").value;
+	socket.send(marketNo);
+}
 
 
 

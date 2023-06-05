@@ -27,8 +27,8 @@ public class MarketService {
 	}
 	
 	//피드 목록 (전체)
-	public List<MarketVo> getMarketFeed(PageVo pageVo, String searchValue){
-		return dao.getMarketFeed(sst, pageVo, searchValue);
+	public List<MarketVo> getMarketFeed(String searchValue){
+		return dao.getMarketFeed(sst, searchValue);
 	}
 	
 	//피드 작성
@@ -62,19 +62,27 @@ public class MarketService {
 		return dao.delete(sst, no);
 	}
 	
-//	//상세조회
-//	public MarketVo getFeed(String no) throws Exception {
-//		
-//		MarketVo marketVo = dao.getFeed(sst, no);
+	//상세조회
+	public MarketVo getFeed(String no) throws Exception {
+		
+		MarketVo marketVo = dao.getFeed(sst, no);
 //		List<FileVo> fileList = dao.getAttachmentList(sst, no);
-//		
+		
 //		marketVo.setAttachmentList(fileList);
-//		
-//		return marketVo;
-//	}
+		
+		return marketVo;
+	}
 	
 	public FileVo getAttachment(String attachmentNo) {
 		return dao.getAttachment(sst, attachmentNo);
+	}
+
+	public int statusY(String no) {
+		return dao.statusY(sst, no);
+	}
+	
+	public int statusN(String no) {
+		return dao.statusN(sst, no);
 	}
 }
 

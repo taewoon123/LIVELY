@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lively.friend.vo.FriendVo;
@@ -22,8 +23,8 @@ import com.lively.member.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
 @Slf4j
+@Controller
 @RequestMapping("member")
 public class MemberController {
 
@@ -78,8 +79,12 @@ public class MemberController {
 
 	// 로그인 처리
 	@PostMapping("login")
-	public String login(MemberVo memberVo, HttpSession session) {
-		MemberVo memberLog = ms.login(memberVo);
+	public String login(MemberVo vo, HttpSession session) {
+
+		System.out.println("con - 클라에서 받은 vo : " + vo);
+
+		MemberVo memberLog = ms.login(vo);
+		System.out.println("con - service 갔다온 memberLog : " + memberLog);
 
 		if (memberLog == null) {
 			session.setAttribute("alertMsg", "아이디 또는 비밀번호를 확인해주세요.");
@@ -87,6 +92,64 @@ public class MemberController {
 		}
 		session.setAttribute("memberLog", memberLog);
 		return "redirect:/main";
+	}
+
+	// 로그아웃
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
+	}
+
+	// 비밀번호 까묵 - 회원조회 - 화면
+	@GetMapping("forgot-password")
+	public String forgotPassword() {
+		return "member/forgot-password";
+	}
+
+	// 비밀번호 까묵 - 회원조회 - 처리
+	@PostMapping("forgot-password")
+	public String forgotPassword(MemberVo vo, HttpSession session) {
+
+		MemberVo memberCheck = ms.forgotPassword(vo);
+
+		if (memberCheck == null) {
+			session.setAttribute("alertMsg", "일치하는 회원정보가 없습니다. 다시 시도해주세요.");
+			return "member/forgot-password";
+		}
+		session.setAttribute("memberCheck", memberCheck);
+
+		MemberVo pwdResetPassMem = (MemberVo) session.getAttribute("memberCheck");
+		System.out.println("con - forgot에서 비번까묵은 회원:" + pwdResetPassMem.toString());
+
+		return "member/reset-password";
+	}
+
+	// 비밀번호 재설정 화면
+	@GetMapping("reset-password")
+	public String resetPassword() {
+		return "member/reset-password";
+	}
+
+	// 비밀번호 재설정 처리
+	@PostMapping("reset-password")
+	public String resetPassword(MemberVo vo, HttpSession session) throws Exception {
+
+		MemberVo memberCheck = (MemberVo) session.getAttribute("memberCheck");
+//		System.out.println("con - reset에서 비번 재설정 하려는 회원 : " + memberCheck.toString());
+
+		// @@@@@@ memberCheck는 원래 회원의 정보, vo에서 입력한걸 가져와야함! @@@@@@
+		// 서비스
+		MemberVo updatedMember = ms.resetPassword(memberCheck, vo);
+//		System.out.println("con - reset에서 비번 재설정한 updatedMember:" + updatedMember);
+
+		// 화면
+		if (updatedMember == null) {
+			session.setAttribute("alertMsg", "비밀번호 재설정 실패");
+			return "member/reset-password";
+		}
+		session.setAttribute("alertMsg", "비밀번호 재설정 완료. \n 새 비밀번호로 로그인하세요.");
+		return "redirect:/member/login";
 	}
 
 	// my-info 화면
@@ -101,18 +164,18 @@ public class MemberController {
 
 	// 정보수정 처리
 	@PostMapping("my-info")
-	public String myInfo(MemberVo vo, Model model, HttpSession session) throws Exception {
+	public String myInfo(MemberVo vo, HttpSession session) throws Exception {
 
 		// 서비스
 		MemberVo updatedMember = ms.myInfo(vo);
 
 		// 화면
 		if (updatedMember == null) {
-			model.addAttribute("alertMsg", "정보수정실패");
+			session.setAttribute("alertMsg", "정보수정실패");
 			return "member/my-info";
 		}
 		session.setAttribute("memberLog", updatedMember);
-		session.setAttribute("alertMsg", "정보 수정 성공!!");
+		session.setAttribute("alertMsg", "정보 수정 완료!");
 		return "redirect:/member/my-info";
 	}
 
@@ -130,20 +193,21 @@ public class MemberController {
 
 	// my-help-board 화면
 	@GetMapping("my-help-board")
-	public String myHelp(HelpVo helpVo, HttpSession session, Model model) {
+	public String myHelp(HelpVo helpVo, HttpSession session, Model model, @RequestParam(defaultValue = "1") int page) {
 
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
 		String writeNo = memberLog.getNo();
 		System.out.println("writeNo : " + writeNo);
+
 		helpVo.setWriter(writeNo);
 		System.out.println("helpVo : " + helpVo);
-		
+
 		List<HelpVo> myHelpList = ms.getMyHelpBoard(helpVo, writeNo);
+		System.out.println("myHelpList : " + myHelpList);
+
 		List<Map<String, String>> LocationList = ms.getLocationList();
 
-		System.out.println(myHelpList);
-
-		model.addAttribute("myMarketList", myHelpList);
+		model.addAttribute("myHelpList", myHelpList);// 범구가 수정함 "myMarketList => myHelpList"
 		model.addAttribute("LocationList", LocationList);
 
 		return "member/my-help-board";
@@ -205,13 +269,6 @@ public class MemberController {
 		model.addAttribute("LocationList", LocationList);
 
 		return "member/my-friend-feed";
-	}
-
-	// 로그아웃
-	@RequestMapping("logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/main";
 	}
 
 }// class

@@ -47,25 +47,18 @@
                 </thead>
 
                 <tbody>
-                    <c:forEach items="${hvoList}" var="hvo">
+                    <c:forEach items="${myHelpList}" var="helpList">
                         <tr>
-                            <td>${hvo.helpNo}</td>
-                            <td>${hvo.title}</td>
-                            <td>${hvo.enrollDate}</td>
-                            <td>${hvo.writer}</td>
-                            <td>${hvo.views}</td>
+                            <!-- 범구가 수정함 hvo => helpList -->
+                            <td>${helpList.helpNo}</td>
+                            <td>${helpList.title}</td>
+                            <td>${helpList.enrollDate}</td>
+                            <td>${helpList.writer}</td>
+                            <td>${helpList.views}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
-
-            <!-- 작성 버튼 -->
-            <c:if test="${not empty memberLog}">
-                <button id="write_submit">
-                    <span> <a class="write-btn" href="${rootContext}/help/write">write</a>
-                    </span>
-                </button>
-            </c:if>
 
             <!-- pagenation -->
             <div class="page-area">

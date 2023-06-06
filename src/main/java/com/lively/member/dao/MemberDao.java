@@ -14,24 +14,33 @@ import com.lively.member.vo.MemberVo;
 @Repository
 public class MemberDao {
 
-	//회원가입
+	// 회원가입
 	public int join(MemberVo vo, SqlSessionTemplate sst) throws Exception {
 		return sst.insert("member.join", vo);
 	}
 
-	//아이디 중복확인
+	// 아이디 중복확인
 	public int checkId(SqlSessionTemplate sst, String id) {
 		// return conn.mybatis메소드("쿼리문위치", 전달할 객체);
 		return sst.selectOne("member.checkId", id);
 	}
 
-	//로그인
-	public MemberVo login(SqlSessionTemplate sst, MemberVo memberVo) {
-
-		return sst.selectOne("member.login", memberVo);
+	// 로그인
+	public MemberVo login(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.selectOne("member.login", vo);
 	}
 
-	//my-info
+	// 비밀번호 까묵 - 회원조회
+	public MemberVo forgotPassword(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.selectOne("member.forgotPassword", vo);
+	}
+
+	// 비밀번호 재설정
+	public int resetPassword(SqlSessionTemplate sst, MemberVo vo) {
+		return sst.update("member.resetPassword", vo);
+	}
+
+	// my-info
 	public int myInfo(SqlSessionTemplate sst, MemberVo vo) {
 		return sst.update("member.myInfo", vo);
 	}
@@ -40,7 +49,7 @@ public class MemberDao {
 		return sst.selectOne("member.getMember", vo);
 	}
 
-	//my-feed
+	// my-feed
 	public List<MarketVo> getMyMarketFeed(SqlSessionTemplate sst, MarketVo marketVo) {
 		return sst.selectList("member.marketFeed", marketVo);
 	}
@@ -61,7 +70,7 @@ public class MemberDao {
 		return sst.selectList("member.friendFeed", friendVo);
 	}
 
-	//my-help
+	// my-help
 	public List<HelpVo> getMyHelpBoard(SqlSessionTemplate sst, HelpVo helpVo) {
 		return sst.selectList("member.helpBoard", helpVo);
 	}

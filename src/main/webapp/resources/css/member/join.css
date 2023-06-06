@@ -1,3 +1,8 @@
+#join-button {
+	margin-top: 10px;
+	font-size: 15px;
+}
+
 /* 인풋태그 style 설정 */
 .input-group input {
 	width: 100%;

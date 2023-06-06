@@ -100,7 +100,6 @@
 			} , 
 			success : function(data){
 				if(data == 'ok'){
-					 alert("댓글 작성 완료 !");
 					document.querySelector('input[name=content]').value = '';
 					loadReply();
 				}else if(data == 'unauthor'){
@@ -175,7 +174,6 @@
 			type : 'delete' ,
 			success : function(data){
 				console.log(data);
-				alert("댓글이 삭제되었습니다");
 				loadReply();
 			} ,
 			error : function(error){

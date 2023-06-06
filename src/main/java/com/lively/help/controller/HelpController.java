@@ -97,10 +97,6 @@ public class HelpController {
 		
 		int result = hs.write(vo, fvoList);
 		
-		if(result != 1) {
-			session.setAttribute("alertMsg", "도움글 작성 실패");
-		}
-		
 		return "redirect:/help/list";
 	}
 	
@@ -155,27 +151,4 @@ public class HelpController {
 		
 		return "redirect:/help/list";
 	}
-	
-	//파일다운로드
-//	@GetMapping("att/down")
-//	public void download(HttpServletRequest req, HttpServletResponse resp, String ano) throws Exception {
-//		
-//		//파일 객체 준비
-//		String path = req.getServletContext().getRealPath("/resources/upload/help/");
-//		FileVo fvo = hs.getAttachment(ano);
-//		File f = new File(path + fvo.getChangeName());
-//		
-//		byte[] data = FileUtils.readFileToByteArray(f);
-//		
-//		resp.setHeader("Content-Type", "application/octet-stream");
-//		resp.setHeader("Content-Disposition", "attachment; filename=" + "\"" + URLEncoder.encode(fvo.getOriginName(), "UTF-8") + "\"");
-//		resp.setHeader("Content-Length", data.length + "");
-//		
-//		//내보낼 통로 준비
-//		ServletOutputStream os = resp.getOutputStream();
-//		FileInputStream fis = new FileInputStream(f);
-//		
-//		os.write(data);
-//	}
-	
 }

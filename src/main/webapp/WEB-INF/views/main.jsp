@@ -214,40 +214,21 @@
 											<th>No</th>
 											<th>Title</th>
 											<th>Date</th>
-											<th>Writer</th>
+											<th>Views</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th>1</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>강씨</th>
-										</tr>
-										<tr>
-											<th>2</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>정씨</th>
-										</tr>
-										<tr>
-											<th>3</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>최씨</th>
-										</tr>
-										<tr>
-											<th>4</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>오씨</th>
-										</tr>
-										<tr>
-											<th>5</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>심씨</th>
-										</tr>
+										<c:forEach items="${nvoList}" var="nvo" varStatus="loop">
+                                       <c:if test="${loop.index < 5}">
+                                          <tr>
+                                             <td>${nvo.noticeNo}</td>
+                                             <td>${nvo.noticeTitle}</td>
+                                             <td>${nvo.enrollDate}</td>
+                                             <td>${nvo.views}</td>
+                                          </tr>
+                                       </c:if>
+                                    </c:forEach>
+
 									</tbody>
 								</table>
 

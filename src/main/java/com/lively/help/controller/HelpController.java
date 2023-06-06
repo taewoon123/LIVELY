@@ -137,8 +137,6 @@ public class HelpController {
 	public String edit(HelpVo vo, HttpSession session) {
 		int result = hs.edit(vo);
 		
-		System.out.println(vo);
-		
 		if(result > 0) {
 			session.setAttribute("alertMsg", "도움 글 수정 성공!!");
 			return "redirect:/help/detail?num=" + vo.getHelpNo();

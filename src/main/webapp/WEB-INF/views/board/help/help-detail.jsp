@@ -45,7 +45,7 @@
 				</button>
 				<span style="color: whitesmoke">${HelpNo}</span>
 
-				<button id="write_submit_edit">
+				<button id="write_submit_edit" onclick="location.href='${rootContext}/help/edit?num=${helpNo}'">
 					<span>수정하기</span>
 				</button>
 				</c:if>

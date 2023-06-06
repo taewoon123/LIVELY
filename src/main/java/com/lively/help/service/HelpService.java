@@ -48,7 +48,7 @@ public class HelpService {
 	}
 
 	//상세조회 (조회수)
-	public HelpVo getHelp(String num) throws Exception {
+	public HelpVo getHelp(int num) throws Exception {
 		int result = dao.increaseViews(sst, num);
 		if(result != 1) {
 			throw new Exception();
@@ -67,6 +67,10 @@ public class HelpService {
 
 	public FileVo getAttachment(String ano) {
 		return dao.getAttachment(sst, ano);
+	}
+
+	public int edit(HelpVo vo) {
+		return dao.edit(sst, vo);
 	}
 
 }

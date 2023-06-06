@@ -31,11 +31,11 @@ public class HelpDao {
 	}
 
 	//조회수
-	public int increaseViews(SqlSessionTemplate sst, String num) {
+	public int increaseViews(SqlSessionTemplate sst, int num) {
 		return sst.update("help.increaseViews", num);
 	}
 
-	public HelpVo getHelp(SqlSessionTemplate sst, String num) {
+	public HelpVo getHelp(SqlSessionTemplate sst, int num) {
 		return sst.selectOne("help.getHelp", num);
 	}
 
@@ -51,12 +51,16 @@ public class HelpDao {
 		return sst.insert("help.insertAttachment", helpList);
 	}
 
-	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String num) {
+	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, int num) {
 		return sst.selectList("help.getAttachmentList", num);
 	}
 
 	public List<String> search(SqlSessionTemplate sst, String searchValue) {
 		return sst.selectList("help.search", searchValue);
+	}
+
+	public int edit(SqlSessionTemplate sst, HelpVo vo) {
+		return sst.update("help.edit", vo);
 	}
 
 }

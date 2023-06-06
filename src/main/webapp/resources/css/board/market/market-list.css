@@ -5,8 +5,9 @@
 }
 
 /* 피드 영역 */
-.feed_box {
-    height: 560px;
+.feed_more_box {
+  	height: 650px;
+    width: 600px;
     display: grid;
     grid-template-rows: 1fr 7fr 2fr 1fr;
     border: 1px solid grey;
@@ -15,13 +16,31 @@
     margin-bottom: 40px;
 }
 
-.feed_more_box {
-  height: 600px;
+.feed_content_more_box {
+  height: 100px;
+  width: 568px;
+}
+.feed_box {
+    height: 600px;
+    width: 600px;
+    display: grid;
+    grid-template-rows: 1fr 7fr 2fr 1fr;
+    border: 1px solid grey;
+    background-color: rgb(26, 26, 26);
+    border-radius: 1%;
+    margin-bottom: 40px;
 }
 
-.feed_content_more_box {
-  height: 70px;
+.content-line {
+	width: 100%;
+  word-break: break-all;
 }
+
+.feed-content {
+	height: 60px;
+	
+}
+
 
 .feed_done {
   opacity: 0.3;
@@ -29,6 +48,14 @@
 
 .feed_hidden {
 	display: none;
+}
+
+#feed-image {
+	width: 100%;
+}
+
+#content-area {
+	width: 100%;
 }
 
 
@@ -195,7 +222,7 @@
     overflow: hidden;
     background: #078735;
     color: ghostwhite;
-    margin: 5px 0 8px 500px; /* 새로 추가 */
+    margin: 5px 0 8px 370px; /* 새로 추가 */
     width: 75px; /* 새로 추가 */
     height: 40px; /* 새로 추가 */
 
@@ -234,7 +261,9 @@
     transform: translate3d(100%, 0, 0);
    }
 
-
+	#chat_area {
+		display: flex;
+	}
 
  /* upload button */
 
@@ -376,5 +405,12 @@
 /* page list 숨기기 */
 #page-area {
 	display: none;
+}
+
+/* enrollDate */
+.feedEnrollDate {
+	color: rgb(172, 172, 172);
+	font-size: 13px;
+	margin-left: 20px;
 }
 

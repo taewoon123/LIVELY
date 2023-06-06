@@ -15,11 +15,12 @@ import com.lively.page.vo.PageVo;
 public class MarketDao {
 	
 	//피드 목록 (전체)
-	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, PageVo pageVo, String searchValue){
-		int limit = pageVo.getBoardLimit();
-		int offset = (pageVo.getCurrentPage()-1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		return sst.selectList("market.MarketFeed", searchValue, rowBounds);
+	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, String searchValue){
+		/*
+		 * int limit = pageVo.getBoardLimit(); int offset = (pageVo.getCurrentPage()-1)
+		 * * limit; RowBounds rowBounds = new RowBounds(offset, limit);
+		 */
+		return sst.selectList("market.MarketFeed", searchValue);
 	}
 	
 	//피드 작성
@@ -45,7 +46,9 @@ public class MarketDao {
 
 	//수정 (작성자만)
 	public int updateFeed(SqlSessionTemplate sst, MarketVo marketVo) {
-		return sst.update("market.updateFeed", marketVo);
+		int a = sst.update("market.updateFeed", marketVo);
+		System.out.println(a);
+		return a;
 	}
 
 	//삭제 (작성자만)
@@ -72,11 +75,24 @@ public class MarketDao {
 	public FileVo getAttachment(SqlSessionTemplate sst, String attachmentNo) {
 		return sst.selectOne("market.getAttachment", attachmentNo);
 	}
+
+	public List<String> search(SqlSessionTemplate sst, String searchValue) {
+		return sst.selectList("market.search", searchValue);
+	}
+
+	public int statusY(SqlSessionTemplate sst, String no) {
+		return sst.update("market.statusY", no);
+	}
+
 	
-//	//상세조회
-//	public MarketVo getFeed(SqlSessionTemplate sst, String no) {
-//		return sst.selectOne("market.getFeed", no);
-//	}
+	public int statusN(SqlSessionTemplate sst, String no) {
+		return sst.update("market.statusN", no);
+	}
+	
+	//상세조회
+	public MarketVo getFeed(SqlSessionTemplate sst, String no) {
+		return sst.selectOne("market.getFeed", no);
+	}
 }
 
 

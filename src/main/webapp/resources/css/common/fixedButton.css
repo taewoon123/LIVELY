@@ -1,0 +1,26 @@
+/* TOP 고정 버튼 */
+
+#fixedButton {
+    position: fixed;
+    right: 45px;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-content: center center;
+    background-color: rgb(32, 32, 32);
+    color: #e8e8e8;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid #9E9E9E;
+    cursor: pointer;
+}
+#fixedButton:hover {
+    background-color: #078735;
+    color: white;
+}
+
+/* header 영역 */
+
+#section_1{
+    margin-top: 6%;
+  }

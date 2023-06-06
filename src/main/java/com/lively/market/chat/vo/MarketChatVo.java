@@ -8,8 +8,10 @@ import lombok.Data;
 public class MarketChatVo {
 
 	private String msgNo;
-	private TextMessage msgContent;
+	private String msgContent;
 	private String msgTime;
 	private String sender;
 	private String roomNo;
+	
+	private String writerName;
 }

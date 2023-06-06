@@ -40,8 +40,9 @@ public class JobDao {
 	}
 	
 	//수정하기(작성자만)
-	public int updateJob(SqlSessionTemplate sst, JobVo vo) {
-		return sst.update("job.updateJob" , vo);
+	public int edit(SqlSessionTemplate sst, JobVo vo) {
+		System.out.println(vo);
+		return sst.update("job.edit" , vo);
 	}
 	//삭제하기(작성자만)
 	public int delete(SqlSessionTemplate sst, String no) {

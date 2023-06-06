@@ -25,48 +25,72 @@
 					<div id="detail-hit">조회수</div>
 					<div id="detail-inHit">${jvo.views}</div>
 					<div id="detail-content">내용</div>
-					<div id="detail-inContent">${jvo.content}
-					
-					</div>
+					<div id="detail-inContent">${jvo.content}</div>
 				</div>
-				
-					<div>
-						<label for="thumbnail-tag">사진</label>
-						<input id="thumbnail-tag" type="file" name="f" multiple accept=".jpg,.png,.jpeg">
-					</div>
-					<div id="thumbnail-area"></div>
+
+				<div>
+					<label for="thumbnail-tag">사진</label> <input id="thumbnail-tag"
+						type="file" name="f" multiple accept=".jpg,.png,.jpeg">
+				</div>
+				<div id="thumbnail-area"></div>
 
 				<!-- 작성 버튼 -->
-		<%-- 		<c:if test="${memberLog.id eq vo.writer}"> --%>
-				<button id="write_submit_delete" onclick="location.href='${rootContext}/job/delete?no=${jobNo}'">
+				<%-- 		<c:if test="${memberLog.id eq vo.writer}"> --%>
+				<button id="write_submit_delete"
+					onclick="location.href='${rootContext}/job/delete?no=${jobNo}'">
 					<span>삭제하기</span>
 				</button>
 
-				<button id="write_submit_edit">
+				<button id="write_submit_edit" onclick="toggleActive();">
 					<span>수정하기</span>
 				</button>
-		<%-- 		</c:if> --%>
+				<%-- 		</c:if> --%>
 
 			</div>
+			<div class="form-area">
+				<form action="${rootContext}/job/edit" method="POST"
+					enctype="multipart/form-data">
+					<input type="hidden" name="jobNo" value="${jvo.jobNo}">
+					<div id="detail-area">
+						<div id="detail-title">제목</div>
+						<div id="detail-inTitle">
+							<textarea name="title">${jvo.title}</textarea>
+						</div>
+						<div id="detail-date">작성일자</div>
+						<div id="detail-inDate">${jvo.enrollDate}</div>
+						<div id="detail-hit">조회수</div>
+						<div id="detail-inHit">${jvo.views}</div>
+						<div id="detail-content">내용</div>
+						<div id="detail-inContent">
+							<textarea name="content">${jvo.content}</textarea>
+						</div>
+					</div>
+					<br>
+					<button id="write_submit_edit" style="margin-right: 240px;">
+						<span>수정완료</span>
+					</button>
+				</form>
+			</div>
+
 
 			<div id="comment-header">
 				<input type="text" name="content" placeholder="댓글을 입력하세요">
 				<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
 			</div>
-			<div id="comment-area">
-				
-			</div>
+			<div id="comment-area"></div>
 
-		<footer>
-			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-		</footer>
+			<footer>
+				<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+			</footer>
 
 		</main>
-		
-	</div> <!-- div wrap end -->
+
+	</div>
+	<!-- div wrap end -->
 
 </body>
 </html>
+
 <script>
 
     function toggleActive(){
@@ -207,5 +231,7 @@ const div = document.querySelector('#thumbnail-area');
 	}
 	
 </script>
-<link rel="stylesheet" href="${rootContext}/resources/css/board/job/job-detail.css">
-<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+<link rel="stylesheet"
+	href="${rootContext}/resources/css/board/job/job-detail.css">
+<link rel="stylesheet"
+	href="${rootContext}/resources/css/common/wrap-style.css" />

@@ -133,7 +133,7 @@ public class QnaController {
 		    int result = qs.edit(vo);
 
 		    if (result != 1) {
-		    	System.out.println(vo);
+		    	
 		        model.addAttribute("errorMsg", "수정실패...");
 		        return "common/error-page";
 		    } else {

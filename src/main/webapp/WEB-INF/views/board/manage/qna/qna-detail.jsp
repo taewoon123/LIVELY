@@ -9,10 +9,6 @@
 	display: none;
 }
 
-.form-area {
-	display: none;
-}
-
 .active {
 	display: block;
 }
@@ -80,7 +76,7 @@
 					<div id="detail-reply">답변</div>
 					</div>
 					<div id="detail-inContent">${qvo.qnaContent}
-					<div id="detail-inReply" name="qnaReplyContent"><textarea>${qvo.qnaReplyContent}</textarea>
+					<div id="detail-inReply" ><textarea name="qnaReplyContent">${qvo.qnaReplyContent}</textarea>
 					</div>
 					</div>
 					<br>
@@ -93,7 +89,7 @@
 					<input type = "hidden" name = "qnaNo" value = "${qvo.qnaNo}">
 					<div id="detail-area">
 					<div id="detail-title">제목</div>
-					<textarea id="detail-inTitle">${qvo.qnaTitle}</textarea>
+					<div id="detail-inTitle" ><textarea name="qnaTitle">${qvo.qnaTitle}</textarea></div>
 					<div id="detail-date">작성일자</div>
 					<div id="detail-inDate">${qvo.enrollDate}</div>
 					<div id="detail-hit">조회수</div>
@@ -101,8 +97,8 @@
 					<div id="detail-content">내용
 					<div id="detail-reply">답변</div>
 					</div>
-					<textarea id="detail-inContent">${qvo.qnaContent}</textarea>
-					<div id="detail-inReply" name="qnaReplyContent">${qvo.qnaReplyContent}</div>
+					<div id="detail-inContent" name="qnaContent"><textarea>${qvo.qnaContent}</textarea></div>
+					<div id="detail-inReply">${qvo.qnaReplyContent}</div>
 					</div>
 					<br>
 					<button id="write_submit_edit" style = "margin-right: 240px;"><span>수정완료</span></button>

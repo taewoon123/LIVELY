@@ -113,7 +113,7 @@
 		FROM JOB J 
 		LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO )
 		WHERE   J.DELETE_YN = 'N'
-		AND    J.JOB_NO = #{no}
+		AND    J.JOB_NO = #{jobNo}
 	</select>
 
 	<update id="edit">
@@ -122,7 +122,7 @@
 		TITLE = #{title}
 		,CONTENT = #{content}
 		,EDIT_DATE = SYSDATE
-		WHERE JOB_NO = #{no}
+		WHERE JOB_NO = #{jobNo}
 	</update>
 
 	<update id="delete">

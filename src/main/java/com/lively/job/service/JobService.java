@@ -57,8 +57,8 @@ public class JobService {
 	
     }
 	//수정하기(작성자 본인만)
-	public int updateJob(JobVo vo) {
-		return dao.updateJob(sst, vo);
+	public int edit(JobVo vo) {
+		return dao.edit(sst, vo);
 	}
 	
 	// 삭제하기 (작성자 본인만)

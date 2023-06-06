@@ -51,8 +51,8 @@ public class JobController {
 
 //	목록 조회
 	@GetMapping("list")
-	public String getJobList( @RequestParam(defaultValue = "1") int page,
-			@RequestParam Map<String, String> searchMap, Model model) {
+	public String getJobList(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
+			Model model) {
 
 		// 데이터
 		int listCount = js.getJobListCnt();
@@ -63,8 +63,7 @@ public class JobController {
 
 		// 서비스
 		List<JobVo> jvoList = js.getJobList(pv, searchMap);
-		
-		System.out.println(jvoList);
+
 //		List<Map<String, String>> cvoList = js.getCategoryList();
 
 //		model.addAttribute("cvoList" , cvoList);
@@ -82,14 +81,14 @@ public class JobController {
 
 	// 작성하기
 	@PostMapping("write")
-	public String write(JobVo vo, HttpSession session ,HttpServletRequest req, List<MultipartFile> file)
+	public String write(JobVo vo, HttpSession session, HttpServletRequest req, List<MultipartFile> file)
 			throws Exception {
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
 		if (memberLog == null) {
-			
+
 			return "alertMsg";
 		}
-		
+
 		String path = req.getServletContext().getRealPath("/resources/upload/job/");
 		List<String> changeFileNames = FileUploader.upload(file, path);
 		List<String> originalFileNames = FileUploader.getOriginNameList(file);
@@ -105,8 +104,8 @@ public class JobController {
 			}
 		}
 		vo.setWriter(memberLog.getNo());
-		
-		int result = js.write(vo,fvoList);
+
+		int result = js.write(vo, fvoList);
 
 		if (result == 1) {
 			session.setAttribute("alertMsg", " 작성 완료");
@@ -124,27 +123,29 @@ public class JobController {
 		JobVo vo = js.getJob(no);
 
 		if (vo == null) {
+			
 			model.addAttribute("errorMsg", "조회 실패...");
 			return "common/error-page";
 		}
+		System.out.println(vo);
 		model.addAttribute("jvo", vo);
-		model.addAttribute("jobNo",no);
+		model.addAttribute("jobNo", no);
 
 		return "board/job/job-detail";
 	}
 
 	// 수정하기 (작성자 본인만)
 	@PostMapping("edit")
-	public String edit(JobVo vo, RedirectAttributes ra) throws Exception {
-		int result = js.updateJob(vo);
+	public String edit(JobVo vo, Model model, HttpSession session) throws Exception {
+		int result = js.edit(vo);
 
 		if (result != 1) {
-			throw new Exception("수정 실패 ...");
-		}
-
-		ra.addFlashAttribute("alertMsg", "수정하기 성공!");
-		ra.addAttribute("no", vo.getJobNo());
-		return "redirect:/board/detail";
+			 model.addAttribute("errorMsg", "수정실패...");
+		        return "common/error-page";
+		    } else {
+		        session.setAttribute("alertMsg", "수정성공!!");
+		return "redirect:/job/detail?no=" + vo.getJobNo();
+		    }
 	}
 
 	// 삭제하기 (작성자 본인만)

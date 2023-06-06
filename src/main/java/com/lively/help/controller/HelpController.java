@@ -97,9 +97,7 @@ public class HelpController {
 		
 		int result = hs.write(vo, fvoList);
 		
-		if(result == 1) {
-			session.setAttribute("alertMsg", "도움글 작성 완료");
-		} else {
+		if(result != 1) {
 			session.setAttribute("alertMsg", "도움글 작성 실패");
 		}
 		
@@ -138,7 +136,6 @@ public class HelpController {
 		int result = hs.edit(vo);
 		
 		if(result > 0) {
-			session.setAttribute("alertMsg", "도움 글 수정 성공!!");
 			return "redirect:/help/detail?num=" + vo.getHelpNo();
 		}
 		

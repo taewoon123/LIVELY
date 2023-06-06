@@ -19,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lively.qna.vo.QnaVo;
 import com.lively.admin.vo.AdminVo;
 import com.lively.member.vo.MemberVo;
+import com.lively.notice.service.NoticeService;
+import com.lively.notice.vo.NoticeVo;
 import com.lively.page.vo.PageVo;
 import com.lively.qna.service.QnaService;
 
@@ -31,10 +33,12 @@ import lombok.extern.slf4j.Slf4j;
 public class QnaController {
 	
 		private final QnaService qs;
+		private final NoticeService ns;
 		
 		@Autowired
-		public QnaController(QnaService qs) {
+		public QnaController(QnaService qs , NoticeService ns) {
 			this.qs = qs;
+			this.ns = ns;
 			
 		}
 		
@@ -45,8 +49,10 @@ public class QnaController {
 					
 					
 					List<QnaVo> qvoListMain = qs.getQnaListMain();
+					List<NoticeVo> nvoListMain = ns.getNoticeListMain();
 					
 					model.addAttribute("qvoList" , qvoListMain);
+					model.addAttribute("nvoList", nvoListMain);
 					return "main";
 				}
 		
@@ -114,6 +120,8 @@ public class QnaController {
 				return "common/error-page";
 			}
 			
+			System.out.println(vo);
+			
 			model.addAttribute("qvo", vo);
 			model.addAttribute("qnaNo",no);
 			return "board/manage/qna/qna-detail";
@@ -125,6 +133,7 @@ public class QnaController {
 		    int result = qs.edit(vo);
 
 		    if (result != 1) {
+		    	System.out.println(vo);
 		        model.addAttribute("errorMsg", "수정실패...");
 		        return "common/error-page";
 		    } else {
@@ -135,9 +144,11 @@ public class QnaController {
 
 		@PostMapping("qna/replyedit")
 		public String replyedit(QnaVo vo, Model model, HttpSession session) {
-		    int replyresult = qs.replyedit(vo);
+		    int result = qs.replyedit(vo);
+		    
 
-		    if (replyresult != 1) {
+		    if (result != 1) {
+		    	System.out.println(result);
 		        model.addAttribute("errorMsg", "답변 작성 실패..");
 		        return "common/error-page";
 		    } else {

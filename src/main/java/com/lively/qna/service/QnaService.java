@@ -73,6 +73,7 @@ public class QnaService {
 	}
 
 	public int replyedit(QnaVo vo) {
+
 		 return dao.replyedit(sst, vo);
 	}
 

@@ -5,16 +5,6 @@
 
 <mapper namespace="qna">
 
-	<insert id="replyinsert">
-		INSERT INTO QNA
-
-
-
-
-
-	</insert>
-
-
 	<insert id="write">
 		INSERT INTO QNA
 		(
@@ -67,9 +57,8 @@
 	</update>
 
 	<select id="getQna" resultType="QnaVo">
-		SELECT QNA_NO AS NO,
-		M.NAME AS
-		WRITER
+		SELECT QNA_NO,
+		M.NAME AS WRITER
 		,Q.QNA_TITLE
 		,Q.QNA_CONTENT
 		,Q.VIEWS
@@ -90,17 +79,16 @@
 		UPDATE QNA
 		SET
 		QNA_TITLE = #{qnaTitle}
-		,QNA_CONTENT =
-		#{qnaContent}
+		,QNA_CONTENT = #{qnaContent}
 		,EDIT_DATE = SYSDATE
 		WHERE QNA_NO = #{qnaNo}
 	</update>
-	
+
 	<update id="replyEdit">
 		UPDATE QNA
 		SET
 		QNA_REPLY_CONTENT = #{qnaReplyContent}
-		WHERE NOTICE_NO = #{noticeNo}	
+		WHERE QNA_NO = #{qnaNo}	
 	</update>
 
 	<update id="delete">

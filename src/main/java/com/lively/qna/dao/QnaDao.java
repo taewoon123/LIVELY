@@ -55,6 +55,7 @@ public class QnaDao {
 	}
 
 	public int replyedit(SqlSessionTemplate sst, QnaVo vo) {
+		System.out.println(vo);
 		return sst.update("qna.replyEdit", vo);
 	}
 

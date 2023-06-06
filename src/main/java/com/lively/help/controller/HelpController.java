@@ -15,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -123,8 +124,10 @@ public class HelpController {
 	
 	//도움 수정하기 (화면)
 	@GetMapping("edit")
-	public String edit(Model model) {
-		HelpVo vo = (HelpVo) model.getAttribute("hvo");
+	public String edit(Model model, @RequestParam("num") int num) throws Exception {
+//		HelpVo vo = (HelpVo) model.getAttribute("hvo");
+		HelpVo vo = hs.getHelp(num);
+		
 		model.addAttribute("hvo", vo);
 		return "board/help/help-edit";
 	}
@@ -133,8 +136,6 @@ public class HelpController {
 	@PostMapping("edit")
 	public String edit(HelpVo vo, HttpSession session) {
 		int result = hs.edit(vo);
-		
-		System.out.println(vo);
 		
 		if(result > 0) {
 			session.setAttribute("alertMsg", "도움 글 수정 성공!!");

@@ -62,7 +62,7 @@
         H.DELETE_YN,
         H.VIEWS
         FROM HELP H
-        JOIN MEMBER M ON M.NO = H.WRITER
+        LEFT JOIN MEMBER M ON M.NO = H.WRITER
         WHERE DELETE_YN = 'N'
         AND HELP_NO = #{num}
 	</select>
@@ -122,6 +122,7 @@
 		,CONTENT = #{content}
 		,EDIT_DATE = SYSDATE
 		WHERE HELP_NO = #{helpNo}
+		AND DELETE_YN = 'N'
 	</update>
 	
 </mapper>

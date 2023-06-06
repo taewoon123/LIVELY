@@ -46,5 +46,9 @@ public class NoticeDao {
 	public List<String> search(SqlSessionTemplate sst, String searchValue) {
 		return sst.selectList("notice.search", searchValue);
 	}
+	
+	public List<NoticeVo> getNoticeListMain(SqlSessionTemplate sst) {
+	      return sst.selectList("notice.getNoticeList");
+	}
 
 }

@@ -74,6 +74,7 @@ public class FriendController {
 		}
 		
 		
+		
 		/*
 		 * model.addAttribute("fvo" , vo); model.addAttribute("path" ,
 		 * "resources/upload/friend");

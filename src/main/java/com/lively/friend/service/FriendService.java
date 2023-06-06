@@ -93,6 +93,7 @@ public class FriendService {
 		 }
 		 
 		 fvoList.get(0).setAttachmentList(fileList);
+		 
 		 return fvoMap;
 	 }
 

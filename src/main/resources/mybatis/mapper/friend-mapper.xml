@@ -127,6 +127,7 @@
 		SELECT 1 FROM DUAL
 	</insert>	
 
+
 	<!-- FRI_ATTACH -->
 	<select id="getAttachmentList" resultType="fileVo">
 		SELECT

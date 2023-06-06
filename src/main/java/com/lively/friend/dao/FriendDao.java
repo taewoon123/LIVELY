@@ -22,6 +22,7 @@ public class FriendDao {
 		 */
 		/* RowBounds rowBounds = new RowBounds(offset, limit); */
 		return sst.selectList("friend.FriendFeed", searchValue);
+		
 	}
 
 
@@ -47,6 +48,7 @@ public class FriendDao {
 		return sst.selectOne("friend.getAttachment" , friendAttachNo);
 	}
 
+	
 
 	/*
 	 * public FriendVo getFriendFeed(SqlSessionTemplate sst, String no) { return

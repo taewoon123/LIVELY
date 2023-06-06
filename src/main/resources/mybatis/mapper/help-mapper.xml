@@ -115,4 +115,13 @@
 		AND DELETE_YN = 'N'
 	</select>
 	
+	<update id="edit">
+		UPDATE HELP
+		SET 
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,EDIT_DATE = SYSDATE
+		WHERE HELP_NO = #{helpNo}
+	</update>
+	
 </mapper>

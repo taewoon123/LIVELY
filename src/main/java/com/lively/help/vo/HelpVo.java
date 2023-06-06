@@ -19,11 +19,11 @@ public class HelpVo {
 	
 	private List<FileVo> attList;
 	
-	private String locationName;
-	private String writerName;
-	private String writerId;
-	private String originName;
-	private String changeName;
-	private String deleteYnAttach;
+//	private String locationName;
+//	private String writerName;
+//	private String writerId;
+//	private String originName;
+//	private String changeName;
+//	private String deleteYnAttach;
 	
 }

@@ -107,7 +107,7 @@ public class HelpController {
 	
 	//도움 상세조회
 	@GetMapping("detail")
-	public String detail(String num, Model model,HttpSession session) throws Exception {
+	public String detail(@RequestParam("num") int num, Model model) throws Exception {
 		HelpVo vo = hs.getHelp(num);
 		
 		if(vo == null) {
@@ -119,6 +119,30 @@ public class HelpController {
 		model.addAttribute("helpNo", num);
 		model.addAttribute("path", "/resources/upload/help");
 		return "board/help/help-detail";
+	}
+	
+	//도움 수정하기 (화면)
+	@GetMapping("edit")
+	public String edit(Model model) {
+		HelpVo vo = (HelpVo) model.getAttribute("hvo");
+		model.addAttribute("hvo", vo);
+		return "board/help/help-edit";
+	}
+	
+	//도움 수정하기
+	@PostMapping("edit")
+	public String edit(HelpVo vo, HttpSession session) {
+		int result = hs.edit(vo);
+		
+		System.out.println(vo);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "도움 글 수정 성공!!");
+			return "redirect:/help/detail?num=" + vo.getHelpNo();
+		}
+		
+		session.setAttribute("errorMsg", "도움 글 수정 실패...");
+		return "redirect:/help/detail?num=" + vo.getHelpNo();
 	}
 	
 	//도움 삭제하기

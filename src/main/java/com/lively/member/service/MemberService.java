@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lively.common.locaion.dao.LocationDao;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.friend.vo.FriendVo;
 import com.lively.help.vo.HelpVo;
 import com.lively.market.vo.MarketVo;
@@ -25,12 +27,16 @@ public class MemberService {
 	private final SqlSessionTemplate sst;
 	private final MemberDao dao;
 	private final BCryptPasswordEncoder enc;
+    private final LocationDao locationDao;
+
 
 	@Autowired
-	public MemberService(SqlSessionTemplate sst, MemberDao dao, BCryptPasswordEncoder enc) {
+	public MemberService(SqlSessionTemplate sst, MemberDao dao, BCryptPasswordEncoder enc, LocationDao locationDao) {
 		this.sst = sst;
 		this.dao = dao;
 		this.enc = enc;
+        this.locationDao = locationDao;
+
 	}
 
 	// 회원가입
@@ -51,20 +57,22 @@ public class MemberService {
 		// tx || rs : tx는 자동처리 / rs는 mybatis가 처리해줌.
 		// close : spring이 처리해줌
 	}
+	
+//	//회원가입 location 데이터 넣기
+//	public List<LocationVo> getLocationList(LocationVo locationVo) {
+//        return locationDao.getLocationList(sst,locationVo);
+//	}
 
 	// 로그인
 	public MemberVo login(MemberVo vo) {
-		System.out.println("ser - login dao 가기전 vo : " + vo);
 
 		// dao 호출
 		MemberVo memberLog = dao.login(sst, vo);
-//		System.out.println("ser - login dao 갔다온 memberLog : " + memberLog);
 
 		// 비밀번호 복호화
 		String userPwd = vo.getPwd();
 		String dbPwd = memberLog.getPwd();
 		boolean result = enc.matches(userPwd, dbPwd);
-//		System.out.println("ser - 복호화 매칭 result : " + result);
 
 		if (result) {
 			return memberLog;
@@ -83,22 +91,14 @@ public class MemberService {
 
 		// 비밀번호 암호화
 		String pwd = vo.getPwd();
-//		System.out.println("ser - reset 클라가 입력한 pwd : " + pwd);
-
 		String newPwd = enc.encode(pwd);
-//		System.out.println("ser - reset 암호화한 newPwd : " + newPwd);
-
 		memberCheck.setPwd(newPwd);
-//		System.out.println("ser - reset 암호화한 memberCheck : " + memberCheck);
 
 		// dao 호출
 		int result = dao.resetPassword(sst, memberCheck);
-//		System.out.println("ser - reset dao 갔다온 memberCheck,result : " + memberCheck + "," + result);
-
 		if (result != 1) {
 			throw new Exception();
 		}
-//		System.out.println("ser - result가 1일 경우, con으로 리턴하는 memberCheck : " + memberCheck );
 		return memberCheck;
 	}
 
@@ -139,5 +139,7 @@ public class MemberService {
 	public List<HelpVo> getMyHelpBoard(HelpVo helpVo, String writeNo) {
 		return dao.getMyHelpBoard(sst, helpVo);
 	}
+
+
 
 }// class

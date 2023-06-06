@@ -58,6 +58,35 @@
 			AND QUIT_YN = 'N'
 	</select>
 	
+	<!-- 비밀번호 까묵 - 회원조회 -->
+	<select id="forgotPassword" resultType="MemberVo">
+		SELECT
+			NO
+			,NAME
+			,ID
+			,PWD
+			,BIRTH
+			,HP
+			,EMAIL
+			,QUIT_YN
+			,JOIN_DATE
+			,LOCATION_NO
+			,GENDER_CODE 
+		FROM MEMBER
+		WHERE     
+		    NAME = #{name}
+		    AND ID = #{id}
+		    AND BIRTH = #{birth}
+	</select>
+	
+	<!-- 비밀번호 재설정 -->
+	<update id="resetPassword">
+		UPDATE MEMBER
+		SET PWD = #{pwd}
+		WHERE     
+		    NO = #{no}
+	</update>
+	
 	<!-- my-info 회원정보 수정 -->
 	<update id="myInfo">
 		UPDATE MEMBER
@@ -161,9 +190,8 @@
 		AND WRITER = #{writer}
 	</select>
 	
-		<!-- 나의 help board -->
+<!-- 	
 	<select id="helpBoard" resultType="HelpVo">
-	<!-- 여기부터 수정 -->
 	SELECT 
 	   	H.HELP_NO
 		, H.TITLE
@@ -173,20 +201,20 @@
 		, H.EDIT_DATE
 		, H.DELETE_YN
 		, H.VIEWS
-	<!-- , L.LOCATION_NAME as locationName -->
+	, L.LOCATION_NAME as locationName
 		, M.NAME as writerName
 		, M.ID as writerId
 		, A.ORIGIN_NAME as originName
 		, A.CHANGE_NAME as changeName
 		, A.DELETE_YN as deleteYnAttach
 	FROM HELP H
-	<!-- LEFT JOIN LOCATION L ON (H.LOCATION_NO = L.LOCATION_NO) -->
+	LEFT JOIN LOCATION L ON (H.LOCATION_NO = L.LOCATION_NO)
 	LEFT JOIN MEMBER M  ON (H.WRITER = M.NO)
 	LEFT JOIN HELP_ATTACH A ON (H.HELP_NO = A.HELP_NO)
 	WHERE H.DELETE_YN = 'N'
 	AND A.DELETE_YN = 'N'
 	AND H.WRITER = #{writer}
 	ORDER BY HELP_NO DESC
-	</select>
+	</select> -->
 	
 </mapper>

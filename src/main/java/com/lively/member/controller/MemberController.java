@@ -3,7 +3,6 @@ package com.lively.member.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.friend.vo.FriendVo;
 import com.lively.help.vo.HelpVo;
 import com.lively.market.vo.MarketVo;
@@ -37,19 +37,23 @@ public class MemberController {
 
 	// 회원가입 화면
 	@GetMapping("join")
-	public void join() {
-	}
+	public String join(LocationVo locationVo) {
+//		회원가입 화면에 지역데이터 넣을때 파라미터로 "LocationVo locationVo" 넣기
+//      List<LocationVo> locationList = ms.getLocationList(locationVo);
+
+		return "member/join";
+		}
 
 	// 회원가입 처리
 	@PostMapping("join")
-	public String join(MemberVo vo, HttpServletRequest req, HttpSession session, Model model) throws Exception {
+	public String join(MemberVo vo, HttpSession session) throws Exception {
 
 		// 서비스
 		int result = ms.join(vo);
 
 		if (result != 1) {
 			// 에러메세지 담아서 forwording 하기
-			model.addAttribute("alertMsg", "회원가입 실패");
+			session.setAttribute("alertMsg", "회원가입 실패");
 			return "member/join";
 		}
 		session.setAttribute("alertMsg", "회원가입완료! 로그인 해주세요 :)");
@@ -81,10 +85,7 @@ public class MemberController {
 	@PostMapping("login")
 	public String login(MemberVo vo, HttpSession session) {
 
-		System.out.println("con - 클라에서 받은 vo : " + vo);
-
 		MemberVo memberLog = ms.login(vo);
-		System.out.println("con - service 갔다온 memberLog : " + memberLog);
 
 		if (memberLog == null) {
 			session.setAttribute("alertMsg", "아이디 또는 비밀번호를 확인해주세요.");
@@ -119,9 +120,6 @@ public class MemberController {
 		}
 		session.setAttribute("memberCheck", memberCheck);
 
-		MemberVo pwdResetPassMem = (MemberVo) session.getAttribute("memberCheck");
-		System.out.println("con - forgot에서 비번까묵은 회원:" + pwdResetPassMem.toString());
-
 		return "member/reset-password";
 	}
 
@@ -136,12 +134,9 @@ public class MemberController {
 	public String resetPassword(MemberVo vo, HttpSession session) throws Exception {
 
 		MemberVo memberCheck = (MemberVo) session.getAttribute("memberCheck");
-//		System.out.println("con - reset에서 비번 재설정 하려는 회원 : " + memberCheck.toString());
 
-		// @@@@@@ memberCheck는 원래 회원의 정보, vo에서 입력한걸 가져와야함! @@@@@@
 		// 서비스
 		MemberVo updatedMember = ms.resetPassword(memberCheck, vo);
-//		System.out.println("con - reset에서 비번 재설정한 updatedMember:" + updatedMember);
 
 		// 화면
 		if (updatedMember == null) {

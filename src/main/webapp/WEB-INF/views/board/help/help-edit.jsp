@@ -22,8 +22,9 @@
                 
 
                 <div class="form__group">
-                    <input type="text" name="title" class="form__field" placeholder="제목" required>
-                    ${hvo.title}
+                	<input type="text" name="helpNo" value="${hvo.helpNo}" style="display: none">
+                	<input type="text" name="writer" value="${hvo.writer}" style="display: none">
+                    <input type="text" name="title" class="form__field" placeholder="제목" required value="${hvo.title}">
                 </div>
             </div>
             <div class="write-group">

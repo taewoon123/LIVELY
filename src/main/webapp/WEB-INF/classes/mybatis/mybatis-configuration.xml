@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <settings>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    
+    <typeAliases>
+        <typeAlias type="com.lively.admin.vo.AdminVo" alias="AdminVo"/>
+		<typeAlias type="com.lively.chat.vo.ChatVo" alias="ChatVo"/>
+        <typeAlias type="com.lively.friend.vo.FriendVo" alias="FriendVo"/>
+        <typeAlias type="com.lively.fundraise.vo.FundraiseVo" alias="FundraiseVo"/>
+        <typeAlias type="com.lively.help.vo.HelpVo" alias="HelpVo"/>
+        <typeAlias type="com.lively.job.vo.JobVo" alias="JobVo"/>
+        <typeAlias type="com.lively.market.vo.MarketVo" alias="MarketVo"/>
+        <typeAlias type="com.lively.member.vo.MemberVo" alias="MemberVo"/>
+        <typeAlias type="com.lively.notice.vo.NoticeVo" alias="NoticeVo"/>
+		<typeAlias type="com.lively.common.locaion.vo.LocationVo" alias="LocationVo"/>
+		<typeAlias type="com.lively.qna.vo.QnaVo" alias="QnaVo"/>
+        <typeAlias type="com.lively.query.vo.QueryVo" alias="QueryVo"/>
+        <typeAlias type="com.lively.common.FileVo" alias="FileVo"/>
+        <typeAlias type="com.lively.job.reply.vo.ReplyVo" alias="ReplyVo"/>
+        <typeAlias type="com.lively.help.reply.vo.HelpReplyVo" alias="HelpReplyVo"/>
+        
+    </typeAliases>
+
+</configuration>

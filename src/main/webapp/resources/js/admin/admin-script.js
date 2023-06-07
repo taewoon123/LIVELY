@@ -34,7 +34,6 @@ const checkBoxes = document.querySelectorAll(".member-checkbox");
   //if click on delete button then delete the selected members sending data via ajax
 const deleteMemberButton = document.querySelector("#deleteMemberButton");
 deleteMemberButton.addEventListener("click", () => {
-  // TODO: send data via ajax ACCOMPLISHED
   $.ajax({
     url: '/lively/admin/member-delete',
     type: 'POST',

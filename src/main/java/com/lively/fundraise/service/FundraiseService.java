@@ -1,13 +1,14 @@
 package com.lively.fundraise.service;
 
 import java.util.List;
+import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.lively.common.FileVo;
-import com.lively.common.locaion.vo.LocationVo;
 import com.lively.common.locaion.dao.LocationDao;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.fundraise.dao.FundraiseDao;
 import com.lively.fundraise.vo.FundraiseVo;
 import com.lively.page.vo.PageVo;
@@ -69,6 +70,10 @@ public class FundraiseService {
 
     public int edit(FundraiseVo vo) {
         return dao.edit(sqlSessionTemplate,vo);
+    }
+
+    public int fundDonate(Map<Integer,FundraiseVo> donateMap) {
+        return dao.fundDonate(sqlSessionTemplate, donateMap);
     }
 
 

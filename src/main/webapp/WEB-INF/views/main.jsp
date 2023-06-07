@@ -32,7 +32,7 @@
 <%--			  </iframe>--%>
 
 				<%--네이버 지도 id는 무조건 map이여야함 && class는 api_position--%>
-			<map id="map" class="api_position" style="width:1700vw; height:750px;"></mapee>
+			<map id="map" class="api_position" style="width:1700vw; height:750px;"></map>
 		   </div>
 					   <%--구글맵 임베딩 끝--%>
 		   <div class="row">

@@ -49,10 +49,10 @@
     margin-right: 350px;
     place-self: end;
 }
-/*기부 버튼 숨기기*/
+/*기부 버튼 숨기기
 .donate-hide {
     display: none;
-}
+}*/
 .donate-input {
     margin-right: 350px;
     place-self: end;

@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class FundraiseDao {
@@ -53,9 +54,14 @@ public class FundraiseDao {
     public int edit(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
         return sqlSessionTemplate.update("fundraise.edit", vo);
     }
-//    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
+
+    //    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
 //        return sqlSessionTemplate.update("fundraise.gainCurrentMoney",vo);
 //    }
+    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, Map<Integer,FundraiseVo> donateMap) {
+        System.out.println("dao's donateMap " + donateMap);
+        return sqlSessionTemplate.update("fundraise.donate", donateMap);
+    }
     
     
 }

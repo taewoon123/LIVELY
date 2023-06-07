@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="job-reply">
+	<insert id="write">
+
+		INSERT INTO JOB_REPLY
+		(
+		JOB_REPLY_NO
+		,CONTENT
+		,WRITER
+		,JOB_NO
+		)
+		VALUES
+		(
+		SEQ_JOB_REPLY_NO.NEXTVAL
+		, #{content}
+		, #{writer}
+		, #{jobNo}
+		)
+
+	</insert>
+
+	<select id="getReplyList" resultType="replyVo">
+		   SELECT 
+          R.JOB_REPLY_NO
+         ,R.CONTENT
+         ,R.ENROLL_DATE
+         ,R.WRITER
+         ,R.DELETE_YN
+         ,R.JOB_NO
+         ,M.NAME AS writerName
+      FROM JOB_REPLY R
+      JOIN MEMBER M ON (R.WRITER = M.NO)
+      WHERE R.JOB_NO = #{jobNo}
+      AND   R.DELETE_YN = 'N'
+      ORDER BY JOB_REPLY_NO DESC
+	</select>
+	
+	<update id="delete">
+		UPDATE JOB_REPLY
+		    SET DELETE_YN = 'Y'
+		WHERE JOB_REPLY_NO = #{jobReplyNo}
+		AND ( WRITER = #{writer}  OR  ${writer} = 1 )
+	</update>
+</mapper>

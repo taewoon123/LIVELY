@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="job">
+	<select id="getAttachment" resultType="FileVo">
+		SELECT *
+		FROM JOB_ATTACH
+		WHERE JOB_ATTACH_NO = #{ano}
+		AND DELETE_YN = 'N'
+	</select>
+
+	<insert id="insertAttachment">
+		INSERT ALL
+		<foreach collection="list" item="x" separator=" ">
+			INTO JOB_ATTACH
+			(
+			JOB_ATTACH_NO
+			, JOB_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+			)
+			VALUES
+			(
+			(SELECT GET_ATTACHMENT_SEQ FROM DUAL)
+			, SEQ_JOB_NO.CURRVAL
+			, #{x.originName}
+			, #{x.changeName}
+			)
+		</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+
+	<select id="getAttachmentList" resultType="FileVo">
+		SELECT
+		JOB_ATTACH_NO
+		, JOB_NO
+		, ORIGIN_NAME
+		, CHANGE_NAME
+		, DELETE_YN
+		FROM JOB_ATTACH
+		WHERE JOB_NO = #{jobNo}
+		AND DELETE_YN = 'N'
+	</select>
+
+
+	<insert id="write">
+		INSERT INTO JOB
+		(
+		JOB_NO
+		, TITLE
+		, CONTENT
+		, WRITER
+		, JOB_CATEGORY_NO
+		)
+		VALUES
+		(
+		SEQ_JOB_NO.NEXTVAL
+		, #{title}
+		, #{content}
+		, #{writer}
+		, #{jobCategoryNo}
+		)
+	</insert>
+
+	<select id="getJobList" resultType="jobVo">
+		SELECT
+			J.JOB_NO,
+			J.TITLE, 
+			J.CONTENT,
+			J.ENROLL_DATE,
+			J.WRITER, 
+			J.EDIT_DATE,
+			J.DELETE_YN,
+			J.VIEWS, 
+			J.JOB_CATEGORY_NO, 
+			C.NAME AS jobCategoryName, 
+			M.NAME AS writerName 
+		FROM
+			JOB J
+			LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO) 
+			LEFT JOIN MEMBER M ON (J.WRITER = M.NO) 
+		WHERE
+			J.DELETE_YN = 'N' 
+	</select>
+	
+
+	<select id="getJobListCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM JOB
+		WHERE DELETE_YN = 'N'
+	</select>
+
+	<update id="increaseHit">
+		UPDATE JOB
+		SET VIEWS = VIEWS+1
+		WHERE JOB_NO = #{no}
+		AND DELETE_YN= 'N'
+	</update>
+
+	<select id="getJob" resultType="JobVo">
+		SELECT 
+		J.JOB_NO,
+		J.TITLE,
+		J.CONTENT,
+		J.ENROLL_DATE,
+		J.EDIT_DATE,
+		J.DELETE_YN,
+		J.VIEWS,
+		J.JOB_CATEGORY_NO,
+		C.NAME AS jobCategoryName
+		FROM JOB J 
+		LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO )
+		WHERE   J.DELETE_YN = 'N'
+		AND    J.JOB_NO = #{no}
+	</select>
+
+	<update id="edit">
+		UPDATE JOB
+		SET
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,EDIT_DATE = SYSDATE
+		WHERE JOB_NO = #{no}
+	</update>
+
+	<update id="delete">
+	UPDATE  JOB
+		SET
+		DELETE_YN = 'Y'
+		,EDIT_DATE = SYSDATE
+		WHERE JOB_NO = #{no}
+	</update>
+
+</mapper>
+	

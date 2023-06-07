@@ -22,18 +22,17 @@
                 
 
                 <div class="form__group">
-                	<input type="text" name="fundraiseNo" value="${fundDetail.fundraiseNo}" style="display: none">
-                	<input type="text" name="writer" value="${fundDetail.writer}" style="display: none">
+                    <input type="text" name="fundraiseNo" value="${fundDetail.fundraiseNo}" style="display: none">
+                    <input type="text" name="writer" value="${fundDetail.writer}" style="display: none">
                     <input type="text" name="title" class="form__field" placeholder="제목" required value="${fundDetail.title}">
                 </div>
             </div>
             <div class="write-group">
                             <textarea name="content" id="content" cols="30" rows="10" style="resize: none"
                             placeholder="내용" required>${fundDetail.content}</textarea>
-                <!-- 0505 :required 추가 -->
+                <img src="${rootContext}/resources/upload/fundraise/${fundDetail.changeName}" alt="사진을 불러올 수 없습니다.">
             </div>
 
-            <!-- 0505 : 파일 업로드란 감싸고 있던 form 태그 제거함 -->
 
             <!-- UI첨부파일(drop files) -->
             <p class="form-paragraph">
@@ -46,7 +45,7 @@
                 <!-- 0505 :required 삭제 -->
             </label>
             <div class="tag-group">
-                <input type="text" name="moneyGoal" class="tag" placeholder="목표금액" value="${fundDetail.moneyGoal}">
+                <input type="text" name="moneyGoal" class="tag" placeholder="목표금액" value="${fundDetail.moneyGoal}" disabled>
             </div>
             <%--            <div class="tag-group">--%>
             <%--                <input type="text" class="tag" placeholder="#태그">--%>

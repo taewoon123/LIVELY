@@ -92,7 +92,6 @@ public class FriendService {
 			 fvoMap.get(friendNo).getAttachmentList().add(file);
 		 }
 		 
-		 fvoList.get(0).setAttachmentList(fileList);
 		 
 		 return fvoMap;
 	 }

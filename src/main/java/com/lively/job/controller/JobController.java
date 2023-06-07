@@ -35,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.job.service.JobService;
 
 @Slf4j
@@ -63,8 +64,6 @@ public class JobController {
 
 		// 서비스
 		List<JobVo> jvoList = js.getJobList(pv, searchMap);
-		
-		System.out.println(jvoList);
 //		List<Map<String, String>> cvoList = js.getCategoryList();
 
 //		model.addAttribute("cvoList" , cvoList);
@@ -76,7 +75,10 @@ public class JobController {
 
 	// 작성하기(화면)
 	@GetMapping("write")
-	public String write() {
+	public String write(HttpSession session, JobVo vo, LocationVo locationVo) {
+		List<LocationVo> locationList = js.getLocationList(locationVo);
+		
+		session.setAttribute("locationList", locationList);
 		return "board/job/job-write";
 	}
 
@@ -84,10 +86,9 @@ public class JobController {
 	@PostMapping("write")
 	public String write(JobVo vo, HttpSession session ,HttpServletRequest req, List<MultipartFile> file)
 			throws Exception {
-		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-		if (memberLog == null) {
-			
-			return "alertMsg";
+		MemberVo memberLog = (MemberVo)session.getAttribute("memberLog");
+		if(memberLog == null) {
+			throw new Exception("로그인 후 이용 가능합니다.");
 		}
 		
 		String path = req.getServletContext().getRealPath("/resources/upload/job/");
@@ -127,6 +128,7 @@ public class JobController {
 			model.addAttribute("errorMsg", "조회 실패...");
 			return "common/error-page";
 		}
+		System.out.println(vo);
 		model.addAttribute("jvo", vo);
 		model.addAttribute("jobNo",no);
 

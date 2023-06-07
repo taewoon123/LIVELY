@@ -5,7 +5,6 @@ import java.util.List;
 import com.lively.common.FileVo;
 
 import lombok.Data;
-
 @Data
 public class JobVo {
 
@@ -18,6 +17,8 @@ public class JobVo {
 	private String deleteYn;
 	private String views;
 	private String jobCategoryNo;
+	private String locationNo;
+	private String locationName;
 	
 	public String jobCategoryName;
 	private String writerName;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.job.dao.JobDao;
 
 import com.lively.job.vo.JobVo;
@@ -80,6 +81,11 @@ public class JobService {
 	// 게시글 갯수 조회
 	public int getJobListCnt() {
 		return dao.getJobListCnt(sst);
+	}
+
+	public List<LocationVo> getLocationList(LocationVo locationVo) {
+		
+		return dao.getLocationList(sst, locationVo);
 	}
 
 	

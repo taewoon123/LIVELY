@@ -119,7 +119,6 @@ public class HelpController {
 	//도움 수정하기 (화면)
 	@GetMapping("edit")
 	public String edit(Model model, @RequestParam("num") int num) throws Exception {
-//		HelpVo vo = (HelpVo) model.getAttribute("hvo");
 		HelpVo vo = hs.getHelp(num);
 		
 		model.addAttribute("hvo", vo);

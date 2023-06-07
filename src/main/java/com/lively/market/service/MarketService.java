@@ -35,6 +35,7 @@ public class MarketService {
 	public int write(MarketVo marketVo, List<FileVo> fileVoList) throws Exception {
 		int writeResult = dao.write(sst, marketVo);
 		int attachResult = 1;
+		System.out.println("write : " + marketVo);
 		if(fileVoList.size() > 0) {
 			attachResult = dao.insertAttachment(sst, fileVoList);
 		}

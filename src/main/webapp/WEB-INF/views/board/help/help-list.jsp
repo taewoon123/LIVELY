@@ -33,6 +33,7 @@
 						<th>작성일시</th>
 						<th>작성자</th>
 						<th>조회수</th>
+						<th>지역</th>
 					</tr>
 				</thead>
 				
@@ -44,6 +45,7 @@
 							<td>${hvo.enrollDate}</td>
 							<td>${hvo.writer}</td>
 							<td>${hvo.views}</td>
+							<td>${hvo.locationName}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

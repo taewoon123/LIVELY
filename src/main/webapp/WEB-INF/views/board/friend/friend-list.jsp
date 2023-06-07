@@ -58,11 +58,11 @@
                     
 					<!--Image Slider -->
                      <div id="myCarousel${fvo.friendNo}" class="carousel slide"> 
-                         <div class="carousel-indicators">
+<%--                          <div class="carousel-indicators">
                          <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                          <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
                          <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button> 
-                         </div> 
+                         </div>  --%>
                          <div class="carousel-inner"> 
                          <c:forEach items="${fvo.attachmentList}" var="att">  
                          <div class="carousel-item active"> 
@@ -99,23 +99,6 @@
                  </div> 
               </div> 
 	 	</c:forEach> 
-		
-<%-- 		<div id="page-area">
-				<c:if test="${pageVo.currentPage > 1}">
-					<a class="prevPage" href="${rootContext}/friend/list?page=${pageVo.currentPage-1}">이전</a>
-				</c:if>
-				<c:forEach begin="${pageVo.startPage}" end="${pageVo.endPage}" step="1" var="i">
-					<c:if test="${pageVo.currentPage != i }">
-						<a class="btn btn-secondary btn-sm page_button" href="${rootContext}/friend/list?page=${i}">${i}</a>
-					</c:if>
-					<c:if test="${pageVo.currentPage == i }">
-						<a class="btn btn-dark btn-sm page_button">${i}</a>
-					</c:if>
-				</c:forEach>
-				<c:if test="${pageVo.currentPage < pageVo.maxPage}">
-					<a class="nextPage" href="${rootContext}/friend/list?page=${pageVo.currentPage+1}">다음</a>
-				</c:if>
-			</div> --%>
 		
             
         </main>

@@ -57,35 +57,24 @@
 	                <div id="feed-image">
 	                    <div id="img_area">
 	                    <!-- Image Slider -->
-	                    <div id="myCarousel${fvoMap.friendAttachNo}" class="carousel slide">
-	                        <div class="carousel-indicators">
-	                        <button type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-	                        <button type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
-	                        <button type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
-	                        </div>
+	                    <div id="myCarousel${fvo.friendNo}" class="carousel slide">
+	        
+	                        <c:forEach items="${fvo.attachmentList}" var="att">
 	                        <div class="carousel-inner">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-               	                <image class="first" href="${rootContext}/resources/upload/friend/${fvoMap.changeName}" alt="${rootContext}/resources/upload/market/${myList.originName}" width="100%" height="100%"/>
+               	                <image class="first" href="${rootContext}/resources/upload/friend/${att.changeName}" alt="${rootContext}/resources/upload/market/${myList.originName}" width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
-	                        <div class="carousel-item">
-	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="second" href="${rootContext}/resources/upload/friend/${fvoMap.changeName}" width="100%" height="100%"/>
-	                            </svg>
-	                        </div>
-	                        <div class="carousel-item">
-	                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="third" href="${rootContext}/resources/upload/friend/${fvoMap.changeName}" width="100%" height="100%">
-	                            </svg>
-	
+	                        </c:forEach>
+	                        
 	                        </div>
 	                        </div>
-	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide="prev">
+	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	                        <span class="visually-hidden">Previous</span>
 	                        </button>
-	                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fvoMap.friendAttachNo}" data-bs-slide="next">
+	                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide="next">
 	                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
 	                        <span class="visually-hidden">Next</span>
 	                        </button>
@@ -94,8 +83,8 @@
 	                
 	                </div>
 	                <div id="content_area">
-	                	<h7>${fvoMap.title}</h7> <br>
-	                    <span class="feed-content">${fvoMap.content}</span>
+	                	<h7>${fvo.title}</h7> <br>
+	                    <span class="feed-content">${fvo.content}</span>
 	                    <span class="feed-content-hide"></span>
 	                    <button class="feed-content-more-button">more</button>
 	                </div>

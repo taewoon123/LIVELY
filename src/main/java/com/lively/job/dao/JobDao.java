@@ -17,11 +17,11 @@ import com.lively.page.vo.PageVo;
 public class JobDao {
     
 	//목록조회
-    public List<JobVo> getJobList(SqlSessionTemplate sst, PageVo pv, Map<String, String> searchMap) {
+    public List<JobVo> getJobList(SqlSessionTemplate sst, PageVo pv, String searchValue) {
     	int limit = pv.getBoardLimit();
 		int offset = (pv.getCurrentPage()-1) * limit;
 		RowBounds rb = new RowBounds(offset , limit);
-		return sst.selectList("job.getJobList" , searchMap , rb);
+		return sst.selectList("job.getJobList" , searchValue, rb);
     }
 
     
@@ -41,8 +41,9 @@ public class JobDao {
 	}
 	
 	//수정하기(작성자만)
-	public int updateJob(SqlSessionTemplate sst, JobVo vo) {
-		return sst.update("job.updateJob" , vo);
+	public int edit(SqlSessionTemplate sst, JobVo vo) {
+		System.out.println(vo);
+		return sst.update("job.edit" , vo);
 	}
 	//삭제하기(작성자만)
 	public int delete(SqlSessionTemplate sst, String no) {

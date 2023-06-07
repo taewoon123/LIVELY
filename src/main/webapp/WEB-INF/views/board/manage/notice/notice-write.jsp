@@ -10,6 +10,7 @@
 
         <div id="wrap">
             <%@ include file="/WEB-INF/views/common/header.jsp" %>
+            <%@ include file="/WEB-INF/views/common/alertMsg.jsp"%>
 
                 <div class="write-board">
                     <form action="${rootContext}/notice/write" method="POST">

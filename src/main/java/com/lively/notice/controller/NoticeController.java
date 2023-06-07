@@ -76,9 +76,7 @@ public class NoticeController {
 		
 		int result = ns.write(vo);
 		
-		if(result == 1) {
-			session.setAttribute("alertMsg", "공지사항 작성 완료");
-		} else {
+		if(result != 1) {
 			session.setAttribute("alertMsg", "공지사항 작성 실패");
 		}
 		
@@ -120,7 +118,6 @@ public class NoticeController {
 			return "common/error-page";
 		}
 		
-		session.setAttribute("alertMsg", "수정성공!!");
 		return "redirect:/notice/detail?num=" + vo.getNoticeNo();
 	}
 	

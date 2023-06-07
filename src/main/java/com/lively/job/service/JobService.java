@@ -29,8 +29,8 @@ public class JobService {
     }
     
     //목록조회
-    public List<JobVo> getJobList(PageVo pv,Map<String, String> searchMap ) {
-        return dao.getJobList(sst, pv , searchMap);
+    public List<JobVo> getJobList(PageVo pv, String searchValue) {
+        return dao.getJobList(sst, pv, searchValue);
     }
     
     //작성하기
@@ -58,8 +58,8 @@ public class JobService {
 	
     }
 	//수정하기(작성자 본인만)
-	public int updateJob(JobVo vo) {
-		return dao.updateJob(sst, vo);
+	public int edit(JobVo vo) {
+		return dao.edit(sst, vo);
 	}
 	
 	// 삭제하기 (작성자 본인만)

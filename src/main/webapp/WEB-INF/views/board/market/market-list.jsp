@@ -30,7 +30,7 @@
 	                <div id="feed_checkbox">
 	            		<input class="feed_checkbox_status" id="statusCheckbox" type="checkbox" onclick="feed_toggle();"><span>&nbsp; 거래가능만 보기</span>
 	            	</div>
-                    <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/market/write';">
+                    <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/market/write';" type="button">
                         <span class="actual-text">&nbsp;UPLOAD&nbsp;</span>
                         <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
                     </button>

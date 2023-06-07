@@ -87,6 +87,7 @@
 		C.NAME AS jobCategoryName,
 		M.NAME AS writerName
 		FROM
+
 		JOB J
 		LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO)
 		LEFT JOIN MEMBER M ON (J.WRITER = M.NO)
@@ -97,6 +98,7 @@
 			AND J.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
 		ORDER BY JOB_NO DESC
+
 	</select>
 
 
@@ -114,6 +116,7 @@
 		DELETE_YN= 'N'
 	</update>
 	<select id="getJob" resultType="JobVo">
+
 	SELECT
 	J.JOB_NO,
 	J.TITLE,

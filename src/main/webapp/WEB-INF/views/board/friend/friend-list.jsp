@@ -37,79 +37,70 @@
 	                        <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
 	                    </button>
 	                </div>
- 		<c:forEach items="${fvoMap}" var="entry">
- 		<c:set var="fvo" value="${entry.value}" />
-            <!-- 첫번째 피드 시작 -->
-             <div class="feed_box feed_status_${fvo.statusYn}">
-                <div id="profile_area">
-                    <div id="profile_img"><img src="${rootContext}/resources/img/marketimg.png" alt="프로필사진"></div>
-                    <div id="profile_box">
-                        <div id="profile_name">김본전</div>
-                        <div id="profile_nick">라이블리</div>
-                    </div>
-                    <c:if test="${fvo.statusYn == 'N'}">
-                    <div id="feed_status">
-                        <input class="feed_status_text" value="모집마감" readonly/>
-                    </div>
-                    </c:if>
-                </div>
-                <div id="feed-image">
-                    <div id="img_area">
+	                
+ 		<c:forEach items="${fvoMap}" var="fvo">
+			<!--첫번째 피드 시작 -->
+             <div class="feed_box feed_status_${fvo.statusYn}"> 
+                <div id="profile_area"> -->
+                     <div id="profile_img"><img src="${rootContext}/resources/img/marketimg.png" alt="프로필사진"></div> 
+                     <div id="profile_box"> 
+                         <div id="profile_name">${fvo.writerName}</div> 
+                         <div id="profile_nick">${fvo.writerId}</div> 
+                     </div> 
+                     <c:if test="${fvo.statusYn == 'N'}"> 
+                     <div id="feed_status"> -->
+                         <input class="feed_status_text" value="모집마감" readonly/> 
+                     </div> 
+                     </c:if> 
+                 </div> 
+                 <div id="feed-image"> 
+                     <div id="img_area">
                     
-                    <!-- Image Slider -->
-                    <div id="myCarousel${fvo.friendAttachNo}" class="carousel slide">
-                        <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                        <%-- <c:forEach items="${fvoMap.attachmentList}" var="att"> --%> 
-                        <div class="carousel-item active">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-                         		<image class="first" href="${rootContext}/resources/upload/friend/${fvoMap.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/>
-                            </svg>
-                        </div>
-                        <%--  </c:forEach> --%>
-                          <%-- <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                         	<image class="second" href="${rootContext}/resources/upload/friend/${att.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/> 
-                            </svg>
-                        </div>
-                        <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-                   			<image class="third" href="${rootContext}/resources/upload/friend/${att.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"> 
-                            </svg>
-                        </div>   --%>
+					<!--Image Slider -->
+                     <div id="myCarousel${fvo.friendNo}" class="carousel slide"> 
+                         <div class="carousel-indicators">
+                         <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                         <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
+                         <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button> 
+                         </div> 
+                         <div class="carousel-inner"> 
+                         <c:forEach items="${fvo.attachmentList}" var="att">  
+                         <div class="carousel-item active"> 
+                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" > 
+                         		<image class="first" href="${rootContext}/resources/upload/friend/${att.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/>
+                             </svg> 
+                         </div> 
+                         </c:forEach>  
+                         
                         
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fvo.friendAttachNo}" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                        </button>
-                    </div><!-- Image Slider 끝 -->
+                         </div> 
+                         <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide="prev">
+                         <span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+                        <span class="visually-hidden">Previous</span> 
+                        </button> 
+                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span> 
+                        <span class="visually-hidden">Next</span> 
+                        </button> 
+                 </div><!--Image Slider 끝 -->
                     
-                </div><!-- img_area 끝 -->
+                 </div><!--img_area 끝 -->
                 
                 </div><!-- feed-image 끝 -->
                 
                 <div id="content_area">
-                	<h7>${fvo.title}</h7><br>
-                    <span class="feed-content">${fvo.content}</span>
-	                <span class="feed-content-hide"></span>
-	                <button class="feed-content-more-button">more</button>
-                </div>
-                <div id="chat_area">
-                    <button onclick="chat();"><a>CHAT</a></button>
-                </div>
-             </div>
-	 	</c:forEach>
+                 	<h7>${fvo.title}</h7><br> 
+                    <span class="feed-content">${fvo.content}</span> 
+ 	                <span class="feed-content-hide"></span> 
+ 	                <button class="feed-content-more-button">more</button>
+                 </div> 
+                 <div id="chat_area"> 
+                     <button onclick="chat();"><a>CHAT</a></button> 
+                 </div> 
+              </div> 
+	 	</c:forEach> 
 		
-		<div id="page-area">
+<%-- 		<div id="page-area">
 				<c:if test="${pageVo.currentPage > 1}">
 					<a class="prevPage" href="${rootContext}/friend/list?page=${pageVo.currentPage-1}">이전</a>
 				</c:if>
@@ -124,7 +115,7 @@
 				<c:if test="${pageVo.currentPage < pageVo.maxPage}">
 					<a class="nextPage" href="${rootContext}/friend/list?page=${pageVo.currentPage+1}">다음</a>
 				</c:if>
-			</div>
+			</div> --%>
 		
             
         </main>

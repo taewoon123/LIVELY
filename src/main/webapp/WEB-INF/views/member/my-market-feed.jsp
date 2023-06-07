@@ -15,6 +15,8 @@
         <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
         <main>
+        
+        	<form action="${rootContext}/member/my-market-feed" method="get">
 
             <div id="market_title">
                 <h2>My Market</h2>
@@ -34,6 +36,7 @@
 				      </div>
             	
             </div>
+            </form>
 
 			<c:forEach items="${myMarketList}" var="myList">
 	            <!-- 첫번째 피드 시작 -->
@@ -106,7 +109,7 @@
 	                <div id="chat_area">
 						<!-- 거래중일때는 채팅 목록 버튼 ??? -->
 						<div class="checkbox-wrapper-8">
-							<input type="checkbox" id="cb3-8" class="tgl tgl-skewed">
+							<input type="checkbox" id="cb3-8" class="tgl tgl-skewed temp">
 							<label for="cb3-8" data-tg-on="거래완료" data-tg-off="거래중" class="tgl-btn status${myList.statusYn}"></label>
 						</div>
 	                </div>
@@ -127,9 +130,49 @@
 </html>
 
 <script>
+
+/* 거래중/거래완료 에 따라 버튼 고정 */
+const marketNoElements = document.querySelectorAll(".marketNo");
+const statusYnElements = document.querySelectorAll(".statusYn");
+const market_status = document.querySelector("#cb3-8");
+const label = document.querySelector('label[for="cb3-8"]');
+
+if (statusYnElements.length > 0) {
+    const statusYn = statusYnElements[0].getAttribute("value");
+
+    if (statusYn === 'Y') {
+        market_status.checked = false;
+    } else if (statusYn === 'N') {
+        market_status.checked = true;
+    }
+}
+
+
+/* 거래중/거래완료 버튼 누르면 디비 정보 변경 */
+
+const market_status_all = document.querySelectorAll("#cb3-8");
+function status() {
+	market_status_all.forEach((element, index) => {
+		element.addEventListener('click', function() {
+			if (element.checked === false) {
+				location.href = '/lively/market/statusY/' + marketNoElements[0].value;
+			} else if(element.checked === true) {
+				location.href = '/lively/market/statusN/' + marketNoElements[0].value;
+			}
+		});
+	});
+}
+
+status();
+
+
+
+
+
+
 //거래중 / 거래완료
-const marketNo = document.querySelector(".marketNo").getAttribute("value");
-const statusYn = document.querySelector(".statusYn").getAttribute("value");
+/* const marketNo = document.querySelectorAll(".marketNo").getAttribute("value");
+const statusYn = document.querySelectorAll(".statusYn").getAttribute("value");
 const market_status = document.querySelectorAll("#cb3-8");
 const label = document.querySelector('label[for="cb3-8"]');
 
@@ -137,22 +180,9 @@ if(statusYn == 'Y'){
 	market_status.checked = false;
 }else if(statusYn == 'N'){
 	market_status.checked = true;
-}
+} */
 
-function status() {
-	market_status.forEach((element, index) => {
-		label.addEventListener('click', function() {
-			if (element.checked) {
-				location.href = '/lively/market/statusY/' + marketNo;
-			} else {
-				alert("ddd");
-				location.href = '/lively/market/statusN/' + marketNo;
-			}
-		});
-	});
-}
 
-status();
 
 
 
@@ -171,16 +201,6 @@ feed_status();*/
 
 
 
-//enter 누르면 검색 가능
-const search_button = document.querySelector(".feed_search_input");
-search_button.addEventListener("keydown",(event) => {
-  if(event.keyCode == 13){
-      event.preventDefault();
-      document.querySelector('.hidden_button').click();
-  }
-});
-
-
 //피드 내용
 
 const more_button = document.querySelectorAll('#content_area .feed-content-more-button');
@@ -192,19 +212,21 @@ const content_area = document.querySelector("#content_area");
 
 //피드 내용 - 더보기 / 숨기기 버튼 활성화
 function show_more_hide_button(event, slice_length){
-  const hide_content = event.target.previousElementSibling;  //previousElementSibling : 동등한 관계의 이전 태그
-  const origin_content = hide_content.previousElementSibling;
-  if(event.target.innerHTML === 'more'){
-      origin_content.innerHTML += hide_content.innerHTML;
-      event.target.innerHTML = 'hide';
-      feed_box.classList.add('feed_more_box');
-      content_area.classList.add('feed_content_more_box');
-  }else{
-      origin_content.innerHTML = origin_content.innerHTML.slice(0, slice_length);
-      event.target.innerHTML = 'more';
-      feed_box.classList.remove('feed_more_box');
-      content_area.classList.remove('feed_content_more_box');
-  }
+    const hide_content = event.target.previousElementSibling;  //previousElementSibling : 동등한 관계의 이전 태그
+    const origin_content = hide_content.previousElementSibling;
+    if(event.target.innerHTML === 'more'){
+        origin_content.innerHTML += hide_content.innerHTML;
+        event.target.innerHTML = 'hide';
+        feed_box.classList.remove('feed_box');
+        feed_box.classList.add('feed_more_box');
+        content_area.classList.add('feed_content_more_box');
+    }else{
+        origin_content.innerHTML = origin_content.innerHTML.slice(0, slice_length);
+        event.target.innerHTML = 'more';
+        feed_box.classList.remove('feed_more_box');
+        feed_box.classList.add('feed_box');
+        content_area.classList.remove('feed_content_more_box');
+    }
 }
 
 //피드 내용 - 더보기 / 숨기기

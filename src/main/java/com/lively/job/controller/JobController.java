@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -51,26 +51,20 @@ public class JobController {
 
 //	목록 조회
 	@GetMapping("list")
-	public String getJobList( @RequestParam(defaultValue = "1") int page,
-			@RequestParam Map<String, String> searchMap, Model model) {
-
-		// 데이터
+	public String list( String searchValue, @RequestParam(defaultValue = "1" )int page , JobVo vo, Model model) {
+		
 		int listCount = js.getJobListCnt();
 		int currentPage = page;
 		int pageLimit = 5;
-		int boardLimit = 10;
-		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-
-		// 서비스
-		List<JobVo> jvoList = js.getJobList(pv, searchMap);
+		int boardLimit = 5;
 		
-		System.out.println(jvoList);
-//		List<Map<String, String>> cvoList = js.getCategoryList();
-
-//		model.addAttribute("cvoList" , cvoList);
-		model.addAttribute("searchMap", searchMap);
-		model.addAttribute("pv", pv);
-		model.addAttribute("jvoList", jvoList);
+		
+		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+		List<JobVo> jvoList = js.getJobList(pv, searchValue);
+		
+		//화면
+		model.addAttribute("pv",pv);
+		model.addAttribute("jvoList",jvoList);
 		return "board/job/job-list";
 	}
 
@@ -82,14 +76,14 @@ public class JobController {
 
 	// 작성하기
 	@PostMapping("write")
-	public String write(JobVo vo, HttpSession session ,HttpServletRequest req, List<MultipartFile> file)
+	public String write(JobVo vo, HttpSession session, HttpServletRequest req, List<MultipartFile> file)
 			throws Exception {
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
 		if (memberLog == null) {
-			
+
 			return "alertMsg";
 		}
-		
+
 		String path = req.getServletContext().getRealPath("/resources/upload/job/");
 		List<String> changeFileNames = FileUploader.upload(file, path);
 		List<String> originalFileNames = FileUploader.getOriginNameList(file);
@@ -105,8 +99,8 @@ public class JobController {
 			}
 		}
 		vo.setWriter(memberLog.getNo());
-		
-		int result = js.write(vo,fvoList);
+
+		int result = js.write(vo, fvoList);
 
 		if (result == 1) {
 			session.setAttribute("alertMsg", " 작성 완료");
@@ -124,27 +118,29 @@ public class JobController {
 		JobVo vo = js.getJob(no);
 
 		if (vo == null) {
+			
 			model.addAttribute("errorMsg", "조회 실패...");
 			return "common/error-page";
 		}
+		System.out.println(vo);
 		model.addAttribute("jvo", vo);
-		model.addAttribute("jobNo",no);
+		model.addAttribute("jobNo", no);
 
 		return "board/job/job-detail";
 	}
 
 	// 수정하기 (작성자 본인만)
 	@PostMapping("edit")
-	public String edit(JobVo vo, RedirectAttributes ra) throws Exception {
-		int result = js.updateJob(vo);
+	public String edit(JobVo vo, Model model, HttpSession session) throws Exception {
+		int result = js.edit(vo);
 
 		if (result != 1) {
-			throw new Exception("수정 실패 ...");
-		}
-
-		ra.addFlashAttribute("alertMsg", "수정하기 성공!");
-		ra.addAttribute("no", vo.getJobNo());
-		return "redirect:/board/detail";
+			 model.addAttribute("errorMsg", "수정실패...");
+		        return "common/error-page";
+		    } else {
+		        session.setAttribute("alertMsg", "수정성공!!");
+		return "redirect:/job/detail?no=" + vo.getJobNo();
+		    }
 	}
 
 	// 삭제하기 (작성자 본인만)

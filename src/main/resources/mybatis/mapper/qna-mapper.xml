@@ -37,8 +37,10 @@
 			M.NAME AS writerName 
 		FROM QNA Q
 		LEFT JOIN MEMBER M ON (Q.WRITER = M.NO) 
-		WHERE
-		DELETE_YN = 'N'
+		WHERE Q.DELETE_YN = 'N'
+		<if test = "searchValue != null">
+        AND Q.QNA_TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
 		ORDER BY QNA_NO DESC
 	</select>
 

@@ -3,6 +3,7 @@ package com.lively.help.vo;
 import java.util.List;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 
 import lombok.Data;
 
@@ -15,10 +16,10 @@ public class HelpVo {
 	private String writer;
 	private String editDate;
 	private String deleteYn;
-	private String views;
-	private String locationNo;
-	
+	private String views;	
 	private List<FileVo> attList;	
+	
+	private String locationNo;
 	private String locationName;
 //	private String writerName;
 //	private String writerId;

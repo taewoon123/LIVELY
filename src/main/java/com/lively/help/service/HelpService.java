@@ -42,6 +42,7 @@ public class HelpService {
 
 	public int write(HelpVo vo, List<FileVo> helpList) {
 		int helpResult = dao.write(sst, vo);
+		
 		int attResult = 1;
 		if(helpList.size() > 0) {
 			attResult = dao.insertAttachment(sst, helpList);

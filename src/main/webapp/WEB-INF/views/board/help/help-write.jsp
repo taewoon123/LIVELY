@@ -7,9 +7,9 @@
     </head>
 
     <body>
+        <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
         <div id="wrap">
-        <%@ include file="/WEB-INF/views/common/header.jsp" %>
     
         <div class="write-board">
             <form action="${rootContext}/help/write" method="POST" enctype="multipart/form-data">
@@ -21,14 +21,13 @@
                         </div>
                         
                         <div class="selections">
-                            <select class="location-option" name="location" id="location">
+                            <select class="location-option" name="locationNo" id="location">
                    				<c:forEach items="${locationList}" var="locationList">
                    					<option value="${locationList.getLocationNo()}">${locationList.getLocationName()}</option>
                    				</c:forEach>
                 			</select>
                         </div>
                     </div>
-                    
                     <div class="form__group">
                         <input type="text" class="form__field" id="title" name="title" placeholder="제목" required>
                     </div>

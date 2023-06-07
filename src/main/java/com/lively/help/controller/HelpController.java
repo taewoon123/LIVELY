@@ -66,10 +66,11 @@ public class HelpController {
 	
 	//도움 작성하기 (화면)
 	@GetMapping("write")
-	public String write(Model model, HttpSession session, LocationVo locationVo) {
+	public String write(HttpSession session, HelpVo vo, LocationVo locationVo) {
 		List<LocationVo> locationList = hs.getLocationList(locationVo);
 		
-		model.addAttribute("locationList", locationList);
+		session.setAttribute("locationList", locationList);
+		
 		return "board/help/help-write";
 	}
 	

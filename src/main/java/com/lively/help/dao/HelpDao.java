@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.help.vo.HelpVo;
 import com.lively.page.vo.PageVo;
 
@@ -61,6 +62,10 @@ public class HelpDao {
 
 	public int edit(SqlSessionTemplate sst, HelpVo vo) {
 		return sst.update("help.edit", vo);
+	}
+
+	public List<LocationVo> getLocationList(SqlSessionTemplate sst, LocationVo locationVo) {
+		return sst.selectList("help.getLocationList", locationVo);
 	}
 
 }

@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.help.service.HelpService;
 import com.lively.help.vo.HelpVo;
 import com.lively.member.vo.MemberVo;
@@ -54,15 +55,22 @@ public class HelpController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		List<HelpVo> hvoList = hs.getHelpList(pv, searchValue);
 		
-		//화면
-		model.addAttribute("pv", pv);
-		model.addAttribute("hvoList", hvoList);
+		if(hvoList != null) {
+			//화면
+			model.addAttribute("pv", pv);
+			model.addAttribute("hvoList", hvoList);			
+		}
+		
 		return "board/help/help-list";
    }
 	
 	//도움 작성하기 (화면)
 	@GetMapping("write")
-	public String write() {
+	public String write(HttpSession session, HelpVo vo, LocationVo locationVo) {
+		List<LocationVo> locationList = hs.getLocationList(locationVo);
+		
+		session.setAttribute("locationList", locationList);
+		
 		return "board/help/help-write";
 	}
 	
@@ -97,10 +105,6 @@ public class HelpController {
 		
 		int result = hs.write(vo, fvoList);
 		
-		if(result != 1) {
-			session.setAttribute("alertMsg", "도움글 작성 실패");
-		}
-		
 		return "redirect:/help/list";
 	}
 	
@@ -123,7 +127,6 @@ public class HelpController {
 	//도움 수정하기 (화면)
 	@GetMapping("edit")
 	public String edit(Model model, @RequestParam("num") int num) throws Exception {
-//		HelpVo vo = (HelpVo) model.getAttribute("hvo");
 		HelpVo vo = hs.getHelp(num);
 		
 		model.addAttribute("hvo", vo);
@@ -155,27 +158,4 @@ public class HelpController {
 		
 		return "redirect:/help/list";
 	}
-	
-	//파일다운로드
-//	@GetMapping("att/down")
-//	public void download(HttpServletRequest req, HttpServletResponse resp, String ano) throws Exception {
-//		
-//		//파일 객체 준비
-//		String path = req.getServletContext().getRealPath("/resources/upload/help/");
-//		FileVo fvo = hs.getAttachment(ano);
-//		File f = new File(path + fvo.getChangeName());
-//		
-//		byte[] data = FileUtils.readFileToByteArray(f);
-//		
-//		resp.setHeader("Content-Type", "application/octet-stream");
-//		resp.setHeader("Content-Disposition", "attachment; filename=" + "\"" + URLEncoder.encode(fvo.getOriginName(), "UTF-8") + "\"");
-//		resp.setHeader("Content-Length", data.length + "");
-//		
-//		//내보낼 통로 준비
-//		ServletOutputStream os = resp.getOutputStream();
-//		FileInputStream fis = new FileInputStream(f);
-//		
-//		os.write(data);
-//	}
-	
 }

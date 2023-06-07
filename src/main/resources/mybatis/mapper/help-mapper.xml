@@ -12,9 +12,11 @@
         H.ENROLL_DATE,
         H.EDIT_DATE,
         H.DELETE_YN,
+        L.LOCATION_NAME as locationName,
         H.VIEWS
         FROM HELP H
         JOIN MEMBER M ON M.NO = H.WRITER
+        LEFT JOIN LOCATION L ON (H.LOCATION_NO = L.LOCATION_NO)
         WHERE DELETE_YN = 'N'
         <if test = "searchValue != null">
         AND H.TITLE LIKE '%' || #{searchValue} || '%'
@@ -35,6 +37,7 @@
 			, TITLE
 			, CONTENT
 			, WRITER
+			, LOCATION_NO
 		)
 		VALUES
 		(
@@ -42,6 +45,7 @@
 			, #{title}
 			, #{content}
 			, #{writer}
+			, #{locationNo}
 		)
 	</insert>
 	
@@ -60,9 +64,11 @@
         H.ENROLL_DATE,
         H.EDIT_DATE,
         H.DELETE_YN,
+        L.LOCATION_NAME as locationName,
         H.VIEWS
         FROM HELP H
         LEFT JOIN MEMBER M ON M.NO = H.WRITER
+        LEFT JOIN LOCATION L ON (H.LOCATION_NO = L.LOCATION_NO)
         WHERE DELETE_YN = 'N'
         AND HELP_NO = #{num}
 	</select>
@@ -124,5 +130,12 @@
 		WHERE HELP_NO = #{helpNo}
 		AND DELETE_YN = 'N'
 	</update>
+	
+	<select id="getLocationList" resultType="LocationVo">
+  		SELECT
+  			LOCATION_NO
+  			, LOCATION_NAME
+  		FROM LOCATION
+  	</select>
 	
 </mapper>

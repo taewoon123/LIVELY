@@ -58,7 +58,6 @@
 /* 도움 배경색 & 테두리 변경 css */
 #help-hit{
    background-color: #078735;
-  
    text-align: center;
 }
  #help-inDate{
@@ -87,7 +86,6 @@
 #help-date{
    background-color: #078735;
    border-left: 2px solid whitesmoke;
-
    text-align: center;
 }
 

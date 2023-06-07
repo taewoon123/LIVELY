@@ -16,11 +16,11 @@ import com.lively.page.vo.PageVo;
 public class JobDao {
     
 	//목록조회
-    public List<JobVo> getJobList(SqlSessionTemplate sst, PageVo pv, Map<String, String> searchMap) {
+    public List<JobVo> getJobList(SqlSessionTemplate sst, PageVo pv, String searchValue) {
     	int limit = pv.getBoardLimit();
 		int offset = (pv.getCurrentPage()-1) * limit;
 		RowBounds rb = new RowBounds(offset , limit);
-		return sst.selectList("job.getJobList" , searchMap , rb);
+		return sst.selectList("job.getJobList" , searchValue, rb);
     }
 
     

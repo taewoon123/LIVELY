@@ -80,9 +80,12 @@
 		FROM
 			JOB J
 			LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO) 
-			LEFT JOIN MEMBER M ON (J.WRITER = M.NO) 
-		WHERE
-			J.DELETE_YN = 'N' 
+			LEFT JOIN MEMBER M ON (J.WRITER = M.NO)
+		WHERE J.DELETE_YN = 'N' 
+		<if test = "searchValue != null">
+        AND J.TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
+        ORDER BY JOB_NO DESC
 	</select>
 	
 

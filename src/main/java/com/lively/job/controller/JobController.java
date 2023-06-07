@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -51,25 +51,20 @@ public class JobController {
 
 //	목록 조회
 	@GetMapping("list")
-	public String getJobList(@RequestParam(defaultValue = "1") int page, @RequestParam Map<String, String> searchMap,
-			Model model) {
-
-		// 데이터
+	public String list( String searchValue, @RequestParam(defaultValue = "1" )int page , JobVo vo, Model model) {
+		
 		int listCount = js.getJobListCnt();
 		int currentPage = page;
 		int pageLimit = 5;
-		int boardLimit = 10;
+		int boardLimit = 5;
+		
+		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-
-		// 서비스
-		List<JobVo> jvoList = js.getJobList(pv, searchMap);
-
-//		List<Map<String, String>> cvoList = js.getCategoryList();
-
-//		model.addAttribute("cvoList" , cvoList);
-		model.addAttribute("searchMap", searchMap);
-		model.addAttribute("pv", pv);
-		model.addAttribute("jvoList", jvoList);
+		List<JobVo> jvoList = js.getJobList(pv, searchValue);
+		
+		//화면
+		model.addAttribute("pv",pv);
+		model.addAttribute("jvoList",jvoList);
 		return "board/job/job-list";
 	}
 

@@ -43,7 +43,6 @@ public class QnaController {
 		}
 		
 	//메인페이지 목록 조회
-		//목록 조회
 				@GetMapping("main")
 				public String getQnaListMain( Model model) {
 					
@@ -62,23 +61,20 @@ public class QnaController {
 
 	//목록 조회
 		@GetMapping("qna/list")
-		public String getQnaList(@RequestParam(defaultValue = "1") int page , @RequestParam Map<String , String> searchMap,  Model model) {
+		public String list( String searchValue, @RequestParam(defaultValue = "1" )int page , QnaVo vo, Model model) {
 			
-			//데이터
-			int listCount = qs.getCnt(searchMap);
+			int listCount = qs.getQnaListCnt();
 			int currentPage = page;
 			int pageLimit = 5;
-			int boardLimit = 10;
+			int boardLimit = 5;
+			
+			
 			PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
+			List<QnaVo> qvoList = qs.getQnaList(pv, searchValue);
 			
-			//서비스
-			List<QnaVo> qvoList = qs.getQnaList(pv, searchMap);
-			List<Map<String, String>> cvoList = qs.CategoryList();
-			
-			model.addAttribute("cvoList" , cvoList);
-			model.addAttribute("searchMap" , searchMap);
-			model.addAttribute("pv" , pv);
-			model.addAttribute("qvoList" , qvoList);
+			//화면
+			model.addAttribute("pv",pv);
+			model.addAttribute("qvoList",qvoList);
 			return "board/manage/qna/qna-list";
 		}
 		

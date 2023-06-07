@@ -18,8 +18,12 @@
 
                 <h3 id="friend-title">Help</h3>
 
-                <%--      지역 넣어야됨  with scriptlet      --%>
-                
+                		<%--지역 --%>
+                		<select class="location-option" name="locationNo" id="location">
+  							<c:forEach items="${locationList}" var="location">
+    							<option value="${location.getLocationNo()}">${location.getLocationName()}</option>
+  							</c:forEach>
+						</select>
 
                 <div class="form__group">
                 	<input type="text" name="helpNo" value="${hvo.helpNo}" style="display: none">

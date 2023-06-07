@@ -129,14 +129,22 @@ public class HelpController {
 	public String edit(Model model, @RequestParam("num") int num) throws Exception {
 		HelpVo vo = hs.getHelp(num);
 		
+		List<LocationVo> locationList = hs.getLocationList(new LocationVo());
+		
 		model.addAttribute("hvo", vo);
+		model.addAttribute("locationList", locationList);
+		
 		return "board/help/help-edit";
 	}
 	
 	//도움 수정하기
 	@PostMapping("edit")
-	public String edit(HelpVo vo, HttpSession session) {
+	public String edit(HelpVo vo, HttpSession session, @RequestParam("locationNo") String locationNo) {
 		int result = hs.edit(vo);
+		
+		LocationVo locationVo = new LocationVo();
+	    locationVo.setLocationNo(locationNo);
+	    vo.setLocationNo(locationNo);
 		
 		if(result > 0) {
 			return "redirect:/help/detail?num=" + vo.getHelpNo();

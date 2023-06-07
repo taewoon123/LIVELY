@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.dao.LocationDao;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.help.dao.HelpDao;
 import com.lively.help.vo.HelpVo;
 import com.lively.page.vo.PageVo;
@@ -20,7 +22,7 @@ public class HelpService {
 	private final SqlSessionTemplate sst;
 	
 	@Autowired
-	public HelpService(HelpDao dao, SqlSessionTemplate sst) {
+	public HelpService(HelpDao dao, SqlSessionTemplate sst, LocationDao locationDao) {
 		this.dao = dao;
 		this.sst = sst;
 	}
@@ -71,6 +73,10 @@ public class HelpService {
 
 	public int edit(HelpVo vo) {
 		return dao.edit(sst, vo);
+	}
+
+	public List<LocationVo> getLocationList(LocationVo locationVo) {
+		return dao.getLocationList(sst, locationVo);
 	}
 
 }

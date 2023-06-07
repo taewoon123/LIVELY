@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.help.service.HelpService;
 import com.lively.help.vo.HelpVo;
 import com.lively.member.vo.MemberVo;
@@ -54,15 +55,21 @@ public class HelpController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		List<HelpVo> hvoList = hs.getHelpList(pv, searchValue);
 		
-		//화면
-		model.addAttribute("pv", pv);
-		model.addAttribute("hvoList", hvoList);
+		if(hvoList != null) {
+			//화면
+			model.addAttribute("pv", pv);
+			model.addAttribute("hvoList", hvoList);			
+		}
+		
 		return "board/help/help-list";
    }
 	
 	//도움 작성하기 (화면)
 	@GetMapping("write")
-	public String write() {
+	public String write(Model model, HttpSession session, LocationVo locationVo) {
+		List<LocationVo> locationList = hs.getLocationList(locationVo);
+		
+		model.addAttribute("locationList", locationList);
 		return "board/help/help-write";
 	}
 	

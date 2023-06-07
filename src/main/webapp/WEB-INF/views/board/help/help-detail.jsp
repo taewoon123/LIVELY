@@ -4,11 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	#comment-area {
-		color: white;
-	}
-</style>
 </head>
 <header>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -33,7 +28,7 @@
 					<div id="help-inContent">${hvo.content}
 						<br>
                     	<c:forEach items="${hvo.attList}" var="image">
-                    	<img src="${rootContext}/resources/upload/help/${image.changeName}" width="200px" height="200px"/>
+                    	<img src="${rootContext}/resources/upload/help/${image.changeName}" width="100px" height="100px"/>
                     	</c:forEach>
 					</div>
 				</div>

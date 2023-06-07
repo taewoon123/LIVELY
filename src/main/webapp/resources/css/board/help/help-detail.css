@@ -1,4 +1,8 @@
 /* 상세페이지 css */
+#comment-area {
+	color: white;
+}
+
 #help-area {
    width: 600px;
    margin: auto;

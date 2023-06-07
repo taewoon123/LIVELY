@@ -16,10 +16,10 @@ public class HelpVo {
 	private String editDate;
 	private String deleteYn;
 	private String views;
+	private String locationNo;
 	
-	private List<FileVo> attList;
-	
-//	private String locationName;
+	private List<FileVo> attList;	
+	private String locationName;
 //	private String writerName;
 //	private String writerId;
 //	private String originName;

@@ -127,6 +127,7 @@
 		TITLE = #{title}
 		,CONTENT = #{content}
 		,EDIT_DATE = SYSDATE
+		,LOCATION_NO = #{locationNo}
 		WHERE HELP_NO = #{helpNo}
 		AND DELETE_YN = 'N'
 	</update>

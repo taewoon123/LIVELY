@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.job.vo.JobVo;
 import com.lively.page.vo.PageVo;
 
@@ -68,6 +69,12 @@ public class JobDao {
 
 	public int getJobListCnt(SqlSessionTemplate sst) {
 		return sst.selectOne("job.getJobListCnt");
+	}
+
+
+	public List<LocationVo> getLocationList(SqlSessionTemplate sst, LocationVo locationVo) {
+		System.out.println(locationVo);
+		return sst.selectList("job.getLocationList", locationVo);
 	}
 
     

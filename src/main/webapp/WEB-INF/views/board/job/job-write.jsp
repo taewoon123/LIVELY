@@ -21,15 +21,13 @@
 						<option value="1"> 구인</option>
 						<option value="2"> 구직</option>
 					</select>
-					<div class="selections-location">
-						<select class="location-option" name="location" id="location">
-							<option value="0" selected>지역선택</option>
-							<option value="1">강동구</option>
-							<option value="2">강서구</option>
-							<option value="3">강남구</option>
-							<option value="4">강북구</option>
-						</select>
-					</div>
+					 <div class="selections">
+                            <select class="location-option" name="locationNo" id="location">
+                   				<c:forEach items="${locationList}" var="locationList">
+                   					<option value="${locationList.getLocationNo()}">${locationList.getLocationName()}</option>
+                   				</c:forEach>
+                			</select>
+                        </div>
 					<div class="form__group">
 						<input type="text" name="title" class="form__field"
 							placeholder="제목" required>

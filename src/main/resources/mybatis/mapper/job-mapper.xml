@@ -23,10 +23,12 @@
 			)
 			VALUES
 			(
-			(SELECT GET_ATTACHMENT_SEQ FROM DUAL)
+			(SELECT
+			GET_ATTACHMENT_SEQ FROM DUAL)
 			, SEQ_JOB_NO.CURRVAL
 			, #{x.originName}
-			, #{x.changeName}
+			,
+			#{x.changeName}
 			)
 		</foreach>
 		SELECT 1 FROM DUAL
@@ -35,12 +37,14 @@
 	<select id="getAttachmentList" resultType="FileVo">
 		SELECT
 		JOB_ATTACH_NO
-		, JOB_NO
+		,
+		JOB_NO
 		, ORIGIN_NAME
 		, CHANGE_NAME
 		, DELETE_YN
 		FROM JOB_ATTACH
-		WHERE JOB_NO = #{jobNo}
+		WHERE JOB_NO
+		= #{jobNo}
 		AND DELETE_YN = 'N'
 	</select>
 
@@ -52,42 +56,51 @@
 		, TITLE
 		, CONTENT
 		, WRITER
-		, JOB_CATEGORY_NO
+		,
+		JOB_CATEGORY_NO
+		, LOCATION_NO
 		)
 		VALUES
 		(
 		SEQ_JOB_NO.NEXTVAL
 		, #{title}
-		, #{content}
+		,
+		#{content}
 		, #{writer}
 		, #{jobCategoryNo}
+		, #{locationNo}
 		)
 	</insert>
 
 	<select id="getJobList" resultType="jobVo">
 		SELECT
-			J.JOB_NO,
-			J.TITLE, 
-			J.CONTENT,
-			J.ENROLL_DATE,
-			J.WRITER, 
-			J.EDIT_DATE,
-			J.DELETE_YN,
-			J.VIEWS, 
-			J.JOB_CATEGORY_NO, 
-			C.NAME AS jobCategoryName, 
-			M.NAME AS writerName 
+		J.JOB_NO,
+		J.TITLE,
+		J.CONTENT,
+		J.ENROLL_DATE,
+		J.WRITER,
+		J.EDIT_DATE,
+		J.DELETE_YN,
+		J.VIEWS,
+		J.JOB_CATEGORY_NO,
+		L.LOCATION_NAME as locationName,
+		C.NAME AS jobCategoryName,
+		M.NAME AS writerName
 		FROM
-			JOB J
-			LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO) 
-			LEFT JOIN MEMBER M ON (J.WRITER = M.NO)
-		WHERE J.DELETE_YN = 'N' 
-		<if test = "searchValue != null">
-        AND J.TITLE LIKE '%' || #{searchValue} || '%'
-        </if>
-        ORDER BY JOB_NO DESC
+
+		JOB J
+		LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO)
+		LEFT JOIN MEMBER M ON (J.WRITER = M.NO)
+		LEFT JOIN LOCATION L ON (J.LOCATION_NO = L.LOCATION_NO)
+		WHERE J.DELETE_YN =
+		'N'
+		<if test="searchValue != null">
+			AND J.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY JOB_NO DESC
+
 	</select>
-	
+
 
 	<select id="getJobListCnt" resultType="int">
 		SELECT COUNT(*)
@@ -99,24 +112,27 @@
 		UPDATE JOB
 		SET VIEWS = VIEWS+1
 		WHERE JOB_NO = #{no}
-		AND DELETE_YN= 'N'
+		AND
+		DELETE_YN= 'N'
 	</update>
-
 	<select id="getJob" resultType="JobVo">
-		SELECT 
-		J.JOB_NO,
-		J.TITLE,
-		J.CONTENT,
-		J.ENROLL_DATE,
-		J.EDIT_DATE,
-		J.DELETE_YN,
-		J.VIEWS,
-		J.JOB_CATEGORY_NO,
-		C.NAME AS jobCategoryName
-		FROM JOB J 
-		LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO )
-		WHERE   J.DELETE_YN = 'N'
-		AND    J.JOB_NO = #{jobNo}
+
+	SELECT
+	J.JOB_NO,
+	J.TITLE,
+	J.CONTENT,
+	J.ENROLL_DATE,
+	J.EDIT_DATE,
+	J.DELETE_YN,
+	J.VIEWS,
+	J.JOB_CATEGORY_NO,
+	C.NAME AS jobCategoryName,
+	L.LOCATION_NAME as locationName
+	FROM JOB J
+	LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO )
+	LEFT JOIN LOCATION L ON (J.LOCATION_NO = L.LOCATION_NO)
+	WHERE J.DELETE_YN = 'N'
+	AND J.JOB_NO = #{jobNo}
 	</select>
 
 	<update id="edit">
@@ -129,12 +145,19 @@
 	</update>
 
 	<update id="delete">
-	UPDATE  JOB
+		UPDATE JOB
 		SET
 		DELETE_YN = 'Y'
 		,EDIT_DATE = SYSDATE
 		WHERE JOB_NO = #{no}
 	</update>
+
+	<select id="getLocationList" resultType="LocationVo">
+		SELECT
+		LOCATION_NO
+		, LOCATION_NAME
+		FROM LOCATION
+	</select>
 
 </mapper>
 	

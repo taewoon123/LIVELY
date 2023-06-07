@@ -35,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.job.service.JobService;
 
 @Slf4j
@@ -60,17 +61,26 @@ public class JobController {
 		
 		
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
-		List<JobVo> jvoList = js.getJobList(pv, searchValue);
-		
-		//화면
-		model.addAttribute("pv",pv);
-		model.addAttribute("jvoList",jvoList);
+
+
+		// 서비스
+		List<JobVo> jvoList = js.getJobList(pv, searchMap);
+//		List<Map<String, String>> cvoList = js.getCategoryList();
+
+//		model.addAttribute("cvoList" , cvoList);
+		model.addAttribute("searchMap", searchMap);
+		model.addAttribute("pv", pv);
+		model.addAttribute("jvoList", jvoList);
+
 		return "board/job/job-list";
 	}
 
 	// 작성하기(화면)
 	@GetMapping("write")
-	public String write() {
+	public String write(HttpSession session, JobVo vo, LocationVo locationVo) {
+		List<LocationVo> locationList = js.getLocationList(locationVo);
+		
+		session.setAttribute("locationList", locationList);
 		return "board/job/job-write";
 	}
 
@@ -78,10 +88,12 @@ public class JobController {
 	@PostMapping("write")
 	public String write(JobVo vo, HttpSession session, HttpServletRequest req, List<MultipartFile> file)
 			throws Exception {
-		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-		if (memberLog == null) {
 
-			return "alertMsg";
+		MemberVo memberLog = (MemberVo)session.getAttribute("memberLog");
+		if(memberLog == null) {
+			throw new Exception("로그인 후 이용 가능합니다.");
+
+	
 		}
 
 		String path = req.getServletContext().getRealPath("/resources/upload/job/");

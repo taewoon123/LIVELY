@@ -7,7 +7,7 @@ donateButton.addEventListener("click", () => {
         url: "/lively/fund/donate",
         type: "POST",
         data: {
-            fundNo: +fundNo
+            fundNo: fundNo
         },
         success: (data) => {
             console.log(data);

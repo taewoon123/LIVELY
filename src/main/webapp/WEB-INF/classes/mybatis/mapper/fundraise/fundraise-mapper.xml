@@ -125,10 +125,10 @@ WHERE F.DELETE_YN = 'N'
         WHERE FUNDRAISE_NO = #{no}
         AND DELETE_YN = 'N'
     </select>
-    <update id="donate" parameterType="map">
+    <update id="donate" parameterType="hashmap">
         UPDATE FUNDRAISE
-        SET MONEY = MONEY + #{donateMap.donateMoney}
-        WHERE FUNDRAISE_NO = #{donateMap.fundNo}
+        SET MONEY = MONEY + #{donateMoney}
+        WHERE FUNDRAISE_NO = #{fundNo}
         AND DELETE_YN = 'N'
     </update>
 

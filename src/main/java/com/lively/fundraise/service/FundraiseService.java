@@ -72,7 +72,7 @@ public class FundraiseService {
         return dao.edit(sqlSessionTemplate,vo);
     }
 
-    public int fundDonate(Map<Integer,FundraiseVo> donateMap) {
+    public int fundDonate(Map<String,String> donateMap) {
         return dao.fundDonate(sqlSessionTemplate, donateMap);
     }
 

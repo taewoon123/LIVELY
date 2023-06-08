@@ -118,22 +118,17 @@ public class FundraiseController {
     }
 
     @PostMapping("donate")
-    public String fundDonate(Integer fundNo,HttpSession session,FundraiseVo vo) {
-        Map<Integer, String> donateMap = new HashMap<>();
-        Integer donateMoney = Integer.valueOf(vo.getDonateMoney());
-        donateMap.put(fundNo, vo.getDonateMoney());
-        log.info(String.valueOf(donateMap.get(fundNo)));
-        log.info(String.valueOf(donateMap.get());
-        log.info("donateMap in donate Method {}", donateMap);
-        //log.info("donateMoney in {}", vo.getDonateMoney());
-        //log.info("fundNo in ㄱㅣ부!!! {}", fundNo);
+    public String fundDonate(String fundNo, HttpSession session, FundraiseVo vo) {
+        Map<String, String> donateMap = new HashMap<>();
+        donateMap.put("fundNo", String.valueOf(fundNo));
+        donateMap.put("donateMoney", String.valueOf(vo.getDonateMoney()));
         int result = service.fundDonate(donateMap);
-        if(result > 0){
-            session.setAttribute("alertMsg","기부 성공");
+        if (result > 0) {
+            session.setAttribute("alertMsg", "기부 성공");
             return "redirect:/fund/detail?no=" + fundNo;
         }
-            session.setAttribute("alertMsg","기부에 실패했습니다. 다시 시도해주세요.");
-            return "redirect:/fund/detail?no=" + fundNo;
+        session.setAttribute("alertMsg", "기부에 실패했습니다. 다시 시도해주세요.");
+        return "redirect:/fund/detail?no=" + fundNo;
     }
 
    @GetMapping("edit")

@@ -58,8 +58,7 @@ public class FundraiseDao {
     //    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
 //        return sqlSessionTemplate.update("fundraise.gainCurrentMoney",vo);
 //    }
-    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, Map<Integer,FundraiseVo> donateMap) {
-        System.out.println("dao's donateMap " + donateMap);
+    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, Map<String, String> donateMap) {
         return sqlSessionTemplate.update("fundraise.donate", donateMap);
     }
     

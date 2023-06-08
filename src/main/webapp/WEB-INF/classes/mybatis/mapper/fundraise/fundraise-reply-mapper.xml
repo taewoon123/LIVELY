@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fundraise-reply">
+
+    <insert id="write">
+        INSERT INTO FUND_REPLY
+        (
+        FUND_REPLY_NO
+        ,CONTENT
+        ,WRITER
+        ,FUNDRAISE_NO
+        )
+        VALUES
+        (
+        SEQ_FUND_REPLY_NO.NEXTVAL
+        , #{content}
+        , #{writer}
+        , #{fundNo}
+        )
+    </insert>
+
+    <select id="getFundraiseReplyList" resultType = "com.lively.fundraise.reply.vo.FundraiseReplyVo">
+        SELECT
+        F.FUND_REPLY_NO
+        ,F.CONTENT
+        ,F.ENROLL_DATE
+        ,F.DELETE_YN
+        ,F.FUNDRAISE_NO
+        ,F.WRITER
+        ,M.NAME as writerName
+        FROM FUND_REPLY F
+        JOIN MEMBER M ON (F.WRITER = M.NO)
+        WHERE F.FUNDRAISE_NO = #{fundNo}
+        AND F.DELETE_YN = 'N'
+        ORDER BY FUND_REPLY_NO DESC
+    </select>
+
+    <update id="delete">
+        UPDATE FUND_REPLY
+        SET DELETE_YN = 'Y'
+        WHERE FUND_REPLY_NO = #{fundReplyNo}
+        AND (WRITER = #{writer} OR ${writer} = 1)
+    </update>
+
+</mapper>

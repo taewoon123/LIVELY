@@ -61,7 +61,7 @@
 		<if test="searchValue != null">
 			AND F.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
-		ORDER BY F.FRIEND_NO DESC
+		ORDER BY FRIEND_NO DESC
 	</select> 
 
  	<insert id="write">

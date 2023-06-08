@@ -37,7 +37,6 @@
             	
             </div>
             </form>
-
 			<c:forEach items="${myMarketList}" var="myList">
 	            <!-- 첫번째 피드 시작 -->
 	            <div class="feed_box feed_status_${myList.statusYn}">

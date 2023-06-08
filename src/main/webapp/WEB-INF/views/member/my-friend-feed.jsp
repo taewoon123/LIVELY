@@ -15,9 +15,8 @@
         <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
         <main>
-
-			<form action="${rootContext}/member/my-friend-feed" method="get">
-
+        
+        	<form action="${rootContext}/member/my-friend-feed" method="get">
 
             <div id="market_title">
                 <h2>My Friend</h2>
@@ -37,7 +36,7 @@
 				      </div>
             	
             </div>
-
+            </form>
 			<c:forEach items="${myFriendList}" var="myList">
 	            <!-- 첫번째 피드 시작 -->
 	            <div class="feed_box feed_status_${myList.statusYn}">
@@ -63,17 +62,13 @@
 	                    <div id="img_area">
 	                    <!-- Image Slider -->
 	                    <div id="myCarousel${myList.friendNo}" class="carousel slide">
-	                        <div class="carousel-indicators">
-	                        <button type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-	                        <button type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
-	                        <button type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
-	                        </div>
 	                        <div class="carousel-inner">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-               	                <image class="first" href="${rootContext}/resources/upload/friend/${myList.changeName}" alt="${rootContext}/resources/upload/friend/${myList.originName}" width="100%" height="100%"/>
+               	                <image class="first" href="${rootContext}/resources/upload/friend/${myList.changeName}"  width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
+	                 
 	                        </div>
 	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -84,23 +79,26 @@
 	                        <span class="visually-hidden">Next</span>
 	                        </button>
 	                    </div>
+						</div>
 	                </div>
 	                
-	                </div>
 	                <div id="content_area">
-	                	<h7>${myList.title}</h7> <br>
-	                    <span class="feed-content">${myList.content}</span>
-	                    <span class="feed-content-hide"></span>
-	                    <button class="feed-content-more-button">more</button>
+						<h7>${myList.title} &nbsp;&nbsp;</h7> <br>
+						<div class="content-line">
+		                    <span class="feed-content">${myList.content}</span>
+		                    <span class="feed-content-hide"></span>
+		                    <button class="feed-content-more-button">more</button>
+	                    </div>
 	                </div>
 	                <div id="chat_area">
-	                <!-- 거래중일때는 채팅 목록 버튼 ??? -->
-		                    <div class="checkbox-wrapper-8">
-							  <input type="checkbox" id="cb3-8" class="tgl tgl-skewed">
-							  <label for="cb3-8" data-tg-on="모집완료" data-tg-off="모집중" class="tgl-btn status${myList.statusYn}"></label>
-							</div>
+						<!-- 거래중일때는 채팅 목록 버튼 ??? -->
+						<div class="checkbox-wrapper-8">
+							<input type="checkbox" id="cb3-8" class="tgl tgl-skewed temp">
+							<label for="cb3-8" data-tg-on="모집완료" data-tg-off="모집중" class="tgl-btn status${myList.statusYn}"></label>
+						</div>
 	                </div>
-	            </div>
+				</div>
+	            
 	            <!-- 첫번째 피드 끝 -->
             </c:forEach>
 

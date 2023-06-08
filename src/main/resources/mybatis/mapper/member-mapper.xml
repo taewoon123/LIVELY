@@ -146,24 +146,30 @@
 	
 	<!-- 나의 friend feed -->
 	<select id="friendFeed" resultType="FriendVo">
-		SELECT
+		SELECT 
 	    F.FRIEND_NO
-	    , F.WRITER
-	    , F.TITLE
-	    , F.CONTENT
-	    , F.ENROLL_DATE
-	    , F.DELETE_YN
-	    , F.EDIT_DATE
-	    , F.LOCATION_NO 
-	    , L.LOCATION_NAME as locationName
-	    , M.NAME as writerName
-	    , M.ID as writerId
+		, F.WRITER
+		, F.TITLE
+		, F.CONTENT
+		, F.ENROLL_DATE
+		, F.EDIT_DATE
+		, F.DELETE_YN
+		, F.LOCATION_NO
+		, F.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+		, M.ID as writerId
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
 	FROM FRIEND F
 	LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
-	LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+	LEFT JOIN MEMBER M  ON (F.WRITER = M.NO)
+	LEFT JOIN FRI_ATTACH A ON (F.FRIEND_NO = A.FRIEND_NO)
 	WHERE F.DELETE_YN = 'N'
+	AND A.DELETE_YN = 'N'
 	AND F.WRITER = #{writer}
-	ORDER BY F.FRIEND_NO DESC
+	ORDER BY FRIEND_NO DESC
 	</select>
 	
 	<!-- 지역 리스트 -->

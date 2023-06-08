@@ -61,6 +61,7 @@ public class FundraiseDao {
     public int fundDonate(SqlSessionTemplate sqlSessionTemplate, Map<String, String> donateMap) {
         return sqlSessionTemplate.update("fundraise.donate", donateMap);
 
+
     }
     
     

@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.friend.service.FriendService;
 import com.lively.friend.vo.FriendVo;
 import com.lively.member.vo.MemberVo;
@@ -46,17 +47,18 @@ public class FriendController {
 	
 	//피드목록
 	@GetMapping("list")
-	public String list(Model model,  String searchValue, @RequestParam(defaultValue = "1") int page , String no) {
+	public String list(Model model,  String searchValue, LocationVo locationVo , String no) {
 
 		List<FriendVo> friendList = fs.getFriendFeed(searchValue); 
 		Map<String, FriendVo> fvoMap = fs.getFriendFeed();
-		List<Map<String, String>> LocationList = fs.getLocationNoList();
+		List<LocationVo> locationList = fs.getLocationList(locationVo);
+		/* List<Map<String, String>> LocationList = fs.getLocationNoList(); */
 		
 		model.addAttribute("friendList" , friendList);
 		
 		if (fvoMap != null) {
 			model.addAttribute("fvoMap", new ArrayList<FriendVo>(fvoMap.values()));
-			model.addAttribute("LocationList", LocationList);
+			model.addAttribute("locationList", locationList);
 			
 		}
 		
@@ -65,14 +67,20 @@ public class FriendController {
 	
 	//피드작성(화면)
 	@GetMapping("write")
-	public String write(HttpSession session) {
+	public String write(HttpSession session, Model model, LocationVo locationVo) {
 		//로그인 여부 체크
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		
+		List<LocationVo> locationList = fs.getLocationList(locationVo);
+		
 		if (memberLog== null) {
 			session.setAttribute("alertMsg", "로그인을 먼저 해주세요");
 			return "redirect:/friend/list";
 			
 		}
+		
+		model.addAttribute("locationList", locationList);
+		
 		return "board/friend/friend-write";
 	}
 	
@@ -115,9 +123,11 @@ public class FriendController {
 	}
 	// 수정하기화면(작성자만)
 	@GetMapping("edit/{no}")
-	public String edit(@PathVariable(required = true) String no, Model model) throws Exception {
+	public String edit(@PathVariable(required = true) String no, Model model, LocationVo locationVo) throws Exception {
 		
 		List<FriendVo> friendDetail = fs.getFeed(no);
+		
+		List<LocationVo> locationList = fs.getLocationList(locationVo);
 		
 		model.addAttribute("friendDetail", friendDetail);
 		
@@ -126,9 +136,13 @@ public class FriendController {
 	
 	//수정하기(작성자만)
 	@PostMapping("edit")
-	public String edit(FriendVo friendVo, HttpSession session, RedirectAttributes ra) {
+	public String edit(FriendVo friendVo, HttpSession session, RedirectAttributes ra, @RequestParam("locationNo") String locationNo) {
 		
 		int result = fs.updateFeed(friendVo);
+		
+		LocationVo locationVo = new LocationVo();
+	    locationVo.setLocationNo(locationNo);
+	    friendVo.setLocationNo(locationNo);
 		
 		if(result != 1) {
 			session.setAttribute("alertMsg", "수정 실패ㅠㅠ");

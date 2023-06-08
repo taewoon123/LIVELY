@@ -1,4 +1,9 @@
   /* 새로 추가한것 */
+  .selections {
+  	width: 250px;
+  	height: 30px;
+  	word-break: break-all;
+  }
 
   /* 제목DIV */
   #title_group {
@@ -33,16 +38,13 @@
     background-color: #e8e7e7;
 
 }
-  /* 지역태그 */
-  .selections {
-    width: 90px;
-  }
 
+  /* 지역태그 */
   .location-option {
     background-color: #cccbcb;
     color: black;
     border: 1px solid #939292;
-    margin: 40px 0 0 0;
+    margin: 40px 50px 0px 135px;
   }
   
   /* 제목 */

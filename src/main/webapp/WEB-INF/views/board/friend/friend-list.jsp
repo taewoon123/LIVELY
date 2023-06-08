@@ -48,7 +48,7 @@
                          <div id="profile_nick">${fvo.writerId}</div> 
                      </div> 
                      <c:if test="${fvo.statusYn == 'N'}"> 
-                     <div id="feed_status"> -->
+                     <div id="feed_status"> 
                          <input class="feed_status_text" value="모집마감" readonly/> 
                      </div> 
                      </c:if> 
@@ -58,11 +58,6 @@
                     
 					<!--Image Slider -->
                      <div id="myCarousel${fvo.friendNo}" class="carousel slide"> 
-<%--                          <div class="carousel-indicators">
-                         <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                         <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="1" class="active" aria-current="true" aria-label="Slide 2"></button>
-                         <button type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button> 
-                         </div>  --%>
                          <div class="carousel-inner"> 
                          <c:forEach items="${fvo.attachmentList}" var="att">  
                          <div class="carousel-item active"> 
@@ -90,11 +85,14 @@
                 
                 <div id="content_area">
                  	<h7>${fvo.title}</h7><br> 
-                    <span class="feed-content">${fvo.content}</span> 
- 	                <span class="feed-content-hide"></span> 
- 	                <button class="feed-content-more-button">more</button>
+                 	<div class="content-line">
+	                    <span class="feed-content">${fvo.content}</span> 
+	 	                <span class="feed-content-hide"></span> 
+	 	                <button class="feed-content-more-button">more</button>
+ 	                </div>
                  </div> 
                  <div id="chat_area"> 
+                 <div><br><span class="feedEnrollDate">${fvo.enrollDate}</span></div>
                      <button onclick="chat();"><a>CHAT</a></button> 
                  </div> 
               </div> 

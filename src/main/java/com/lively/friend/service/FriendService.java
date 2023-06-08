@@ -53,11 +53,6 @@ public class FriendService {
 		return friendResult * attResult;
 	}
 	
-	// 수정하기(작성자만)
-    
-    // 삭제하기(작성자만)
-	
-	
 	//지역
 	public List<Map<String, String>> getLocationNoList() {
 		return dao.getLocationNoList(sst);
@@ -104,6 +99,24 @@ public class FriendService {
 	//삭제하기 (작성자만)
 	public int delete(String no) {
 		return dao.delete(sst, no);
+	}
+
+	//상세조회
+	public List<FriendVo> getFeed(String no) throws Exception {
+		
+		List<FriendVo> friendVo = dao.getFeed(sst, no);
+		
+		return friendVo;
+	}
+
+
+	public int statusY(String no) {
+		return dao.statusY(sst, no);
+	}
+
+
+	public int statusN(String no) {
+		return dao.statusN(sst, no);
 	}
 	 
 

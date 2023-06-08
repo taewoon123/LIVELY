@@ -61,17 +61,17 @@ WHERE F.DELETE_YN = 'N'
     <insert id="write">
             INSERT INTO FUNDRAISE
         (
-            F.FUNDRAISE_NO,
-            F.WRITER,
-            F.TITLE,
-            F.CONTENT,
-            F.VIEWS,
-            F.MONEY,
-            F.MONEY_GOAL
+            FUNDRAISE_NO,
+            WRITER,
+            TITLE,
+            CONTENT,
+            VIEWS,
+            MONEY,
+            MONEY_GOAL
         )
             VALUES
         (
-            F.SEQ_FUNDRAISE_NO.nextval,
+            SEQ_FUNDRAISE_NO.nextval,
             #{writer},
             #{title},
             #{content},
@@ -125,10 +125,10 @@ WHERE F.DELETE_YN = 'N'
         WHERE FUNDRAISE_NO = #{no}
         AND DELETE_YN = 'N'
     </select>
-    <update id="gainCurrentMoney">
+    <update id="donate" parameterType="hashmap">
         UPDATE FUNDRAISE
-        SET MONEY = #{money} + #{donateMoney}
-        WHERE FUNDRAISE_NO = #{fundraiseNo}
+        SET MONEY = MONEY + #{donateMoney}
+        WHERE FUNDRAISE_NO = #{fundNo}
         AND DELETE_YN = 'N'
     </update>
 

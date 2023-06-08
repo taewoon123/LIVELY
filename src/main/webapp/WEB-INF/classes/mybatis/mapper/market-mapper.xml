@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="market">
+  
+  <!-- 피드 목록 (전체) -->
+  <!-- <select id="MarketFeed" resultType="MarketVo">
+ 	SELECT 
+	    K.MARKET_NO
+		, K.WRITER
+		, K.TITLE
+		, K.CONTENT
+		, K.PRICE
+		, K.ENROLL_DATE
+		, K.EDIT_DATE
+		, K.DELETE_YN
+		, K.LOCATION_NO
+		, K.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+		, M.ID as writerId
+		, A.MARKET_ATTACH_NO as marketAttachNo
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
+	FROM MARKET K
+	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
+	LEFT JOIN MARKET_ATTACH A ON (K.MARKET_NO = A.MARKET_NO)
+	WHERE K.DELETE_YN = 'N'
+	AND A.DELETE_YN = 'N'
+	<if test="searchValue != null">
+        AND K.TITLE LIKE '%' || #{searchValue} || '%'
+    </if>
+	ORDER BY MARKET_NO DESC
+  </select> -->
+  
+  <!-- 3번째 리스트 코드 -->
+	<select id="MarketFeed" resultType="MarketVo">
+		SELECT *
+		FROM MARKET M
+		WHERE M.DELETE_YN = 'N'
+		<if test="searchValue != null">
+			AND M.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY M.MARKET_NO DESC
+	</select> 
+  
+  
+  <!-- 피드 작성 -->
+  <insert id="write">
+  	INSERT INTO MARKET
+  	(
+  		MARKET_NO
+  		, WRITER
+  		, TITLE
+  		, CONTENT
+  		, PRICE
+  		, LOCATION_NO
+  	) 
+  	VALUES 
+  	(
+  		SEQ_MARKET_NO.NEXTVAL
+  		, #{writer}
+  		, #{title}
+  		, #{content}
+  		, #{price}
+  		, #{locationNo}
+  	)
+  </insert>
+  
+  <!-- 피드 작성 (사진) -->
+  <insert id="insertAttachment">
+  	INSERT ALL
+		<foreach collection="list" item="x" separator=" ">
+		    INTO MARKET_ATTACH
+		    (
+		    	MARKET_ATTACH_NO
+				, MARKET_NO
+				, ORIGIN_NAME
+				, CHANGE_NAME
+		    ) 
+		   VALUES 
+			    (
+			    	(SELECT GET_ATTACHMENT_SEQ FROM DUAL) 
+			    	,SEQ_MARKET_NO.CURRVAL 
+			    	,#{x.originName} 
+			    	, #{x.changeName}
+			    )
+ 		</foreach>
+	SELECT 1 FROM DUAL
+  </insert>
+  
+  <!-- 지역 리스트 -->
+  <select id="getLocationList" resultType="map">
+  	SELECT
+  		LOCATION_NO
+  		, LOCATION_NAME
+  	FROM LOCATION
+  </select>
+  
+  <!-- 피드 갯수 -->
+  <select id="getFeedCount" resultType="int">
+  	SELECT COUNT(MARKET_NO)
+  	FROM MARKET
+  	WHERE DELETE_YN = 'N'
+  </select>
+  
+  <!-- 피드 수정 -->
+  <update id="updateFeed">
+  	UPDATE MARKET
+  		SET TITLE = #{title}
+  			, CONTENT = #{content}
+  			, PRICE = #{price}
+  			, LOCATION_NO = #{locationNo}
+  			, EDIT_DATE = SYSDATE
+  		WHERE MARKET_NO = #{marketNo}
+  		AND DELETE_YN = 'N'
+  		AND WRITER = #{writer}
+  </update>
+  
+  <!-- 피드 삭제 -->
+  <update id="delete">
+  	UPDATE MARKET
+  		SET DELETE_YN = 'Y'
+  		, EDIT_DATE = SYSDATE
+  	WHERE MARKET_NO = #{no}
+  </update>
+  
+  
+  <!-- FRI_ATTACH -->
+	<select id="getAttachmentList" resultType="fileVo">
+		SELECT
+		M.MARKET_ATTACH_NO
+		,M.MARKET_NO as NO
+		,M.ORIGIN_NAME
+		,M.CHANGE_NAME
+		,M.DELETE_YN
+		FROM MARKET_ATTACH M
+		LEFT JOIN MARKET K ON (MARKET_ATTACH.MARKET_NO = K.MARKET_NO)
+		WHERE K.DELETE_YN = 'N'
+	</select>
+  
+  <select id="getAttachment" resultType="fileVo">
+  	SELECT 
+  	FROM MARKET_ATTACH
+  	LEFT JOIN MARKET K ON (MARKET_ATTACH.MARKET_NO = K.MARKET_NO)
+  	WHERE MARKET_ATTACH_NO = #{marketAttachNo}
+	AND K.DELETE_YN = 'N'
+  </select>
+  
+  <!-- 거래 상태 변경 (거래중으로) -->
+  <update id="statusY">
+  	UPDATE MARKET
+  		SET STATUS_YN = 'Y'
+  		, EDIT_DATE = SYSDATE
+  	WHERE MARKET_NO = #{no}
+  </update>
+  
+  <!-- 거래 상태 변경 (거래완료로) -->
+  <update id="statusN">
+  	UPDATE MARKET
+  		SET STATUS_YN = 'N'
+  		, EDIT_DATE = SYSDATE
+  	WHERE MARKET_NO = #{no}
+  </update>
+  
+  
+  <select id="getFeed" resultType="MarketVo">
+	SELECT 
+	    K.MARKET_NO
+		, K.WRITER
+		, K.TITLE
+		, K.CONTENT
+		, K.PRICE
+		, K.ENROLL_DATE
+		, K.EDIT_DATE
+		, K.DELETE_YN
+		, K.LOCATION_NO
+		, K.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, A.MARKET_ATTACH_NO as marketAttachNo
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
+	FROM MARKET K
+	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MARKET_ATTACH A ON (K.MARKET_NO = A.MARKET_NO)
+	WHERE K.MARKET_NO = #{no}
+	AND K.DELETE_YN = 'N'
+	AND A.DELETE_YN = 'N'
+  </select>
+  
+  <select id="getMarketFeed" resultType="MarketVo"> 
+	SELECT 
+		K.MARKET_NO 
+		,K.WRITER 
+		,K.TITLE 
+		,K.CONTENT 
+		,K.ENROLL_DATE 
+		,K.DELETE_YN 
+		,K.EDIT_DATE 
+		,K.LOCATION_NO 
+		,K.STATUS_YN 
+		,L.LOCATION_NAME as locationName 
+		, M.NAME as writerName
+		, M.ID as writerId FROM
+		MARKET K LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO) 
+		LEFT JOIN MEMBER M ON (K.WRITER = M.NO) 
+		WHERE K.DELETE_YN = 'N' 
+	</select>
+  
+</mapper>

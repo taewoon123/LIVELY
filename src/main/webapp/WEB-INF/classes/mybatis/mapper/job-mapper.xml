@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="job">
+	<select id="getAttachment" resultType="FileVo">
+		SELECT *
+		FROM JOB_ATTACH
+		WHERE JOB_ATTACH_NO = #{ano}
+		AND DELETE_YN = 'N'
+	</select>
+
+	<insert id="insertAttachment">
+		INSERT ALL
+		<foreach collection="list" item="x" separator=" ">
+			INTO JOB_ATTACH
+			(
+			JOB_ATTACH_NO
+			, JOB_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+			)
+			VALUES
+			(
+			(SELECT
+			GET_ATTACHMENT_SEQ FROM DUAL)
+			, SEQ_JOB_NO.CURRVAL
+			, #{x.originName}
+			,
+			#{x.changeName}
+			)
+		</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+
+	<select id="getAttachmentList" resultType="FileVo">
+		SELECT
+		JOB_ATTACH_NO
+		,
+		JOB_NO
+		, ORIGIN_NAME
+		, CHANGE_NAME
+		, DELETE_YN
+		FROM JOB_ATTACH
+		WHERE JOB_NO
+		= #{jobNo}
+		AND DELETE_YN = 'N'
+	</select>
+
+
+	<insert id="write">
+		INSERT INTO JOB
+		(
+		JOB_NO
+		, TITLE
+		, CONTENT
+		, WRITER
+		,
+		JOB_CATEGORY_NO
+		, LOCATION_NO
+		)
+		VALUES
+		(
+		SEQ_JOB_NO.NEXTVAL
+		, #{title}
+		,
+		#{content}
+		, #{writer}
+		, #{jobCategoryNo}
+		, #{locationNo}
+		)
+	</insert>
+
+	<select id="getJobList" resultType="jobVo">
+		SELECT
+		J.JOB_NO,
+		J.TITLE,
+		J.CONTENT,
+		J.ENROLL_DATE,
+		J.WRITER,
+		J.EDIT_DATE,
+		J.DELETE_YN,
+		J.VIEWS,
+		J.JOB_CATEGORY_NO,
+		L.LOCATION_NAME as locationName,
+		C.NAME AS jobCategoryName,
+		M.NAME AS writerName
+		FROM
+
+		JOB J
+		LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO)
+		LEFT JOIN MEMBER M ON (J.WRITER = M.NO)
+		LEFT JOIN LOCATION L ON (J.LOCATION_NO = L.LOCATION_NO)
+		WHERE J.DELETE_YN =
+		'N'
+		<if test="searchValue != null">
+			AND J.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY JOB_NO DESC
+
+	</select>
+
+
+	<select id="getJobListCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM JOB
+		WHERE DELETE_YN = 'N'
+	</select>
+
+	<update id="increaseHit">
+		UPDATE JOB
+		SET VIEWS = VIEWS+1
+		WHERE JOB_NO = #{no}
+		AND
+		DELETE_YN= 'N'
+	</update>
+	<select id="getJob" resultType="JobVo">
+
+	SELECT
+	J.JOB_NO,
+	J.TITLE,
+	J.CONTENT,
+	J.ENROLL_DATE,
+	J.EDIT_DATE,
+	J.DELETE_YN,
+	J.VIEWS,
+	J.JOB_CATEGORY_NO,
+	C.NAME AS jobCategoryName,
+	L.LOCATION_NAME as locationName,
+	L.LOCATION_NO as locationNo
+	FROM JOB J
+	LEFT JOIN JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO )
+	LEFT JOIN LOCATION L ON (J.LOCATION_NO = L.LOCATION_NO)
+	WHERE J.DELETE_YN = 'N'
+	AND J.JOB_NO = #{jobNo}
+	</select>
+
+	<update id="edit">
+		UPDATE JOB
+		SET
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,EDIT_DATE = SYSDATE
+		,LOCATION_NO = #{locationNo}
+		,JOB_CATEGORY_NO = #{jobCategoryNo}
+		WHERE JOB_NO = #{jobNo}
+		AND DELETE_YN = 'N'
+	</update>
+
+	<update id="delete">
+		UPDATE JOB
+		SET
+		DELETE_YN = 'Y'
+		,EDIT_DATE = SYSDATE
+		WHERE JOB_NO = #{no}
+	</update>
+
+	<select id="getLocationList" resultType="LocationVo">
+		SELECT
+		LOCATION_NO
+		, LOCATION_NAME
+		FROM LOCATION
+	</select>
+
+</mapper>
+	

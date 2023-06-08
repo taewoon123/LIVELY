@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="member">
+	
+	<!-- 회원가입 -->
+	<insert id="join">
+		INSERT INTO MEMBER
+		(
+			NO
+			,NAME
+			,ID
+			,PWD
+			,BIRTH
+			,HP
+			,EMAIL
+			,LOCATION_NO
+			,GENDER_CODE
+		)
+		VALUES
+		(
+			SEQ_MEMBER_NO.NEXTVAL
+			, #{name}
+			, #{id}
+			, #{pwd}
+			, #{birth}
+			, #{hp}
+			, #{email}
+			, #{locationNo}
+			, #{genderCode}
+		)
+	</insert>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="checkId" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+
+	<!-- 로그인 -->
+	<select id="login" resultType="MemberVo">
+		SELECT
+			NO
+			, NAME
+			, ID
+			, PWD
+			, BIRTH
+			, HP
+			, EMAIL
+			, QUIT_YN
+			, LOCATION_NO
+			, GENDER_CODE
+		FROM MEMBER
+		WHERE ID = #{id}
+			AND QUIT_YN = 'N'
+	</select>
+	
+	<!-- 비밀번호 까묵 - 회원조회 -->
+	<select id="forgotPassword" resultType="MemberVo">
+		SELECT
+			NO
+			,NAME
+			,ID
+			,PWD
+			,BIRTH
+			,HP
+			,EMAIL
+			,QUIT_YN
+			,JOIN_DATE
+			,LOCATION_NO
+			,GENDER_CODE 
+		FROM MEMBER
+		WHERE     
+		    NAME = #{name}
+		    AND ID = #{id}
+		    AND BIRTH = #{birth}
+	</select>
+	
+	<!-- 비밀번호 재설정 -->
+	<update id="resetPassword">
+		UPDATE MEMBER
+		SET PWD = #{pwd}
+		WHERE     
+		    NO = #{no}
+	</update>
+	
+	<!-- my-info 회원정보 수정 -->
+	<update id="myInfo">
+		UPDATE MEMBER
+			SET
+		    	PWD = #{pwd}
+		    	,HP = #{hp}
+			    ,EMAIL = #{email}
+			    ,LOCATION_NO = #{locationNo}
+			    ,GENDER_CODE = #{genderCode}
+			WHERE NO = #{no}
+	</update>
+	
+	<!-- my-info 수정된 회원정보 조회하기 -->
+	<select id="getMember" resultType="MemberVo">
+		SELECT
+			NO
+		    ,NAME
+		    ,ID
+		    ,PWD
+		    ,BIRTH
+		    ,HP
+		    ,EMAIL
+		    ,LOCATION_NO
+		    ,GENDER_CODE
+		FROM MEMBER
+		WHERE NO = #{no}
+	</select>
+	
+	<!-- 나의 market feed -->
+	<select id="marketFeed" resultType="MarketVo">
+		SELECT 
+	    K.MARKET_NO
+		, K.WRITER
+		, K.TITLE
+		, K.CONTENT
+		, K.PRICE
+		, K.ENROLL_DATE
+		, K.EDIT_DATE
+		, K.DELETE_YN
+		, K.LOCATION_NO
+		, K.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+		, M.ID as writerId
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
+	FROM MARKET K
+	LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
+	LEFT JOIN MARKET_ATTACH A ON (K.MARKET_NO = A.MARKET_NO)
+	WHERE K.DELETE_YN = 'N'
+	AND A.DELETE_YN = 'N'
+	AND K.WRITER = #{writer}
+	ORDER BY MARKET_NO DESC
+	</select>
+	
+	<!-- 나의 friend feed -->
+	<select id="friendFeed" resultType="FriendVo">
+		SELECT
+	    F.FRIEND_NO
+	    , F.WRITER
+	    , F.TITLE
+	    , F.CONTENT
+	    , F.ENROLL_DATE
+	    , F.DELETE_YN
+	    , F.EDIT_DATE
+	    , F.LOCATION_NO 
+	    , L.LOCATION_NAME as locationName
+	    , M.NAME as writerName
+	    , M.ID as writerId
+	FROM FRIEND F
+	LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+	WHERE F.DELETE_YN = 'N'
+	AND F.WRITER = #{writer}
+	ORDER BY F.FRIEND_NO DESC
+	</select>
+	
+	<!-- 지역 리스트 -->
+	<select id="getLocationList" resultType="map">
+		SELECT
+			LOCATION_NO
+	  		, LOCATION_NAME
+	  	FROM LOCATION
+	</select>
+	
+	<!-- market feed 갯수 -->
+	<select id="myMarketFeedCount" resultType="int">
+		SELECT COUNT(MARKET_NO)
+		FROM MARKET
+		WHERE DELETE_YN = 'N'
+		AND WRITER = #{writer}
+	</select>
+	
+	<!-- friend feed 갯수 -->
+	<select id="myFriendFeedCount" resultType="int">
+		SELECT COUNT(FRIEND_NO)
+		FROM FRIEND
+		WHERE DELETE_YN = 'N'
+		AND WRITER = #{writer}
+	</select>
+	
+<!-- 	
+	<select id="helpBoard" resultType="HelpVo">
+	SELECT 
+	   	H.HELP_NO
+		, H.TITLE
+		, H.CONTENT
+		, H.ENROLL_DATE
+		, H.WRITER
+		, H.EDIT_DATE
+		, H.DELETE_YN
+		, H.VIEWS
+	, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+		, M.ID as writerId
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
+	FROM HELP H
+	LEFT JOIN LOCATION L ON (H.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN MEMBER M  ON (H.WRITER = M.NO)
+	LEFT JOIN HELP_ATTACH A ON (H.HELP_NO = A.HELP_NO)
+	WHERE H.DELETE_YN = 'N'
+	AND A.DELETE_YN = 'N'
+	AND H.WRITER = #{writer}
+	ORDER BY HELP_NO DESC
+	</select> -->
+	
+</mapper>

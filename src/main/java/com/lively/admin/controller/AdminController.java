@@ -73,7 +73,6 @@ public class AdminController {
     @PostMapping("member-delete")
     @ResponseBody
     public String memberDelete(HttpSession session, @RequestBody List<Integer> deleteList) {
-        log.info("deleteList : {}", deleteList);
        int result = service.memberDelete(deleteList);
         if (result > 0) {
            session.setAttribute("memberDeleteAlert", "회원 삭제 성공");

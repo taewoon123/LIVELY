@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna">
+
+	<insert id="write">
+		INSERT INTO QNA
+		(
+		QNA_NO
+		, QNA_TITLE
+		, QNA_CONTENT
+		,WRITER
+		)
+		VALUES
+		(
+		SEQ_QNA_NO.NEXTVAL
+		, #{qnaTitle}
+		, #{qnaContent}
+		, #{writer}
+		)
+	</insert>
+
+	<select id="getQnaList" resultType="qnaVo">
+		SELECT 
+			Q.QNA_NO,
+			Q.QNA_TITLE,
+			Q.QNA_CONTENT,
+			Q.VIEWS,
+			Q.ENROLL_DATE,
+			Q.EDIT_DATE,
+			Q.DELETE_YN,
+			Q.WRITER,
+			Q.QNA_REPLY_CONTENT,
+			Q.ADMIN_NO,
+			M.NAME AS writerName 
+		FROM QNA Q
+		LEFT JOIN MEMBER M ON (Q.WRITER = M.NO) 
+		WHERE Q.DELETE_YN = 'N'
+		<if test = "searchValue != null">
+        AND Q.QNA_TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
+		ORDER BY QNA_NO DESC
+	</select>
+
+	<select id="getQnaListCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM QNA
+		WHERE DELETE_YN = 'N'
+	</select>
+
+	<update id="increaseHit">
+		UPDATE QNA
+		SET VIEWS = VIEWS+1
+		WHERE QNA_NO = #{no}
+		AND
+		DELETE_YN= 'N'
+	</update>
+
+	<select id="getQna" resultType="QnaVo">
+		SELECT QNA_NO,
+		M.NAME AS WRITER
+		,Q.QNA_TITLE
+		,Q.QNA_CONTENT
+		,Q.VIEWS
+		,Q.ENROLL_DATE
+		,Q.EDIT_DATE
+		,Q.DELETE_YN
+		,Q.WRITER
+		,Q.ADMIN_NO
+		,Q.QNA_REPLY_CONTENT
+		FROM QNA Q
+		JOIN MEMBER M ON M.NO =
+		Q.WRITER
+		WHERE DELETE_YN = 'N'
+		AND QNA_NO = #{no}
+	</select>
+
+	<update id="edit">
+		UPDATE QNA
+		SET
+		QNA_TITLE = #{qnaTitle}
+		,QNA_CONTENT = #{qnaContent}
+		,EDIT_DATE = SYSDATE
+		WHERE QNA_NO = #{qnaNo}
+	</update>
+
+	<update id="replyEdit">
+		UPDATE QNA
+		SET
+		QNA_REPLY_CONTENT = #{qnaReplyContent}
+		WHERE QNA_NO = #{qnaNo}	
+	</update>
+
+	<update id="delete">
+		UPDATE QNA
+		SET
+		DELETE_YN = 'Y'
+		,EDIT_DATE = SYSDATE
+		WHERE QNA_NO = #{no}
+	</update>
+</mapper>

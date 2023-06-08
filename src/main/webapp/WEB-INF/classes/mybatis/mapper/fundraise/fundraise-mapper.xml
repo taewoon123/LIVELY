@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fundraise">
+    <select id="getFundList" resultType="FundraiseVo">
+        SELECT F.FUNDRAISE_NO,
+        M.NAME AS WRITER,
+        F.TITLE,
+        F.CONTENT,
+        F.ENROLL_DATE,
+        F.EDIT_DATE,
+        F.DELETE_YN,
+        F.VIEWS,
+        F.MONEY,
+        F.MONEY_GOAL
+        FROM FUNDRAISE F
+        JOIN MEMBER M ON M.NO = F.WRITER
+        WHERE DELETE_YN = 'N'
+      <if test="searchValue != null">
+        AND F.TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
+        ORDER BY FUNDRAISE_NO DESC
+    </select>
+
+    <select id="getFundDetail" resultType="FundraiseVo">
+        SELECT F.FUNDRAISE_NO,
+        F.WRITER,
+       M.NAME AS WRITER,
+       F.TITLE,
+       F.CONTENT,
+       F.ENROLL_DATE,
+       F.EDIT_DATE,
+       F.DELETE_YN,
+       F.VIEWS,
+       F.MONEY,
+       F.MONEY_GOAL
+FROM FUNDRAISE F
+         LEFT JOIN MEMBER M ON M.NO = F.WRITER
+WHERE F.DELETE_YN = 'N'
+        AND F.FUNDRAISE_NO =#{no} 
+    </select>
+    <select id="getFundListCount" resultType="int">
+        SELECT COUNT(*)
+        FROM FUNDRAISE
+        WHERE DELETE_YN = 'N'
+    </select>
+    <update id="gainViews">
+        UPDATE FUNDRAISE
+        SET VIEWS = VIEWS + 1
+        WHERE FUNDRAISE_NO = #{no}
+        AND DELETE_YN = 'N'
+    </update>
+    <update id="delete">
+      UPDATE FUNDRAISE
+      SET DELETE_YN = 'Y',
+      EDIT_DATE = SYSDATE
+      WHERE FUNDRAISE_NO = #{no}
+    </update>
+    <insert id="write">
+            INSERT INTO FUNDRAISE
+        (
+            FUNDRAISE_NO,
+            WRITER,
+            TITLE,
+            CONTENT,
+            VIEWS,
+            MONEY,
+            MONEY_GOAL
+        )
+            VALUES
+        (
+            SEQ_FUNDRAISE_NO.nextval,
+            #{writer},
+            #{title},
+            #{content},
+            0,
+            #{money},
+            #{moneyGoal}
+        )
+    </insert>
+
+
+
+    <insert id="insertAttachment"> 
+        INSERT ALL
+        <foreach collection="list" item="x" separator=" ">
+            INTO FUND_ATTACH
+            (
+            FUND_ATTACH_NO
+            , FUNDRAISE_NO
+            , ORIGIN_NAME
+            , CHANGE_NAME
+            )
+            VALUES
+            (
+            (SELECT GET_ATTACHMENT_SEQ FROM DUAL)
+            ,SEQ_FUNDRAISE_NO.CURRVAL
+            ,#{x.originName}
+            , #{x.changeName}
+            )
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
+    <select id="getAttachmentList" resultType = "FileVo">
+		SELECT
+			FUND_ATTACH_NO
+			, FUNDRAISE_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+			, DELETE_YN
+		FROM FUND_ATTACH
+		WHERE FUNDRAISE_NO = #{no}
+		AND DELETE_YN = 'N'
+	</select>
+
+    <select id="getMoney" resultType="Integer">
+        SELECT MONEY FROM FUNDRAISE
+        WHERE FUNDRAISE_NO = #{no}
+        AND DELETE_YN = 'N'
+    </select>
+    <select id="getCurrentMoneyGoal" resultType="Integer">
+        SELECT MONEY_GOAL FROM FUNDRAISE
+        WHERE FUNDRAISE_NO = #{no}
+        AND DELETE_YN = 'N'
+    </select>
+    <update id="donate" parameterType="hashmap">
+        UPDATE FUNDRAISE
+        SET MONEY = MONEY + #{donateMoney}
+        WHERE FUNDRAISE_NO = #{fundNo}
+        AND DELETE_YN = 'N'
+    </update>
+
+    <update id="edit">
+        UPDATE FUNDRAISE
+        SET TITLE = #{title},
+        CONTENT = #{content},
+        MONEY_GOAL = #{moneyGoal},
+        EDIT_DATE = SYSDATE
+        WHERE FUNDRAISE_NO = #{fundraiseNo}
+        AND DELETE_YN = 'N'
+    </update>
+
+
+
+</mapper>
+

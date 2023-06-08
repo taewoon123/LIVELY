@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+
+    <select id="login" resultType="AdminVo">
+        SELECT * FROM ADMIN
+        WHERE ADMIN_ID = #{adminId}
+        AND ADMIN_PWD = #{adminPwd}
+    </select>
+
+    <!-- 관리자 가입 -->
+    <insert id="signup">
+        INSERT INTO ADMIN
+        (ADMIN_NO, ADMIN_ID, ADMIN_PWD)
+        VALUES
+        (SEQ_ADMIN_NO.nextval, #{adminId}, #{adminPwd})
+    </insert>
+
+    <!-- Dashboard present members   -->
+   	<select id="presentMembers" resultType="MemberVo">
+		SELECT NO, NAME, ID, PWD, BIRTH, HP, EMAIL,QUIT_YN,JOIN_DATE, LOCATION_NO, GENDER_CODE
+		FROM MEMBER
+		WHERE QUIT_YN = 'N'
+        ORDER BY NO DESC
+    </select>
+
+    <update id="deleteMembers">
+        UPDATE MEMBER
+        SET QUIT_YN = 'Y'
+        WHERE NO IN
+        <foreach collection="list" item="deleteList" separator="," open="(" close=")">
+         #{deleteList.value}
+        </foreach>
+    </update>
+
+    <select id="getMemberCount" resultType="Integer">
+        SELECT COUNT(*) FROM MEMBER
+        WHERE QUIT_YN = 'N'
+    </select>
+
+    <select id="getQueryCount" resultType="Integer">
+        SELECT COUNT(*) FROM QUERY
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getHelpCount" resultType="Integer">
+        SELECT COUNT(*) FROM HELP
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getJobCount" resultType="Integer">
+        SELECT COUNT(*) FROM JOB
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getFundCount" resultType="Integer">
+        SELECT COUNT(*) FROM FUNDRAISE
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getFriendCount" resultType="Integer">
+        SELECT COUNT(*) FROM FRIEND
+        WHERE DELETE_YN = 'N'
+    </select>
+
+    <select id="getMarketCount" resultType="Integer">
+        SELECT COUNT(*) FROM MARKET
+        WHERE DELETE_YN = 'N'
+    </select>
+
+</mapper>
+
+
+
+
+
+
+

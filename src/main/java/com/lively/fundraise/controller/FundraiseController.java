@@ -1,10 +1,11 @@
 package com.lively.fundraise.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,17 +53,16 @@ public class FundraiseController {
     public String fundDetail(@RequestParam("no") int no, Model model, HttpSession session) {
         FundraiseVo vo = service.getFundDetail(no);
         if (vo == null) {
-            model.addAttribute("fundDetailAlert", "해당 글이 존재하지 않습니다");
+            model.addAttribute("alertMsg", "해당 글이 존재하지 않습니다");
             return "board/fundraise/fundraise-detail";
         }
         model.addAttribute("fundDetail", vo);
-        log.info("fundDetail : {}", vo);
+        //log.info("fundDetail : {}", vo);
         model.addAttribute("fundNo", no);
         return "board/fundraise/fundraise-detail";
     }
 
 
-    //TODO : no의 값을 가져와야함 ACCOMPLISHED
     @GetMapping("delete")
     public String fundDelete(String no, HttpSession session, Model model) {
         int result = service.delete(no);
@@ -88,7 +88,6 @@ public class FundraiseController {
         return "board/fundraise/fundraise-write";
     }
 
-    //TODO: 업로드 파일을 가져와야함 해결함.
     @PostMapping("write")
     public String fundWrite(FundraiseVo fundVo, HttpSession session, HttpServletRequest request, List<MultipartFile> file) throws Exception {
         MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
@@ -107,6 +106,8 @@ public class FundraiseController {
                 fileVoList.add(fileVo);
             }
         }
+        session.setAttribute("fileVoList", fileVoList);
+        log.info("fileVoList in Write PostMapping : {}", fileVoList);
         fundVo.setWriter(memberLog.getNo());
 
         int result = service.write(fundVo, fileVoList);
@@ -116,30 +117,32 @@ public class FundraiseController {
         return "redirect:/fund/list";
     }
 
-        @PostMapping("donate")
-    public String fundDonate(FundraiseVo vo,HttpSession session) {
-        int result = service.fundDonate(vo);
-        if(result > 0){
-        session.setAttribute("fundDonateAlert","기부 성공");
-        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
+    @PostMapping("donate")
+    public String fundDonate(String fundNo, HttpSession session, FundraiseVo vo) {
+        Map<String, String> donateMap = new HashMap<>();
+        donateMap.put("fundNo", String.valueOf(fundNo));
+        donateMap.put("donateMoney", String.valueOf(vo.getDonateMoney()));
+        int result = service.fundDonate(donateMap);
+        if (result > 0) {
+            session.setAttribute("alertMsg", "기부 성공");
+            return "redirect:/fund/detail?no=" + fundNo;
         }
-        session.setAttribute("fundDonateAlert","기부에 실패했습니다. 다시 시도해주세요.");
-        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
+        session.setAttribute("alertMsg", "기부에 실패했습니다. 다시 시도해주세요.");
+        return "redirect:/fund/detail?no=" + fundNo;
     }
+
+
+
    @GetMapping("edit")
     public String fundEdit(Model model, @RequestParam("no") int no){
-//        FundraiseVo fundVo  = (FundraiseVo) model.getAttribute("fundDetail");
-//        model.addAttribute("fundVo", fundVo);
-	   FundraiseVo vo = service.getFundDetail(no);
-	   
-	   model.addAttribute("fundDetail", vo);
+      FundraiseVo vo = service.getFundDetail(no);
+      model.addAttribute("fundDetail", vo);
       return "board/fundraise/fundraise-edit";
     }
 
     @PostMapping("edit")
     public String fundEdit(FundraiseVo fundEdit, HttpSession session) {
         int result = service.edit(fundEdit);
-        log.info("fundVo in edit method {} ", fundEdit);
         if (result > 0) {
             session.setAttribute("alertMsg", "기부 성공");
             return "redirect:/fund/detail?no=" + fundEdit.getFundraiseNo();

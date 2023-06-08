@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace = "help">
+	<select id="getHelpList" resultType = "HelpVo">
+		SELECT H.HELP_NO,
+        M.NAME AS WRITER,
+        H.TITLE,
+        H.CONTENT,
+        H.ENROLL_DATE,
+        H.EDIT_DATE,
+        H.DELETE_YN,
+        L.LOCATION_NAME as locationName,
+        H.VIEWS
+        FROM HELP H
+        JOIN MEMBER M ON M.NO = H.WRITER
+        LEFT JOIN LOCATION L ON (H.LOCATION_NO = L.LOCATION_NO)
+        WHERE DELETE_YN = 'N'
+        <if test = "searchValue != null">
+        AND H.TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
+        ORDER BY HELP_NO DESC
+	</select>
+	
+	<select id="getHelpListCnt" resultType = "int">
+		SELECT COUNT(*)
+		FROM HELP
+		WHERE DELETE_YN = 'N'
+	</select>
+	
+	<insert id="write">
+		INSERT INTO HELP
+		(
+			HELP_NO
+			, TITLE
+			, CONTENT
+			, WRITER
+			, LOCATION_NO
+		)
+		VALUES
+		(
+			SEQ_HELP_NO.NEXTVAL
+			, #{title}
+			, #{content}
+			, #{writer}
+			, #{locationNo}
+		)
+	</insert>
+	
+	<update id = "increaseViews">
+		UPDATE HELP
+			SET VIEWS = VIEWS + 1
+		WHERE HELP_NO = #{num}
+		AND DELETE_YN = 'N'
+	</update>
+	
+	<select id="getHelp" resultType = "HelpVo">
+		SELECT H.HELP_NO,
+        M.NAME AS WRITER,
+        H.TITLE,
+        H.CONTENT,
+        H.ENROLL_DATE,
+        H.EDIT_DATE,
+        H.DELETE_YN,
+        L.LOCATION_NAME as locationName,
+        H.VIEWS
+        FROM HELP H
+        LEFT JOIN MEMBER M ON M.NO = H.WRITER
+        LEFT JOIN LOCATION L ON (H.LOCATION_NO = L.LOCATION_NO)
+        WHERE DELETE_YN = 'N'
+        AND HELP_NO = #{num}
+	</select>
+	
+	<update id="delete">
+		UPDATE HELP
+			SET
+				DELETE_YN = 'Y'
+			,EDIT_DATE = SYSDATE
+		WHERE HELP_NO = #{num}
+	</update>
+	
+	<select id="getAttachment" resultType = "FileVo">
+		SELECT *
+		FROM HELP_ATTACH
+		WHERE HELP_ATTACH_NO = #{ano}
+		AND DELETE_YN = 'N'
+	</select>
+	
+	<insert id="insertAttachment">
+		INSERT ALL
+			<foreach collection = "list" item = "x" separator = " ">
+				INTO HELP_ATTACH
+				(
+					HELP_ATTACH_NO
+					, HELP_NO
+					, ORIGIN_NAME
+					, CHANGE_NAME
+				)
+				VALUES
+				(
+					(SELECT GET_ATTACHMENT_SEQ FROM DUAL)
+					, SEQ_HELP_NO.CURRVAL
+					, #{x.originName}
+					, #{x.changeName}
+				)
+			</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+	
+	<select id="getAttachmentList" resultType = "FileVo">
+		SELECT
+			HELP_ATTACH_NO
+			, HELP_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+			, DELETE_YN
+		FROM HELP_ATTACH
+		WHERE HELP_NO = #{helpNo}
+		AND DELETE_YN = 'N'
+	</select>
+	
+	<update id="edit">
+		UPDATE HELP
+		SET 
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,EDIT_DATE = SYSDATE
+		,LOCATION_NO = #{locationNo}
+		WHERE HELP_NO = #{helpNo}
+		AND DELETE_YN = 'N'
+	</update>
+	
+	<select id="getLocationList" resultType="LocationVo">
+  		SELECT
+  			LOCATION_NO
+  			, LOCATION_NAME
+  		FROM LOCATION
+  	</select>
+	
+</mapper>

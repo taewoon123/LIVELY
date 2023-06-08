@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="friend">
+
+	<!-- 피드(전체) -->
+<!-- 	<select id="FriendFeed" resultType="FriendVo">
+		SELECT
+		F.FRIEND_NO
+		, F.WRITER
+		, F.TITLE
+		, F.CONTENT
+		, F.ENROLL_DATE
+		, F.DELETE_YN
+		, F.EDIT_DATE
+		, F.LOCATION_NO
+		, F.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+		, A.FRIEND_ATTACH_NO as friendAttachNo
+		, FRIEND_ATTACH_NO as friendAttachNo
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
+		FROM FRIEND F
+		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+		LEFT JOIN FRI_ATTACH A ON (F.FRIEND_NO = A.FRIEND_NO)
+		WHERE F.DELETE_YN = 'N'
+		AND A.DELETE_YN = 'N'
+		<if test="searchValue != null">
+			AND F.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY F.FRIEND_NO DESC
+	</select> -->
+	<!-- 2번째리스트코드 -->
+<!-- 	<select id="FriendFeed" resultType="FriendVo">
+		SELECT 
+		F.FRIEND_NO
+		, F.WRITER
+		, F.TITLE
+		, F.CONTENT
+		, F.ENROLL_DATE
+		, F.DELETE_YN
+		, F.EDIT_DATE
+		, F.LOCATION_NO
+		, F.STATUS_YN
+		FROM FRIEND F
+		WHERE F.DELETE_YN = 'N'
+		<if test="searchValue != null">
+			AND F.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+	</select>  -->
+	<!-- 3번째 리스트 코드 -->
+ 	<select id="FriendFeed" resultType="FriendVo">
+		SELECT *
+		FROM FRIEND F
+		WHERE F.DELETE_YN = 'N'
+		<if test="searchValue != null">
+			AND F.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY F.FRIEND_NO DESC
+	</select> 
+
+ 	<insert id="write">
+		INSERT INTO FRIEND
+		(
+		FRIEND_NO
+		, WRITER
+		, TITLE
+		, CONTENT
+		, LOCATION_NO
+
+		)
+		VALUES
+		(
+		SEQ_FRIEND_NO.NEXTVAL
+		,#{writer}
+		,#{title}
+		,#{content}
+		,#{locationNo}
+		)
+	</insert> 
+
+	<select id="FriendWrite" resultType="FriendVo">
+		SELECT
+		F.FRIEND_NO
+		, F.WRITER
+		, F.TITLE
+		, F.CONTENT
+		, F.LOCATION_NO
+		, L.LOCATION_NAME as
+		locationName
+		, M.NAME as writerName
+		FROM FRIEND F
+		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+		WHERE F.DELETE_YN = 'N'
+	</select>
+
+	<select id="getLocationList" resultType="map">
+		SELECT
+		LOCATION_NO
+		,LOCATION_NAME
+		FROM LOCATION
+	</select>
+
+	<insert id="insertAttachment"> <!-- open은 맨앞에 , close는 맨뒤 , separator는 중간중간 /를 나타냄 -->
+		INSERT ALL
+			<foreach collection="list" item="x" separator=" ">
+			    INTO FRI_ATTACH
+			    (
+			    	FRIEND_ATTACH_NO
+					, FRIEND_NO
+					, ORIGIN_NAME
+					, CHANGE_NAME	
+			    ) 
+			    VALUES 
+			    (
+			    	(SELECT GET_ATTACHMENT_SEQ FROM DUAL) 
+			    	,SEQ_FRIEND_NO.CURRVAL  
+			    	,#{x.originName} 
+			    	, #{x.changeName}
+			    )
+			</foreach>
+		SELECT 1 FROM DUAL
+	</insert>	
+
+
+	<!-- FRI_ATTACH -->
+	<select id="getAttachmentList" resultType="fileVo">
+		SELECT
+		FRIEND_ATTACH_NO
+		,FRIEND_NO as NO
+		,ORIGIN_NAME
+		,CHANGE_NAME
+		,DELETE_YN
+		FROM FRI_ATTACH
+		WHERE DELETE_YN = 'N'
+	</select>
+
+	<select id="getAttachment" resultType="fileVo">
+		SELECT
+		FROM FRI_ATTACH
+		WHERE FRIEND_ATTACH_NO = #{friendAttachNo}
+		AND DELETE_YN = 'N'
+	</select>
+
+	<select id="getFriendFeed" resultType="FriendVo"> 
+	SELECT 
+		F.FRIEND_NO 
+		,F.WRITER 
+		,F.TITLE 
+		,F.CONTENT 
+		,F.ENROLL_DATE 
+		,F.DELETE_YN 
+		,F.EDIT_DATE 
+		,F.LOCATION_NO 
+		,F.STATUS_YN 
+		,L.LOCATION_NAME as locationName 
+		, M.NAME as writerName FROM 
+		FRIEND F LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO) 
+		LEFT JOIN MEMBER M ON (F.WRITER = M.NO) 
+		WHERE F.DELETE_YN = 'N' 
+		ORDER BY F.FRIEND_NO DESC
+		</select>
+		
+	<!-- 피드수정 -->
+	  <update id="updateFeed">
+  	UPDATE FRIEND
+  		SET TITLE = #{title}
+  			, CONTENT = #{content}
+  			, EDIT_DATE = SYSDATE
+  		WHERE FRIEND_NO = #{friendNo}
+  		AND DELETE_YN = 'N'
+  		AND WRITER = #{writer}
+  </update>
+	
+	
+	<!-- 피드 삭제 -->
+	  <update id="delete">
+  	UPDATE FRIEND
+  		SET DELETE_YN = 'Y'
+  		, EDIT_DATE = SYSDATE
+  	WHERE FRIEND_NO = #{no}
+  </update>
+
+
+</mapper>

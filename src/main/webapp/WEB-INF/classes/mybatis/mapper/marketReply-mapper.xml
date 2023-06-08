@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="market-reply">
+
+	<select id="getInfo" resultType="MarketVo">
+		SELECT
+			K.MARKET_NO
+			, K.WRITER
+			, K.DELETE_YN
+			, K.ENROLL_DATE
+			, M.NAME as writerName
+		FROM MARKET K
+		LEFT JOIN MEMBER M ON (M.NO = K.WRITER)
+		WHERE DELETE_YN = 'N'
+		AND MARKET_NO = #{marketNo}
+	</select> 
+  
+</mapper>

@@ -4,6 +4,8 @@ const toggle_checkbox = document.querySelector("#button-3");
 
 const page_switch = document.querySelector(".toggle_checkbox");
 
+page_switch.checked = false;
+
 function go(){
 	page_switch.addEventListener("click",() => {
 		location.href='/lively/member/my-market-feed';

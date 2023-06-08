@@ -12,7 +12,7 @@
 
 		<div class="write-board">
 
-			<form class="formz" action="${rootContext}/job/write" method="post">
+			<form class="formz" action="${rootContext}/job/write" method="post" enctype="multipart/form-data">
 				<div class="write-group">
 
 					<h3 id="job-title">Job/Recruit</h3>
@@ -41,9 +41,9 @@
 				<!-- UI첨부파일(drop files) -->
 				<p class="form-paragraph">File should be an image or video</p>
 				<label for="file-input" class="drop-container"> <span
-					class="drop-title">Drop files here</span> <a>or</a> <input
-					type="file" accept="image/*" id="file-input"
-					style="font-size: 15px">
+					class="drop-title">Drop files here</span> <a>or</a> 
+					<input type="file" accept="image/*" id="file-input"
+					style="font-size: 15px" name="file" multiple accept=".jpg,.png,.jpeg">
 				</label>
 				<div class="tag-group">
 					<input type="text" class="tag" placeholder="#태그">
@@ -58,8 +58,7 @@
 					</div>
 
 					<div id="registerName">
-						<input value="등록" type="submit"
-							onclick="location.href='${rootContext}/job/list'">
+						<input value="등록" type="submit">
 					</div>
 
 				</div>

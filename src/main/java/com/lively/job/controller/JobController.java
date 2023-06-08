@@ -86,33 +86,37 @@ public class JobController {
 
 	// 작성하기
 	@PostMapping("write")
-	public String write(JobVo vo, HttpSession session, HttpServletRequest req, List<MultipartFile> file)
+	public String write(JobVo vo, HttpSession session, HttpServletRequest req, List<MultipartFile> f)
 			throws Exception {
 
 		MemberVo memberLog = (MemberVo)session.getAttribute("memberLog");
 		if(memberLog == null) {
 			throw new Exception("로그인 후 이용 가능합니다.");
 
-	
 		}
+		
 
 		String path = req.getServletContext().getRealPath("/resources/upload/job/");
-		List<String> changeFileNames = FileUploader.upload(file, path);
-		List<String> originalFileNames = FileUploader.getOriginNameList(file);
+		List<String> changeNameList = FileUploader.upload(f, path);
+		List<String> originNameList = FileUploader.getOriginNameList(f);
 
 		List<FileVo> fvoList = new ArrayList<FileVo>();
-		if (changeFileNames != null) {
-			int size = changeFileNames.size();
+		
+		System.out.println(changeNameList);
+
+		if (changeNameList != null) {
+			System.out.println(originNameList);
+			int size = changeNameList.size();
 			for (int i = 0; i < size; i++) {
 				FileVo fvo = new FileVo();
-				fvo.setOriginName(originalFileNames.get(i));
-				fvo.setChangeName(originalFileNames.get(i));
+				fvo.setOriginName(originNameList.get(i));
+				fvo.setChangeName(changeNameList.get(i));
 				fvoList.add(fvo);
 			}
 		}
-		vo.setWriter(memberLog.getNo());
 		
-		System.out.println("write : " + vo);
+		
+		vo.setWriter(memberLog.getNo());
 
 		int result = js.write(vo, fvoList);
 
@@ -124,36 +128,42 @@ public class JobController {
 
 		return "redirect:/job/list";
 
-	}
+		}
+	
 
 	// 상세조회 (조회수)
 	@GetMapping("detail")
-	public String detail(String no, Model model, HttpSession session, LocationVo locationVo) throws Exception {
+	public String detail(String no, Model model, HttpSession session, LocationVo locationVo ,String ano, List<MultipartFile> f) throws Exception {
 		JobVo vo = js.getJob(no);
 		List<LocationVo> locationList = js.getLocationList(locationVo);
 		
 		session.setAttribute("locationList", locationList);
-		
-		/*
-		 * LocationVo locationVo = new LocationVo();
-		 * locationVo.setLocationNo(locationNo); vo.setLocationNo(locationNo);
-		 */
-
+	
 		if (vo == null) {
 			
 			model.addAttribute("errorMsg", "조회 실패...");
 			return "common/error-page";
 		}
-		System.out.println(vo);
+
 		model.addAttribute("jvo", vo);
 		model.addAttribute("jobNo", no);
+		model.addAttribute("path", "/resources/upload/job");
+		/*
+		 * if(!f.isEmpty()) {
+		 * 
+		 * String path =
+		 * session.getServletContext().getRealPath("/resources/upload/job/"); FileVo fvo
+		 * = js.getAttachment(ano); List<String> changeNameList = FileUploader.upload(f,
+		 * path); String originNameList = f.getOriginalFilename();
+		 * fvo.setOriginName(originNameList); fvo.setChangeName(changeNameList); }
+		 */
 
 		return "board/job/job-detail";
 	}
 
 	// 수정하기 (작성자 본인만)
 	@PostMapping("edit")
-	public String edit(JobVo vo, Model model, HttpSession session,@RequestParam("locationNo") String locationNo) throws Exception {
+	public String edit(JobVo vo, Model model, HttpSession session,@RequestParam("locationNo") String locationNo ,List<MultipartFile> f) throws Exception {
 		int result = js.edit(vo);
 
 		LocationVo locationVo = new LocationVo();
@@ -165,6 +175,7 @@ public class JobController {
 		        return "common/error-page";
 		    } else {
 		        session.setAttribute("alertMsg", "수정성공!!");
+		        
 		return "redirect:/job/detail?no=" + vo.getJobNo();
 		    }
 	}

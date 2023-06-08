@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.dao.LocationDao;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.friend.dao.FriendDao;
 import com.lively.friend.vo.FriendVo;
 import com.lively.page.vo.PageVo;
@@ -23,11 +25,13 @@ public class FriendService {
 	
 	private final FriendDao dao;
 	private final SqlSessionTemplate sst;
+	private final LocationDao locationDao;
 	
 	@Autowired
-	public FriendService(FriendDao dao , SqlSessionTemplate sst) {
+	public FriendService(FriendDao dao , SqlSessionTemplate sst, LocationDao locationDao) {
 		this.dao = dao;
 		this.sst = sst;
+		this.locationDao = locationDao;
 	}
 	
 	
@@ -54,9 +58,10 @@ public class FriendService {
 	}
 	
 	//지역
-	public List<Map<String, String>> getLocationNoList() {
-		return dao.getLocationNoList(sst);
-	}
+	/*
+	 * public List<Map<String, String>> getLocationNoList() { return
+	 * dao.getLocationNoList(sst); }
+	 */
 
 	//총갯수
 	public int getFeedCount() {
@@ -117,6 +122,11 @@ public class FriendService {
 
 	public int statusN(String no) {
 		return dao.statusN(sst, no);
+	}
+
+
+	public List<LocationVo> getLocationList(LocationVo locationVo) {
+		return locationDao.getLocationList(sst,locationVo);
 	}
 	 
 

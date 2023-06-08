@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.dao.LocationDao;
 import com.lively.common.locaion.vo.LocationVo;
 import com.lively.market.dao.MarketDao;
 import com.lively.market.vo.MarketVo;
@@ -21,11 +22,13 @@ public class MarketService {
 
 	private final MarketDao dao;
 	private final SqlSessionTemplate sst;
+    private final LocationDao locationDao;
 	
 	@Autowired
-	public MarketService(MarketDao dao, SqlSessionTemplate sst) {
+	public MarketService(MarketDao dao, SqlSessionTemplate sst, LocationDao locationDao) {
 		this.dao = dao;
 		this.sst = sst;
+		this.locationDao = locationDao;
 	}
 	
 	//피드 목록 (전체)
@@ -46,9 +49,10 @@ public class MarketService {
 	}
 
 	//지역 목록
-	public List<Map<String, String>> getLocationList() {
-		return dao.getLocationList(sst);
-	}
+	/*
+	 * public List<Map<String, String>> getLocationList() { return
+	 * dao.getLocationList(sst); }
+	 */
 
 	//총 갯수
 	public int getFeedCount() {
@@ -90,8 +94,8 @@ public class MarketService {
 	
 	
 	//합치기
-	 public Map<String, MarketVo> getMarketFeed() {
-		 List<MarketVo> fileVoList = dao.getMarketFeed(sst);
+	 public Map<String, MarketVo> getMarketFeedAll(String searchValue) {
+		 List<MarketVo> fileVoList = dao.getMarketFeedAll(sst, searchValue);
 		 
 		 Map<String, MarketVo> fileVoMap = new HashMap<String, MarketVo>();
 		 for(MarketVo fileVo : fileVoList) {
@@ -109,5 +113,9 @@ public class MarketService {
 		 
 		 return fileVoMap;
 	 }
+
+	public List<LocationVo> getLocationList(LocationVo locationVo) {
+		return locationDao.getLocationList(sst,locationVo);
+	}
 }
 

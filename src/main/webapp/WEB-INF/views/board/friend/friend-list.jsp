@@ -45,7 +45,7 @@
                      <div id="profile_img"><img src="${rootContext}/resources/img/marketimg.png" alt="프로필사진"></div> 
                      <div id="profile_box"> 
                          <div id="profile_name">${fvo.writerName}</div> 
-                         <div id="profile_nick">${fvo.writerId}</div> 
+                         <div id="profile_nick">${fvo.locationName}</div> 
                      </div> 
                      <c:if test="${fvo.statusYn == 'N'}"> 
                      <div id="feed_status"> 

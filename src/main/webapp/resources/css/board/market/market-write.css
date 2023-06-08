@@ -1,5 +1,17 @@
 
   /* 새로 추가한것 */
+  .selections {
+  	width: 250px;
+  	height: 30px;
+  	word-break: break-all;
+  }
+  /* .location-option {
+  	left: -1000px;
+  } */
+  #title_group {
+  	display: grid;
+  	grid-template-columns: 2fr 3fr;
+  }
 
   /* 태그 인풋 */
   .tag {
@@ -21,7 +33,7 @@
     background-color: #cccbcb;
     color: black;
     border: 1px solid #939292;
-    margin: -50px 0 10px 420px;
+    margin: 15px 50px 0px 100px;
   }
   
   /* 제목 */

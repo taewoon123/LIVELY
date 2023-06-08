@@ -29,13 +29,11 @@
                             </div>
                         </div>
                         <div class="selections">
-                            <select class="location-option" name="locationNo" id="location" required>
-                                <option value="0" selected>지역선택</option>
-                                <option value="1">강동구</option>
-                                <option value="2">강서구</option>
-                                <option value="3">강남구</option>
-                                <option value="4">강북구</option>
-                            </select>
+                            <select class="location-option" name="locationNo" id="location">
+  							<c:forEach items="${locationList}" var="location">
+    							<option value="${location.getLocationNo()}">${location.getLocationName()}</option>
+  							</c:forEach>
+						</select>
                         </div>
                     </div>
                     

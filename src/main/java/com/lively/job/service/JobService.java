@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.dao.LocationDao;
 import com.lively.common.locaion.vo.LocationVo;
 import com.lively.job.dao.JobDao;
 
@@ -23,7 +24,7 @@ public class JobService {
     
     
     @Autowired
-    public JobService(JobDao dao, SqlSessionTemplate sst) {
+    public JobService(JobDao dao, SqlSessionTemplate sst, LocationDao locationdao) {
         this.dao = dao;
         this.sst = sst;
     }
@@ -68,12 +69,6 @@ public class JobService {
 		return dao.delete(sst, no);
 	}
 	
-//	public List<Map<String, String>> getCategoryList() {
-//		return dao.getCategoryList(sst);
-//	}
-
-
-
 	public FileVo getAttachment(String ano) {
 		return dao.getAttachment(sst, ano);
 	}

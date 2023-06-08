@@ -45,6 +45,11 @@
 					<span>수정하기</span>
 				</button>
 				<%-- 		</c:if> --%>
+			<div id="comment-header">
+				<input type="text" name="content" placeholder="댓글을 입력하세요">
+				<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
+			</div>
+			<div id="comment-area"></div>
 
 			</div>
 			<div class="form-area">
@@ -52,6 +57,19 @@
 					enctype="multipart/form-data">
 					<input type="hidden" name="jobNo" value="${jvo.jobNo}">
 					<div id="detail-area">
+						<input type="radio" name="jobCategoryNo" value="1"
+							id="jobCategory1" checked> <label for="jobCategory1" >구인</label> 
+							<input type="radio" name="jobCategoryNo" value="2" id="jobCategory2">
+						<label for="jobCategory2">구직</label>
+
+
+						<div class="selections">
+							<select class="location-option" name="locationNo" id="location">
+								<c:forEach items="${locationList}" var="location">
+									<option value="${location.getLocationNo()}">${location.getLocationName()}</option>
+								</c:forEach>
+							</select>
+						</div>
 						<div id="detail-title">제목</div>
 						<div id="detail-inTitle">
 							<textarea name="title">${jvo.title}</textarea>
@@ -73,11 +91,6 @@
 			</div>
 
 
-			<div id="comment-header">
-				<input type="text" name="content" placeholder="댓글을 입력하세요">
-				<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
-			</div>
-			<div id="comment-area"></div>
 
 			<footer>
 				<%@ include file="/WEB-INF/views/common/footer.jsp"%>

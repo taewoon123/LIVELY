@@ -42,7 +42,6 @@ public class JobDao {
 	
 	//수정하기(작성자만)
 	public int edit(SqlSessionTemplate sst, JobVo vo) {
-		System.out.println(vo);
 		return sst.update("job.edit" , vo);
 	}
 	//삭제하기(작성자만)
@@ -73,7 +72,6 @@ public class JobDao {
 
 
 	public List<LocationVo> getLocationList(SqlSessionTemplate sst, LocationVo locationVo) {
-		System.out.println(locationVo);
 		return sst.selectList("job.getLocationList", locationVo);
 	}
 

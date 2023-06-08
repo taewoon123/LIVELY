@@ -19,7 +19,7 @@ th, td {
 }
 
 main table {
-	width: 60%;
+	width: 80%;
 	margin: auto;
 	text-align: center;
 }
@@ -71,7 +71,7 @@ main table > tbody > tr:hover {
 	background: #66ff66;
 	color: ghostwhite;
 	float: right;
-	margin-right: 20%;
+	margin-right: 10%;
 	margin-top: 2%;
 }
 
@@ -121,7 +121,7 @@ main table > tbody > tr:hover {
   outline: none;
   opacity: 0.8;
   float : right;
-  margin-right: 20%
+  margin-right: 10%
 }
 
 .container-input svg {

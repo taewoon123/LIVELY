@@ -132,6 +132,7 @@ public class FundraiseController {
     }
 
 
+
    @GetMapping("edit")
     public String fundEdit(Model model, @RequestParam("no") int no){
       FundraiseVo vo = service.getFundDetail(no);

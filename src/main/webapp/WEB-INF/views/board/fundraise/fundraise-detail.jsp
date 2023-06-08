@@ -127,7 +127,6 @@
             } ,
             success : function(data){
                 if(data == 'ok'){
-                    alert("댓글 작성 완료 !");
                     document.querySelector('input[name=content]').value = '';
                     loadReply();
                 }else if(data == 'unauthor'){

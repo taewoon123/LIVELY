@@ -116,16 +116,16 @@ public class FundraiseController {
         return "redirect:/fund/list";
     }
 
-    //    @PostMapping("donate")
-//    public String fundDonate(FundraiseVo vo,HttpSession session) {
-//        int result = service.fundDonate(vo);
-//        if(result > 0){
-//        session.setAttribute("fundDonateAlert","기부 성공");
-//        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
-//        }
-//        session.setAttribute("fundDonateAlert","기부에 실패했습니다. 다시 시도해주세요.");
-//        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
-//    }
+        @PostMapping("donate")
+    public String fundDonate(FundraiseVo vo,HttpSession session) {
+        int result = service.fundDonate(vo);
+        if(result > 0){
+        session.setAttribute("fundDonateAlert","기부 성공");
+        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
+        }
+        session.setAttribute("fundDonateAlert","기부에 실패했습니다. 다시 시도해주세요.");
+        return "redirect:/fund/detail?no=" + vo.getFundraiseNo();
+    }
    @GetMapping("edit")
     public String fundEdit(Model model, @RequestParam("no") int no){
 //        FundraiseVo fundVo  = (FundraiseVo) model.getAttribute("fundDetail");

@@ -9,4 +9,5 @@ public class FileVo {
 	private String originName;
 	private String changeName;
 	private String friendAttachNo;
+	private String marketAttachNo;
 }

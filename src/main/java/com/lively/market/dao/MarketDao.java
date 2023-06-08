@@ -1,6 +1,7 @@
 package com.lively.market.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lively.common.FileVo;
 import com.lively.common.locaion.vo.LocationVo;
+import com.lively.friend.vo.FriendVo;
 import com.lively.market.vo.MarketVo;
 import com.lively.page.vo.PageVo;
 
@@ -30,12 +32,12 @@ public class MarketDao {
 
 	
 	//피드 작성 (사진 파일)
-	public int insertAttachment(SqlSessionTemplate sst, List<FileVo> fileVoList) {
-		return sst.insert("market.insertAttachment", fileVoList);
+	public int insertAttachment(SqlSessionTemplate sst, List<FileVo> marketList) {
+		return sst.insert("market.insertAttachment", marketList);
 	}
 
 	//지역 리스트
-	public List<LocationVo> getLocationList(SqlSessionTemplate sst) {
+	public List<Map<String, String>> getLocationList(SqlSessionTemplate sst) {
 		return sst.selectList("market.getLocationList");
 	}
 
@@ -68,12 +70,12 @@ public class MarketDao {
 //	}
 	
 	//첨부파일
-	public int getAttachmentList(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("market.getAttachmentList", no);
+	public List<FileVo> getAttachmentList(SqlSessionTemplate sst) {
+		return sst.selectList("market.getAttachmentList");
 	}
 
-	public FileVo getAttachment(SqlSessionTemplate sst, String attachmentNo) {
-		return sst.selectOne("market.getAttachment", attachmentNo);
+	public FileVo getAttachment(SqlSessionTemplate sst, String marketAttachNo) {
+		return sst.selectOne("market.getAttachment", marketAttachNo);
 	}
 
 	public List<String> search(SqlSessionTemplate sst, String searchValue) {
@@ -83,6 +85,11 @@ public class MarketDao {
 	public int statusY(SqlSessionTemplate sst, String no) {
 		return sst.update("market.statusY", no);
 	}
+	
+	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst) {
+		return sst.selectList("market.getMarketFeed");
+	}
+
 
 	
 	public int statusN(SqlSessionTemplate sst, String no) {

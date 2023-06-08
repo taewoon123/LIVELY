@@ -53,9 +53,9 @@ public class FundraiseDao {
     public int edit(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
         return sqlSessionTemplate.update("fundraise.edit", vo);
     }
-//    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
-//        return sqlSessionTemplate.update("fundraise.gainCurrentMoney",vo);
-//    }
+    public int fundDonate(SqlSessionTemplate sqlSessionTemplate, FundraiseVo vo) {
+        return sqlSessionTemplate.update("fundraise.gainCurrentMoney",vo);
+    }
     
     
 }

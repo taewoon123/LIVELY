@@ -4,10 +4,10 @@
 <html>
 <head>
 	<title>Main</title>
-	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-	<%--네이버 지도 API--%>
-	<script type="text/javascript"
-			src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wg4n8e059m"></script>
+		<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+		<%--네이버 지도 API--%>
+		<script type="text/javascript"
+				src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wg4n8e059m"></script>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
 <%--			  </iframe>--%>
 
 				<%--네이버 지도 id는 무조건 map이여야함 && class는 api_position--%>
-			<map id="map" class="api_position" style="width:1700vw; height:750px;"></mapee>
+			<map id="map" class="api_position" style="width:1700vw; height:750px; left: -430px;"></map>
 		   </div>
 					   <%--구글맵 임베딩 끝--%>
 		   <div class="row">

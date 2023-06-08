@@ -64,11 +64,11 @@ public class JobController {
 
 
 		// 서비스
-		List<JobVo> jvoList = js.getJobList(pv, searchMap);
+		List<JobVo> jvoList = js.getJobList(pv, searchValue);
 //		List<Map<String, String>> cvoList = js.getCategoryList();
 
 //		model.addAttribute("cvoList" , cvoList);
-		model.addAttribute("searchMap", searchMap);
+		model.addAttribute("searchMap", searchValue);
 		model.addAttribute("pv", pv);
 		model.addAttribute("jvoList", jvoList);
 
@@ -111,6 +111,8 @@ public class JobController {
 			}
 		}
 		vo.setWriter(memberLog.getNo());
+		
+		System.out.println("write : " + vo);
 
 		int result = js.write(vo, fvoList);
 
@@ -126,8 +128,16 @@ public class JobController {
 
 	// 상세조회 (조회수)
 	@GetMapping("detail")
-	public String detail(String no, Model model) throws Exception {
+	public String detail(String no, Model model, HttpSession session, LocationVo locationVo) throws Exception {
 		JobVo vo = js.getJob(no);
+		List<LocationVo> locationList = js.getLocationList(locationVo);
+		
+		session.setAttribute("locationList", locationList);
+		
+		/*
+		 * LocationVo locationVo = new LocationVo();
+		 * locationVo.setLocationNo(locationNo); vo.setLocationNo(locationNo);
+		 */
 
 		if (vo == null) {
 			
@@ -143,9 +153,13 @@ public class JobController {
 
 	// 수정하기 (작성자 본인만)
 	@PostMapping("edit")
-	public String edit(JobVo vo, Model model, HttpSession session) throws Exception {
+	public String edit(JobVo vo, Model model, HttpSession session,@RequestParam("locationNo") String locationNo) throws Exception {
 		int result = js.edit(vo);
 
+		LocationVo locationVo = new LocationVo();
+	    locationVo.setLocationNo(locationNo);
+	    vo.setLocationNo(locationNo);
+ 
 		if (result != 1) {
 			 model.addAttribute("errorMsg", "수정실패...");
 		        return "common/error-page";

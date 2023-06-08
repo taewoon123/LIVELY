@@ -35,7 +35,10 @@ h5 {
    margin-bottom: 5%;
 }
 
-.form-area {
+.form-area1 {
+   display: none;
+}
+.form-area2 {
    display: none;
 }
 
@@ -102,11 +105,28 @@ h5 {
    text-align: center;
    border-bottom: 2px solid whitesmoke;
    border-right: 2px solid whitesmoke;
-
    background-color: whitesmoke;
    color: black;
 }
 
+#detail-reply{
+   margin-top: 150px;
+   border-radius: 0 0 0 20px;
+   background-color: #078735;
+   border-top: 2px solid whitesmoke;
+
+   
+   text-align: center;
+}
+
+#detail-inReply{
+   margin-top: 151px;
+   border-radius: 0 0 20px 0 ;
+   text-align: center;
+   border-top: 2px solid #078735;
+   background-color: whitesmoke;
+   color: black;
+}
 /* 버튼 css */
 #write_submit_delete {
    outline: none;
@@ -282,39 +302,8 @@ h5 {
   color: white;
 }
 
-#reviewContent{
-  height: 20%;
-}
-.eachComment{   
-  width :50%; 
-  margin: 10px;  
-  padding: 0.5em; 
-  border-bottom: 1px solid #c1bcba;
-  margin-left:12%;
-}
-
-.eachComment .name{
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 0.3em;
-  display: flex;
-  justify-content: space-between;
-}
 
 
-.eachComment .time{
-  font-size: 0.7em;
-  color: #c1bcba;
-  font-style: oblique;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  
-}
-
-.eachComment .voteDiv{
-  display: flex;
-  justify-content: flex-end;
-}
 /* 위에 목록버튼 */
 #list-btn{
 	margin-left: 72%; 

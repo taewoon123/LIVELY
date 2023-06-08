@@ -77,8 +77,5 @@ public class FundraiseService {
     }
 
 
-//    public int fundDonate(FundraiseVo vo) {
-//        return dao.fundDonate(sqlSessionTemplate, vo);
-//    }
 
 }

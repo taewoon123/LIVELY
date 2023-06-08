@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.dao.LocationDao;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.job.dao.JobDao;
 
 import com.lively.job.vo.JobVo;
@@ -22,14 +24,14 @@ public class JobService {
     
     
     @Autowired
-    public JobService(JobDao dao, SqlSessionTemplate sst) {
+    public JobService(JobDao dao, SqlSessionTemplate sst, LocationDao locationdao) {
         this.dao = dao;
         this.sst = sst;
     }
     
     //목록조회
-    public List<JobVo> getJobList(PageVo pv,Map<String, String> searchMap ) {
-        return dao.getJobList(sst, pv , searchMap);
+    public List<JobVo> getJobList(PageVo pv, String searchValue) {
+        return dao.getJobList(sst, pv, searchValue);
     }
     
     //작성하기
@@ -57,8 +59,8 @@ public class JobService {
 	
     }
 	//수정하기(작성자 본인만)
-	public int updateJob(JobVo vo) {
-		return dao.updateJob(sst, vo);
+	public int edit(JobVo vo) {
+		return dao.edit(sst, vo);
 	}
 	
 	// 삭제하기 (작성자 본인만)
@@ -67,12 +69,6 @@ public class JobService {
 		return dao.delete(sst, no);
 	}
 	
-//	public List<Map<String, String>> getCategoryList() {
-//		return dao.getCategoryList(sst);
-//	}
-
-
-
 	public FileVo getAttachment(String ano) {
 		return dao.getAttachment(sst, ano);
 	}
@@ -80,6 +76,11 @@ public class JobService {
 	// 게시글 갯수 조회
 	public int getJobListCnt() {
 		return dao.getJobListCnt(sst);
+	}
+
+	public List<LocationVo> getLocationList(LocationVo locationVo) {
+		
+		return dao.getLocationList(sst, locationVo);
 	}
 
 	

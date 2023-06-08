@@ -72,6 +72,7 @@
 /* 피드 영역 */
 .feed_box {
     height: 600px;
+    width: 600px;
     display: grid;
     grid-template-rows: 1fr 7fr 2fr 1fr;
     border: 1px solid grey;
@@ -79,6 +80,7 @@
     border-radius: 1%;
     margin-bottom: 40px;
 }
+
 
 .feed_more_box {
   	height: 650px;
@@ -93,6 +95,7 @@
 
 .feed_content_more_box {
   height: 100px;
+  width: 568px;
 }
 
 .feed_done {

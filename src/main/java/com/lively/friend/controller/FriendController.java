@@ -67,11 +67,12 @@ public class FriendController {
 		
 		if (fvoMap != null) {
 			/* model.addAttribute("pageVo" , pageVo); */
-			model.addAttribute("fvoMap", fvoMap);
+			model.addAttribute("fvoMap", new ArrayList<FriendVo>(fvoMap.values()));
 			/* model.addAttribute("searchMap" , searchMap); */
 			model.addAttribute("LocationList", LocationList);
 			
 		}
+		
 		
 		
 		/*

@@ -19,9 +19,9 @@
 					<p class="title">Login</p>
 
 					<form class="form" action="${rootContext}/member/login" method="post">
-						<label for="username">ID</label>
+						<label for="id">ID</label>
 						<div class="input-group">
-							<input type="text" name="id" id="username" placeholder="">
+							<input type="text" name="id" id="id" placeholder="">
 						</div>
 						<label for="password" id="passwordLabel">Password</label>
 						<div class="input-group">
@@ -31,7 +31,7 @@
 							<a rel="noopener noreferrer">Forgot</a>
 							<a rel="noopener noreferrer" href="#"> Id </a>
 							<a rel="noopener noreferrer">/</a>
-							<a rel="noopener noreferrer" href="#">Password ?</a>
+							<a rel="noopener noreferrer" href="${rootContext}/member/forgot-password">Password ?</a>
 						</div>
 						<br>
 						<button class="sign-button">Login</button>

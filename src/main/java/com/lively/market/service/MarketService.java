@@ -1,6 +1,9 @@
 package com.lively.market.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,6 @@ import com.lively.common.FileVo;
 import com.lively.common.locaion.vo.LocationVo;
 import com.lively.market.dao.MarketDao;
 import com.lively.market.vo.MarketVo;
-import com.lively.page.vo.PageVo;
 
 @Service
 @Transactional
@@ -32,18 +34,19 @@ public class MarketService {
 	}
 	
 	//피드 작성
-	public int write(MarketVo marketVo, List<FileVo> fileVoList) throws Exception {
+	public int write(MarketVo marketVo, List<FileVo> marketList) throws Exception {
 		int writeResult = dao.write(sst, marketVo);
 		int attachResult = 1;
-		if(fileVoList.size() > 0) {
-			attachResult = dao.insertAttachment(sst, fileVoList);
+		System.out.println("write : " + marketVo);
+		if(marketList.size() > 0) {
+			attachResult = dao.insertAttachment(sst, marketList);
 		}
 		
 		return writeResult * attachResult;
 	}
 
 	//지역 목록
-	public List<LocationVo> getLocationList() {
+	public List<Map<String, String>> getLocationList() {
 		return dao.getLocationList(sst);
 	}
 
@@ -73,8 +76,8 @@ public class MarketService {
 		return marketVo;
 	}
 	
-	public FileVo getAttachment(String attachmentNo) {
-		return dao.getAttachment(sst, attachmentNo);
+	public FileVo getAttachment(String marketAttachNo) {
+		return dao.getAttachment(sst, marketAttachNo);
 	}
 
 	public int statusY(String no) {
@@ -84,5 +87,27 @@ public class MarketService {
 	public int statusN(String no) {
 		return dao.statusN(sst, no);
 	}
+	
+	
+	//합치기
+	 public Map<String, MarketVo> getMarketFeed() {
+		 List<MarketVo> fileVoList = dao.getMarketFeed(sst);
+		 
+		 Map<String, MarketVo> fileVoMap = new HashMap<String, MarketVo>();
+		 for(MarketVo fileVo : fileVoList) {
+			 fileVoMap.put(fileVo.getMarketNo(), fileVo);
+			 fileVo.setAttachmentList(new ArrayList<FileVo>()); 
+		 }
+		 
+		 
+		 List<FileVo> fileList = dao.getAttachmentList(sst);
+		 for(FileVo file : fileList) {
+			 String marketNo = file.getNo();
+			 fileVoMap.get(marketNo).getAttachmentList().add(file);
+		 }
+		 
+		 
+		 return fileVoMap;
+	 }
 }
 

@@ -5,16 +5,6 @@
 
 <mapper namespace="qna">
 
-	<insert id="replyinsert">
-		INSERT INTO QNA
-
-
-
-
-
-	</insert>
-
-
 	<insert id="write">
 		INSERT INTO QNA
 		(
@@ -47,8 +37,10 @@
 			M.NAME AS writerName 
 		FROM QNA Q
 		LEFT JOIN MEMBER M ON (Q.WRITER = M.NO) 
-		WHERE
-		DELETE_YN = 'N'
+		WHERE Q.DELETE_YN = 'N'
+		<if test = "searchValue != null">
+        AND Q.QNA_TITLE LIKE '%' || #{searchValue} || '%'
+        </if>
 		ORDER BY QNA_NO DESC
 	</select>
 
@@ -67,9 +59,8 @@
 	</update>
 
 	<select id="getQna" resultType="QnaVo">
-		SELECT QNA_NO AS NO,
-		M.NAME AS
-		WRITER
+		SELECT QNA_NO,
+		M.NAME AS WRITER
 		,Q.QNA_TITLE
 		,Q.QNA_CONTENT
 		,Q.VIEWS
@@ -90,17 +81,16 @@
 		UPDATE QNA
 		SET
 		QNA_TITLE = #{qnaTitle}
-		,QNA_CONTENT =
-		#{qnaContent}
+		,QNA_CONTENT = #{qnaContent}
 		,EDIT_DATE = SYSDATE
 		WHERE QNA_NO = #{qnaNo}
 	</update>
-	
+
 	<update id="replyEdit">
 		UPDATE QNA
 		SET
 		QNA_REPLY_CONTENT = #{qnaReplyContent}
-		WHERE NOTICE_NO = #{noticeNo}	
+		WHERE QNA_NO = #{qnaNo}	
 	</update>
 
 	<update id="delete">

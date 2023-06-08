@@ -60,12 +60,8 @@ public class QnaService {
 		return null;
 	}
 
-	public int getCnt(Map<String, String> searchMap) {
-		return 0;
-	}
-
-	public List<QnaVo> getQnaList(PageVo pv, Map<String, String> searchMap) {
-		return dao.getQnaList(sst, pv);
+	public List<QnaVo> getQnaList(PageVo pv, String searchValue) {
+		return dao.getQnaList(sst, pv, searchValue);
 	}
 
 	public List<QnaVo> getQnaListMain() {
@@ -73,7 +69,12 @@ public class QnaService {
 	}
 
 	public int replyedit(QnaVo vo) {
+
 		 return dao.replyedit(sst, vo);
+	}
+
+	public int getQnaListCnt() {
+		return dao.getQnaListCnt(sst);
 	}
 
 }

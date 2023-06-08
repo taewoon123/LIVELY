@@ -9,10 +9,6 @@
 	display: none;
 }
 
-.form-area {
-	display: none;
-}
-
 .active {
 	display: block;
 }
@@ -39,8 +35,13 @@
 					<div id="detail-inDate">${qvo.enrollDate}</div>
 					<div id="detail-hit">조회수</div>
 					<div id="detail-inHit">${qvo.views}</div>
-					<div id="detail-content">내용</div>
-					<div id="detail-inContent">${qvo.qnaContent}</div>
+					<div id="detail-content">내용
+					<div id="detail-reply">답변</div>
+					</div>
+					<div id="detail-inContent">${qvo.qnaContent}
+					<div id="detail-inReply">${qvo.qnaReplyContent}
+					</div>
+					</div>
 					
 				</div>
 
@@ -51,19 +52,59 @@
 					<span>삭제하기</span>
 				</button>
 
-				<button id="write_submit_edit">
-					<span>수정하기</span>
-				</button>
+				<button id="write_submit_edit" onclick="toggleActive1();"><span>답변하기</span></button>
+
 				<%-- 		</c:if> --%>
+				<div id="qna-btn-area">
+					<button id="write_submit_edit" onclick="toggleActive2();"><span>수정하기</span></button>
+				</div>
 
 
 			</div>
-			<!-- div view-area active end -->
-			<div id="comment-header">
-				<input type="text" name="comment" placeholder="댓글을 입력하세요">
-				<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
+			
+			<div class="form-area1">
+				<form action="${rootContext}/qna/replyedit" method="POST" enctype="multipart/form-data">
+					<input type = "hidden" name = "qnaNo" value = "${qvo.qnaNo}">
+					<div id="detail-area">
+					<div id="detail-title">제목</div>
+					<div id="detail-inTitle">${qvo.qnaTitle}</div>
+					<div id="detail-date">작성일자</div>
+					<div id="detail-inDate">${qvo.enrollDate}</div>
+					<div id="detail-hit">조회수</div>
+					<div id="detail-inHit">${qvo.views}</div>
+					<div id="detail-content">내용
+					<div id="detail-reply">답변</div>
+					</div>
+					<div id="detail-inContent">${qvo.qnaContent}
+					<div id="detail-inReply" ><textarea name="qnaReplyContent">${qvo.qnaReplyContent}</textarea>
+					</div>
+					</div>
+					<br>
+					 <button id="write_submit_edit" style = "margin-right: 240px;"><span>답변완료</span></button>
+				</form>
 			</div>
-			<div id="comment-area"></div>
+			
+			<div class="form-area2">
+				<form action="${rootContext}/qna/edit" method="POST" enctype="multipart/form-data">
+					<input type = "hidden" name = "qnaNo" value = "${qvo.qnaNo}">
+					<div id="detail-area">
+					<div id="detail-title">제목</div>
+					<div id="detail-inTitle" ><textarea name="qnaTitle">${qvo.qnaTitle}</textarea></div>
+					<div id="detail-date">작성일자</div>
+					<div id="detail-inDate">${qvo.enrollDate}</div>
+					<div id="detail-hit">조회수</div>
+					<div id="detail-inHit">${qvo.views}</div>
+					<div id="detail-content">내용
+					<div id="detail-reply">답변</div>
+					</div>
+					<div id="detail-inContent" name="qnaContent"><textarea>${qvo.qnaContent}</textarea></div>
+					<div id="detail-inReply">${qvo.qnaReplyContent}</div>
+					</div>
+					<br>
+					<button id="write_submit_edit" style = "margin-right: 240px;"><span>수정완료</span></button>
+				</form>
+			</div>
+			</div>
 		</main>
 
 	</div>
@@ -76,7 +117,27 @@
 </html>
 <!-- edit js -->
 
-<script src="${rootContext}/resources/js/board/comment-detail.js"></script>
+<script>
+
+function toggleActive1(){
+    const viewArea = document.querySelector(".view-area");
+    const formArea1 = document.querySelector(".form-area1");
+    viewArea.classList.remove('active');
+    formArea1.classList.add('active');
+    
+}
+
+
+function toggleActive2(){
+    const viewArea = document.querySelector(".view-area");
+    const formArea2 = document.querySelector(".form-area2");
+    viewArea.classList.remove('active');
+    formArea2.classList.add('active');
+    
+}
+
+
+</script>
 
 <link rel="stylesheet"
 	href="${rootContext}/resources/css/board/qna/qna-detail.css">

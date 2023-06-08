@@ -4,10 +4,10 @@
 <html>
 <head>
 	<title>Main</title>
-	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-	<%--네이버 지도 API--%>
-	<script type="text/javascript"
-			src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wg4n8e059m"></script>
+		<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+		<%--네이버 지도 API--%>
+		<script type="text/javascript"
+				src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wg4n8e059m"></script>
 </head>
 <body>
 
@@ -33,6 +33,7 @@
 
 				<%--네이버 지도 id는 무조건 map이여야함 && class는 api_position--%>
 			<map id="map" class="api_position" style="width:1700vw; height:750px;"></map>
+
 		   </div>
 					   <%--구글맵 임베딩 끝--%>
 		   <div class="row">
@@ -214,40 +215,21 @@
 											<th>No</th>
 											<th>Title</th>
 											<th>Date</th>
-											<th>Writer</th>
+											<th>Views</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th>1</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>강씨</th>
-										</tr>
-										<tr>
-											<th>2</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>정씨</th>
-										</tr>
-										<tr>
-											<th>3</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>최씨</th>
-										</tr>
-										<tr>
-											<th>4</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>오씨</th>
-										</tr>
-										<tr>
-											<th>5</th>
-											<th>공지사항</th>
-											<th>2023.04.27</th>
-											<th>심씨</th>
-										</tr>
+										<c:forEach items="${nvoList}" var="nvo" varStatus="loop">
+                                       <c:if test="${loop.index < 5}">
+                                          <tr>
+                                             <td>${nvo.noticeNo}</td>
+                                             <td>${nvo.noticeTitle}</td>
+                                             <td>${nvo.enrollDate}</td>
+                                             <td>${nvo.views}</td>
+                                          </tr>
+                                       </c:if>
+                                    </c:forEach>
+
 									</tbody>
 								</table>
 

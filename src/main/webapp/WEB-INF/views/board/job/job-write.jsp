@@ -16,18 +16,16 @@
 				<div class="write-group">
 
 					<h3 id="job-title">Job/Recruit</h3>
-					
-					<select name="jobCategoryNo"> 
-						<option value="1"> 구인</option>
-						<option value="2"> 구직</option>
-					</select>
-					<div class="selections-location">
-						<select class="location-option" name="location" id="location">
-							<option value="0" selected>지역선택</option>
-							<option value="1">강동구</option>
-							<option value="2">강서구</option>
-							<option value="3">강남구</option>
-							<option value="4">강북구</option>
+			
+					<input type="radio" name="jobCategoryNo" value="1"
+						id="jobCategory1" checked> <label for="jobCategory1" >구인</label> 
+						<input type="radio" name="jobCategoryNo" value="2" id="jobCategory2">
+					<label for="jobCategory2">구직</label>
+					<div class="selections">
+						<select class="location-option" name="locationNo" id="location">
+							<c:forEach items="${locationList}" var="locationList">
+								<option value="${locationList.getLocationNo()}">${locationList.getLocationName()}</option>
+							</c:forEach>
 						</select>
 					</div>
 					<div class="form__group">

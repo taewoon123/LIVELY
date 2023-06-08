@@ -1,12 +1,20 @@
 package com.lively.market.controller;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
 import com.lively.common.locaion.vo.LocationVo;
+import com.lively.friend.vo.FriendVo;
 import com.lively.market.service.MarketService;
 import com.lively.market.vo.MarketVo;
 import com.lively.member.vo.MemberVo;
@@ -48,7 +57,8 @@ public class MarketController {
 		 */
 		
 		List<MarketVo> marketList = ms.getMarketFeed(searchValue);
-		List<LocationVo> LocationList = ms.getLocationList();
+		Map<String, MarketVo> marketVoMap = ms.getMarketFeed();
+		List<Map<String, String>> LocationList = ms.getLocationList();
 		
 		System.out.println(marketList);
 		
@@ -56,7 +66,14 @@ public class MarketController {
 //		model.addAttribute("pageVo", pageVo);
 //		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("marketList", marketList);
-		model.addAttribute("LocationList", LocationList);
+		
+		if (marketVoMap != null) {
+			/* model.addAttribute("pageVo" , pageVo); */
+			model.addAttribute("marketVoMap", new ArrayList<MarketVo>(marketVoMap.values()));
+			/* model.addAttribute("searchMap" , searchMap); */
+			model.addAttribute("LocationList", LocationList);
+			
+		}
 		
 		return "board/market/market-list";
 	}
@@ -87,7 +104,7 @@ public class MarketController {
 		
 		//데이터 준비
 		int size = 0;
-		List<FileVo> fileVoList = new ArrayList<FileVo>();
+		List<FileVo> marketList = new ArrayList<FileVo>();
 		if(changeNameList != null) {
 			size = changeNameList.size();
 			System.out.println(size);
@@ -95,27 +112,20 @@ public class MarketController {
 				FileVo fileVo = new FileVo();
 				fileVo.setOriginName(originNameList.get(i));
 				fileVo.setChangeName(changeNameList.get(i));
-				fileVoList.add(fileVo);
+				marketList.add(fileVo);
 				
-//				MarketVo marketVo = new MarketVo();
-				marketVo.setOriginNameList(originNameList.get(i));
-				marketVo.setChangeNameList(changeNameList.get(i));
 			}
 		}
 
 		marketVo.setWriter(memberLog.getNo());
 		
-		int result = ms.write(marketVo, fileVoList);
+		int result = ms.write(marketVo, marketList);
 		
 		if(result <= 0) {
 			session.setAttribute("alertMsg", "작성에 실패하셨습니다ㅠㅠ");
 			
 			return "board/market/market-write";
 		}
-		model.addAttribute("marketVo", marketVo);
-		model.addAttribute("fileVoList", fileVoList);
-		model.addAttribute("changeNameList", changeNameList);
-		model.addAttribute("size", size);
 		
 		return "redirect:/market/list";
 	}
@@ -200,6 +210,30 @@ public class MarketController {
 		
 		return "redirect:/member/my-market-feed";
 	}
+	
+	//파일 다운로드
+		@GetMapping("att/down")
+		public ResponseEntity<ByteArrayResource> download(String marketAttachNo , HttpServletRequest req) throws Exception{
+			
+			String path = req.getServletContext().getRealPath("/resoureces/upload/market/");
+			FileVo fileVo = ms.getAttachment(marketAttachNo);
+			File f = new File(path + fileVo.getChangeName());
+			
+			byte[] data = FileUtils.readFileToByteArray(f);
+			ByteArrayResource bar = new ByteArrayResource(data);
+			
+		ResponseEntity<ByteArrayResource> entity = ResponseEntity
+		   		.ok()
+		   		.contentType(MediaType.APPLICATION_OCTET_STREAM)
+		   		.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "\"" + URLEncoder.encode(fileVo.getOriginName() , "UTF-8") + "\"")
+		   		.header(HttpHeaders.CONTENT_ENCODING, "UTF-8")
+		   		.contentLength(data.length)
+		   		.body(bar)
+		   		;
+		
+		return entity;
+			
+		}
 	
 }
 	

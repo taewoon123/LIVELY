@@ -1,5 +1,9 @@
 package com.lively.market.chat.server;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,8 +17,12 @@ import com.lively.market.chat.vo.MarketChatVo;
 import com.lively.market.vo.MarketVo;
 import com.lively.member.vo.MemberVo;
 
+
 @Component
 public class MarketChatServer extends TextWebSocketHandler {
+	
+	//모든 세션의 정보를 담을 객체 (여러 명의 client)
+	private final Set<WebSocketSession> sessionSet = new HashSet<WebSocketSession>();  
 	
 	private final SqlSessionTemplate sst;
 	
@@ -44,6 +52,8 @@ public class MarketChatServer extends TextWebSocketHandler {
 		    String sender = memberLog.getName();  //보내는 사람(로그인 한 사람)
 		    String marketNo = marketVo.getMarketNo();
 		   String sendTime = marketVo.getEnrollDate();
+		   
+		   System.out.println(sender);
 			
 			MarketChatVo chatVo = new MarketChatVo();
 			chatVo.setMsgContent(msg);
@@ -59,7 +69,16 @@ public class MarketChatServer extends TextWebSocketHandler {
 ////			Object tmepObj = gson.fromJson(str, );
 //			System.out.println(chatVo);
 //			System.out.println(str);
-			session.sendMessage(new TextMessage(jsonStr)); //messageVo를 json 문자열로 바꾸고 TextMessage로써 보내야된다
+			TextMessage textMsg = new TextMessage(jsonStr);
+			session.sendMessage(textMsg); //messageVo를 json 문자열로 바꾸고 TextMessage로써 보내야된다
+			
+			broadCast(textMsg);
+		}
+
+		private void broadCast(TextMessage textMsg) throws IOException {
+			for(WebSocketSession session : sessionSet) {  //sessionSet에 있는걸 하나하나 다 꺼내서 session에 담는다
+				session.sendMessage(textMsg);
+			}
 		}
 
 		//연결 끊김

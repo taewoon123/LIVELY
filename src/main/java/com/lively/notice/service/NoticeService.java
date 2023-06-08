@@ -56,6 +56,10 @@ public class NoticeService {
 	public int delete(String num) {
 		return dao.delete(sst, num);
 	}
+	
+	public List<NoticeVo> getNoticeListMain() {
+	      return dao.getNoticeListMain(sst);
+	}
 
 
 }

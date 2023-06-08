@@ -1,9 +1,14 @@
 /* 상세페이지 css */
+#comment-area {
+	color: white;
+}
+
 #help-area {
-   width: 600px;
-   margin: auto;
+   width: 1100px;
+   margin-left: 80px; 
    display: grid;
-   grid-template-columns: repeat(2, 150px 200px);
+   margin : auto; 
+   grid-template-columns: repeat(2, 150px 400px);
    grid-template-rows: 30px 30px 250px;
 }
 
@@ -24,7 +29,7 @@
 
 /* 도움 전체 테두리 css */
 .view-area {
-   display: none;
+   display: none; 
    color: white;
    margin-top: 15%;
    margin-bottom: 5%;
@@ -32,7 +37,7 @@
 
 /* 도움 오른쪽 위에 목록 버튼 css */
 #list-btn{
-   margin-left: 76%; 
+   margin-left: 87%; 
    margin-bottom: 1%;
    border:1px solid whitesmoke;
    color:whitesmoke; 
@@ -53,7 +58,6 @@
 /* 도움 배경색 & 테두리 변경 css */
 #help-hit{
    background-color: #078735;
-  
    text-align: center;
 }
  #help-inDate{
@@ -77,13 +81,11 @@
    border-top: 2px solid whitesmoke;
    border-left: 2px solid whitesmoke;
    border-bottom: 2px solid whitesmoke;
-   
    text-align: center;
 }
 #help-date{
    background-color: #078735;
    border-left: 2px solid whitesmoke;
-
    text-align: center;
 }
 
@@ -101,7 +103,7 @@
    border-top: 2px solid whitesmoke;
    border-left: 2px solid whitesmoke;
    border-bottom: 2px solid whitesmoke;
-   
+   margin-bottom: -100px; /*  */
    text-align: center;
 }
 
@@ -110,8 +112,8 @@
    text-align: center;
    border-bottom: 2px solid whitesmoke;
    border-right: 2px solid whitesmoke;
-
    background-color: whitesmoke;
+   margin-bottom: -100px;
    color: black;
 }
 
@@ -134,8 +136,8 @@
    background: #66ff66;
    color: ghostwhite;
    float: right;
-   margin-right: 19%;
-   margin-top: 2%;
+   margin-right: 12%;
+   margin-top: 10%;
 }
 
 #write_submit_delete span {
@@ -188,8 +190,8 @@
    background: #66ff66;
    color: ghostwhite;
    float: right;
-   margin-right: 3%;
-   margin-top: 2%;
+   margin-right: 5%;
+   margin-top: 10%;
 }
 
 #write_submit_edit span {
@@ -260,7 +262,7 @@
    grid-column: span 2; 
    text-align: center;
    margin-right: -95px;
-   margin-top: 110px;
+   margin-top: 210px;
 }
 
 #comment-header input[type="text"] {

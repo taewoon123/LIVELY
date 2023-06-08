@@ -17,11 +17,11 @@ public class QnaDao {
 		return sst.insert("qna.write", vo);
 	}
 
-	public List<QnaVo> getQnaList(SqlSessionTemplate sst, PageVo pv) {
+	public List<QnaVo> getQnaList(SqlSessionTemplate sst, PageVo pv, String searchValue) {
 		int limit = pv.getBoardLimit(); //쿼리문 수정안해도 페이징 처리가 가능
 		int offset = (pv.getCurrentPage()-1) * limit;
 		RowBounds rb = new RowBounds(offset, limit);
-		return sst.selectList("qna.getQnaList", null, rb);
+		return sst.selectList("qna.getQnaList", searchValue, rb);
 	}
 
 	public int getQnaListCnt(SqlSessionTemplate sst) {
@@ -55,6 +55,7 @@ public class QnaDao {
 	}
 
 	public int replyedit(SqlSessionTemplate sst, QnaVo vo) {
+		System.out.println(vo);
 		return sst.update("qna.replyEdit", vo);
 	}
 

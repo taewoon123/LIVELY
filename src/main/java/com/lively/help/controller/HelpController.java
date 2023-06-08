@@ -15,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.help.service.HelpService;
 import com.lively.help.vo.HelpVo;
 import com.lively.member.vo.MemberVo;
@@ -53,15 +55,22 @@ public class HelpController {
 		PageVo pv = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 		List<HelpVo> hvoList = hs.getHelpList(pv, searchValue);
 		
-		//화면
-		model.addAttribute("pv", pv);
-		model.addAttribute("hvoList", hvoList);
+		if(hvoList != null) {
+			//화면
+			model.addAttribute("pv", pv);
+			model.addAttribute("hvoList", hvoList);			
+		}
+		
 		return "board/help/help-list";
    }
 	
 	//도움 작성하기 (화면)
 	@GetMapping("write")
-	public String write() {
+	public String write(HttpSession session, HelpVo vo, LocationVo locationVo) {
+		List<LocationVo> locationList = hs.getLocationList(locationVo);
+		
+		session.setAttribute("locationList", locationList);
+		
 		return "board/help/help-write";
 	}
 	
@@ -96,18 +105,12 @@ public class HelpController {
 		
 		int result = hs.write(vo, fvoList);
 		
-		if(result == 1) {
-			session.setAttribute("alertMsg", "도움글 작성 완료");
-		} else {
-			session.setAttribute("alertMsg", "도움글 작성 실패");
-		}
-		
 		return "redirect:/help/list";
 	}
 	
 	//도움 상세조회
 	@GetMapping("detail")
-	public String detail(String num, Model model,HttpSession session) throws Exception {
+	public String detail(@RequestParam("num") int num, Model model) throws Exception {
 		HelpVo vo = hs.getHelp(num);
 		
 		if(vo == null) {
@@ -119,6 +122,36 @@ public class HelpController {
 		model.addAttribute("helpNo", num);
 		model.addAttribute("path", "/resources/upload/help");
 		return "board/help/help-detail";
+	}
+	
+	//도움 수정하기 (화면)
+	@GetMapping("edit")
+	public String edit(Model model, @RequestParam("num") int num) throws Exception {
+		HelpVo vo = hs.getHelp(num);
+		
+		List<LocationVo> locationList = hs.getLocationList(new LocationVo());
+		
+		model.addAttribute("hvo", vo);
+		model.addAttribute("locationList", locationList);
+		
+		return "board/help/help-edit";
+	}
+	
+	//도움 수정하기
+	@PostMapping("edit")
+	public String edit(HelpVo vo, HttpSession session, @RequestParam("locationNo") String locationNo) {
+		int result = hs.edit(vo);
+		
+		LocationVo locationVo = new LocationVo();
+	    locationVo.setLocationNo(locationNo);
+	    vo.setLocationNo(locationNo);
+		
+		if(result > 0) {
+			return "redirect:/help/detail?num=" + vo.getHelpNo();
+		}
+		
+		session.setAttribute("errorMsg", "도움 글 수정 실패...");
+		return "redirect:/help/detail?num=" + vo.getHelpNo();
 	}
 	
 	//도움 삭제하기
@@ -133,27 +166,4 @@ public class HelpController {
 		
 		return "redirect:/help/list";
 	}
-	
-	//파일다운로드
-//	@GetMapping("att/down")
-//	public void download(HttpServletRequest req, HttpServletResponse resp, String ano) throws Exception {
-//		
-//		//파일 객체 준비
-//		String path = req.getServletContext().getRealPath("/resources/upload/help/");
-//		FileVo fvo = hs.getAttachment(ano);
-//		File f = new File(path + fvo.getChangeName());
-//		
-//		byte[] data = FileUtils.readFileToByteArray(f);
-//		
-//		resp.setHeader("Content-Type", "application/octet-stream");
-//		resp.setHeader("Content-Disposition", "attachment; filename=" + "\"" + URLEncoder.encode(fvo.getOriginName(), "UTF-8") + "\"");
-//		resp.setHeader("Content-Length", data.length + "");
-//		
-//		//내보낼 통로 준비
-//		ServletOutputStream os = resp.getOutputStream();
-//		FileInputStream fis = new FileInputStream(f);
-//		
-//		os.write(data);
-//	}
-	
 }

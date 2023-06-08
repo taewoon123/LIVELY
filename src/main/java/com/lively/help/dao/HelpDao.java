@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.lively.common.FileVo;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.help.vo.HelpVo;
 import com.lively.page.vo.PageVo;
 
@@ -31,11 +32,11 @@ public class HelpDao {
 	}
 
 	//조회수
-	public int increaseViews(SqlSessionTemplate sst, String num) {
+	public int increaseViews(SqlSessionTemplate sst, int num) {
 		return sst.update("help.increaseViews", num);
 	}
 
-	public HelpVo getHelp(SqlSessionTemplate sst, String num) {
+	public HelpVo getHelp(SqlSessionTemplate sst, int num) {
 		return sst.selectOne("help.getHelp", num);
 	}
 
@@ -51,12 +52,20 @@ public class HelpDao {
 		return sst.insert("help.insertAttachment", helpList);
 	}
 
-	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, String num) {
+	public List<FileVo> getAttachmentList(SqlSessionTemplate sst, int num) {
 		return sst.selectList("help.getAttachmentList", num);
 	}
 
 	public List<String> search(SqlSessionTemplate sst, String searchValue) {
 		return sst.selectList("help.search", searchValue);
+	}
+
+	public int edit(SqlSessionTemplate sst, HelpVo vo) {
+		return sst.update("help.edit", vo);
+	}
+
+	public List<LocationVo> getLocationList(SqlSessionTemplate sst, LocationVo locationVo) {
+		return sst.selectList("help.getLocationList", locationVo);
 	}
 
 }

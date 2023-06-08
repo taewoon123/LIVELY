@@ -40,7 +40,7 @@ public class FriendDao {
 	}
 
 	public int getFeedCount(SqlSessionTemplate sst) {
-		return sst.selectOne("market.getFeedCount");
+		return sst.selectOne("friend.getFeedCount");
 	}
 
 
@@ -79,6 +79,22 @@ public class FriendDao {
 		return sst.update("friend.delete", no);
 	}
 
+	
+	//상세조회
+	public List<FriendVo> getFeed(SqlSessionTemplate sst, String no) {
+		return sst.selectList("friend.getFeed", no);
+	}
+
+
+	public int statusY(SqlSessionTemplate sst, String no) {
+		return sst.update("friend.statusY", no);
+	}
+
+
+	public int statusN(SqlSessionTemplate sst, String no) {
+		return sst.update("friend.statusN", no);
+	}
+
 
 
 
@@ -88,7 +104,6 @@ public class FriendDao {
 
 
 	
-	//상세조회
 	
 
 	

@@ -132,20 +132,22 @@
 	<!-- FRI_ATTACH -->
 	<select id="getAttachmentList" resultType="fileVo">
 		SELECT
-		FRIEND_ATTACH_NO
-		,FRIEND_NO as NO
-		,ORIGIN_NAME
-		,CHANGE_NAME
-		,DELETE_YN
-		FROM FRI_ATTACH
-		WHERE DELETE_YN = 'N'
+		A.FRIEND_ATTACH_NO
+		,A.FRIEND_NO as NO
+		,A.ORIGIN_NAME
+		,A.CHANGE_NAME
+		,A.DELETE_YN
+		FROM FRI_ATTACH A
+		LEFT JOIN FRIEND F ON (F.FRIEND_NO = A.FRIEND_NO)
+		WHERE F.DELETE_YN = 'N'
 	</select>
 
 	<select id="getAttachment" resultType="fileVo">
 		SELECT
-		FROM FRI_ATTACH
-		WHERE FRIEND_ATTACH_NO = #{friendAttachNo}
-		AND DELETE_YN = 'N'
+		FROM FRI_ATTACH A
+		LEFT JOIN FRIEND F ON (F.FRIEND_NO = A.FRIEND_NO)
+		WHERE A.FRIEND_ATTACH_NO = #{friendAttachNo}
+		AND F.DELETE_YN = 'N'
 	</select>
 
 	<select id="getFriendFeed" resultType="FriendVo"> 
@@ -160,7 +162,8 @@
 		,F.LOCATION_NO 
 		,F.STATUS_YN 
 		,L.LOCATION_NAME as locationName 
-		, M.NAME as writerName FROM 
+		, M.NAME as writerName
+		, M.ID as writerId FROM 
 		FRIEND F LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO) 
 		LEFT JOIN MEMBER M ON (F.WRITER = M.NO) 
 		WHERE F.DELETE_YN = 'N' 
@@ -172,6 +175,7 @@
   	UPDATE FRIEND
   		SET TITLE = #{title}
   			, CONTENT = #{content}
+  			, LOCATION_NO = #{locationNo}
   			, EDIT_DATE = SYSDATE
   		WHERE FRIEND_NO = #{friendNo}
   		AND DELETE_YN = 'N'
@@ -186,6 +190,46 @@
   		, EDIT_DATE = SYSDATE
   	WHERE FRIEND_NO = #{no}
   </update>
+  
+   <!-- 모집 상태 변경 (모집중으로) -->
+  <update id="statusY">
+  	UPDATE FRIEND
+  		SET STATUS_YN = 'Y'
+  		, EDIT_DATE = SYSDATE
+  	WHERE FRIEND_NO = #{no}
+  </update>
+  
+  <!-- 모집 상태 변경 (모집완료로) -->
+  <update id="statusN">
+  	UPDATE FRIEND
+  		SET STATUS_YN = 'N'
+  		, EDIT_DATE = SYSDATE
+  	WHERE FRIEND_NO = #{no}
+  </update>
+  
+    <select id="getFeed" resultType="FriendVo">
+	SELECT 
+	    F.FRIEND_NO
+		, F.WRITER
+		, F.TITLE
+		, F.CONTENT
+		, F.ENROLL_DATE
+		, F.EDIT_DATE
+		, F.DELETE_YN
+		, F.LOCATION_NO
+		, F.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, A.FRIEND_ATTACH_NO as friendAttachNo
+		, A.ORIGIN_NAME as originName
+		, A.CHANGE_NAME as changeName
+		, A.DELETE_YN as deleteYnAttach
+	FROM FRIEND F
+	LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+	LEFT JOIN FRI_ATTACH A ON (F.FRIEND_NO = A.FRIEND_NO)
+	WHERE F.FRIEND_NO = #{no}
+	AND F.DELETE_YN = 'N'
+	AND A.DELETE_YN = 'N'
+  </select>
 
 
 </mapper>

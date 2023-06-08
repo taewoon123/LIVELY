@@ -30,7 +30,6 @@ import com.lively.common.FileUploader;
 import com.lively.common.FileVo;
 import com.lively.friend.service.FriendService;
 import com.lively.friend.vo.FriendVo;
-import com.lively.market.vo.MarketVo;
 import com.lively.member.vo.MemberVo;
 import com.lively.page.vo.PageVo;
 
@@ -48,17 +47,7 @@ public class FriendController {
 	//피드목록
 	@GetMapping("list")
 	public String list(Model model,  String searchValue, @RequestParam(defaultValue = "1") int page , String no) {
-		/* FriendVo vo = fs.getFriendFeed(no); */
-		
-		
-		//데이터
-		/*
-		 * int listCount = fs.getFeedCount(); int currentPage = page; int pageLimit = 3;
-		 * int boardLimit = 3;
-		 */
-		/* PageVo pageVo = new PageVo(listCount, currentPage, pageLimit, boardLimit); */
-		
-		/* PageVo pageVo = new PageVo(listCount, page, pageLimit, boardLimit); */
+
 		List<FriendVo> friendList = fs.getFriendFeed(searchValue); 
 		Map<String, FriendVo> fvoMap = fs.getFriendFeed();
 		List<Map<String, String>> LocationList = fs.getLocationNoList();
@@ -66,20 +55,10 @@ public class FriendController {
 		model.addAttribute("friendList" , friendList);
 		
 		if (fvoMap != null) {
-			/* model.addAttribute("pageVo" , pageVo); */
 			model.addAttribute("fvoMap", new ArrayList<FriendVo>(fvoMap.values()));
-			/* model.addAttribute("searchMap" , searchMap); */
 			model.addAttribute("LocationList", LocationList);
 			
 		}
-		
-		
-		
-		/*
-		 * model.addAttribute("fvo" , vo); model.addAttribute("path" ,
-		 * "resources/upload/friend");
-		 */
-		
 		
 		return "board/friend/friend-list";
 	}
@@ -135,9 +114,14 @@ public class FriendController {
 		
 	}
 	// 수정하기화면(작성자만)
-	@GetMapping("edit")
-	public String edit(FriendVo friendVo) {
-		return "board/member/my-friend-feed";
+	@GetMapping("edit/{no}")
+	public String edit(@PathVariable(required = true) String no, Model model) throws Exception {
+		
+		List<FriendVo> friendDetail = fs.getFeed(no);
+		
+		model.addAttribute("friendDetail", friendDetail);
+		
+		return "board/friend/friend-detail";
 	}
 	
 	//수정하기(작성자만)
@@ -149,7 +133,7 @@ public class FriendController {
 		if(result != 1) {
 			session.setAttribute("alertMsg", "수정 실패ㅠㅠ");
 			
-			return "board/member/my-friend-feed";
+			return "redirect:/member/my-friend-feed";
 		}
 		
 		session.setAttribute("alertMsg", "수정 성공 ~ !");
@@ -196,6 +180,38 @@ public class FriendController {
 	
 	return entity;
 		
+	}
+	
+	//피드 상태 변경 (모집중)
+	@GetMapping("statusY/{no}")
+	public String statusY(@PathVariable(required = true) String no, HttpSession session) {
+		int result = fs.statusY(no);
+		
+		if(result != 1) {
+			session.setAttribute("alertMsg", "변경에 실패하였습니다 .. (모집중)");
+			
+			return "redirect:/member/my-friend-feed";
+		}
+		
+		session.setAttribute("alertMsg", "변경에 성공하였습니다 ~ (모집중)");
+		
+		return "redirect:/member/my-friend-feed";
+	}
+		
+	//피드 상태 변경 (모집완료)
+	@GetMapping("statusN/{no}")
+	public String statusN(@PathVariable(required = true) String no, HttpSession session) {
+		int result = fs.statusN(no);
+		
+		if(result != 1) {
+			session.setAttribute("alertMsg", "변경에 실패하였습니다 .. (모집완료)");
+			
+			return "redirect:/member/my-friend-feed";
+		}
+		
+		session.setAttribute("alertMsg", "변경에 성공하였습니다 ~ (모집완료)");
+		
+		return "redirect:/member/my-friend-feed";
 	}
 	
 	

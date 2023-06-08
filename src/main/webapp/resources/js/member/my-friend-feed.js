@@ -3,27 +3,83 @@ const toggle_text = document.querySelector(".toggle_text");
 const toggle_checkbox = document.querySelector("#button-3");
 
 const page_switch = document.querySelector(".toggle_checkbox");
-/* window.onload = function(){
-	page_switch.onclick = go;
-} */
-
 
 function go(){
 	page_switch.addEventListener("click",() => {
-		location.href='/lively/member/my-friend-feed';
+		location.href='/lively/member/my-market-feed';
 	});
 }
 
 go();
 
-//enter 누르면 검색 가능
-const search_button = document.querySelector(".feed_search_input");
-search_button.addEventListener("keydown",(event) => {
-    if(event.keyCode == 13){
-        event.preventDefault();
-        document.querySelector('.hidden_button').click();
+/* 거래중/거래완료 에 따라 버튼 고정 */
+const marketNoElements = document.querySelectorAll(".marketNo");
+const statusYnElements = document.querySelectorAll(".statusYn");
+const market_status = document.querySelector("#cb3-8");
+const label = document.querySelector('label[for="cb3-8"]');
+
+if (statusYnElements.length > 0) {
+    const statusYn = statusYnElements[0].getAttribute("value");
+
+    if (statusYn === 'Y') {
+        market_status.checked = false;
+    } else if (statusYn === 'N') {
+        market_status.checked = true;
     }
-});
+}
+
+
+/* 거래중/거래완료 버튼 누르면 디비 정보 변경 */
+
+const market_status_all = document.querySelectorAll("#cb3-8");
+function status() {
+	market_status_all.forEach((element, index) => {
+		element.addEventListener('click', function() {
+			if (element.checked === false) {
+				location.href = '/lively/market/statusY/' + marketNoElements[0].value;
+			} else if(element.checked === true) {
+				location.href = '/lively/market/statusN/' + marketNoElements[0].value;
+			}
+		});
+	});
+}
+
+status();
+
+
+
+
+
+
+//거래중 / 거래완료
+/* const marketNo = document.querySelectorAll(".marketNo").getAttribute("value");
+const statusYn = document.querySelectorAll(".statusYn").getAttribute("value");
+const market_status = document.querySelectorAll("#cb3-8");
+const label = document.querySelector('label[for="cb3-8"]');
+
+if(statusYn == 'Y'){
+	market_status.checked = false;
+}else if(statusYn == 'N'){
+	market_status.checked = true;
+} */
+
+
+
+
+
+/*function feed_status() {
+  var statusCheckboxes = document.getElementsByClassName("tgl-btn");
+
+  for (var i = 0; i < statusCheckboxes.length; i++) {
+      var statusss = statusCheckboxes[i];
+      if (statusss.classList.contains("statusN")) {
+      	market_status.checked = false;
+      } 
+  }
+}
+
+feed_status();*/
+
 
 
 //피드 내용
@@ -42,65 +98,65 @@ function show_more_hide_button(event, slice_length){
     if(event.target.innerHTML === 'more'){
         origin_content.innerHTML += hide_content.innerHTML;
         event.target.innerHTML = 'hide';
+        feed_box.classList.remove('feed_box');
         feed_box.classList.add('feed_more_box');
         content_area.classList.add('feed_content_more_box');
     }else{
         origin_content.innerHTML = origin_content.innerHTML.slice(0, slice_length);
         event.target.innerHTML = 'more';
         feed_box.classList.remove('feed_more_box');
+        feed_box.classList.add('feed_box');
         content_area.classList.remove('feed_content_more_box');
     }
 }
 
 //피드 내용 - 더보기 / 숨기기
 function hide_feed_content(){
-    const slice_length = 50;
-    feed_contents.forEach((content, index) => {
-        if(content.innerHTML.length > slice_length){
-            feed_hide_contents[index].innerHTML = `${content.innerHTML.slice(slice_length)}`;
-            content.innerHTML = content.innerHTML.slice(0, slice_length);
-            more_button[index].classList.remove('more-button-invisible');
-            more_button[index].addEventListener("click", (event) => {
-                show_more_hide_button(event, slice_length);
-            });
-        }else more_button[index].classList.add('more-button-invisible');
-    });
+  const slice_length = 50;
+  feed_contents.forEach((content, index) => {
+      if(content.innerHTML.length > slice_length){
+          feed_hide_contents[index].innerHTML = `${content.innerHTML.slice(slice_length)}`;
+          content.innerHTML = content.innerHTML.slice(0, slice_length);
+          more_button[index].classList.remove('more-button-invisible');
+          more_button[index].addEventListener("click", (event) => {
+              show_more_hide_button(event, slice_length);
+          });
+      }else more_button[index].classList.add('more-button-invisible');
+  });
 }
 
 hide_feed_content();
 
 //거래 완료 시 투명도 낮게
 
- function feed_done() {
-    var feedBoxes = document.getElementsByClassName("feed_box");
+function feed_done() {
+  var feedBoxes = document.getElementsByClassName("feed_box");
 
-    for (var i = 0; i < feedBoxes.length; i++) {
-        var feedBox = feedBoxes[i];
-        if (feedBox.classList.contains("feed_status_N")) {
-            feedBox.classList.add("feed_done");
-        } 
-    }
+  for (var i = 0; i < feedBoxes.length; i++) {
+      var feedBox = feedBoxes[i];
+      if (feedBox.classList.contains("feed_status_N")) {
+          feedBox.classList.add("feed_done");
+      } 
+  }
 }
- 
+
 feed_done();
 
 
-// 수정 / 삭제 버튼
-//const toggle = document.querySelector(".drop-edit-delete-box");
-//const dropdown = document.querySelector(".drop-edit-delete-area");
-//
-//dropdown.addEventListener("click", () => {
-//	dropdown.classList.toggle("dropdown_toggle");
-//});
+//수정 / 삭제 버튼
+const toggle = document.querySelectorAll("#profile_area .drop-edit-delete-box");
+const dropdown = document.querySelectorAll("#profile_area .drop-edit-delete-area");
 
-
-
-
-//거래중 / 거래완료
-const friend_status = document.querySelector("#cb3-8");
-if(friend_status.checked){
-	friend_status.checked = true;
+function editDelete(){
+	toggle.forEach((element, index) => {
+		element.addEventListener("click", () => {
+			dropdown[index].classList.toggle("dropdown_toggle");
+		});
+	});
 }
+
+editDelete();
+
 
 
 //무한스크롤

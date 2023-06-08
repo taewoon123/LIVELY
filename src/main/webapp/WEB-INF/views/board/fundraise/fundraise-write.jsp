@@ -18,9 +18,9 @@
 
                 <h3 id="friend-title">Fundraise</h3>
 
-                <select class="location-option" name="location" id="location">
+                <select class="location-option" name="locationNo" id="location">
                    <c:forEach items="${locationList}" var="locationList">
-                   <option value="${locationList.getLocationNo()}">${locationList.getLocationName()}</option>
+                       <option value="${locationList.getLocationNo()}">${locationList.getLocationName()}</option>
                    </c:forEach>
                 </select>
 
@@ -49,6 +49,7 @@
             </label>
             <div class="tag-group">
                 <input type="text" name="moneyGoal" class="tag" placeholder="목표금액">
+                <input type="text" name="money" class="tag" placeholder="목표금액" style="display: none" value="0">
             </div>
 <%--            <div class="tag-group">--%>
 <%--                <input type="text" class="tag" placeholder="#태그">--%>

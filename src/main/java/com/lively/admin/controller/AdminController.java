@@ -96,19 +96,19 @@ public class AdminController {
     public String login(AdminVo adminVo,Model model,HttpSession session) {
         AdminVo adminLog = service.login(adminVo);
         if (adminLog != null) {
-          if ("superuser".equals(adminLog.getAdminId())){
-            session.setAttribute("superuser", adminLog.getAdminId());
-            return "admin/admin-signup";
-          }
-            session.setAttribute("adminLog", adminLog);
-            System.out.println(adminLog);
-            return "redirect:dashboard";
+              if ("superuser".equals(adminLog.getAdminId())){
+                session.setAttribute("superuser", adminLog.getAdminId());
+                return "admin/admin-signup";
+              }
+        session.setAttribute("adminLog", adminLog);
+        System.out.println(adminLog);
+        return "redirect:dashboard";
         }
-        model.addAttribute("adminLoginAlert", "아이디 또는 비밀번호를 확인해주세요.");
+        model.addAttribute("alertMsg", "아이디 또는 비밀번호를 확인해주세요.");
         return "admin/admin-login";
     }
 
-//    =========superUser==========
+//    =========superUser Below==========
 
     @GetMapping("signup")
     public String signup(HttpSession session,Model model) {

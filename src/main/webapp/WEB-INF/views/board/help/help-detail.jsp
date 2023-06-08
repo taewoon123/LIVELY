@@ -72,14 +72,6 @@
 
 </body>
 <script>
-function toggleActive(){
-    const viewArea = document.querySelector(".view-area");
-    const formArea = document.querySelector(".form-area");
-
-    viewArea.classList.remove('active');
-    formArea.classList.add('active');
-}
-
 function writeComment(){
 	//로그인 안되어있으면 ㄴㄴ
 	const writer = '${memberLog.no}';

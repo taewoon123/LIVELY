@@ -6,7 +6,7 @@
 <mapper namespace="market">
   
   <!-- 피드 목록 (전체) -->
-  <select id="MarketFeed" resultType="MarketVo">
+  <!-- <select id="MarketFeed" resultType="MarketVo">
  	SELECT 
 	    K.MARKET_NO
 		, K.WRITER
@@ -35,7 +35,19 @@
         AND K.TITLE LIKE '%' || #{searchValue} || '%'
     </if>
 	ORDER BY MARKET_NO DESC
-  </select>
+  </select> -->
+  
+  <!-- 3번째 리스트 코드 -->
+	<select id="MarketFeed" resultType="MarketVo">
+		SELECT *
+		FROM MARKET M
+		WHERE M.DELETE_YN = 'N'
+		<if test="searchValue != null">
+			AND M.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY M.MARKET_NO DESC
+	</select> 
+  
   
   <!-- 피드 작성 -->
   <insert id="write">
@@ -62,7 +74,7 @@
   <!-- 피드 작성 (사진) -->
   <insert id="insertAttachment">
   	INSERT ALL
-		<foreach collection="list" item="fileVo" separator=" ">
+		<foreach collection="list" item="x" separator=" ">
 		    INTO MARKET_ATTACH
 		    (
 		    	MARKET_ATTACH_NO
@@ -74,15 +86,15 @@
 			    (
 			    	(SELECT GET_ATTACHMENT_SEQ FROM DUAL) 
 			    	,SEQ_MARKET_NO.CURRVAL 
-			    	,#{fileVo.originName} 
-			    	, #{fileVo.changeName}
+			    	,#{x.originName} 
+			    	, #{x.changeName}
 			    )
  		</foreach>
 	SELECT 1 FROM DUAL
   </insert>
   
   <!-- 지역 리스트 -->
-  <select id="getLocationList" resultType="LocationVo">
+  <select id="getLocationList" resultType="map">
   	SELECT
   		LOCATION_NO
   		, LOCATION_NAME
@@ -118,22 +130,25 @@
   </update>
   
   
-  <select id="getAttachmentList" resultType="int">
-  	SELECT COUNT(MARKET_ATTACH_NO)
-		,MARKET_NO
-		,ORIGIN_NAME
-		,CHANGE_NAME
-		,DELETE_YN
-	FROM MARKET_ATTACH
-	WHERE MARKET_NO = #{no}
-	AND DELETE_YN = 'N'
-  </select>
+  <!-- FRI_ATTACH -->
+	<select id="getAttachmentList" resultType="fileVo">
+		SELECT
+		M.MARKET_ATTACH_NO
+		,M.MARKET_NO as NO
+		,M.ORIGIN_NAME
+		,M.CHANGE_NAME
+		,M.DELETE_YN
+		FROM MARKET_ATTACH M
+		LEFT JOIN MARKET K ON (MARKET_ATTACH.MARKET_NO = K.MARKET_NO)
+		WHERE K.DELETE_YN = 'N'
+	</select>
   
   <select id="getAttachment" resultType="fileVo">
-  	SELECT *
+  	SELECT 
   	FROM MARKET_ATTACH
-  	WHERE MARKET_ATTACH_NO = #{attachmentNo}
-  	AND DELETE_YN = 'N'
+  	LEFT JOIN MARKET K ON (MARKET_ATTACH.MARKET_NO = K.MARKET_NO)
+  	WHERE MARKET_ATTACH_NO = #{marketAttachNo}
+	AND K.DELETE_YN = 'N'
   </select>
   
   <!-- 거래 상태 변경 (거래중으로) -->
@@ -177,5 +192,24 @@
 	AND K.DELETE_YN = 'N'
 	AND A.DELETE_YN = 'N'
   </select>
+  
+  <select id="getMarketFeed" resultType="MarketVo"> 
+	SELECT 
+		K.MARKET_NO 
+		,K.WRITER 
+		,K.TITLE 
+		,K.CONTENT 
+		,K.ENROLL_DATE 
+		,K.DELETE_YN 
+		,K.EDIT_DATE 
+		,K.LOCATION_NO 
+		,K.STATUS_YN 
+		,L.LOCATION_NAME as locationName 
+		, M.NAME as writerName
+		, M.ID as writerId FROM
+		MARKET K LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO) 
+		LEFT JOIN MEMBER M ON (K.WRITER = M.NO) 
+		WHERE K.DELETE_YN = 'N' 
+	</select>
   
 </mapper>

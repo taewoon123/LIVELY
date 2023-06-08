@@ -18,7 +18,7 @@
 	<script>
 
 		//웹소켓 생성
-		const socket = new WebSocket("ws://127.0.0.1:8888/lively/server");
+		const socket = new WebSocket("ws://127.0.0.1:8888/lively/market/server");
 
 		//핸들러로 연결
 		socket.onopen = connectOk;

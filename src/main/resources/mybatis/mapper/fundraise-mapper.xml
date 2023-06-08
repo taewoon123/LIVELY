@@ -127,7 +127,7 @@ WHERE F.DELETE_YN = 'N'
     </select>
     <update id="gainCurrentMoney">
         UPDATE FUNDRAISE
-        SET MONEY = MONEY + #{donateMoney}
+        SET MONEY = #{money} + #{donateMoney}
         WHERE FUNDRAISE_NO = #{fundraiseNo}
         AND DELETE_YN = 'N'
     </update>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="query">
+
+	<!-- 목록 가져오기 -->
+	<select id="getQueryList" resultType="QueryVo">
+		SELECT 
+			Q.QUERY_NO,
+			M.NAME AS WRITER,
+			Q.TITLE,
+			Q.CONTENT,
+			Q.ENROLL_DATE,
+			Q.EDIT_DATE,
+			Q.DELETE_YN,
+			L.LOCATION_NAME as locationName,
+			Q.VIEWS
+		FROM QUERY Q
+		JOIN MEMBER M ON M.NO = Q.WRITER
+		LEFT JOIN LOCATION L ON (Q.LOCATION_NO = L.LOCATION_NO)
+		WHERE DELETE_YN = 'N'
+		<if test="searchValue != null">
+			AND Q.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY QUERY_NO DESC
+	</select>
+
+	<!-- 게시글 갯수 세기 -->
+	<select id="getQueryListCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		QUERY
+		WHERE DELETE_YN = 'N'
+	</select>
+
+	<!-- 작성하기 -->
+	<insert id="write">
+		INSERT INTO QUERY
+		(
+		QUERY_NO
+		, TITLE
+		, CONTENT
+		, WRITER
+		, LOCATION_NO
+		)
+		VALUES
+		(
+		SEQ_QUERY_NO.NEXTVAL
+		, #{title}
+		, #{content}
+		, #{writer}
+		, #{locationNo}
+		)
+	</insert>
+	
+	<!-- 지역선택 가져오기 -->
+	<select id="getLocationList" resultType="LocationVo">
+		SELECT
+		LOCATION_NO
+		, LOCATION_NAME
+		FROM LOCATION
+	</select>
+
+	<!-- 첨부파일 삽입 -->
+	<insert id="insertAttachment">
+		INSERT ALL
+		<foreach collection="list" item="x" separator=" ">
+			INTO QUERY_ATTACH
+			(
+				QUERY_ATTACH_NO
+				, QUERY_NO
+				, ORIGIN_NAME
+				, CHANGE_NAME
+			)
+			VALUES
+			(
+				(SELECT GET_ATTACHMENT_SEQ FROM DUAL)
+				, SEQ_QUERY_NO.CURRVAL
+				, #{x.originName}
+				, #{x.changeName}
+			)
+		</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+
+	<!-- 첨부파일 가져오기 -->
+	<select id="getAttachment" resultType="FileVo">
+		SELECT *
+		FROM QUERY_ATTACH
+		WHERE QUERY_ATTACH_NO = #{ano}
+		AND DELETE_YN = 'N'
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id = "increaseViews">
+		UPDATE QUERY
+			SET VIEWS = VIEWS + 1
+		WHERE QUERY_NO = #{num}
+		AND DELETE_YN = 'N'
+	</update>
+
+	<!-- 게시글 가져오기 -->
+	<select id="getQuery" resultType = "QueryVo">
+		SELECT
+			Q.QUERY_NO,
+	        M.NAME AS WRITER,
+	        Q.TITLE,
+	        Q.CONTENT,
+	        Q.ENROLL_DATE,
+	        Q.EDIT_DATE,
+	        Q.DELETE_YN,
+	        L.LOCATION_NAME as locationName,
+	        Q.VIEWS
+        FROM QUERY Q
+	        LEFT JOIN MEMBER M ON M.NO = Q.WRITER
+	        LEFT JOIN LOCATION L ON (Q.LOCATION_NO = L.LOCATION_NO)
+        WHERE DELETE_YN = 'N'
+        	AND QUERY_NO = #{num}
+	</select>
+	
+	<select id="getAttachmentList" resultType = "FileVo">
+		SELECT
+			QUERY_ATTACH_NO
+			, QUERY_NO
+			, ORIGIN_NAME
+			, CHANGE_NAME
+			, DELETE_YN
+		FROM QUERY_ATTACH
+		WHERE QUERY_NO = #{queryNo}
+		AND DELETE_YN = 'N'
+	</select>
+
+</mapper>

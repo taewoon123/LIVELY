@@ -1,30 +1,28 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
-<title>질문게시판</title>
+<title>질문게시판 목록</title>
 </head>
 <header>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
+	<%@ include file="/WEB-INF/views/common/alertMsg.jsp"%>
 </header>
-
 <body>
-
+	
 	<h2>Query</h2>
 
 	<!-- list table -->
 	<div id="wrap">
 
 		<main>
-
+			<form action="${rootContext}/query/list" method="get">
 			<!-- search button -->
 			<div class="container-input">
-				<input type="text" placeholder="Search" name="text" class="input">
+				<input type="text" placeholder="Search" name="searchValue" class="input">
 			</div>
-
+			</form>
 			<br> <br> <br>
 
 			<table>
@@ -35,85 +33,62 @@
 						<th>작성일시</th>
 						<th>작성자</th>
 						<th>조회수</th>
+						<th>지역</th>
 					</tr>
 				</thead>
-
+				
 				<tbody>
-					<tr id="first-tr"
-						onclick="location.href='${rootContext}/query/detail'">
-						<td>1</td>
-						<td>회원정보 수정</td>
-						<td>2023.05.24</td>
-						<td>니꼴라스</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>친구찾기 어떻게 하나요?</td>
-						<td>2023.04.24</td>
-						<td>오작성</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>날씨도 알 수 있나요?</td>
-						<td>2023.04.24</td>
-						<td>이미주</td>
-						<td>9</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>무슨생각 하시나요?</td>
-						<td>2023.10.24</td>
-						<td>구준회</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td>중고거래 시 네이버페이도 가능한가요?</td>
-						<td>2023.04.24</td>
-						<td>오미라</td>
-						<td>4</td>
-					</tr>
+					<c:forEach items = "${qvoList}" var = "qvo">
+						<tr>
+							<td>${qvo.queryNo}</td>
+							<td>${qvo.title}</td>
+							<td>${qvo.enrollDate}</td>
+							<td>${qvo.writer}</td>
+							<td>${qvo.views}</td>
+							<td>${qvo.locationName}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 
 			<!-- 작성 버튼 -->
+			<c:if test = "${not empty memberLog}">
 			<button id="write_submit">
 				<span> <a class="write-btn" href="${rootContext}/query/write">write</a>
 				</span>
 			</button>
+			</c:if>
 
 			<!-- pagenation -->
 			<div class="page-area">
 				<div class="pagination-custom">
-					<a class="prev page-numbers" href="#"> << </a> <span
-						aria-current="page" class="page-numbers current">1</span> <a
-						class="page-numbers" href="#">2</a> <a class="page-numbers"
-						href="#">3</a> <a class="page-numbers" href="#">4</a> <a
-						class="page-numbers" href="#">5</a> <a class="page-numbers"
-						href="#">6</a> <a class="page-numbers" href="#">7</a> <a
-						class="page-numbers" href="#">8</a> <a class="page-numbers"
-						href="#">9</a> <a class="page-numbers" href="#">10</a> <a
-						class="next page-numbers" href="#"> >> </a>
-				</div>
-			</div>
-			<!-- div page-area end -->
-
-		</main>
-
+				<c:if test="${pv.currentPage > 1}">
+					<a class = "prev page-numbers" href = "${rootContext}/query/list?page=${pv.currentPage-1}"> << </a>
+				</c:if>
+				<c:forEach begin = "${pv.startPage}" end = "${pv.endPage}" step = "1" var = "i">
+					<c:if test = "${pv.currentPage != i}">
+						<a class = "page-numbers" href = "${rootContext}/query/list?page=${i}">${i}</a>
+					</c:if>
+					<c:if test = "${pv.currentPage == i}">
+						<a class = "page-numbers">${i}</a>
+					</c:if>
+				</c:forEach>
+				<c:if test = "${pv.currentPage < pv.maxPage}">
+					<a class = "next page-numbers" href = "${rootContext}/query/list?page=${pv.currentPage+1}"> >> </a>
+				</c:if>
+				</div> <!-- div pagination-custom -->
+			</div> <!-- div page-area end -->
+		
 		<footer>
 			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 		</footer>
-
-	</div>
-	<!-- div wrap end -->
+			
+		</main>
+		
+	</div> <!-- div wrap end -->
 
 </body>
-
+<link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-list.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+<script src="${rootContext}/resources/js/board/query/query-list.js"></script>
 </html>
-<link rel="stylesheet"
-	href="${rootContext}/resources/css/board/help/help-list.css">
-<link rel="stylesheet"
-	href="${rootContext}/resources/css/common/wrap-style.css" />
-<script src="${rootContext}/resources/js/query/query-list.js"></script>

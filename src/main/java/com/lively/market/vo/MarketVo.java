@@ -23,7 +23,8 @@ public class MarketVo {
 	private String locationName;
 	private String writerName;
 	private String writerId;
-	private List<FileVo> attachmentList;
+	/* private List<FileVo> attachmentList; */
+	private List<FileVo> attachmentList2;
 	private String marketAttachNo;
 	private String originName;
 	private String changeName;

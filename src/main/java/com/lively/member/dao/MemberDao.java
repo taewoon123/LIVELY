@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.lively.common.FileVo;
 import com.lively.friend.vo.FriendVo;
 import com.lively.help.vo.HelpVo;
 import com.lively.market.vo.MarketVo;
@@ -73,6 +74,30 @@ public class MemberDao {
 	// my-help
 	public List<HelpVo> getMyHelpBoard(SqlSessionTemplate sst, HelpVo helpVo) {
 		return sst.selectList("member.helpBoard", helpVo);
+	}
+
+	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst, String searchValue) {
+		return sst.selectList("member.friendFeed" , searchValue);
+	}
+
+	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst) {
+		return sst.selectList("member.getFriendFeed");
+	}
+
+	public List<FileVo> getAttachmentList(SqlSessionTemplate sst) {
+		return sst.selectList("friend.getAttachmentList");
+	}
+
+	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, String searchValue) {
+		return sst.selectList("member.getMarketFeed" , searchValue);
+	}
+
+	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst) {
+		return sst.selectList("member.getMarketFeed");
+	}
+
+	public List<FileVo> getAttachmentList2(SqlSessionTemplate sst) {
+		return sst.selectList("market.getAttachmentList2");
 	}
 
 }// class

@@ -70,8 +70,8 @@ public class MarketDao {
 //	}
 	
 	//첨부파일
-	public List<FileVo> getAttachmentList(SqlSessionTemplate sst) {
-		return sst.selectList("market.getAttachmentList");
+	public List<FileVo> getAttachmentList2(SqlSessionTemplate sst) {
+		return sst.selectList("market.getAttachmentList2");
 	}
 
 	public FileVo getAttachment(SqlSessionTemplate sst, String marketAttachNo) {

@@ -64,7 +64,7 @@
                          <button type="button" data-bs-target="#myCarousel${mList.marketNo}" data-bs-slide-to="2" class="active" aria-current="true" aria-label="Slide 3"></button> 
                          </div> 
                          <div class="carousel-inner"> 
-                         <c:forEach items="${mList.attachmentList}" var="att">  
+                         <c:forEach items="${mList.attachmentList2}" var="att">  
                          <div class="carousel-item active"> 
                              <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" > 
                          		<image class="first" href="${rootContext}/resources/upload/market/${att.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/>

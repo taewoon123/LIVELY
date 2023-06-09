@@ -37,7 +37,7 @@
             	
             </div>
             </form>
-			<c:forEach items="${myMarketList}" var="myList">
+			<c:forEach items="${marketVoMap}" var="myList">
 	            <!-- 첫번째 피드 시작 -->
 	            <div class="feed_box feed_status_${myList.statusYn}">
 	            	<input type="text" class="marketNo" value="${myList.marketNo}" style="display: none">
@@ -68,22 +68,14 @@
 	                        <button type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
 	                        </div>
 	                        <div class="carousel-inner">
-	                        <div class="carousel-item active">
-	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-               	                <image class="first" href="${rootContext}/resources/upload/market/${myList.changeName}" alt="${rootContext}/resources/upload/market/${myList.originName}" width="100%" height="100%"/>
-	                            </svg>
-	                        </div>
-	                        <!-- <%-- <div class="carousel-item">
-	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="second" href="${rootContext}/resources/img/two${myList.marketNo}.jpg" width="100%" height="100%"/>
-	                            </svg>
-	                        </div>
-	                        <div class="carousel-item">
-	                            <svg class="bd-placeholder-img" width="100%" height="100%"  aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160">
-	                            <image class="third" href="${rootContext}/resources/img/three${myList.marketNo}.jpg" width="100%" height="100%">
-	                            </svg>
-	
-	                        </div> --%> -->
+	                        <c:forEach items="${myList.attachmentList2}" var="att">  
+                         <div class="carousel-item active"> 
+                             <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" > 
+                         		<image class="first" href="${rootContext}/resources/upload/market/${att.changeName}" width="100%" height="100%" multiple accept=".jpg,.png,.jpeg"/>
+                             </svg> 
+                         </div> 
+                         </c:forEach> 
+                         
 	                        </div>
 	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -1,5 +1,7 @@
 package com.lively.member.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lively.common.FileVo;
 import com.lively.common.locaion.dao.LocationDao;
 import com.lively.common.locaion.vo.LocationVo;
 import com.lively.friend.vo.FriendVo;
@@ -138,6 +141,53 @@ public class MemberService {
 	// my-help
 	public List<HelpVo> getMyHelpBoard(HelpVo helpVo, String writeNo) {
 		return dao.getMyHelpBoard(sst, helpVo);
+	}
+
+	public List<FriendVo> getFriendFeed(String searchValue) {
+		return dao.getFriendFeed(sst , searchValue);
+	}
+
+	public Map<String, FriendVo> getFriendFeed() {
+		 List<FriendVo> fvoList = dao.getFriendFeed(sst);
+		 
+		 Map<String, FriendVo> fvoMap = new HashMap<String, FriendVo>();
+		 for(FriendVo fvo : fvoList) {
+			 fvoMap.put(fvo.getFriendNo(), fvo);
+			 fvo.setAttachmentList(new ArrayList<FileVo>()); 
+		 }
+		 
+		 
+		 
+		 List<FileVo> fileList = dao.getAttachmentList(sst);
+		 for(FileVo file : fileList) {
+			 String friendNo = file.getNo();
+			 fvoMap.get(friendNo).getAttachmentList().add(file);
+		 }
+		
+		return fvoMap;
+	}
+
+	public List<MarketVo> getMarketFeed(String searchValue) {
+		return dao.getMarketFeed(sst, searchValue);
+	}
+
+	public Map<String, MarketVo> getMarketFeed() {
+		 List<MarketVo> fileVoList = dao.getMarketFeed(sst);
+		 
+		 Map<String, MarketVo> fileVoMap = new HashMap<String, MarketVo>();
+		 for(MarketVo fileVo : fileVoList) {
+			 fileVoMap.put(fileVo.getMarketNo(), fileVo);
+			 fileVo.setAttachmentList2(new ArrayList<FileVo>()); 
+		 }
+		 
+		 
+		 List<FileVo> fileList = dao.getAttachmentList2(sst);
+		 for(FileVo file : fileList) {
+			 String marketNo = file.getNo();
+			 fileVoMap.get(marketNo).getAttachmentList2().add(file);
+		 }
+		
+		return fileVoMap;
 	}
 
 

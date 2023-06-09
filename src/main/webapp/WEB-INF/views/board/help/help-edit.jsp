@@ -47,10 +47,9 @@
             </label>
 
             <div class="register">
-                <div id="registerName"><input value="취소" type="button"
-                                              onclick="location.href='${rootContext}/help/list'"></div>
-                <div id="registerName"><input value="수정" type="submit"></div>
-            </div>
+                    <div id="registerName" onclick="location.href='${rootContext}/help/list'"><input value="취소" type="button"></div>
+                    <div id="registerName"><input value="수정" type="submit"></div>
+                </div>
         </form>
     </div>
     <%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -59,5 +58,4 @@
 </body>
 
 </html>
-<link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-write.css">
-<link rel="stylesheet" href="${rootContext}/resources/css/board/query/query-write.css">
+<link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-edit.css">

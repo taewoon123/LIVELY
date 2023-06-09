@@ -263,30 +263,15 @@ public class MemberController {
 	@GetMapping("my-friend-feed")
 	public String myFeed(FriendVo friendVo, HttpSession session, Model model, String searchValue, String no) {
 		
-		/*
-		 * //전에코드백업 MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-		 * String writerNo = memberLog.getNo();
-		 * 
-		 * friendVo.setWriter(writerNo);
-		 * 
-		 * // 내 피드 총 갯수 int MyFriendFeedCount = ms.getMyFriendFeedCount(friendVo);
-		 * 
-		 * List<FriendVo> myFriendList = ms.getMyFriendFeed(friendVo); List<Map<String,
-		 * String>> LocationList = ms.getLocationList();
-		 * 
-		 * model.addAttribute("MyFeedCount", MyFriendFeedCount);
-		 * model.addAttribute("myFriendList", myFriendList);
-		 * model.addAttribute("LocationList", LocationList);
-		 */
 		
-		List<FriendVo> friendList = ms.getFriendFeed(searchValue); 
-		Map<String, FriendVo> fvoMap = ms.getFriendFeed();
+		ArrayList<FriendVo> friendList = ms.getFriendFeed(searchValue); 
+		/* Map<String, FriendVo> fvoMap = ms.getFriendFeed(); */
 		/* List<Map<String, String>> LocationList = ms.getLocationNoList(); */
 		
-		model.addAttribute("friendList" , friendList);
 		
-		if (fvoMap != null) {
-			model.addAttribute("fvoMap", new ArrayList<FriendVo>(fvoMap.values()));
+		if (friendList != null) {
+			model.addAttribute("fvoMap" , friendList);
+			
 			/* model.addAttribute("LocationList", LocationList); */
 			
 		}

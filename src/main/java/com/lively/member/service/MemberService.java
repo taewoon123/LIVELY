@@ -1,6 +1,7 @@
 package com.lively.member.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -143,12 +144,10 @@ public class MemberService {
 		return dao.getMyHelpBoard(sst, helpVo);
 	}
 
-	public List<FriendVo> getFriendFeed(String searchValue) {
-		return dao.getFriendFeed(sst , searchValue);
-	}
 
-	public Map<String, FriendVo> getFriendFeed() {
-		 List<FriendVo> fvoList = dao.getFriendFeed(sst);
+
+	public ArrayList<FriendVo> getFriendFeed(String searchValue) {
+		 List<FriendVo> fvoList = dao.getFriendFeed(sst , searchValue);
 		 
 		 Map<String, FriendVo> fvoMap = new HashMap<String, FriendVo>();
 		 for(FriendVo fvo : fvoList) {
@@ -161,10 +160,29 @@ public class MemberService {
 		 List<FileVo> fileList = dao.getAttachmentList(sst);
 		 for(FileVo file : fileList) {
 			 String friendNo = file.getNo();
-			 fvoMap.get(friendNo).getAttachmentList().add(file);
+			 FriendVo temp = fvoMap.get(friendNo);
+			 if(temp == null) {
+				 continue;
+			 }
+			 temp.getAttachmentList().add(file);
 		 }
 		
-		return fvoMap;
+		return mapToList(fvoMap);
+	}
+
+	private ArrayList<FriendVo> mapToList(Map<String, FriendVo> fvoMap) {
+		
+		ArrayList<FriendVo> voList = new ArrayList<FriendVo>();
+		
+		int i = 0;
+		while(fvoMap.size() != voList.size()) {
+			FriendVo vo = fvoMap.get("" + i++);
+			if(vo != null) {
+				voList.add(vo);
+			}
+		}
+		Collections.reverse(voList);
+		return voList;
 	}
 
 	public List<MarketVo> getMarketFeed(String searchValue) {

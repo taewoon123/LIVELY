@@ -130,8 +130,8 @@
   </update>
   
   
-  <!-- MARKET_ATTACH -->
-	<select id="getAttachmentList" resultType="fileVo">
+  <!-- FRI_ATTACH -->
+	<select id="getAttachmentList2" resultType="fileVo">
 		SELECT
 		M.MARKET_ATTACH_NO
 		,M.MARKET_NO as NO

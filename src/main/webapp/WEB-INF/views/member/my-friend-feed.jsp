@@ -37,7 +37,7 @@
             	
             </div>
             </form>
-			<c:forEach items="${myFriendList}" var="myList">
+			<c:forEach items="${fvoMap}" var="myList">
 	            <!-- 첫번째 피드 시작 -->
 	            <div class="feed_box feed_status_${myList.statusYn}">
 	            	<input type="text" class="friendNo" value="${myList.friendNo}" style="display: none">
@@ -63,12 +63,13 @@
 	                    <!-- Image Slider -->
 	                    <div id="myCarousel${myList.friendNo}" class="carousel slide">
 	                        <div class="carousel-inner">
+	                    <c:forEach items="${myList.attachmentList}" var="att">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
-               	                <image class="first" href="${rootContext}/resources/upload/friend/${myList.changeName}"  width="100%" height="100%"/>
+               	                <image class="first" href="${rootContext}/resources/upload/friend/${att.changeName}"  width="100%" height="100%"/>
 	                            </svg>
 	                        </div>
-	                 
+	                 	</c:forEach> 
 	                        </div>
 	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -100,14 +100,14 @@ public class MarketService {
 		 Map<String, MarketVo> fileVoMap = new HashMap<String, MarketVo>();
 		 for(MarketVo fileVo : fileVoList) {
 			 fileVoMap.put(fileVo.getMarketNo(), fileVo);
-			 fileVo.setAttachmentList(new ArrayList<FileVo>()); 
+			 fileVo.setAttachmentList2(new ArrayList<FileVo>()); 
 		 }
 		 
 		 
-		 List<FileVo> fileList = dao.getAttachmentList(sst);
+		 List<FileVo> fileList = dao.getAttachmentList2(sst);
 		 for(FileVo file : fileList) {
 			 String marketNo = file.getNo();
-			 fileVoMap.get(marketNo).getAttachmentList().add(file);
+			 fileVoMap.get(marketNo).getAttachmentList2().add(file);
 		 }
 		 
 		 

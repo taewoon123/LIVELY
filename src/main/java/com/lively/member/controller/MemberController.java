@@ -1,5 +1,6 @@
 package com.lively.member.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -222,47 +223,75 @@ public class MemberController {
 
 	// my-market-feed 화면
 	@GetMapping("my-market-feed")
-	public String myFeed(MarketVo marketVo, HttpSession session, Model model) {
+	public String myFeed(MarketVo marketVo, HttpSession session, Model model,String searchValue, String no) {
 
-		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-		String writerNo = memberLog.getNo();
-
-		marketVo.setWriter(writerNo);
-
-		// 내 피드 총 갯수
-		int MyMarketFeedCount = ms.getMyMarketFeedCount(marketVo);
-
-		List<MarketVo> myMarketList = ms.getMyMarketFeed(marketVo);
-		List<Map<String, String>> LocationList = ms.getLocationList();
-
-		System.out.println(myMarketList);
-
-		model.addAttribute("MyFeedCount", MyMarketFeedCount);
-		model.addAttribute("myMarketList", myMarketList);
-		model.addAttribute("LocationList", LocationList);
-
+		/*
+		 * MemberVo memberLog = (MemberVo) session.getAttribute("memberLog"); String
+		 * writerNo = memberLog.getNo();
+		 * 
+		 * marketVo.setWriter(writerNo);
+		 * 
+		 * // 내 피드 총 갯수 int MyMarketFeedCount = ms.getMyMarketFeedCount(marketVo);
+		 * 
+		 * List<MarketVo> myMarketList = ms.getMyMarketFeed(marketVo); List<Map<String,
+		 * String>> LocationList = ms.getLocationList();
+		 * 
+		 * System.out.println(myMarketList);
+		 * 
+		 * model.addAttribute("MyFeedCount", MyMarketFeedCount);
+		 * model.addAttribute("myMarketList", myMarketList);
+		 * model.addAttribute("LocationList", LocationList);
+		 */
+		
+		List<MarketVo> marketList = ms.getMarketFeed(searchValue); 
+		Map<String, MarketVo> marketVoMap = ms.getMarketFeed();
+		/* List<Map<String, String>> LocationList = ms.getLocationNoList(); */
+		
+		model.addAttribute("marketList" , marketList);
+		
+		if (marketVoMap != null) {
+			model.addAttribute("marketVoMap", new ArrayList<MarketVo>(marketVoMap.values()));
+			/* model.addAttribute("LocationList", LocationList); */
+			
+		}
+		
+		
 		return "member/my-market-feed";
 	}
 
 	// my-friend-feed 화면
 	@GetMapping("my-friend-feed")
-	public String myFeed(FriendVo friendVo, HttpSession session, Model model) {
-
-		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-		String writerNo = memberLog.getNo();
-
-		friendVo.setWriter(writerNo);
-
-		// 내 피드 총 갯수
-		int MyFriendFeedCount = ms.getMyFriendFeedCount(friendVo);
-
-		List<FriendVo> myFriendList = ms.getMyFriendFeed(friendVo);
-		List<Map<String, String>> LocationList = ms.getLocationList();
-
-		model.addAttribute("MyFeedCount", MyFriendFeedCount);
-		model.addAttribute("myFriendList", myFriendList);
-		model.addAttribute("LocationList", LocationList);
-
+	public String myFeed(FriendVo friendVo, HttpSession session, Model model, String searchValue, String no) {
+		
+		/*
+		 * //전에코드백업 MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		 * String writerNo = memberLog.getNo();
+		 * 
+		 * friendVo.setWriter(writerNo);
+		 * 
+		 * // 내 피드 총 갯수 int MyFriendFeedCount = ms.getMyFriendFeedCount(friendVo);
+		 * 
+		 * List<FriendVo> myFriendList = ms.getMyFriendFeed(friendVo); List<Map<String,
+		 * String>> LocationList = ms.getLocationList();
+		 * 
+		 * model.addAttribute("MyFeedCount", MyFriendFeedCount);
+		 * model.addAttribute("myFriendList", myFriendList);
+		 * model.addAttribute("LocationList", LocationList);
+		 */
+		
+		List<FriendVo> friendList = ms.getFriendFeed(searchValue); 
+		Map<String, FriendVo> fvoMap = ms.getFriendFeed();
+		/* List<Map<String, String>> LocationList = ms.getLocationNoList(); */
+		
+		model.addAttribute("friendList" , friendList);
+		
+		if (fvoMap != null) {
+			model.addAttribute("fvoMap", new ArrayList<FriendVo>(fvoMap.values()));
+			/* model.addAttribute("LocationList", LocationList); */
+			
+		}
+		
+		
 		return "member/my-friend-feed";
 	}
 

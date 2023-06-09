@@ -21,8 +21,6 @@
 				<div id="help-area">
 						<div id="help-title">제목</div>
 						<div id="help-inTitle">${hvo.title}</div>
-						<%-- <div id="help-harea">지역</div>
-						<div id="help-inharea">${hvo.locationName}</div> --%>
 						<div id="help-date">작성일자</div>
 						<div id="help-inDate">${hvo.enrollDate}</div>
 						<div id="help-hit">조회수</div>

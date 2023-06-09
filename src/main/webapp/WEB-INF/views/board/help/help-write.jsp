@@ -60,5 +60,4 @@
     </body>
 
     </html>
-    <%-- <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" /> --%>
     <link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-write.css">

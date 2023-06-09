@@ -45,7 +45,6 @@
 		<if test="searchValue != null">
 			AND M.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
-		ORDER BY M.MARKET_NO DESC
 	</select> 
   
   
@@ -213,9 +212,6 @@
 		MARKET K LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO) 
 		LEFT JOIN MEMBER M ON (K.WRITER = M.NO) 
 		WHERE K.DELETE_YN = 'N'
-		<if test="searchValue != null">
-			AND M.TITLE LIKE '%' || #{searchValue} || '%'
-		</if>
 		ORDER BY K.MARKET_NO DESC
 	</select>
 	

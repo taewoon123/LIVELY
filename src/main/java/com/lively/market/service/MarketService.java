@@ -1,6 +1,7 @@
 package com.lively.market.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lively.common.FileVo;
 import com.lively.common.locaion.dao.LocationDao;
 import com.lively.common.locaion.vo.LocationVo;
+import com.lively.friend.vo.FriendVo;
 import com.lively.market.dao.MarketDao;
 import com.lively.market.vo.MarketVo;
 
@@ -29,11 +31,6 @@ public class MarketService {
 		this.dao = dao;
 		this.sst = sst;
 		this.locationDao = locationDao;
-	}
-	
-	//피드 목록 (전체)
-	public List<MarketVo> getMarketFeed(String searchValue){
-		return dao.getMarketFeed(sst, searchValue);
 	}
 	
 	//피드 작성
@@ -91,8 +88,8 @@ public class MarketService {
 	
 	
 	//합치기
-	 public Map<String, MarketVo> getMarketFeedAll(String searchValue) {
-		 List<MarketVo> fileVoList = dao.getMarketFeedAll(sst, searchValue);
+	 public ArrayList<MarketVo> getMarketFeed(String searchValue) {
+		 List<MarketVo> fileVoList = dao.getMarketFeed(sst, searchValue);
 		 
 		 Map<String, MarketVo> fileVoMap = new HashMap<String, MarketVo>();
 		 for(MarketVo fileVo : fileVoList) {
@@ -104,12 +101,30 @@ public class MarketService {
 		 List<FileVo> fileList = dao.getAttachmentList2(sst);
 		 for(FileVo file : fileList) {
 			 String marketNo = file.getNo();
-			 fileVoMap.get(marketNo).getAttachmentList2().add(file);
+			 MarketVo getMarketNo = fileVoMap.get(marketNo);
+			 if(getMarketNo == null) {
+				 continue;
+			 }
+			 getMarketNo.getAttachmentList2().add(file);
 		 }
 		 
-		 
-		 return fileVoMap;
+		 return mapToList(fileVoMap);
 	 }
+
+	private ArrayList<MarketVo> mapToList(Map<String, MarketVo> fvoMap) {
+			
+		ArrayList<MarketVo> voList = new ArrayList<MarketVo>();
+
+		int i = 0;
+		while(fvoMap.size() != voList.size()) {
+			MarketVo vo = fvoMap.get("" + i++);
+			if(vo != null) {
+				voList.add(vo);
+			}
+		}
+		Collections.reverse(voList);
+		return voList;
+	}
 
 	public List<LocationVo> getLocationList(LocationVo locationVo) {
 		return locationDao.getLocationList(sst,locationVo);

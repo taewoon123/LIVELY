@@ -56,27 +56,13 @@ public class MarketController {
 		 * pageLimit, boardLimit);
 		 */
 		
-		List<MarketVo> marketList = ms.getMarketFeed(searchValue);
-		Map<String, MarketVo> marketVoMap = ms.getMarketFeedAll(searchValue);
+		ArrayList<MarketVo> fvoList = ms.getMarketFeed(searchValue);
 		List<LocationVo> locationList = ms.getLocationList(locationVo);
 		
-		/* List<Map<String, String>> LocationList = ms.getLocationList(); */
-		
-		System.out.println(marketList);
-		System.out.println(marketVoMap);
-		
-//		model.addAttribute("marketVo", marketVo);
-//		model.addAttribute("pageVo", pageVo);
-//		model.addAttribute("searchMap", searchMap);
-		model.addAttribute("marketList", marketList);
 		model.addAttribute("locationList", locationList);
 		
-		if (marketVoMap != null) {
-			/* model.addAttribute("pageVo" , pageVo); */
-			model.addAttribute("marketVoMap", new ArrayList<MarketVo>(marketVoMap.values()));
-			/* model.addAttribute("searchMap" , searchMap); */
-			/* model.addAttribute("LocationList", LocationList); */
-			
+		if (fvoList != null) {
+			model.addAttribute("marketVoMap", fvoList);			
 		}
 		
 		return "board/market/market-list";

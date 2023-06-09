@@ -7,6 +7,8 @@
 </head>
 <header>
    <%@ include file="/WEB-INF/views/common/header.jsp"%>
+   <%@ include file="/WEB-INF/views/common/alertMsg.jsp"%>
+   
 </header>
 <body>
 

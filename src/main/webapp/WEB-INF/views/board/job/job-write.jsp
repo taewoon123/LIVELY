@@ -45,9 +45,7 @@
 					<input type="file" accept="image/*" id="file-input"
 					style="font-size: 15px" name="file" multiple accept=".jpg,.png,.jpeg">
 				</label>
-				<div class="tag-group">
-					<input type="text" class="tag" placeholder="#태그">
-				</div>
+				
 
 
 

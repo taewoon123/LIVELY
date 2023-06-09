@@ -10,12 +10,12 @@
 </header>
 <body>
 
-<h2>Q&A</h2>
-
-
+   
+   
    <!-- list table -->
    <div id="wrap">
-
+      
+      <h2>Q&A</h2>
   
    
       <main>
@@ -33,11 +33,11 @@
          <table>
             <thead>
                <tr>
-                  <th>No</th>
-                  <th>Title</th>
-                  <th>작성일시</th>
-                  <th>작성자</th>
-                  <th>조회수</th>
+                  <th id="no">No</th>
+                  <th id="title">Title</th>
+                  <th id="time">작성일시</th>
+                  <th id="writer">작성자</th>
+                  <th id="view">조회수</th>
                </tr>
             </thead>
             <tbody>
@@ -80,11 +80,11 @@
 			</div> <!-- div page-area end -->
          
       </main>
+      <footer>
+         <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+      </footer>
    </div>
    
-   <footer>
-      <%@ include file="/WEB-INF/views/common/footer.jsp"%>
-   </footer>
 </body>
 </html> 
     <link rel="stylesheet" href="${rootContext}/resources/css/board/qna/qna-list.css">

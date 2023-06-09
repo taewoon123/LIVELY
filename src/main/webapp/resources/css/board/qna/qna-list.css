@@ -1,5 +1,5 @@
 
-/* 목록 table css */
+
 h2 {
    color: white;
    text-align: center;
@@ -31,8 +31,12 @@ main table td {
    border-bottom: 1px solid gray;
 }
 
+#title{
+   width: 200px;
+}
+
 #wrap {
-   margin-top: 10px;
+   margin-top: 20px;
    margin-bottom: 100px;
    text-align: center;
 }

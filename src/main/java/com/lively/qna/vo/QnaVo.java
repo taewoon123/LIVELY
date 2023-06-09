@@ -1,11 +1,5 @@
 package com.lively.qna.vo;
 
-import java.util.List;
-
-import org.springframework.stereotype.Component;
-
-import com.lively.common.FileVo;
-
 import lombok.Data;
 
 @Data
@@ -23,8 +17,5 @@ public class QnaVo {
 	private String adminNo;
 	
 	private String writerName;
-	public void setAttList(List<FileVo> fileList) {
-	}
-
 }
 

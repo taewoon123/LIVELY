@@ -165,7 +165,6 @@
 		<if test="searchValue != null">
 			AND F.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
-		ORDER BY FRIEND_NO DESC
 	</select> 
 	
 	<select id="getFriendFeed" resultType="FriendVo"> 

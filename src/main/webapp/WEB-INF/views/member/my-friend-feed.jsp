@@ -37,33 +37,33 @@
             	
             </div>
             </form>
-			<c:forEach items="${fvoMap}" var="myList">
+			<c:forEach items="${fvoMap}" var="fvo">
 	            <!-- 첫번째 피드 시작 -->
-	            <div class="feed_box feed_status_${myList.statusYn}">
-	            	<input type="text" class="friendNo" value="${myList.friendNo}" style="display: none">
-	            	<input type="text" class="statusYn" value="${myList.statusYn}" style="display: none">
+	            <div class="feed_box feed_status_${fvo.statusYn}">
+	            	<input type="text" class="friendNo" value="${fvo.friendNo}" style="display: none">
+	            	<input type="text" class="statusYn" value="${fvo.statusYn}" style="display: none">
 	                <div id="profile_area">
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
-	                        <div id="profile_name">${myList.writerName}</div>
-	                        <div id="profile_nick">${myList.writerId}</div>
+	                        <div id="profile_name">${fvo.writerName}</div>
+	                        <div id="profile_nick">${fvo.locationName}</div>
 	                    </div>
 	                    <div class="drop-edit-delete-area">
 							<a class="drop-edit-delete-box"> 
 								·&nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp;·
 							</a>
 							<div class="dropdown-edit-delete">
-								<a href="${rootContext}/friend/edit/${myList.friendNo}"><div>수정</div></a>
-								<a href="${rootContext}/friend/delete/${myList.friendNo}"><div>삭제</div></a>
+								<a href="${rootContext}/friend/edit/${fvo.friendNo}"><div>수정</div></a>
+								<a href="${rootContext}/friend/delete/${fvo.friendNo}"><div>삭제</div></a>
 							</div>
 					    </div>
 	                </div>
 	                <div id="feed-image">
 	                    <div id="img_area">
 	                    <!-- Image Slider -->
-	                    <div id="myCarousel${myList.friendNo}" class="carousel slide">
+	                    <div id="myCarousel${fvo.friendNo}" class="carousel slide">
 	                        <div class="carousel-inner">
-	                    <c:forEach items="${myList.attachmentList}" var="att">
+	                    <c:forEach items="${fvo.attachmentList}" var="att">
 	                        <div class="carousel-item active">
 	                            <svg class="bd-placeholder-img" width="100%" height="100%" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" viewBox="0 0 3840 2160" >
                	                <image class="first" href="${rootContext}/resources/upload/friend/${att.changeName}"  width="100%" height="100%"/>
@@ -71,11 +71,11 @@
 	                        </div>
 	                 	</c:forEach> 
 	                        </div>
-	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide="prev">
+	                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide="prev">
 	                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	                        <span class="visually-hidden">Previous</span>
 	                        </button>
-	                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${myList.friendNo}" data-bs-slide="next">
+	                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel${fvo.friendNo}" data-bs-slide="next">
 	                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
 	                        <span class="visually-hidden">Next</span>
 	                        </button>
@@ -84,9 +84,9 @@
 	                </div>
 	                
 	                <div id="content_area">
-						<h7>${myList.title} &nbsp;&nbsp;</h7> <br>
+						<h7>${fvo.title} &nbsp;&nbsp;</h7> <br>
 						<div class="content-line">
-		                    <span class="feed-content">${myList.content}</span>
+		                    <span class="feed-content">${fvo.content}</span>
 		                    <span class="feed-content-hide"></span>
 		                    <button class="feed-content-more-button">more</button>
 	                    </div>
@@ -95,7 +95,7 @@
 						<!-- 거래중일때는 채팅 목록 버튼 ??? -->
 						<div class="checkbox-wrapper-8">
 							<input type="checkbox" id="cb3-8" class="tgl tgl-skewed temp">
-							<label for="cb3-8" data-tg-on="모집완료" data-tg-off="모집중" class="tgl-btn status${myList.statusYn}"></label>
+							<label for="cb3-8" data-tg-on="모집완료" data-tg-off="모집중" class="tgl-btn status${fvo.statusYn}"></label>
 						</div>
 	                </div>
 				</div>

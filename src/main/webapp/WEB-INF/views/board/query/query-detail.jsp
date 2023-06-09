@@ -176,6 +176,6 @@ function deleteReply(rno){
 
 }
 </script>
-<link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">
 <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" />
+<link rel="stylesheet" href="${rootContext}/resources/css/board/help/help-detail.css">
 </html>

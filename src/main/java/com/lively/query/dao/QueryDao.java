@@ -62,8 +62,22 @@ public class QueryDao {
 		return sst.update("query.increaseViews", num);
 	}
 
+	// 게시글 가져오기
 	public QueryVo getQuery(SqlSessionTemplate sst, int num) {
 		return sst.selectOne("query.getQuery", num);
+	}
+
+	// 게시글 수정하기
+	public int edit(SqlSessionTemplate sst, QueryVo vo) {
+		return sst.update("query.edit", vo);
+	}
+
+	public int delete(SqlSessionTemplate sst, String num) {
+		return sst.delete("query.delete", num);
+	}
+	
+	public QueryVo getSelectLocation(SqlSessionTemplate sst, QueryVo vo) {
+		return sst.selectOne("query.getSelectLocation",vo);
 	}
 
 }

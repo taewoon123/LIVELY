@@ -118,6 +118,7 @@
         	AND QUERY_NO = #{num}
 	</select>
 	
+	<!-- 첨부파일 리스트 가져오기 -->
 	<select id="getAttachmentList" resultType = "FileVo">
 		SELECT
 			QUERY_ATTACH_NO
@@ -129,5 +130,33 @@
 		WHERE QUERY_NO = #{queryNo}
 		AND DELETE_YN = 'N'
 	</select>
+	
+	<!-- 수정할때 원래 선택했던 지역선택 가져오기 -->
+	<select id="getSelectLocation" resultType="QueryVo">
+		SELECT LOCATION_NO
+		FROM QUERY
+		WHERE QUERY_NO = #{locationNo}
+	</select>
+	
+	<!-- 게시물 수정하기 -->
+	<update id="edit">
+		UPDATE QUERY
+		SET 
+			TITLE = #{title}
+			,CONTENT = #{content}
+			,EDIT_DATE = SYSDATE
+			,LOCATION_NO = #{locationNo}
+		WHERE QUERY_NO = #{queryNo}
+		AND DELETE_YN = 'N'
+	</update>
+	
+	<!-- 게시물 삭제하기 -->
+	<update id="delete">
+		UPDATE QUERY
+			SET
+				DELETE_YN = 'Y'
+			,EDIT_DATE = SYSDATE
+		WHERE QUERY_NO = #{num}
+	</update>
 
 </mapper>

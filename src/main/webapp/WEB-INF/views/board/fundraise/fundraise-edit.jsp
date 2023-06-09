@@ -30,7 +30,10 @@
             <div class="write-group">
                             <textarea name="content" id="content" cols="30" rows="10" style="resize: none"
                             placeholder="내용" required>${fundDetail.content}</textarea>
-                <img src="${rootContext}/resources/upload/fundraise/${fundDetail.changeName}" alt="사진을 불러올 수 없습니다.">
+                <h1>${fundDetail.changeName}</h1>
+                <c:forEach items="${fundDetail.attList}" var="image">
+                    <img src="${rootContext}/resources/upload/fundraise/${image.changeName}" width="200px" height="200px"/>
+                </c:forEach>
             </div>
 
 

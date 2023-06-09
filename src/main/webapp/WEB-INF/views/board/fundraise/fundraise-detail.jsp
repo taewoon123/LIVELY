@@ -48,7 +48,7 @@
                 <div id="help-inContent">${fundDetail.content}
                     <br>
                     <c:forEach items="${fundDetail.attList}" var="image">
-                    <img src="${rootContext}/resources/upload/fundraise/${image.changeName}" width="200px" height="200px"/>
+                        <img src="${rootContext}/resources/upload/fundraise/${image.changeName}" width="200px" height="200px"/>
                     </c:forEach>
                 </div>
             </div>

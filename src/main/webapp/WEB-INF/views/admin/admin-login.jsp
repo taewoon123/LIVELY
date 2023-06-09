@@ -12,6 +12,7 @@
 <body>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
 <div id="wrap">
   <div class="form-container">
@@ -40,8 +41,8 @@
   if (${not empty superuserNeeded}) {
     alert("${superuserNeeded}")
   }
-  if (${not empty adminLoginAlert}) {
-    alert("${adminLoginAlert}")
+  if (${not empty alertMsg}) {
+    alert("${alertMsg}")
   }
 
 </script>

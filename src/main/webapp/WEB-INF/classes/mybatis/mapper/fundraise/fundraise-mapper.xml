@@ -13,10 +13,12 @@
         F.EDIT_DATE,
         F.DELETE_YN,
         F.VIEWS,
+        L.LOCATION_NAME as locationName,
         F.MONEY,
         F.MONEY_GOAL
         FROM FUNDRAISE F
         JOIN MEMBER M ON M.NO = F.WRITER
+        JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
         WHERE DELETE_YN = 'N'
       <if test="searchValue != null">
         AND F.TITLE LIKE '%' || #{searchValue} || '%'
@@ -66,6 +68,7 @@ WHERE F.DELETE_YN = 'N'
             TITLE,
             CONTENT,
             VIEWS,
+            LOCATION_NO,
             MONEY,
             MONEY_GOAL
         )
@@ -76,6 +79,7 @@ WHERE F.DELETE_YN = 'N'
             #{title},
             #{content},
             0,
+            #{locationNo},
             #{money},
             #{moneyGoal}
         )
@@ -136,7 +140,6 @@ WHERE F.DELETE_YN = 'N'
         UPDATE FUNDRAISE
         SET TITLE = #{title},
         CONTENT = #{content},
-        MONEY_GOAL = #{moneyGoal},
         EDIT_DATE = SYSDATE
         WHERE FUNDRAISE_NO = #{fundraiseNo}
         AND DELETE_YN = 'N'

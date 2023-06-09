@@ -107,7 +107,7 @@ public class FundraiseController {
             }
         }
         session.setAttribute("fileVoList", fileVoList);
-        log.info("fileVoList in Write PostMapping : {}", fileVoList);
+        //log.info("fileVoList in Write PostMapping : {}", fileVoList); 나중에 지우자.
         fundVo.setWriter(memberLog.getNo());
 
         int result = service.write(fundVo, fileVoList);
@@ -141,13 +141,22 @@ public class FundraiseController {
     }
 
     @PostMapping("edit")
-    public String fundEdit(FundraiseVo fundEdit, HttpSession session) {
+    public String fundEdit(FundraiseVo fundEdit, HttpSession session, MultipartFile file) {
+        if(!file.isEmpty()){
+              String path = session.getServletContext().getRealPath("/resources/upload/fundraise/");                                    
+              String changeName = FileUploader.upload(file, path);
+              String originName = file.getOriginalFilename();
+              fundEdit.setOriginName(originName);
+              fundEdit.setChangeName(changeName);
+        }
+
+
         int result = service.edit(fundEdit);
         if (result > 0) {
-            session.setAttribute("alertMsg", "기부 성공");
+            session.setAttribute("alertMsg", "수정 성공");
             return "redirect:/fund/detail?no=" + fundEdit.getFundraiseNo();
         }
-        session.setAttribute("alertMsg", "기부에 실패했습니다. 다시 시도해주세요.");
+        session.setAttribute("alertMsg", "수정에 실패했습니다. 다시 시도해주세요.");
         return "redirect:/fund/detail?no=" + fundEdit.getFundraiseNo();
     }
 

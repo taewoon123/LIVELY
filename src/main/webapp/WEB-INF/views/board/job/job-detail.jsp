@@ -25,16 +25,16 @@
 					<div id="detail-hit">조회수</div>
 					<div id="detail-inHit">${jvo.views}</div>
 					<div id="detail-content">내용</div>
-					<div id="detail-inContent">${jvo.content}</div>
+					<div id="detail-inContent">${jvo.content}
+					<br>
+							<c:forEach items="${jvo.attList}" var="image">
+								<img
+									src="${rootContext}/resources/upload/job/${image.changeName}"
+									width="150px" height="150px" />
+							</c:forEach>
+					</div>
 				</div>
 
-				<div>
-					<label for="thumbnail-tag">사진</label> <input id="thumbnail-tag"
-						type="file" name="f" multiple accept=".jpg,.png,.jpeg">
-				</div>
-				<div id="thumbnail-area"></div>
-
-				<!-- 작성 버튼 -->
 				<%-- 		<c:if test="${memberLog.id eq vo.writer}"> --%>
 				<button id="write_submit_delete"
 					onclick="location.href='${rootContext}/job/delete?no=${jobNo}'">
@@ -81,7 +81,12 @@
 						<div id="detail-content">내용</div>
 						<div id="detail-inContent">
 							<textarea name="content">${jvo.content}</textarea>
+					<br />
+					
 						</div>
+							<div>기존 파일명 : ${fvo.originName}</div>
+					 <input type="file" name="file">
+					
 					</div>
 					<br>
 					<button id="write_submit_edit" style="margin-right: 240px;">

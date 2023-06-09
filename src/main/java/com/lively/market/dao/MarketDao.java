@@ -37,9 +37,10 @@ public class MarketDao {
 	}
 
 	//지역 리스트
-	public List<Map<String, String>> getLocationList(SqlSessionTemplate sst) {
-		return sst.selectList("market.getLocationList");
-	}
+	/*
+	 * public List<Map<String, String>> getLocationList(SqlSessionTemplate sst) {
+	 * return sst.selectList("market.getLocationList"); }
+	 */
 
 	//피드 갯수
 	public int getFeedCount(SqlSessionTemplate sst) {
@@ -86,7 +87,7 @@ public class MarketDao {
 		return sst.update("market.statusY", no);
 	}
 	
-	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst) {
+	public List<MarketVo> getMarketFeedAll(SqlSessionTemplate sst, String searchValue) {
 		return sst.selectList("market.getMarketFeed");
 	}
 

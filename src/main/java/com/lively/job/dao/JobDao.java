@@ -53,8 +53,8 @@ public class JobDao {
 	public List<Map<String, String>> getCategoryList(SqlSessionTemplate sst) {
 		return sst.selectList("job.getCategoryList");
 	}
-	public int insertAttachment(SqlSessionTemplate sst, List<FileVo> fvoList) {
-		return sst.insert("job.insertAttachment", fvoList);
+	public int insertAttachment(SqlSessionTemplate sst, List<FileVo> jobList) {
+		return sst.insert("job.insertAttachment", jobList);
 	}
 
 

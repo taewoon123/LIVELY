@@ -94,12 +94,12 @@
   </insert>
   
   <!-- 지역 리스트 -->
-  <select id="getLocationList" resultType="map">
+<!--   <select id="getLocationList" resultType="map">
   	SELECT
   		LOCATION_NO
   		, LOCATION_NAME
   	FROM LOCATION
-  </select>
+  </select> -->
   
   <!-- 피드 갯수 -->
   <select id="getFeedCount" resultType="int">
@@ -181,6 +181,7 @@
 		, K.LOCATION_NO
 		, K.STATUS_YN
 		, L.LOCATION_NAME as locationName
+		, L.LOCATION_NO as locationNo
 		, A.MARKET_ATTACH_NO as marketAttachNo
 		, A.ORIGIN_NAME as originName
 		, A.CHANGE_NAME as changeName
@@ -199,17 +200,24 @@
 		,K.WRITER 
 		,K.TITLE 
 		,K.CONTENT 
+		,K.PRICE
 		,K.ENROLL_DATE 
 		,K.DELETE_YN 
 		,K.EDIT_DATE 
 		,K.LOCATION_NO 
 		,K.STATUS_YN 
 		,L.LOCATION_NAME as locationName 
+		,L.LOCATION_NO as locationNo 
 		, M.NAME as writerName
 		, M.ID as writerId FROM
 		MARKET K LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO) 
 		LEFT JOIN MEMBER M ON (K.WRITER = M.NO) 
-		WHERE K.DELETE_YN = 'N' 
+		WHERE K.DELETE_YN = 'N'
+		<if test="searchValue != null">
+			AND M.TITLE LIKE '%' || #{searchValue} || '%'
+		</if>
+		ORDER BY K.MARKET_NO DESC
 	</select>
+	
   
 </mapper>

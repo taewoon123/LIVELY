@@ -47,7 +47,7 @@ public class MarketController {
 
 	//피드 목록
 	@GetMapping("list")
-	public String list(Model model, String no, String searchValue) throws Exception {
+	public String list(Model model, String no, String searchValue, LocationVo locationVo) throws Exception {
 		
 		//데이터
 		/*
@@ -57,21 +57,25 @@ public class MarketController {
 		 */
 		
 		List<MarketVo> marketList = ms.getMarketFeed(searchValue);
-		Map<String, MarketVo> marketVoMap = ms.getMarketFeed();
-		List<Map<String, String>> LocationList = ms.getLocationList();
+		Map<String, MarketVo> marketVoMap = ms.getMarketFeedAll(searchValue);
+		List<LocationVo> locationList = ms.getLocationList(locationVo);
+		
+		/* List<Map<String, String>> LocationList = ms.getLocationList(); */
 		
 		System.out.println(marketList);
+		System.out.println(marketVoMap);
 		
 //		model.addAttribute("marketVo", marketVo);
 //		model.addAttribute("pageVo", pageVo);
 //		model.addAttribute("searchMap", searchMap);
 		model.addAttribute("marketList", marketList);
+		model.addAttribute("locationList", locationList);
 		
 		if (marketVoMap != null) {
 			/* model.addAttribute("pageVo" , pageVo); */
 			model.addAttribute("marketVoMap", new ArrayList<MarketVo>(marketVoMap.values()));
 			/* model.addAttribute("searchMap" , searchMap); */
-			model.addAttribute("LocationList", LocationList);
+			/* model.addAttribute("LocationList", LocationList); */
 			
 		}
 		
@@ -80,14 +84,19 @@ public class MarketController {
 	
 	//피드 작성 (화면)
 	@GetMapping("write")
-	public String write(HttpSession session) {
+	public String write(HttpSession session, Model model, LocationVo locationVo) {
 		//로그인 여부
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		
+        List<LocationVo> locationList = ms.getLocationList(locationVo);
+
 		if(memberLog == null) {
 			session.setAttribute("alertMsg", "로그인 먼저 해주세요 !");
-			return "redirect:/market/list";
+			return "member/login";
 		}
-				
+		
+        model.addAttribute("locationList", locationList);
+
 		return "board/market/market-write";
 	}
 	
@@ -132,20 +141,27 @@ public class MarketController {
 	
 	//피드 수정 화면 (작성자만)
 	@GetMapping("edit/{no}")
-	public String edit(@PathVariable(required = true) String no, Model model) throws Exception {
+	public String edit(@PathVariable(required = true) String no, Model model, LocationVo locationVo) throws Exception {
 		
 		MarketVo marketDetail = ms.getFeed(no);
 		
+		List<LocationVo> locationList = ms.getLocationList(locationVo);
+		
 		model.addAttribute("marketDetail", marketDetail);
+		model.addAttribute("locationList", locationList);
 		
 		return "board/market/market-detail";
 	}
 	
 	//피드 수정 (작성자만)
 	@PostMapping("edit")
-	public String edit(MarketVo marketVo, HttpSession session, RedirectAttributes ra) {
+	public String edit(MarketVo marketVo, HttpSession session, RedirectAttributes ra, @RequestParam("locationNo") String locationNo) {
 		
 		int result = ms.updateFeed(marketVo);
+		
+		LocationVo locationVo = new LocationVo();
+	    locationVo.setLocationNo(locationNo);
+	    marketVo.setLocationNo(locationNo);
 		
 		System.out.println("수정 : " + marketVo);
 		

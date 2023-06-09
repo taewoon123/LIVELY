@@ -39,7 +39,7 @@ public class JobService {
 		int jobResult = dao.write(sst,vo);
 		int attResult = 1;
 		if(jobList.size() > 0) {
-			jobResult = dao.insertAttachment(sst, jobList);			
+			attResult = dao.insertAttachment(sst, jobList);			
 		}
 		return jobResult * attResult;
 	}

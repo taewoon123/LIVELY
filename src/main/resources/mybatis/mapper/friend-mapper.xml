@@ -54,14 +54,30 @@
 		</if>
 	</select>  -->
 	<!-- 3번째 리스트 코드 -->
- 	<select id="FriendFeed" resultType="FriendVo">
-		SELECT *
+  	<select id="FriendFeed" resultType="FriendVo">
+		SELECT 
+		F.FRIEND_NO
+		, F.WRITER
+		, F.TITLE
+		, F.CONTENT
+		, F.ENROLL_DATE
+		, F.DELETE_YN
+		, F.EDIT_DATE
+		, F.LOCATION_NO
+		, F.STATUS_YN
+		, L.LOCATION_NAME as locationName
+		, M.NAME as writerName
+		, A.FRIEND_ATTACH_NO as friendAttachNo
+		, FRIEND_ATTACH_NO as friendAttachNo
 		FROM FRIEND F
+		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
+		LEFT JOIN FRI_ATTACH A ON (F.FRIEND_NO = A.FRIEND_NO)
 		WHERE F.DELETE_YN = 'N'
 		<if test="searchValue != null">
 			AND F.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
-	</select> 
+	</select>
 
  	<insert id="write">
 		INSERT INTO FRIEND

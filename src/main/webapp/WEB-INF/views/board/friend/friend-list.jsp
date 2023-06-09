@@ -19,11 +19,13 @@
         <%@ include file="/WEB-INF/views/common/alertMsg.jsp" %>
 
         <main>
+			
+			<form action="${rootContext}/friend/list" method="get">
+			
             <div id="friend_title">
                 <h2>Friend</h2>
             </div>
 			
-			<form action="${rootContext}/friend/list" method="get">
 	            <div id="search-upload-area">
                     <input type="text" placeholder="Search" name="searchValue" class="feed_search_input">
                 </div>      
@@ -37,11 +39,10 @@
 	                        <span class="hover-text" aria-hidden="true">&nbsp;UPLOAD&nbsp;</span>
 	                    </button>
 	                </div>
-	                
  		<c:forEach items="${fvoMap}" var="fvo">
 			<!--첫번째 피드 시작 -->
              <div class="feed_box feed_status_${fvo.statusYn}"> 
-                <div id="profile_area"> -->
+                <div id="profile_area">
                      <div id="profile_img"><img src="${rootContext}/resources/img/marketimg.png" alt="프로필사진"></div> 
                      <div id="profile_box"> 
                          <div id="profile_name">${fvo.writerName}</div> 

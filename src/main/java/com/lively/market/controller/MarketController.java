@@ -59,6 +59,8 @@ public class MarketController {
 		ArrayList<MarketVo> fvoList = ms.getMarketFeed(searchValue);
 		List<LocationVo> locationList = ms.getLocationList(locationVo);
 		
+		System.out.println(fvoList);
+		
 		model.addAttribute("locationList", locationList);
 		
 		if (fvoList != null) {

@@ -39,7 +39,7 @@
 
 
 .drop-edit-delete-area {
-	margin-left: 425px;
+	margin-left: 355px;
 	color: white;
 	font-size: 25px;
 }
@@ -128,6 +128,7 @@
 /* 프로필 이름/닉네임 */
 #profile_box {
     margin: 5px;
+    width: 100px;
 }
 #profile_name {
     font-weight: bolder;

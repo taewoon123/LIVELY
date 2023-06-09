@@ -117,16 +117,30 @@
 	
 	<!-- 나의 market feed -->
 	<select id="marketFeed" resultType="MarketVo">
-		SELECT *
-		FROM MARKET M
-		WHERE M.DELETE_YN = 'N'
+		SELECT
+			K.MARKET_NO
+			, K.WRITER
+			, K.TITLE
+			, K.CONTENT
+			, K.PRICE
+			, K.ENROLL_DATE
+			, K.EDIT_DATE
+			, K.DELETE_YN
+			, K.LOCATION_NO
+			, K.STATUS_YN
+			, L.LOCATION_NAME as locationName
+			, M.NAME as writerName
+			, M.ID as writerId
+		FROM MARKET K
+		LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
+		LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
+		WHERE K.DELETE_YN = 'N'
 		<if test="searchValue != null">
-			AND M.TITLE LIKE '%' || #{searchValue} || '%'
+			AND K.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
-		ORDER BY M.MARKET_NO DESC
 	</select> 
 	
-	  <select id="getMarketFeed" resultType="MarketVo"> 
+	  <!-- <select id="getMarketFeed" resultType="MarketVo"> 
 	SELECT 
 		K.MARKET_NO 
 		,K.WRITER 
@@ -143,7 +157,7 @@
 		MARKET K LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO) 
 		LEFT JOIN MEMBER M ON (K.WRITER = M.NO) 
 		WHERE K.DELETE_YN = 'N' 
-	</select>
+	</select> -->
 		<select id="getAttachmentList2" resultType="fileVo">
 		SELECT
 		M.MARKET_ATTACH_NO
@@ -159,15 +173,29 @@
 	<!-- 나의 friend feed -->
 
 	 <select id="friendFeed" resultType="FriendVo">
-		SELECT *
+		SELECT
+			F.FRIEND_NO
+			, F.WRITER
+			, F.TITLE
+			, F.CONTENT
+			, F.ENROLL_DATE
+			, F.DELETE_YN
+			, F.EDIT_DATE
+			, F.LOCATION_NO
+			, F.STATUS_YN
+			, L.LOCATION_NAME as locationName
+			, M.NAME as writerName
+			, M.ID as writerId
 		FROM FRIEND F
+		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
+		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
 		WHERE F.DELETE_YN = 'N'
 		<if test="searchValue != null">
 			AND F.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
 	</select> 
 	
-	<select id="getFriendFeed" resultType="FriendVo"> 
+	<!-- <select id="getFriendFeed" resultType="FriendVo"> 
 	SELECT 
 		F.FRIEND_NO 
 		,F.WRITER 
@@ -185,7 +213,7 @@
 		LEFT JOIN MEMBER M ON (F.WRITER = M.NO) 
 		WHERE F.DELETE_YN = 'N' 
 		ORDER BY F.FRIEND_NO DESC
-		</select>
+		</select> -->
 	<!-- FRI_ATTACH -->
 	<select id="getAttachmentList" resultType="fileVo">
 		SELECT

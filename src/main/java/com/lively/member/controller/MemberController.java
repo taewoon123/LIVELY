@@ -225,32 +225,12 @@ public class MemberController {
 	@GetMapping("my-market-feed")
 	public String myFeed(MarketVo marketVo, HttpSession session, Model model,String searchValue, String no) {
 
-		/*
-		 * MemberVo memberLog = (MemberVo) session.getAttribute("memberLog"); String
-		 * writerNo = memberLog.getNo();
-		 * 
-		 * marketVo.setWriter(writerNo);
-		 * 
-		 * // 내 피드 총 갯수 int MyMarketFeedCount = ms.getMyMarketFeedCount(marketVo);
-		 * 
-		 * List<MarketVo> myMarketList = ms.getMyMarketFeed(marketVo); List<Map<String,
-		 * String>> LocationList = ms.getLocationList();
-		 * 
-		 * System.out.println(myMarketList);
-		 * 
-		 * model.addAttribute("MyFeedCount", MyMarketFeedCount);
-		 * model.addAttribute("myMarketList", myMarketList);
-		 * model.addAttribute("LocationList", LocationList);
-		 */
-		
-		List<MarketVo> marketList = ms.getMarketFeed(searchValue); 
-		Map<String, MarketVo> marketVoMap = ms.getMarketFeed();
+		ArrayList<MarketVo> marketList = ms.getMarketFeed(searchValue); 
+		/* Map<String, MarketVo> marketVoMap = ms.getMarketFeed(); */
 		/* List<Map<String, String>> LocationList = ms.getLocationNoList(); */
 		
-		model.addAttribute("marketList" , marketList);
-		
-		if (marketVoMap != null) {
-			model.addAttribute("marketVoMap", new ArrayList<MarketVo>(marketVoMap.values()));
+		if (marketList != null) {
+			model.addAttribute("marketVoMap", marketList);
 			/* model.addAttribute("LocationList", LocationList); */
 			
 		}

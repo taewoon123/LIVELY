@@ -80,20 +80,22 @@ public class MemberDao {
 		return sst.selectList("member.friendFeed" , searchValue);
 	}
 
-	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst) {
-		return sst.selectList("member.getFriendFeed");
-	}
+	/*
+	 * public List<FriendVo> getFriendFeed(SqlSessionTemplate sst) { return
+	 * sst.selectList("member.getFriendFeed"); }
+	 */
 
 	public List<FileVo> getAttachmentList(SqlSessionTemplate sst) {
 		return sst.selectList("friend.getAttachmentList");
 	}
 
-	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, String searchValue) {
-		return sst.selectList("member.getMarketFeed" , searchValue);
-	}
+	/*
+	 * public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, String
+	 * searchValue) { return sst.selectList("member.getMarketFeed" , searchValue); }
+	 */
 
-	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst) {
-		return sst.selectList("member.getMarketFeed");
+	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, String searchValue) {
+		return sst.selectList("member.marketFeed", searchValue);
 	}
 
 	public List<FileVo> getAttachmentList2(SqlSessionTemplate sst) {

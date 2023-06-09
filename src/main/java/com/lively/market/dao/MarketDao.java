@@ -49,9 +49,7 @@ public class MarketDao {
 
 	//수정 (작성자만)
 	public int updateFeed(SqlSessionTemplate sst, MarketVo marketVo) {
-		int a = sst.update("market.updateFeed", marketVo);
-		System.out.println(a);
-		return a;
+		return sst.update("market.updateFeed", marketVo);
 	}
 
 	//삭제 (작성자만)
@@ -98,8 +96,8 @@ public class MarketDao {
 	}
 	
 	//상세조회
-	public MarketVo getFeed(SqlSessionTemplate sst, String no) {
-		return sst.selectOne("market.getFeed", no);
+	public List<MarketVo> getFeed(SqlSessionTemplate sst, String no) {
+		return sst.selectList("market.getFeed", no);
 	}
 }
 

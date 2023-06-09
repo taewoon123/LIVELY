@@ -38,14 +38,14 @@
                     </div>
                     
                     <div class="form__group">
-                        <input type="hidden" name="writer" value="${marketDetail.writer}">
-                        <input type="hidden" name="marketNo" value="${marketDetail.marketNo}">
-                        <input type="text" class="form__field" id="title" name="title" value="${marketDetail.title}" required>
-                        <input type="number" class="form__field" name="price" value="${marketDetail.price}" required>
+                        <input type="hidden" name="writer" value="${marketDetail[0].writer}">
+                        <input type="hidden" name="marketNo" value="${marketDetail[0].marketNo}">
+                        <input type="text" class="form__field" id="title" name="title" value="${marketDetail[0].title}" required>
+                        <input type="number" class="form__field" name="price" value="${marketDetail[0].price}" required>
                     </div>
                 </div>
                 <div class="write-group">
-                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none" required>${marketDetail.content}</textarea>
+                    <textarea name="content" id="content" cols="30" rows="10" style="resize: none" required>${marketDetail[0].content}</textarea>
                 </div>
 
                 <!-- UI첨부파일(drop files) -->

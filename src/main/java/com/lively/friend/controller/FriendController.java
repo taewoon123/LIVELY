@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -48,16 +51,13 @@ public class FriendController {
 	//피드목록
 	@GetMapping("list")
 	public String list(Model model,  String searchValue, LocationVo locationVo , String no) {
-
-		List<FriendVo> friendList = fs.getFriendFeed(searchValue); 
-		Map<String, FriendVo> fvoMap = fs.getFriendFeed();
+		ArrayList<FriendVo> fvoList = fs.getFriendFeed(searchValue);
 		List<LocationVo> locationList = fs.getLocationList(locationVo);
 		/* List<Map<String, String>> LocationList = fs.getLocationNoList(); */
 		
-		model.addAttribute("friendList" , friendList);
 		
-		if (fvoMap != null) {
-			model.addAttribute("fvoMap", new ArrayList<FriendVo>(fvoMap.values()));
+		if (fvoList != null) {
+			model.addAttribute("fvoMap", fvoList);
 			model.addAttribute("locationList", locationList);
 			
 		}
@@ -65,6 +65,8 @@ public class FriendController {
 		return "board/friend/friend-list";
 	}
 	
+	
+
 	//피드작성(화면)
 	@GetMapping("write")
 	public String write(HttpSession session, Model model, LocationVo locationVo) {
@@ -87,9 +89,12 @@ public class FriendController {
 	
 	//피드작성
 	@PostMapping("write")
-	public String write(FriendVo vo , List<MultipartFile> f, HttpSession session, HttpServletRequest requestion) throws Exception {
+	public String write(Model model, LocationVo locationVo, FriendVo vo , List<MultipartFile> f, HttpSession session, HttpServletRequest requestion) throws Exception {
 		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
 		
+		
+		List<LocationVo> locationList = fs.getLocationList(locationVo);
+		model.addAttribute("locationList", locationList);
 	   //데이터 준비 (파일)
 	      String path = requestion.getServletContext().getRealPath("/resources/upload/friend/");
 	      List<String> changeNameList = FileUploader.upload(f, path);

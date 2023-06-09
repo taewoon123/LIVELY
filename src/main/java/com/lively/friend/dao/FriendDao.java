@@ -16,6 +16,7 @@ public class FriendDao {
 	
 	//피드(전체)
 	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst, String searchValue) {
+		System.out.println(searchValue);
 		/*
 		 * int limit = pageVo.getBoardLimit(); int offset = (pageVo.getCurrentPage()-1)
 		 * * limit;

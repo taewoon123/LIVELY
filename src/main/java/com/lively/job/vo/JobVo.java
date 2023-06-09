@@ -17,10 +17,12 @@ public class JobVo {
 	private String deleteYn;
 	private String views;
 	private String jobCategoryNo;
+	
+	public String jobCategoryName;
+	
 	private String locationNo;
 	private String locationName;
 	
-	public String jobCategoryName;
 	private String writerName;
     private List<FileVo> attList;
 	

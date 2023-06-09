@@ -40,5 +40,4 @@
     </body>
 
     </html>
-    <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-write.css">
-    <link rel="stylesheet" href="${rootContext}/resources/css/board/query/query-write.css">
+    <link rel="stylesheet" href="${rootContext}/resources/css/board/notice/notice-write.css">

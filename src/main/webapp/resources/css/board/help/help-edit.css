@@ -32,7 +32,8 @@
     color: black;
     border: 1px solid #939292;
     margin: 40px 0 0 0;
-    margin-left: -120px;
+    margin-left: 300px;
+    margin-top : -40px;
   }
   
   /* 제목 */
@@ -204,9 +205,6 @@ input[type="button"]:hover {
 
 
 /* UI첨부파일(drop files) */
-
-
-  
   .form-title {
     color: #000000;
     font-size: 1.8rem;

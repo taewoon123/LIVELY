@@ -109,7 +109,7 @@ public class QueryController {
 		return "redirect:/query/list";
 	}
 
-	// 파밍함 - 도움 상세조회
+	// 게시글 상세조회
 	@GetMapping("detail")
 	public String detail(@RequestParam("num") int num, Model model) throws Exception {
 		QueryVo vo = qs.getQuery(num);
@@ -123,6 +123,50 @@ public class QueryController {
 		model.addAttribute("queryNo", num);
 		model.addAttribute("path", "/resources/upload/query");
 		return "board/query/query-detail";
+	}
+
+	// 수정하기 (화면)
+	@GetMapping("edit")
+	public String edit(Model model, @RequestParam("num") int num) throws Exception {
+		QueryVo vo = qs.getQuery(num);
+
+		List<LocationVo> locationList = qs.getLocationList(new LocationVo());
+
+		model.addAttribute("qvo", vo);
+		model.addAttribute("locationList", locationList);
+
+		return "board/query/query-edit";
+	}
+
+	// 수정하기
+	@PostMapping("edit")
+	public String edit(QueryVo vo, HttpSession session, @RequestParam("locationNo") String locationNo) {
+		
+		int result = qs.edit(vo);
+
+		LocationVo locationVo = new LocationVo();
+		locationVo.setLocationNo(locationNo);
+		vo.setLocationNo(locationNo);
+
+		if (result > 0) {
+			return "redirect:/query/detail?num=" + vo.getQueryNo();
+		}
+
+		session.setAttribute("errorMsg", "도움 글 수정 실패...");
+		return "redirect:/query/detail?num=" + vo.getQueryNo();
+	}
+
+	// 삭제하기
+	@GetMapping("delete")
+	public String delete(String num) throws Exception {
+
+		int result = qs.delete(num);
+
+		if (result != 1) {
+			throw new Exception("도움글 삭제 실패...");
+		}
+
+		return "redirect:/query/list";
 	}
 
 }// class

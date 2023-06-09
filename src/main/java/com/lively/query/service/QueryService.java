@@ -80,4 +80,17 @@ public class QueryService {
 		return qvo;
 	}
 
+	//수정하기
+	public int edit(QueryVo vo) {
+//		int selectLocation = dao.getSelectLocation(sst,vo);
+//		if(selectLocation == null) {
+		return dao.edit(sst, vo);
+		}
+	
+
+	//삭제하기
+	public int delete(String num) {
+		return dao.delete(sst, num);
+	}
+
 }// class

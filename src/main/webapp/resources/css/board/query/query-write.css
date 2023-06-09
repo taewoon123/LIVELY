@@ -13,3 +13,11 @@ input[type="button"]:hover {
   background-color: rgb(140, 139, 139);
   color: white;
 }
+
+  /* 지역태그 */
+  #location {
+    background-color: #cccbcb;
+    color: black;
+    border: 1px solid #939292;
+    margin: 15px 0px 15px 0px;
+  }

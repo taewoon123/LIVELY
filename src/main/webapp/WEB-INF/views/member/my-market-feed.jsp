@@ -23,7 +23,7 @@
             </div>
 
             <div id="search-upload-area">
-                <input placeholder="Search" class="feed_search_input" name="text" type="text">
+                <input placeholder="Search" class="feed_search_input" name="searchValue" type="text">
                 <a class="hidden_button" type="submit" href="">검색</a>
                 
                 
@@ -46,7 +46,7 @@
 	                    <div id="profile_img"><img src="${rootContext}/resources/img/bear.png" alt="프로필사진"></div>
 	                    <div id="profile_box">
 	                        <div id="profile_name">${myList.writerName}</div>
-	                        <div id="profile_nick">${myList.writerId}</div>
+	                        <div id="profile_nick">${myList.locationName}</div>
 	                    </div>
 	                    <div class="drop-edit-delete-area">
 							<a class="drop-edit-delete-box"> 

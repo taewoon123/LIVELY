@@ -185,12 +185,9 @@ public class MemberService {
 		return voList;
 	}
 
-	public List<MarketVo> getMarketFeed(String searchValue) {
-		return dao.getMarketFeed(sst, searchValue);
-	}
 
-	public Map<String, MarketVo> getMarketFeed() {
-		 List<MarketVo> fileVoList = dao.getMarketFeed(sst);
+	public ArrayList<MarketVo> getMarketFeed(String searchValue) {
+		 List<MarketVo> fileVoList = dao.getMarketFeed(sst, searchValue);
 		 
 		 Map<String, MarketVo> fileVoMap = new HashMap<String, MarketVo>();
 		 for(MarketVo fileVo : fileVoList) {
@@ -198,14 +195,32 @@ public class MemberService {
 			 fileVo.setAttachmentList2(new ArrayList<FileVo>()); 
 		 }
 		 
-		 
 		 List<FileVo> fileList = dao.getAttachmentList2(sst);
 		 for(FileVo file : fileList) {
 			 String marketNo = file.getNo();
-			 fileVoMap.get(marketNo).getAttachmentList2().add(file);
+			 MarketVo getMarketNo = fileVoMap.get(marketNo);
+			 if(getMarketNo == null) {
+				 continue;
+			 }
+			 getMarketNo.getAttachmentList2().add(file);
 		 }
 		
-		return fileVoMap;
+		return mapToList2(fileVoMap);
+	}
+	
+	private ArrayList<MarketVo> mapToList2(Map<String, MarketVo> fileVoMap) {
+			
+		ArrayList<MarketVo> voList = new ArrayList<MarketVo>();
+		
+		int i = 0;
+		while(fileVoMap.size() != voList.size()) {
+			MarketVo vo = fileVoMap.get("" + i++);
+			if(vo != null) {
+				voList.add(vo);
+			}
+		}
+		Collections.reverse(voList);
+		return voList;
 	}
 
 

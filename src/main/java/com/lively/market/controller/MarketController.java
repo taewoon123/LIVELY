@@ -143,7 +143,7 @@ public class MarketController {
 	@GetMapping("edit/{no}")
 	public String edit(@PathVariable(required = true) String no, Model model, LocationVo locationVo) throws Exception {
 		
-		MarketVo marketDetail = ms.getFeed(no);
+		List<MarketVo> marketDetail = ms.getFeed(no);
 		
 		List<LocationVo> locationList = ms.getLocationList(locationVo);
 		

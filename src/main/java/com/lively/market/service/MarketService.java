@@ -70,12 +70,9 @@ public class MarketService {
 	}
 	
 	//상세조회
-	public MarketVo getFeed(String no) throws Exception {
+	public List<MarketVo> getFeed(String no) throws Exception {
 		
-		MarketVo marketVo = dao.getFeed(sst, no);
-//		List<FileVo> fileList = dao.getAttachmentList(sst, no);
-		
-//		marketVo.setAttachmentList(fileList);
+		List<MarketVo> marketVo = dao.getFeed(sst, no);
 		
 		return marketVo;
 	}

@@ -130,7 +130,7 @@ public class FriendController {
 		List<LocationVo> locationList = fs.getLocationList(locationVo);
 		
 		model.addAttribute("friendDetail", friendDetail);
-		
+		model.addAttribute("locationList" , locationList);
 		return "board/friend/friend-detail";
 	}
 	

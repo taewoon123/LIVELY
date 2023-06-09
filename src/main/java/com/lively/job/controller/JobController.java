@@ -92,6 +92,11 @@ public class JobController {
 	public String write(JobVo vo, HttpSession session, HttpServletRequest req, List<MultipartFile> f) {
 
 		
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+
+		vo.setWriter(memberLog.getNo());
+		
+		
 		String path = req.getServletContext().getRealPath("/resources/upload/job/");
 		List<String> changeNameList = FileUploader.upload(f, path);
 		List<String> originNameList = FileUploader.getOriginNameList(f);

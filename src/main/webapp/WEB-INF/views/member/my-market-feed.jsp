@@ -62,11 +62,6 @@
 	                    <div id="img_area">
 	                    <!-- Image Slider -->
 	                    <div id="myCarousel${myList.marketNo}" class="carousel slide">
-	                        <div class="carousel-indicators">
-	                        <button type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-	                        <button type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide-to="1" aria-label="Slide 2"></button>
-	                        <button type="button" data-bs-target="#myCarousel${myList.marketNo}" data-bs-slide-to="2" aria-label="Slide 3"></button>
-	                        </div>
 	                        <div class="carousel-inner">
 	                        <c:forEach items="${myList.attachmentList2}" var="att">  
                          <div class="carousel-item active"> 

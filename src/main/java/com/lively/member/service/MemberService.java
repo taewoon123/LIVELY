@@ -75,7 +75,15 @@ public class MemberService {
 
 		// 비밀번호 복호화
 		String userPwd = vo.getPwd();
-		String dbPwd = memberLog.getPwd();
+		String dbPwd = "";
+		try {
+			dbPwd = memberLog.getPwd();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			memberLog = null;
+			return memberLog;
+		}
+		
 		boolean result = enc.matches(userPwd, dbPwd);
 
 		if (result) {

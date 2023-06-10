@@ -38,20 +38,26 @@ public class MemberController {
 
 	// 회원가입 화면
 	@GetMapping("join")
-	public String join(LocationVo locationVo) {
+	public String join(LocationVo locationVo, Model model) {
 //		회원가입 화면에 지역데이터 넣을때 파라미터로 "LocationVo locationVo" 넣기
-//      List<LocationVo> locationList = ms.getLocationList(locationVo);
+      List<LocationVo> locationList = ms.getLocationList(locationVo);
+      
+      model.addAttribute("locationList" , locationList);
 
 		return "member/join";
 		}
 
 	// 회원가입 처리
 	@PostMapping("join")
-	public String join(MemberVo vo, HttpSession session) throws Exception {
-
+	public String join(MemberVo vo,Model model, HttpSession session, LocationVo locationVo) throws Exception {
+		
+		List<LocationVo> locationList = ms.getLocationList(locationVo);
+		model.addAttribute("locationList", locationList);
+		
 		// 서비스
 		int result = ms.join(vo);
 
+		
 		if (result != 1) {
 			// 에러메세지 담아서 forwording 하기
 			session.setAttribute("alertMsg", "회원가입 실패");
@@ -150,7 +156,13 @@ public class MemberController {
 
 	// my-info 화면
 	@GetMapping("my-info")
-	public String myInfo(HttpSession session) {
+	public String myInfo(HttpSession session, Model model, LocationVo locationVo) {
+		
+	      List<LocationVo> locationList = ms.getLocationList(locationVo);
+	      
+	      model.addAttribute("locationList" , locationList);
+		
+		
 		if (session.getAttribute("memberLog") == null) {
 			session.setAttribute("alertMsg", "로그인이 필요합니다.");
 			return "member/login";
@@ -160,8 +172,12 @@ public class MemberController {
 
 	// 정보수정 처리
 	@PostMapping("my-info")
-	public String myInfo(MemberVo vo, HttpSession session) throws Exception {
-
+	public String myInfo(Model model, MemberVo vo, HttpSession session, LocationVo locationVo) throws Exception {
+		
+		//지역
+		List<LocationVo> locationList = ms.getLocationList(locationVo);
+		model.addAttribute("locationList", locationList);
+		
 		// 서비스
 		MemberVo updatedMember = ms.myInfo(vo);
 

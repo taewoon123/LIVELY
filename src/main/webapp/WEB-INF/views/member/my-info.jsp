@@ -178,15 +178,13 @@
                             Location
                           </td>
                           <th>
-                            <div class="selections">
-                              <select class="location-option" name="locationNo" id="location" required >
-                                <option value="">Select</option>
-                                <option value="1">강동구</option>
-                                <option value="2">강서구</option>
-                                <option value="3">강남구</option>
-                                <option value="4">강북구</option>
-                              </select>
-                            </div>
+                		<div class="selections">
+                            <select class="location-option" name="locationNo" id="location">
+			                   <c:forEach items="${locationList}" var="locationList">
+			                   <option value="${locationList.getLocationNo()}">${locationList.getLocationName()}</option>
+			                   </c:forEach>
+			                </select>
+                        </div>
                           </th>
                           <td id="location-validity">
 

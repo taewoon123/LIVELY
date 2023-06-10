@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lively.common.FileVo;
 import com.lively.common.locaion.dao.LocationDao;
+import com.lively.common.locaion.vo.LocationVo;
 import com.lively.friend.vo.FriendVo;
 import com.lively.help.vo.HelpVo;
 import com.lively.market.vo.MarketVo;

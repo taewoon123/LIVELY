@@ -223,6 +223,10 @@ public class MemberService {
 		return voList;
 	}
 
+	public List<LocationVo> getLocationList(LocationVo locationVo) {
+		return locationDao.getLocationList(sst, locationVo);
+	}
+
 
 
 }// class

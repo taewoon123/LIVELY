@@ -10,6 +10,7 @@ public class ChatVo {
 	private String msgTime;
 	private String sender;
 	private String roomNo;
-	private String requestor;
+	
+	private String writerName;
 	
 }

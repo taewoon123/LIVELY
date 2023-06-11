@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="friend-reply">
+
+	<select id="getInfo" resultType="FriendVo">
+		SELECT
+			F.FRIEND_NO
+			, F.WRITER
+			, F.DELETE_YN
+			, F.ENROLL_DATE
+			, M.NAME as writerName
+		FROM FRIEND F
+		LEFT JOIN MEMBER M ON (M.NO = F.WRITER)
+		WHERE DELETE_YN = 'N'
+		AND F.FRIEND_NO = #{friendNo}
+	</select> 
+  
+</mapper>

@@ -36,11 +36,6 @@ public class FriendService {
 	}
 	
 	
-//	 //피드
-//	public List<FriendVo> getFriendFeed(String searchValue){
-//		return dao.getFriendFeed(sst , searchValue);
-//	}
-	
 
 
 	//검색
@@ -57,12 +52,6 @@ public class FriendService {
 		}
 		return friendResult * attResult;
 	}
-	
-	//지역
-	/*
-	 * public List<Map<String, String>> getLocationNoList() { return
-	 * dao.getLocationNoList(sst); }
-	 */
 
 	//총갯수
 	public int getFeedCount() {

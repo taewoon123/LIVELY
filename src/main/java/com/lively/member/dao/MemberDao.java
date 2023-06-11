@@ -31,6 +31,11 @@ public class MemberDao {
 		return sst.selectOne("member.login", vo);
 	}
 
+	//회원탈퇴
+	public int quit(SqlSessionTemplate sst, MemberVo memberLog) {
+		return sst.update("member.quit",memberLog);
+	}
+
 	// 비밀번호 까묵 - 회원조회
 	public MemberVo forgotPassword(SqlSessionTemplate sst, MemberVo vo) {
 		return sst.selectOne("member.forgotPassword", vo);
@@ -101,5 +106,6 @@ public class MemberDao {
 	public List<FileVo> getAttachmentList2(SqlSessionTemplate sst) {
 		return sst.selectList("market.getAttachmentList2");
 	}
+
 
 }// class

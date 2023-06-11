@@ -63,10 +63,10 @@ public class MemberService {
 		// close : spring이 처리해줌
 	}
 
-//	//회원가입 location 데이터 넣기
-//	public List<LocationVo> getLocationList(LocationVo locationVo) {
-//        return locationDao.getLocationList(sst,locationVo);
-//	}
+	//회원탈퇴
+	public int quit(MemberVo memberLog) {
+		return dao.quit(sst, memberLog);
+	}
 
 	// 로그인
 	public MemberVo login(MemberVo vo) {
@@ -237,5 +237,6 @@ public class MemberService {
 	public List<LocationVo> getLocationList(LocationVo locationVo) {
 		return locationDao.getLocationList(sst, locationVo);
 	}
+
 
 }// class

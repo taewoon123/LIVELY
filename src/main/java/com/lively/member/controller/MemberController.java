@@ -23,6 +23,7 @@ import com.lively.member.service.MemberService;
 import com.lively.member.vo.MemberVo;
 
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Slf4j
 @Controller
@@ -81,7 +82,17 @@ public class MemberController {
 			return "notDup";
 		}
 	}// idCheck
-
+	
+	//회원탈퇴
+	@PostMapping("quit")
+	public String quit (HttpSession session) {
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		ms.quit(memberLog);
+		session.setAttribute("alertMsg", "회원탈퇴 되었습니다. 필요할 땐 언제든 다시 찾아주세요!");
+		session.invalidate();
+		return "redirect:/main";
+	}
+	
 	// 로그인 화면
 	@GetMapping("login")
 	public String login() {

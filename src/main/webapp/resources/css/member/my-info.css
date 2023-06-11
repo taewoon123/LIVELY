@@ -1,3 +1,7 @@
+#quit-button {
+  background-color : rgb(215, 87, 87);
+}
+
 /* 헤더와 제목 사이공간 확보 */
 #title {
   margin-top: 10%;

@@ -94,7 +94,8 @@
                  </div> 
                  <div id="chat_area"> 
                  <div><br><span class="feedEnrollDate">${fvo.enrollDate}</span></div>
-                     <button onclick="chat();"><a>CHAT</a></button> 
+                     <button onclick="return chat();"><a>CHAT</a></button> 
+                   	<input type="text" style="display:none" class="hiddenFriendNo" value="${fvo.friendNo}"></div>
                  </div> 
               </div> 
 	 	</c:forEach> 

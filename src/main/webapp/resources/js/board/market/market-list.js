@@ -101,7 +101,7 @@ function chat(){
 	const marketNo = document.querySelector(".hiddenMarketNo").value;
 
 	let options = "width=500, height=600, top=100,left=500";
-    window.open("/lively/market/marketChat/" + marketNo, "chat", options);
+    window.open("/lively/feed/chat/" + marketNo, "chat", options);
 }
 
 /*//채팅 버튼 클릭시 마켓 번호 전달

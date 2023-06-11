@@ -85,15 +85,12 @@ var checkbox = document.getElementById("statusCheckbox");
 checkbox.addEventListener("change", handleCheckboxChange);
 
 
-
-
-
-// 채팅
+//채팅
 function chat(){
+	const friendNo = document.querySelector(".hiddenFriendNo").value;
 
 	let options = "width=500, height=600, top=100,left=500";
-    window.open("/lively/chat", "chat", options);
-
+    window.open("/lively/feed/chat/" + friendNo, "chat", options);
 }
 
 /*//검색기능

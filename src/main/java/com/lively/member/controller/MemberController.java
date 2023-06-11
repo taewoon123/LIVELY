@@ -239,9 +239,12 @@ public class MemberController {
 
 	// my-market-feed 화면
 	@GetMapping("my-market-feed")
-	public String myFeed(MarketVo marketVo, HttpSession session, Model model,String searchValue, String no) {
+	public String myFeed(MarketVo marketVo, HttpSession session, Model model,String searchValue) {
 
-		ArrayList<MarketVo> marketList = ms.getMarketFeed(searchValue); 
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		String no = memberLog.getNo();
+		
+		ArrayList<MarketVo> marketList = ms.getMarketFeed(no, searchValue); 
 		/* Map<String, MarketVo> marketVoMap = ms.getMarketFeed(); */
 		/* List<Map<String, String>> LocationList = ms.getLocationNoList(); */
 		
@@ -257,10 +260,12 @@ public class MemberController {
 
 	// my-friend-feed 화면
 	@GetMapping("my-friend-feed")
-	public String myFeed(FriendVo friendVo, HttpSession session, Model model, String searchValue, String no) {
+	public String myFeed(FriendVo friendVo, HttpSession session, Model model, String searchValue) {
 		
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+		String no = memberLog.getNo();
 		
-		ArrayList<FriendVo> friendList = ms.getFriendFeed(searchValue); 
+		ArrayList<FriendVo> friendList = ms.getFriendFeed(no, searchValue); 
 		/* Map<String, FriendVo> fvoMap = ms.getFriendFeed(); */
 		/* List<Map<String, String>> LocationList = ms.getLocationNoList(); */
 		

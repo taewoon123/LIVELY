@@ -135,6 +135,7 @@
 		LEFT JOIN LOCATION L ON (K.LOCATION_NO = L.LOCATION_NO)
 		LEFT JOIN MEMBER M  ON (K.WRITER = M.NO)
 		WHERE K.DELETE_YN = 'N'
+		AND K.WRITER = #{no}
 		<if test="searchValue != null">
 			AND K.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>
@@ -190,6 +191,7 @@
 		LEFT JOIN LOCATION L ON (F.LOCATION_NO = L.LOCATION_NO)
 		LEFT JOIN MEMBER M ON (F.WRITER = M.NO)
 		WHERE F.DELETE_YN = 'N'
+		AND F.WRITER = #{no}
 		<if test="searchValue != null">
 			AND F.TITLE LIKE '%' || #{searchValue} || '%'
 		</if>

@@ -16,6 +16,7 @@
 </head>
 <header>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<%@ include file="/WEB-INF/views/common/alertMsg.jsp"%>
 </header>
 <body>
 
@@ -46,25 +47,29 @@
 				</div>
 
 				<!-- 작성 버튼 -->
-				<%-- 		<c:if test="${memberLog.id eq vo.writer}"> --%>
+				<c:if test="${memberLog.no eq qvo.writer || adminLog.adminId == 'admin'}">
 				<button id="write_submit_delete"
 					onclick="location.href='${rootContext}/qna/delete?no=${qnaNo}'">
 					<span>삭제하기</span>
 				</button>
+				</c:if>
 
+				<c:if test="${memberLog.no eq qvo.writer}">
 				<button id="write_submit_edit" onclick="toggleActive1();">
 					<span>수정하기</span>
 				</button>
+				</c:if>
 
-				<%-- 		</c:if> --%>
-
+				<c:if test="${adminLog.adminId == 'admin'}">
 				<button id="write_submit_edit" onclick="toggleActive2();">
 					<span>답변하기</span>
 				</button>
+				</c:if>
 
 
-
+			
 			</div>
+	<!-- 	관리자만 답변 가능하게  -->
 			<div class="form-area2">
 				<form action="${rootContext}/qna/reply" method="POST"
 					enctype="multipart/form-data">
@@ -94,6 +99,7 @@
 					<button id="write_submit_edit" style="margin-right: 240px;">
 						<span>답변완료</span>
 					</button>
+		
 				</form>
 			</div>
 			<div class="form-area1">
@@ -114,16 +120,18 @@
 							<div id="detail-reply">답변</div>
 						</div>
 						<div id="detail-inContent">
-							<textarea name="qnaContent">${qvo.qnaContent}</textarea>
+							<textarea name="qnaContent" class="qnacontentsize">${qvo.qnaContent}</textarea>
 							<div id="detail-inReply1">${qvo.qnaReplyContent}</div>
 						</div>
 
 					</div>
 
 					<br>
+
 					<button id="write_submit_edit" style="margin-right: 240px;">
 						<span>수정완료</span>
 					</button>
+
 				</form>
 			</div>
 		</main>

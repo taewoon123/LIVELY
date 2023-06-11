@@ -3,10 +3,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>JOB</title>
 </head>
 <header>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<%@ include file="/WEB-INF/views/common/alertMsg.jsp"%>
 </header>
 <body>
 
@@ -35,16 +36,18 @@
 					</div>
 				</div>
 
-				<%-- 		<c:if test="${memberLog.id eq vo.writer}"> --%>
+				<c:if test="${memberLog.no eq jvo.writer || adminLog.adminId == 'admin'}">
 				<button id="write_submit_delete"
 					onclick="location.href='${rootContext}/job/delete?no=${jobNo}'">
 					<span>삭제하기</span>
 				</button>
-
+				</c:if>
+				
+				<c:if test="${memberLog.no eq jvo.writer}">
 				<button id="write_submit_edit" onclick="toggleActive();">
 					<span>수정하기</span>
 				</button>
-				<%-- 		</c:if> --%>
+				</c:if>
 			<div id="comment-header">
 				<input type="text" name="content" placeholder="댓글을 입력하세요">
 				<button onclick="writeComment();" class="btn btn-primary btn-sm">댓글작성</button>
@@ -52,48 +55,44 @@
 			<div id="comment-area"></div>
 
 			</div>
-			<div class="form-area">
-				<form action="${rootContext}/job/edit" method="POST"
-					enctype="multipart/form-data">
-					<input type="hidden" name="jobNo" value="${jvo.jobNo}">
-					<div id="detail-area">
+			<!-- 수정화면 -->
+			<div class="form-area active">
+        <form action="${rootContext}/job/edit?no=${jvo.jobNo}" method="POST" enctype="multipart/form-data">
+            <div class="write-board">
+
+                <h3 id="friend-title">JOB</h3>
+
+						<div id="jobcategory">
 						<input type="radio" name="jobCategoryNo" value="1"
 							id="jobCategory1" checked> <label for="jobCategory1" >구인</label> 
 							<input type="radio" name="jobCategoryNo" value="2" id="jobCategory2">
 						<label for="jobCategory2">구직</label>
+						</div>
+						
+                		<%--지역 --%>
+                		<select class="location-option" name="locationNo" id="location">
+  							<c:forEach items="${locationList}" var="location">
+    							<option value="${location.getLocationNo()}">${location.getLocationName()}</option>
+  							</c:forEach>
+						</select>
 
-
-						<div class="selections">
-							<select class="location-option" name="locationNo" id="location">
-								<c:forEach items="${locationList}" var="location">
-									<option value="${location.getLocationNo()}">${location.getLocationName()}</option>
-								</c:forEach>
-							</select>
-						</div>
-						<div id="detail-title">제목</div>
-						<div id="detail-inTitle">
-							<textarea name="title">${jvo.title}</textarea>
-						</div>
-						<div id="detail-date">작성일자</div>
-						<div id="detail-inDate">${jvo.enrollDate}</div>
-						<div id="detail-hit">조회수</div>
-						<div id="detail-inHit">${jvo.views}</div>
-						<div id="detail-content">내용</div>
-						<div id="detail-inContent">
-							<textarea name="content">${jvo.content}</textarea>
-					<br />
-					
-						</div>
-							<div>기존 파일명 : ${fvo.originName}</div>
-					 <input type="file" name="file">
-					
-					</div>
-					<br>
-					<button id="write_submit_edit" style="margin-right: 240px;">
-						<span>수정완료</span>
-					</button>
-				</form>
-			</div>
+                <div class="xform__group">
+                	<input type="text" name="jobNo" value="${jvo.jobNo}" style="display: none">
+                	<input type="text" name="writer" value="${jvo.writer}" style="display: none">
+                    <input type="text" name="title" class="form__field" placeholder="제목" required value="${jvo.title}">
+                </div>
+            <div class="write-group">
+                            <textarea name="content" id="content" cols="30" rows="10" style="resize: none"
+                            placeholder="내용" required>${jvo.content}</textarea>
+            </div>
+		
+            <div class="register">
+                    <div id="registerName" onclick="location.href='${rootContext}/job/list'"><input value="취소" type="button"></div>
+                    <div id="registerName"><input value="수정" type="submit"></div>
+                </div>
+            </div>
+        </form>
+    </div>
 
 
 
@@ -111,13 +110,17 @@
 
 <script>
 
-    function toggleActive(){
-        const viewArea = document.querySelector(".view-area");
-        const formArea = document.querySelector(".form-area");
 
-        viewArea.classList.remove('active');
-        formArea.classList.add('active');
-    }
+function toggleActive() {
+	  const viewArea = document.querySelector(".view-area");
+	  const formArea = document.querySelector(".form-area");
+
+	  viewArea.classList.remove('active');
+	  formArea.classList.add('active');
+	  
+	  viewArea.style.display = "none";
+	  formArea.style.display = "block";
+	}
     
 const div = document.querySelector('#thumbnail-area');
 	
@@ -146,7 +149,7 @@ const div = document.querySelector('#thumbnail-area');
 		//로그인 안되어있으면 ㄴㄴ
 		const writer = '${memberLog.no}';
 		if(writer <= 0){
-			alert("로그인 후 작성 가능합니다. (JS에서 검사)");
+			alert("로그인 후 작성 가능합니다.");
 			return;
 		}
 

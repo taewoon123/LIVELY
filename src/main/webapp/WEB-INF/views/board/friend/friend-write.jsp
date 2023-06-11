@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Friend</title>
 </head>
 
 
@@ -66,4 +66,4 @@
 </body>
 </html>
   <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-write.css">
-  <script src="${rootContext}/resources/js/board/friend-write.js"></script>
+  <%-- <script src="${rootContext}/resources/js/board/friend-write.js"></script> --%>

@@ -250,7 +250,7 @@ const div = document.querySelector('#thumbnail-area');
 		});
 
 	}
-	
+
 </script>
 <link rel="stylesheet"
 	href="${rootContext}/resources/css/board/job/job-detail.css">

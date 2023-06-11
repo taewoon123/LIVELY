@@ -28,7 +28,7 @@
                 
                 <div id="upload_button">
 	                <div id="feed_checkbox">
-	            		<input class="feed_checkbox_status" id="statusCheckbox" type="checkbox" onclick="feed_toggle();"><span>&nbsp; 거래가능만 보기</span>
+	            		<input class="feed_checkbox_status" id="statusCheckbox" type="checkbox" onclick="feed_toggle();"><span>&nbsp; 모집중만 보기</span>
 	            	</div>
                     <button data-text="Awesome" class="button" onclick="location.href='${rootContext}/friend/write';" type="button">
                         <span class="actual-text">&nbsp;UPLOAD&nbsp;</span>

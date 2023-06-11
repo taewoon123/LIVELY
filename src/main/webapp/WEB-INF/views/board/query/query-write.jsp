@@ -53,9 +53,8 @@
             </label>
             
             <div class="register">
-                <div id="registerName" onclick="location.href='${rootContext}/query/list'"><input
-                    value="취소" type="button"></div>
-                    <div id="registerName"><input value="등록" type="submit"></div>
+                <div id="registerName" onclick="location.href='${rootContext}/query/list'"><input value="취소" type="button"></div>
+                <div id="registerName"><input value="등록" type="submit"></div>
                 </div>
             </form>
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>market</title>
 </head>
 
 
@@ -73,7 +73,7 @@
   <script src="${rootContext}/resources/js/board/market-write.js"></script>
   
   <script>
-	  const locationNo = '${memberLog.locationNo}';
+	  const locationNo = '${marketDetail[0].locationNo}';
 	  const locationValue = "option[value='"+ locationNo +"']";
 	  document.querySelector(locationValue).selected = true;
   </script>

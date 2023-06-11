@@ -9,6 +9,7 @@
 
 	<div id="wrap">
 		<%@ include file="/WEB-INF/views/common/header.jsp"%>
+		<%@ include file="/WEB-INF/views/common/alertMsg.jsp"%>
 
 		<div class="write-board">
 
@@ -42,7 +43,7 @@
 				<p class="form-paragraph">File should be an image or video</p>
 				<label for="file-input" class="drop-container"> <span
 					class="drop-title">Drop files here</span> <a>or</a> 
-					<input type="file" accept="image/*" id="file-input"
+					<input type="file" accept="image/*" id="file-input" name="f"
 					style="font-size: 15px" name="file" multiple accept=".jpg,.png,.jpeg">
 				</label>
 				

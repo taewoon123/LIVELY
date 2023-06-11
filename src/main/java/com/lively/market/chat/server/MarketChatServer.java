@@ -35,6 +35,7 @@ public class MarketChatServer extends TextWebSocketHandler {
 		@Override
 		public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 			System.out.println("연결됨");
+			sessionSet.add(session);
 		}
 
 		//메세지 수신함
@@ -45,9 +46,10 @@ public class MarketChatServer extends TextWebSocketHandler {
 			System.out.println("msg : " + msg);
 			
 			MemberVo memberLog = (MemberVo) session.getAttributes().get("memberLog");
-//			MarketVo marketVo = (MarketVo) session.getAttributes().get("marketVo");
 			
-			MarketVo marketVo = sst.selectOne("market-reply.getInfo");
+			String no = (String) session.getAttributes().get("marketNo");
+			
+			MarketVo marketVo = sst.selectOne("market-reply.getInfo", no);
 			
 		    String sender = memberLog.getName();  //보내는 사람(로그인 한 사람)
 		    String marketNo = marketVo.getMarketNo();
@@ -61,16 +63,10 @@ public class MarketChatServer extends TextWebSocketHandler {
 		    chatVo.setRoomNo(marketNo);
 			chatVo.setMsgTime(sendTime);
 			
-//			chatVo.setSender(marketVo.getWriterName());
-//			chatVo.setRoomNo(marketVo.getMarketNo());
-				
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(chatVo);  //messageVo를 json 형태로 만들어준다
-////			Object tmepObj = gson.fromJson(str, );
-//			System.out.println(chatVo);
-//			System.out.println(str);
 			TextMessage textMsg = new TextMessage(jsonStr);
-			session.sendMessage(textMsg); //messageVo를 json 문자열로 바꾸고 TextMessage로써 보내야된다
+//			session.sendMessage(textMsg); //messageVo를 json 문자열로 바꾸고 TextMessage로써 보내야된다
 			
 			broadCast(textMsg);
 		}
@@ -85,6 +81,7 @@ public class MarketChatServer extends TextWebSocketHandler {
 		@Override
 		public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 			System.out.println("연결 끊김");
+			sessionSet.remove(session);
 		}
 		
 }

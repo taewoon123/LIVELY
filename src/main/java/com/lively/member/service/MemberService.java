@@ -159,8 +159,8 @@ public class MemberService {
 		return dao.getMyHelpBoard(sst, helpVo);
 	}
 
-	public ArrayList<FriendVo> getFriendFeed(String searchValue) {
-		List<FriendVo> fvoList = dao.getFriendFeed(sst, searchValue);
+	public ArrayList<FriendVo> getFriendFeed(String no, String searchValue) {
+		List<FriendVo> fvoList = dao.getFriendFeed(sst, no, searchValue);
 
 		Map<String, FriendVo> fvoMap = new HashMap<String, FriendVo>();
 		for (FriendVo fvo : fvoList) {
@@ -196,8 +196,8 @@ public class MemberService {
 		return voList;
 	}
 
-	public ArrayList<MarketVo> getMarketFeed(String searchValue) {
-		List<MarketVo> fileVoList = dao.getMarketFeed(sst, searchValue);
+	public ArrayList<MarketVo> getMarketFeed(String no, String searchValue) {
+		List<MarketVo> fileVoList = dao.getMarketFeed(sst, no, searchValue);
 
 		Map<String, MarketVo> fileVoMap = new HashMap<String, MarketVo>();
 		for (MarketVo fileVo : fileVoList) {

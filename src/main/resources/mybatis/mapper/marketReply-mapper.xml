@@ -15,7 +15,7 @@
 		FROM MARKET K
 		LEFT JOIN MEMBER M ON (M.NO = K.WRITER)
 		WHERE DELETE_YN = 'N'
-		AND MARKET_NO = #{marketNo}
+		AND K.MARKET_NO = #{marketNo}
 	</select> 
   
 </mapper>

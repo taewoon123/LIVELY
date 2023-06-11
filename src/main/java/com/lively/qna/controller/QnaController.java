@@ -77,12 +77,7 @@ public class QnaController {
 	@GetMapping("qna/write")
 	public String write(HttpSession session, QnaVo vo) throws Exception {
 		
-		// 로그인 여부 체크
-		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
-		if (memberLog == null) {
-			throw new Exception("로그인 후 이용 가능합니다.");
-		}
-		vo.setWriter(memberLog.getNo());
+		
 		return "board/manage/qna/qna-write";
 	}
 
@@ -98,8 +93,8 @@ public class QnaController {
 
 
 		if (result == 1) {
-			session.setAttribute("alertMsg", "qna 작성 완료");
-			System.out.println(vo);
+			session.setAttribute("alertMsg", "게시물 작성 완료하였습니다.");
+			
 		} else {
 			session.setAttribute("alertMsg", "qna 작성 실패");
 		}
@@ -134,7 +129,7 @@ public class QnaController {
 			model.addAttribute("errorMsg", "수정실패...");
 			return "common/error-page";
 		} else {
-			session.setAttribute("alertMsg", "수정성공!!");
+			session.setAttribute("alertMsg", "게시물 수정하였습니다.");
 			return "redirect:/qna/detail?no=" + vo.getQnaNo();
 		}
 	}
@@ -149,18 +144,10 @@ public class QnaController {
 			model.addAttribute("errorMsg", "답변 작성 실패..");
 			return "common/error-page";
 		} else {
-			session.setAttribute("alertMsg", "답변 작성 성공!!");
+			session.setAttribute("alertMsg", "관리자 답변 작성 완료하였습니다.");
 			return "redirect:/qna/detail?no=" + vo.getQnaNo();
 		}
 	}
-
-	/*
-	 * AdminVo adminLog = (AdminVo) session.getAttribute("adminLog"); String adminId
-	 * = ""; if(adminLog != null) { adminId = adminLog.getAdminId(); }
-	 * 
-	 * if(!"admin".equalsIgnoreCase(adminId)) { model.addAttribute("errorMsg",
-	 * "잘못된 요청입니다..."); return "common/error-page"; }
-	 */
 
 	// 삭제하기
 	@GetMapping("qna/delete")
@@ -172,7 +159,7 @@ public class QnaController {
 			throw new Exception("삭제 실패...");
 		}
 
-		session.setAttribute("alertMsg", "게시물 삭제 완료");
+		session.setAttribute("alertMsg", "게시물 삭제 완료되었습니다.");
 		return "redirect:/qna/list";
 	}
 

@@ -55,28 +55,30 @@
             </tbody>
          </table>
          <!-- 작성 버튼 -->
+         <c:if test = "${not empty memberLog}">
          <button id = "write_submit">
             <span>
                <a class = "write-btn" href="${rootContext}/qna/write">write</a>
             </span>
          </button>
+         </c:if>
    
    <!-- pagenation -->
 			<div class="page-area">
 				<div class="pagination-custom">
 				<c:if test="${pv.currentPage > 1}">
-					<a class = "prev page-numbers" href = "${rootContext}/job/list?page=${pv.currentPage-1}"> << </a>
+					<a class = "prev page-numbers" href = "${rootContext}/qna/list?page=${pv.currentPage-1}"> << </a>
 				</c:if>
 				<c:forEach begin = "${pv.startPage}" end = "${pv.endPage}" step = "1" var = "i">
 					<c:if test = "${pv.currentPage != i}">
-						<a class = "page-numbers" href = "${rootContext}/job/list?page=${i}">${i}</a>
+						<a class = "page-numbers" href = "${rootContext}/qna/list?page=${i}">${i}</a>
 					</c:if>
 					<c:if test = "${pv.currentPage == i}">
 						<a class = "page-numbers">${i}</a>
 					</c:if>
 				</c:forEach>
 				<c:if test = "${pv.currentPage < pv.maxPage}">
-					<a class = "next page-numbers" href = "${rootContext}/job/list?page=${pv.currentPage+1}"> >> </a>
+					<a class = "next page-numbers" href = "${rootContext}/qna/list?page=${pv.currentPage+1}"> >> </a>
 				</c:if>
 				</div> <!-- div pagination-custom -->
 			</div> <!-- div page-area end -->

@@ -129,7 +129,7 @@ public class MarketController {
 	
 	//피드 수정 화면 (작성자만)
 	@GetMapping("edit/{no}")
-	public String edit(@PathVariable(required = true) String no, Model model, LocationVo locationVo) throws Exception {
+	public String edit(@PathVariable(required = true) String no, Model model, LocationVo locationVo, HttpSession session) throws Exception {
 		
 		List<MarketVo> marketDetail = ms.getFeed(no);
 		

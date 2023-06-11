@@ -16,20 +16,20 @@
 
 	<insert id="insertAttachment">
 		INSERT ALL
-		<foreach collection="list" item="x" separator=" ">
+		<foreach collection = "list" item = "x" separator = " ">
 			INTO JOB_ATTACH
 			(
-			JOB_ATTACH_NO
-			, JOB_NO
-			, ORIGIN_NAME
-			, CHANGE_NAME
+				JOB_ATTACH_NO
+				, JOB_NO
+				, ORIGIN_NAME
+				, CHANGE_NAME
 			)
 			VALUES
 			(
-			(SELECT GET_ATTACHMENT_SEQ FROM DUAL)
-			, SEQ_JOB_NO.CURRVAL
-			, #{x.originName}
-			, #{x.changeName}
+				(SELECT GET_ATTACHMENT_SEQ FROM DUAL)
+				, SEQ_JOB_NO.CURRVAL
+				, #{x.originName}
+				, #{x.changeName}
 			)
 		</foreach>
 		SELECT 1 FROM DUAL
@@ -122,6 +122,7 @@
 			J.TITLE,
 			J.CONTENT,
 			J.ENROLL_DATE,
+			J.WRITER,
 			J.EDIT_DATE,
 			J.DELETE_YN,
 			J.VIEWS,
@@ -135,6 +136,8 @@
 			JOB_CATEGORY C ON (J.JOB_CATEGORY_NO = C.NO )
 			LEFT JOIN LOCATION L ON
 			(J.LOCATION_NO = L.LOCATION_NO)
+			LEFT JOIN MEMBER M ON
+			(J.WRITER = M.NO)
 			WHERE J.DELETE_YN = 'N'
 			AND J.JOB_NO = #{jobNo}
 	</select>

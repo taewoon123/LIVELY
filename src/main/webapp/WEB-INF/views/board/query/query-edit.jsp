@@ -51,8 +51,7 @@
             </label>
 
             <div class="register">
-                <div id="registerName"><input value="취소" type="button"
-                                              onclick="location.href='${rootContext}/query/list'"></div>
+                <div id="registerName" onclick="location.href='${rootContext}/query/list'"><input value="취소" type="button"></div>
                 <!-- 등록버튼만 submit되야하므로 취소버튼은 button타입으로 바꾸고 onclick 속성으로 페이지이동 구현함. -->
                 <div id="registerName"><input value="수정" type="submit"></div>
             </div>
@@ -62,6 +61,15 @@
 </div>
 
 </body>
+
+<script>
+    
+    // locationNo 선택해놓기
+    const locationNo = '${memberLog.locationNo}';
+    const locationValue = "option[value='" + locationNo + "']";
+    document.querySelector(locationValue).selected = true;
+
+</script>
 
 </html>
 <%-- <link rel="stylesheet" href="${rootContext}/resources/css/common/wrap-style.css" /> --%>

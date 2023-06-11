@@ -98,16 +98,16 @@ checkbox.addEventListener("change", handleCheckboxChange);
 
 //채팅
 function chat(){
+	const marketNo = document.querySelector(".hiddenMarketNo").value;
 
 	let options = "width=500, height=600, top=100,left=500";
-    window.open("/lively/chat", "chat", options);
+    window.open("/lively/market/marketChat/" + marketNo, "chat", options);
 }
 
-//채팅 버튼 클릭시 마켓 번호 전달
+/*//채팅 버튼 클릭시 마켓 번호 전달
 function sendMarketNo(){
-	const marketNo = document.querySelector(".hiddenMarketNo").value;
 	socket.send(marketNo);
-}
+}*/
 
 
 

@@ -71,3 +71,9 @@
 </html>
   <link rel="stylesheet" href="${rootContext}/resources/css/board/market/market-write.css">
   <script src="${rootContext}/resources/js/board/market-write.js"></script>
+  
+  <script>
+	  const locationNo = '${memberLog.locationNo}';
+	  const locationValue = "option[value='"+ locationNo +"']";
+	  document.querySelector(locationValue).selected = true;
+  </script>

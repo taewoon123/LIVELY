@@ -59,7 +59,6 @@
 		function sendMessage(){
 			const message = document.querySelector("input[name=message]").value;
 			socket.send(message);
-			//socket.send(marketNo);
 		}
 
 	</script>

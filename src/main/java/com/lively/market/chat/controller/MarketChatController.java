@@ -18,7 +18,7 @@ import com.lively.member.vo.MemberVo;
 
 
 @Controller
-@RequestMapping("market")
+@RequestMapping("feed")
 public class MarketChatController {
 
 private static final Logger logger = LoggerFactory.getLogger(MarketChatController.class);
@@ -28,8 +28,11 @@ private static final Logger logger = LoggerFactory.getLogger(MarketChatControlle
 	 * home(Locale locale, Model model) { return "login"; }
 	 */
 	
-	@GetMapping("marketChat/{no}")
+	@GetMapping("chat/{no}")
 	public String login(@PathVariable(required = true) String no, HttpSession session, MemberVo memberVo, Model model, MarketVo marketVo) {
+		
+		MemberVo memberLog = (MemberVo) session.getAttribute("memberLog");
+
 		
 		session.setAttribute("marketNo", no);
 		

@@ -66,7 +66,7 @@ public class MarketChatServer extends TextWebSocketHandler {
 			Gson gson = new Gson();
 			String jsonStr = gson.toJson(chatVo);  //messageVo를 json 형태로 만들어준다
 			TextMessage textMsg = new TextMessage(jsonStr);
-			session.sendMessage(textMsg); //messageVo를 json 문자열로 바꾸고 TextMessage로써 보내야된다
+//			session.sendMessage(textMsg); //messageVo를 json 문자열로 바꾸고 TextMessage로써 보내야된다
 			
 			broadCast(textMsg);
 		}

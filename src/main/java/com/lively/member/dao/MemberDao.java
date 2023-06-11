@@ -1,5 +1,6 @@
 package com.lively.member.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -76,8 +77,12 @@ public class MemberDao {
 		return sst.selectList("member.helpBoard", helpVo);
 	}
 
-	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst, String searchValue) {
-		return sst.selectList("member.friendFeed" , searchValue);
+	public List<FriendVo> getFriendFeed(SqlSessionTemplate sst, String no, String searchValue) {
+		Map<String, Object> params = new HashMap<>();
+	    params.put("no", no);
+	    params.put("searchValue", searchValue);
+	    
+	    return sst.selectList("member.friendFeed", params);
 	}
 
 	/*
@@ -94,9 +99,20 @@ public class MemberDao {
 	 * searchValue) { return sst.selectList("member.getMarketFeed" , searchValue); }
 	 */
 
-	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, String searchValue) {
-		return sst.selectList("member.marketFeed", searchValue);
+	/*
+	 * public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, String
+	 * searchValue, String no) { return sst.selectList("member.marketFeed",
+	 * searchValue, no); }
+	 */
+	
+	public List<MarketVo> getMarketFeed(SqlSessionTemplate sst, String no, String searchValue) {
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("no", no);
+	    params.put("searchValue", searchValue);
+	    
+	    return sst.selectList("member.marketFeed", params);
 	}
+
 
 	public List<FileVo> getAttachmentList2(SqlSessionTemplate sst) {
 		return sst.selectList("market.getAttachmentList2");

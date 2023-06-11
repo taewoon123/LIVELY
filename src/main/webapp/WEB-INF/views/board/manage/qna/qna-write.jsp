@@ -1,11 +1,14 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-    <html>
-
-    <head>
-        <meta charset="UTF-8">
-        <title>Qna-write</title>
-    </head>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<header>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<%@ include file="/WEB-INF/views/common/alertMsg.jsp"%>
+</header>
     <body>
 
         <div id="wrap">

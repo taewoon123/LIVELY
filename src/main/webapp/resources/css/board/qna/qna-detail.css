@@ -234,6 +234,10 @@ h5 {
    color: black;
 }
 
+.qnacontentsize{
+	height: 80ox;
+}
+
 #write_submit_edit::before, #write_submit_edit::after {
    position: absolute;
    top: 0;

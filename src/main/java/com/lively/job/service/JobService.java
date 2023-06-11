@@ -38,6 +38,7 @@ public class JobService {
 		int jobResult = dao.write(sst, vo);
 		int attResult = 1;
 		if (jobList.size() > 0) {
+			System.out.println(attResult);
 			attResult = dao.insertAttachment(sst, jobList);
 		}
 		return jobResult * attResult;

@@ -17,7 +17,7 @@
 			SEQ_NOTICE_NO.NEXTVAL
 			, #{noticeTitle}
 			, #{noticeContent}
-			, #{adminNo}
+			, 1
 		)
 	</insert> 
 	

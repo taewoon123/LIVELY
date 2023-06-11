@@ -53,7 +53,6 @@ public class FriendController {
 	public String list(Model model,  String searchValue, LocationVo locationVo , String no) {
 		ArrayList<FriendVo> fvoList = fs.getFriendFeed(searchValue);
 		List<LocationVo> locationList = fs.getLocationList(locationVo);
-		/* List<Map<String, String>> LocationList = fs.getLocationNoList(); */
 		
 		
 		if (fvoList != null) {

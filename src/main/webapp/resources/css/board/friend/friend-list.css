@@ -1,9 +1,7 @@
-/* 새로 추가한 것 */
-/* enrollDate */
-.feedEnrollDate {
-	color: rgb(172, 172, 172);
-	font-size: 13px;
-	margin-left: 20px;
+#wrap > main {
+    margin: 200px auto;
+    width: 600px;
+    /* height: 100vh; */
 }
 
 /* 피드 영역 */
@@ -61,54 +59,47 @@
 }
 
 
-/* content more / hide button */
+/* #profile_area, #content_area {
+    background-color: rgb(195, 207, 217);
+} */
 
-.more-button-invisible {
-  display: none;
+/* 프로필 사진/이름/닉네임 영역 */
+#profile_area {
+    display: flex;
 }
 
-.feed-content-more-button {
-  appearance: none;
-  border: none;
-  background-color: rgb(26, 26, 26);
-  color: #717171;
+/* 프로필 사진 */
+#profile_img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin: 5px 3px 5px 5px;
 }
 
-.feed-content-hide {
-  display: none;
+/* 프로필 이름/닉네임 */
+#profile_box {
+    margin: 5px;
+}
+#profile_name {
+    font-weight: bolder;
+    font-size: 13px;
+    color: aliceblue;
+}
+#profile_nick {
+    font-size: 10px;
+    color: aliceblue;
 }
 
-/* page list 숨기기 */
-#page-area {
-	display: none;
+/* 거래완료 버튼 */
+#feed_status {
+	margin-top: 5px;
+	margin-left: 390px;
 }
 
-/*  */
-
-#feed_select_button:hover {
-	cursor: pointer;
-}
-
-.feed_status_text {
-	width: 75px;
-	text-align: center;
-	background-color: rgb(39, 39, 39);
-  color: rgb(177, 176, 176);
-  border: 1px solid rgb(177, 176, 176);
-  border-radius: 5px;
-}
-
-
-/* 모집중만 보기 체크박스 */
-#feed_checkbox {
-	margin: 30px 0 -30px 0;
-	font-size: 13px;
-	display: flex;
-	align-items: center;
-}
-
-#feed_checkbox span {
+#feed_select_button, .dropdown {
+	margin-left: 425px;
 	color: white;
+	font-size: 25px;
 }
 
 /* 수정 / 삭제 드롭다운 */
@@ -153,87 +144,33 @@
   width: 90px;
 }
 
-/* 지역태그 */
-.selections {
-  width: 90px;
+
+/*  */
+
+#feed_select_button:hover {
+	cursor: pointer;
 }
 
-.location-option {
-  background-color: black;
-  color: #7c7676;
-  border: 1px solid black;
-  margin: 0 0 0 3px;
+.feed_status_text {
+	width: 75px;
+	text-align: center;
+	background-color: rgb(39, 39, 39);
+  color: rgb(177, 176, 176);
+  border: 1px solid rgb(177, 176, 176);
+  border-radius: 5px;
 }
 
-/* 모집 */
-#friend_end_box{
-  margin-left: 370px;
-  margin-top: 10px;
-}
-#friend_end {
-  text-align: center;
-  width: 100px;
-  background-color: #078735;
-  color: white;
-  display: none;
+
+/* 거래중만 보기 체크박스 */
+#feed_checkbox {
+	margin: 30px 0 -30px 0;
+	font-size: 13px;
+	display: flex;
+	align-items: center;
 }
 
-/* 제목 */
-#friend_title h2 {
-  color: white;
-  padding-left: 10px;
-}
-
-#friend_title {
-   margin-bottom: 50px;
-}
-
-#wrap > main {
-    margin: 200px auto;
-    width: 600px;
-    /* height: 100vh; */
-}
-
-/* 피드 영역 */
-.feed_box {
-    height: 600px;
-    display: grid;
-    grid-template-rows: 1fr 7fr 2fr 1fr;
-    border: 1px solid grey;
-    background-color: rgb(26, 26, 26);
-    border-radius: 1%;
-    margin-bottom: 40px;
-}
-
-/* #profile_area, #content_area {
-    background-color: rgb(195, 207, 217);
-} */
-
-/* 프로필 사진/이름/닉네임 영역 */
-#profile_area {
-    display: flex;
-}
-
-/* 프로필 사진 */
-#profile_img img {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    margin: 5px 3px 5px 5px;
-}
-
-/* 프로필 이름/닉네임 */
-#profile_box {
-    margin: 5px;
-}
-#profile_name {
-    font-weight: bolder;
-    font-size: 13px;
-    color: aliceblue;
-}
-#profile_nick {
-    font-size: 10px;
-    color: aliceblue;
+#feed_checkbox span {
+	color: white;
 }
 
 /* 피드 사진 */
@@ -249,23 +186,21 @@
 
 
 /* 내용 영역 */
-#content_area a {
+#content_area a, #content_area span {
     padding-left: 10px;
     padding-top: 10px;
     font-size: 13px;
     color: aliceblue;
 }
 
-#content_area h7{
+#content_area h7 {
 	padding-left: 10px;
     padding-top: 10px;
     color: aliceblue;
-	
 }
 
 #content_area {
     margin-top: -4px;
-    color: white;
 }
 
 
@@ -397,6 +332,7 @@
     background-color: black;
     color: white;
     padding: 5px;
+    margin-left: -5px;
     transition: .5s linear;
     font-family: monospace;
     letter-spacing: 1px;
@@ -407,6 +343,10 @@
     caret-color: #078735;
     color: white;
     /* box-shadow: 4px 4px 10px #895959; */
+  }
+
+  .feed_search_input:blur {
+    color: white
   }
   
   /* .feed_search_input:focus::placeholder {
@@ -419,9 +359,10 @@
   .hidden_button{
     display: none;
   }
-
-  /* 피드영역 사이즈조절 */
-#search-upload-area {
+  
+  /* 피드 추가사항 */
+  
+  #search-upload-area {
   margin-left: 8px;
   margin-bottom: 20px;
 }
@@ -433,3 +374,43 @@
 #profile_area{
   margin: 15px;
 }
+
+#friend_title h2 {
+  color: white;
+  padding-left: 10px;
+}
+
+#friend_title {
+	/* text-align: center; */
+	margin-bottom: 50px;
+}
+
+/* content more / hide button */
+
+.more-button-invisible {
+  display: none;
+}
+
+.feed-content-more-button {
+  appearance: none;
+  border: none;
+  background-color: rgb(26, 26, 26);
+  color: #717171;
+}
+
+.feed-content-hide {
+  display: none;
+}
+
+/* page list 숨기기 */
+#page-area {
+	display: none;
+}
+
+/* enrollDate */
+.feedEnrollDate {
+	color: rgb(172, 172, 172);
+	font-size: 13px;
+	margin-left: 20px;
+}
+

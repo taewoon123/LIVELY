@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>QNA</title>
 </head>
 <header>
    <%@ include file="/WEB-INF/views/common/header.jsp"%>

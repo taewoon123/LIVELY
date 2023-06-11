@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Friend</title>
 </head>
 
 <body>
@@ -92,7 +92,7 @@
                  </div> 
 	                <div id="chat_area">
 	                	<div><br><span class="feedEnrollDate">${fvo.enrollDate}</span></div>
-	                    <div><button onclick="return chat();"><a>CHAT</a></button>
+	                    <div><button onclick="return friendchat();"><a>CHAT</a></button>
 	                    <input type="text" style="display:none" class="hiddenFriendNo" value="${fvo.friendNo}"></div>
 	                </div>
 	            </div>

@@ -1,8 +1,4 @@
-/*// 모집마감
-function (){
-  if(friend_end == RecruitOff){
-      document.getElementById("friend_end").style.display = "";
-  }else{
-    document.getElementById("friend_end").style.display = "none";
-  }
-}*/
+  //로그인 한 회원의 locationNo 선택해놓기
+  const locationNo = '${memberLog.locationNo}';
+  const locationValue = "option[value='" + locationNo + "']";
+  document.querySelector(locationValue).selected = true;

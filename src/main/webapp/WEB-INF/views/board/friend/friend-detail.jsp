@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Friend</title>
 </head>
 
 
@@ -73,6 +73,7 @@
     </div>
 
 </body>
+  <script src="${rootContext}/resources/js/board/friend-write.js"></script>
 </html>
   <link rel="stylesheet" href="${rootContext}/resources/css/board/friend/friend-edit.css">
-  <script src="${rootContext}/resources/js/board/friend-write.js"></script>
+

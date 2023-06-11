@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Notice-write</title>
+        <title>notice</title>
     </head>
 
     <body>

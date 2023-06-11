@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Help-write</title>
+    <title>help</title>
 </head>
 
 <body>
